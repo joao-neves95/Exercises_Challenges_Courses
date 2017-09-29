@@ -59,7 +59,6 @@ function decimalToBinary(inputNum) {
             rest += getNextRest();
             lastQuotient = newQuotient;
         }
-        // (If the division of the last quotient by 2 is NOT greater than or equal to 0, reverse the "rest" string, and console.log the output):
     }
     return reverseString(rest);
 }
