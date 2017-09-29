@@ -1,6 +1,6 @@
 /*
 
-Last week I had a math lesson at my university about numbering sistems, and how to covert a decimal base number into a banary base one.
+Last week I had a math lesson at my university about numbering sistems, and how to convert a decimal base number into a binary base one.
 
 I thought to myself while I was at that class: 
 "What better way of practicing javascript and learn math, 
