@@ -1,10 +1,10 @@
 /*
 
-Last week I had a math lesson at my university about numbering sistems, and how to convert a decimal base number 
+Last week I had a maths lesson at my university about numbering systems, and how to convert a decimal base number 
 into other bases.
 
 I thought to myself while I was at that class: 
-"What better way of practicing javascript and learn math, 
+"What better way of practicing javascript and learn maths, 
 than doing a program that converts decimal base numbers into binary base ones?"
 
 */
