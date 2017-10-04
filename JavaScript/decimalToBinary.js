@@ -7,6 +7,9 @@ I thought to myself while I was at that class:
 "What better way of practicing javascript and learn maths, 
 than doing a program that converts decimal base numbers into binary base ones?"
 
+binaryToDecimal():
+https://github.com/joao-neves95/Exercises_Challenges/blob/master/JavaScript/binaryToDecimal.js
+
 */
 
 function decimalToBinary(inputNum) {
