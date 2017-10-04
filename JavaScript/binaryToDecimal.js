@@ -27,7 +27,7 @@ function binaryToDecimal(inputNum) {
         reversedBinaryNumArray.push(binaryNumArray[j]);
     }
 
-    // Calculate decimal the number:
+    // Calculate the decimal number:
     var decimalNumber = 0;
     for (var k = 0; k < reversedBinaryNumArray.length; k++) {
         decimalNumber += reversedBinaryNumArray[k] * Math.pow(2, k);
