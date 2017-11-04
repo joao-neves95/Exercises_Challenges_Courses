@@ -8,7 +8,7 @@ Your response should be a number.
 
 
 function findLongestWord(str) {
-  let splited = str.split(" ")
+  let splited = str.split(' ')
 
   let lenghtsArray = splited.map(function (val) {
     return val.length
