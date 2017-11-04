@@ -17,7 +17,7 @@ We'll also pass strings with special symbols, such as "2A3*3a2", "2A3  3a2", and
 function palindrome(str) {
   let cleanedChars = str.replace(/[^0-9a-zA-Z]/g, '')
   let lowerCase = cleanedChars.toLowerCase()
-  let reversedStr = String(lowerCase).split("").reverse().join("")
+  let reversedStr = String(lowerCase).split('').reverse().join('')
   if (reversedStr == lowerCase)
     return true
   else
