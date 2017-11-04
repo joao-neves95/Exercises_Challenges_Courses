@@ -13,7 +13,7 @@ For the purpose of this exercise, you should also capitalize connecting words li
 function toTitleCase(str) {
   let lowerCaseStr = str.toLowerCase()
 
-  let splited = lowerCaseStr.split(" ")
+  let splited = lowerCaseStr.split(' ')
 
   let titleCasedArray = []
   for (let i = 0; i < splited.length; i++) {
@@ -21,7 +21,7 @@ function toTitleCase(str) {
     titleCasedArray.push(splited[i].charAt(0).toUpperCase() + splited[i].substr(1))
   }
 
-  let titleCasedStr = titleCasedArray.join(" ")
+  let titleCasedStr = titleCasedArray.join(' ')
   return titleCasedStr
 }
 
