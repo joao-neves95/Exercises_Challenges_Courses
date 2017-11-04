@@ -12,14 +12,14 @@ function largestOfFour(arr) {
   let sortedArrays = []
   let output = []
 
-  for (let i = 0; i < arr.length; i++) {
+  arr.forEach(function (val, i) {
     // Sort from largest to smaller:
     sortedArrays.push(arr[i].sort(function (a, b) {
       return b - a
     }))
     // Push the first number (the largest) from each array:
     output.push(sortedArrays[i][0])
-  }
+  })
   return output
 }
 
