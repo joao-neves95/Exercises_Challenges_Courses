@@ -11,14 +11,12 @@ For the purpose of this exercise, you should also capitalize connecting words li
 
 
 function toTitleCase(str) {
-  let lowerCaseStr = str.toLowerCase()
-
-  let splited = lowerCaseStr.split(' ')
+  let lowerCaseArr = str.toLowerCase().split(' ')
 
   let titleCasedArray = []
-  for (let i = 0; i < splited.length; i++) {
+  for (let i = 0; i < lowerCaseArr.length; i++) {
     // Push the upper cased first char of index i, plus the rest of the lower cased string:
-    titleCasedArray.push(splited[i].charAt(0).toUpperCase() + splited[i].substr(1))
+    titleCasedArray.push(lowerCaseArr[i].charAt(0).toUpperCase() + lowerCaseArr[i].substr(1))
   }
 
   let titleCasedStr = titleCasedArray.join(' ')
