@@ -85,7 +85,6 @@ det([
 ])                    // -6
 
 // Matrices.js does not yet support the calculation of determinants of matrices bigger than 2*2
-// Matrices.js does not yet support the calculation of determinants of non-square matrices (n * n)
 ---------------------------------------------
 randomMatrix(rows, cols, (range of the random numbers:) min, max)
 
