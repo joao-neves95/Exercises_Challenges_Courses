@@ -25,13 +25,12 @@ function det (matrix) {
     return null
   }
 }
-
 // Create a Random Matrix:
 function randomMatrix (i, j, min, max) {
   let matrix = []
   let row = []
-  for (let rowsCount = 0; rowsCount <= i - 1; rowsCount++) {
-    for (let colsCount = 0; colsCount <= j - 1; colsCount++) {
+  for (let rowsCount = 0; rowsCount < i; rowsCount++) {
+    for (let colsCount = 0; colsCount < j; colsCount++) {
       row.push(Math.floor((Math.random() * (max + 1) + min)))
       if (colsCount === j - 1) {
         matrix.push(row)
