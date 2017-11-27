@@ -16,14 +16,12 @@ function  matrixSize (matrix) {
 
 // Determinant of a Matrix:
 function det (matrix) {
-  if (matrixSize(matrix).toString() === '1,1') {
+  if (matrix.length === 1) {
     return matrix[0][0]
-  } else if (matrixSize(matrix).toString() === '2,2') {
+  } else if (matrix.length === 2) {
     return (matrix[0][0] * matrix[1][1]) - (matrix[0][1] * matrix[1][0])
   } else {
-    console.log('Matrices.js does not yet support the calculation of determinants of matrices bigger than 2*2',
-                '\n',
-                'Matrices.js does not yet support the calculation of determinants of non-square matrices (n * n)')
+    console.log('Matrices.js does not yet support the calculation of determinants of matrices bigger than 2*2')
     return null
   }
 }
