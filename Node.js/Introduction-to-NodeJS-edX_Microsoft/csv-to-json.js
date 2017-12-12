@@ -28,12 +28,13 @@ const csvToJson = (csvPATH) => {
 
       let json = []
 
-      for (let i = 0; i < lines.length - 1; i++) {
+      for (let i = 1; i < lines.length - 1; i++) {
         let obj = {}
-        let lineValues = lines[i + 1].split(',') // (i + 1 -> to account for the first line, which is the keys line)
+        let lineValues = lines[i].split(',') // (i + 1 -> to account for the first line, which is the keys line)
 
         for (let j = 0; j < keys.length; j++) {
-          obj[keys[j]] = lineValues[j]
+          // Make object and remove '\n' characters:
+          obj[keys[j].replace(/\r?\n|\r/g,'')] = lineValues[j].replace(/\r?\n|\r/g,'')
         }
         // Push each JSON object into the "json" array:
         json.push(obj)
