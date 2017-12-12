@@ -1,0 +1,11 @@
+{
+  "name": "csv-to-json",
+  "version": "0.1.0",
+  "description": "Introduction to Node.js - Lab1",
+  "main": "csv-to-json.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "shivayl",
+  "license": "MIT"
+}
