@@ -23,8 +23,8 @@ const csvToJson = (csvPATH) => {
 
     // Convert csv into JSON format:
     const csvToJson = (data) => {
-      let lines = data.split('\n')
-      let keys = lines[0].split(',')
+      const lines = data.split('\n')
+      const keys = lines[0].split(',')
 
       let json = []
 
@@ -32,7 +32,7 @@ const csvToJson = (csvPATH) => {
         let obj = {}
         let lineValues = lines[i + 1].split(',') // (i + 1 -> to account for the first line, which is the keys line)
 
-        for (let j = 0; j < keys.length - 1; j++) {
+        for (let j = 0; j < keys.length; j++) {
           obj[keys[j]] = lineValues[j]
         }
         // Push each JSON object into the "json" array:
