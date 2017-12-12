@@ -22,7 +22,7 @@ const csvToJson = (csvPATH) => {
     console.log('Converting ' + csvPATH + ' data content to JSON format...')
 
     // Convert csv into JSON format:
-    const csvToJson = (data) => {
+    const parseCsvToJson = (data) => {
       const lines = data.split('\n')
       const keys = lines[0].split(',')
 
@@ -46,7 +46,7 @@ const csvToJson = (csvPATH) => {
     const fileName = path.basename(csvPATH, '.csv') + '.json'
 
     // Write the .json file, with the parsed data from csvToJson() function:
-    fs.writeFile(path.join(__dirname, fileName), csvToJson(data), (error) => {
+    fs.writeFile(path.join(__dirname, fileName), parseCsvToJson(data), (error) => {
       console.log('Creating the .json file...')
       if (error)
         throw error
