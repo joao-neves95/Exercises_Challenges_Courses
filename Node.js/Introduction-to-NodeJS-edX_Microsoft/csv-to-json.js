@@ -2,8 +2,6 @@ const fs = require('fs')
 const path = require('path')
 const csvPATH = path.normalize('./customer-data.csv')
 
-// Read CSV file:
-
 const csvToJson = (csvPATH) => {
 
   const readCSV = (csvPATH, callback) => {
