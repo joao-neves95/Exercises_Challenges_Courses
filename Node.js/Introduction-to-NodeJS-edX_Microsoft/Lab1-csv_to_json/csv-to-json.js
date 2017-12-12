@@ -28,7 +28,7 @@ const csvToJson = (csvPATH) => {
 
       for (let i = 1; i < lines.length - 1; i++) {
         let obj = {}
-        let lineValues = lines[i].split(',') // (i + 1 -> to account for the first line, which is the keys line)
+        let lineValues = lines[i].split(',')
 
         for (let j = 0; j < keys.length; j++) {
           // Make object and remove '\n' characters:
@@ -43,12 +43,12 @@ const csvToJson = (csvPATH) => {
     // Extract file name, and append new extension:
     const fileName = path.basename(csvPATH, '.csv') + '.json'
 
-    // Write the .json file, with the parsed data from csvToJson() function:
+    // Write the .json file, with the parsed data from parseCsvToJson() function:
     fs.writeFile(path.join(__dirname, fileName), parseCsvToJson(data), (error) => {
       console.log('Creating the .json file...')
       if (error)
         throw error
-      console.log('The '+ fileName +' file has been created')
+      console.log('The ' + fileName + ' file has been created')
 
     })
   })
