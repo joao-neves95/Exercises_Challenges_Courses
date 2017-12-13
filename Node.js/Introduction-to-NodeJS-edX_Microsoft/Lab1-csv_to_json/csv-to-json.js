@@ -37,7 +37,7 @@ const csvToJson = (csvPATH) => {
         // Push each JSON object into the "json" array:
         json.push(obj)
       }
-      return JSON.stringify(json)
+      return JSON.stringify(json, null, 2)
     }
 
     // Extract file name, and append new extension:
