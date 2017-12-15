@@ -1,0 +1,19 @@
+{
+  "name": "lab2-restful_blog_api",
+  "version": "0.1.0",
+  "description": "Lab 2 (RESTful Blog API) of Introduction to Node.js from edX/Microsoft",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "shivayl",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "1.18.2",
+    "express": "4.16.2"
+  },
+  "devDependencies": {
+    "morgan": "1.9.0",
+    "node-dev": "3.1.3"
+  }
+}
