@@ -32,6 +32,7 @@ class Post {
     this.name = name
     this.url = url
     this.text = text
+    this.comments = []
   }
 }
 
