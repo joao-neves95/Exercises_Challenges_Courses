@@ -1,0 +1,323 @@
+{
+	"info": {
+		"name": "RESTful_Blog_API",
+		"_postman_id": "ce5b599c-11cb-7b47-0b80-ab1fbb12a6fd",
+		"description": "The RESTful Blog API for Lab2 of Indrodution to Node.js from edX/Microsoft",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET homepage",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:3000/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				},
+				"description": "localhost:3000/"
+			},
+			"response": []
+		},
+		{
+			"name": "GET all posts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:3000/posts",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"posts"
+					]
+				},
+				"description": "localhost:3000/posts"
+			},
+			"response": []
+		},
+		{
+			"name": "GET the first post",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:3000/posts/0",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"posts",
+						"0"
+					]
+				},
+				"description": "localhost:3000/posts/0"
+			},
+			"response": []
+		},
+		{
+			"name": "POST a new blog post",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"Top 10 ES6 Features\", \"url\":\"http://webapplog.com/es6\", \"text\": \"This is a random post\"}"
+				},
+				"url": {
+					"raw": "localhost:3000/posts",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"posts"
+					]
+				},
+				"description": "localhost:3000/posts"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT (update) the first post",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"How to update the first post\", \"url\":\"http://webapplog.com/update-post\", \"text\": \"This is how you update the first post. Blablablablabla\"}"
+				},
+				"url": {
+					"raw": "localhost:3000/posts/0",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"posts",
+						"0"
+					]
+				},
+				"description": "localhost:3000/posts/0"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT (update) the second post",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"How to update a post\", \"url\":\"http://webapplog.com/update-post\", \"text\": \"This is how you update a post. Blablablablabla\"}"
+				},
+				"url": {
+					"raw": "localhost:3000/posts/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"posts",
+						"1"
+					]
+				},
+				"description": "localhost:3000/posts/1"
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE the second post",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:3000/posts/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"posts",
+						"1"
+					]
+				},
+				"description": "localhost:3000/posts/1"
+			},
+			"response": []
+		},
+		{
+			"name": "GET all comments from first post",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:3000/posts/0/comments",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"posts",
+						"0",
+						"comments"
+					]
+				},
+				"description": "localhost:3000/posts/0/comments"
+			},
+			"response": []
+		},
+		{
+			"name": "GET first comment from first post",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:3000/posts/0/comments/0",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"posts",
+						"0",
+						"comments",
+						"0"
+					]
+				},
+				"description": "localhost:3000/posts/0/comments/0"
+			},
+			"response": []
+		},
+		{
+			"name": "POST new comment on first post",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"comment\": \"This is a new random comment.\"}"
+				},
+				"url": {
+					"raw": "localhost:3000/posts/0/comments",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"posts",
+						"0",
+						"comments"
+					]
+				},
+				"description": "localhost:3000/posts/0/comments"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT (update) comment from the first post",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"comment\": \"I had to change my comment, I'm sorry, I was wrong.\"}"
+				},
+				"url": {
+					"raw": "localhost:3000/posts/0/comments/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"posts",
+						"0",
+						"comments",
+						"1"
+					]
+				},
+				"description": "localhost:3000/posts/0/comments/1"
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE first comment from first post",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"api_key\":\"94dd2218-2594-463f-9947-7b52b96aa621\"}"
+				},
+				"url": {
+					"raw": "localhost:3000/posts/0/comments/0",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"posts",
+						"0",
+						"comments",
+						"0"
+					]
+				},
+				"description": "localhost:3000/posts/0/comments/1"
+			},
+			"response": []
+		}
+	]
+}
