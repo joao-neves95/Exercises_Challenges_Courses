@@ -37,16 +37,15 @@ router.put('/posts/:postId/comments/:commentId', hasPost, hasComment, (req, res)
   res.status(201).send({ msg: 'Comment successfully updated.', postId: req.params.postId, commentId: req.params.commentId, commentUpdate })
 })
 
-const hasKey = (req, res, next) => {
+router.delete('/posts/:postId/comments/:commentId', (req, res, next) => {
   if (!req.body.api_key)
     return res.status(401).send( {msg: 'Not authorized.'} )
 
   next()
-}
-
-router.delete('/posts/:postId/comments/:commentId', hasKey, hasPost, hasComment, (req, res) => {
-  db.database.posts[req.params.postId].comments.splice(req.params.commentId, 1)
-  res.status(200).send({ msg: 'Comment successfully deleted.', postId: req.params.postId, commentId: req.params.commentId })
-})
+}, hasPost, hasComment,
+  (req, res) => {
+    db.database.posts[req.params.postId].comments.splice(req.params.commentId, 1)
+    res.status(200).send({ msg: 'Comment successfully deleted.', postId: req.params.postId, commentId: req.params.commentId })
+  })
 
 module.exports = router
