@@ -14,11 +14,8 @@ const hasPost = (req, res, next) => {
 }
 
 router.get('/posts/:postId', hasPost, (req, res) => {
-  const comment = db.database.posts[req.params.postId]
-  if (!comment)
-    return res.status(400).send({ msg: 'Post does not exist.', postId: req.params.postId })
-
-  res.status(200).send(comment)
+  const post = db.database.posts[req.params.postId]
+  res.status(200).send(post)
 })
 
 router.post('/posts', (req, res) => {
@@ -39,7 +36,7 @@ router.delete('/posts/:postId', (req, res, next) => {
     return res.status(401).send({ msg: 'Not authorized.' })
   else
     next()
-},
+}, hasPost,
   (req, res) => {
     db.database.posts.splice(req.params.postId, 1)
     res.status(200).send({ msg: 'Post successfully deleted.', postId: req.params.postId })
