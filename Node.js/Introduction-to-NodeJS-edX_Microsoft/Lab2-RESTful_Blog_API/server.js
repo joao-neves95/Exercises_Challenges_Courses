@@ -21,10 +21,6 @@ app.use(bodyParser.json())
 
 app.use('/', routes)
 
-app.get('/', (req, res) => {
-  res.status(200).send('This is the Homepage.')
-})
-
 app.listen(PORT, () => {
   console.log(`Listening to port ${PORT}`)
 })
