@@ -34,16 +34,15 @@ router.put('/posts/:postId', hasPost, (req, res) => {
   res.status(200).send({ msg: 'Post successfully updated', postId: req.params.postId, postUpdate })
 })
 
-const hasKey = (req, res, next) => {
+router.delete('/posts/:postId', (req, res, next) => {
   if (!req.body.api_key)
     return res.status(401).send({ msg: 'Not authorized.' })
   else
     next()
-}
-
-router.delete('/posts/:postId', hasKey, hasPost, (req, res) => {
-  db.database.posts.splice(req.params.postId, 1)
-  res.status(200).send({ msg: 'Post successfully deleted.', postId: req.params.postId })
-})
+},
+  (req, res) => {
+    db.database.posts.splice(req.params.postId, 1)
+    res.status(200).send({ msg: 'Post successfully deleted.', postId: req.params.postId })
+  })
 
 module.exports = router
