@@ -165,7 +165,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": ""
+					"raw": "{\"api_key\":\"94dd2218-2594-463f-9947-7b52b96aa621\"}"
 				},
 				"url": {
 					"raw": "localhost:3000/posts/1",
