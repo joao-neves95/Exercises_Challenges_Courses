@@ -1,0 +1,16 @@
+{
+  "name": "lab3_mongodb-migration-node-script",
+  "version": "0.1.0",
+  "description": "introduction-to-nodejs-edx_microsoft",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node migrate-data.js"
+  },
+  "author": "shivayl",
+  "license": "MIT",
+  "dependencies": {
+    "async": "2.6.0",
+    "mongodb": "3.0.0"
+  }
+}
