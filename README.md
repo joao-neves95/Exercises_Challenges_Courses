@@ -1,2 +1,2 @@
 # Exercises_Challenges
-Exercises and challenges from various sources
+Exercises, challenges and courses from various sources
