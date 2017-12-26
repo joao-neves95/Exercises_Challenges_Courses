@@ -1,0 +1,27 @@
+body {
+  background-color: #cccccc;
+}
+
+#add-item-form {
+  margin-top: 1.5em;
+  margin-bottom: 1em;
+  width: 40em;
+}
+
+#description {
+  height: 8em;
+  resize: none;
+}
+
+#items-cards-holder {
+  margin-top: 1em;
+}
+
+.card-container {
+  margin-top: 1.2em;
+}
+
+.card {
+  width: 100%;
+  margin: auto;
+}
