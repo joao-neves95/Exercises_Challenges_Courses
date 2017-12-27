@@ -7,7 +7,9 @@
 - Improve UI:
 
   . Improve overall UI;
+  
   . Add drop shadows to the item cards;
+
   . Improve colors.
 
 - Add authentication functionality;
