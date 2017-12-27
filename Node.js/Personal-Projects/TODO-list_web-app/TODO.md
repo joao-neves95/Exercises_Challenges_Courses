@@ -1,5 +1,6 @@
 # TODO
 
+
 - Add DELETE item functionality;
 
 - Add UPDATE item functionality;
@@ -10,10 +11,14 @@
   
   . Add drop shadows to the item cards;
 
-  . Improve colors.
+  . Improve colours.
 
 - Add authentication functionality;
 
-- Update MongoDB architecture (after authentication functionality);
+- Update MongoDB architecture (after authentication functionality)
 
-- Improve (add) RESTful API security.
+ or 
+ 
+- Migrate from MongoDB to MySQL (or other relational database);
+
+- Improve (add) RESTful API security;
