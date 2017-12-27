@@ -6,9 +6,9 @@
 
 - **Global**:
 
-  . Setted up the ROOT file structure (modular);
+  . Set up the ROOT file structure (modular);
 
-  . Setted up the Node.js Express server and various node_modules;
+  . Set up the Node.js Express server and various node_modules;
 
   . Made the basic UI front end usability (add new item to the list);
 
