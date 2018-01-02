@@ -11,11 +11,11 @@
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
     integrity="sha256-QUyqZrt5vIjBumoqQV0jM8CgGqscFfdGhN+nVCqX0vc="
-    crossorigin="anonymous" />
+    crossorigin="anonymous"/>
   <!-- Pickadate.js -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/themes/default.css" integrity="sha256-HJnF0By+MMhHfGTHjMMD7LlFL0KAQEMyWB86VbeFn4k=" crossorigin="anonymous" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/themes/default.date.css" integrity="sha256-Ex8MCGbDP5+fEwTgLt8IbGaIDJu2uj88ZDJgZJrxA4Y=" crossorigin="anonymous" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/themes/default.time.css" integrity="sha256-0GwWH1zJVNiu4u+bL27FHEpI0wjV0hZ4nSSRM2HmpK8=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/themes/default.css" integrity="sha256-HJnF0By+MMhHfGTHjMMD7LlFL0KAQEMyWB86VbeFn4k=" crossorigin="anonymous"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/themes/default.date.css" integrity="sha256-Ex8MCGbDP5+fEwTgLt8IbGaIDJu2uj88ZDJgZJrxA4Y=" crossorigin="anonymous"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/themes/default.time.css" integrity="sha256-0GwWH1zJVNiu4u+bL27FHEpI0wjV0hZ4nSSRM2HmpK8=" crossorigin="anonymous"/>
   <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 
@@ -33,7 +33,12 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="nav navbar-nav mx-auto">
             <li class="nav-item">
-              <button class="btn btn-outline-success" id="btn-new-item" type="submit">New Item</button>
+              <button class="btn btn-outline-success btn-floating" id="btn-new-item" type="submit">New Item</button>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav float-right text-light">
+            <li class="nav-item">
+              <sub>Just Another TODO List App...</sub>
             </li>
           </ul>
         </div>
@@ -56,11 +61,11 @@
               <label class="col-md-2 col-form-label" for="priority">Priority</label>
               <div class="col-md-10">
                 <select class="form-control" id="priority" name="priority">
-                  <option value="1" >1</option>
-                  <option value="2" >2</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
                   <option value="3" selected>3</option>
-                  <option value="4" >4</option>
-                  <option value="5" >5</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
                 </select>
               </div>
             </div>
@@ -86,7 +91,7 @@
             </div>
           </div>
           <div class="col-md-12">
-            <button type="button" class="btn btn-success float-right" id="btn-save-item">Save</button>
+            <button type="button" class="btn btn-success btn-floating float-right" id="btn-save-item">Save</button>
           </div>
         </div>
       </form>
@@ -94,35 +99,7 @@
   </header>
 
   <main class="container" id="main">
-    <div class="row mx-auto" id="items-cards-holder">
-
-<!--      <div class="col-sm-12 col-md-12 card-container">
-        <article class="card">
-          <div class="card-body">
-            <h4 class="card-title">Test title</h4>
-            <p class="card-text">This is a test.</p>
-          </div>
-        </article>
-      </div>
-
-      <div class="col-sm-12 col-md-12 card-container">
-        <article class="card">
-          <div class="card-body">
-            <h4 class="card-title">Test title</h4>
-            <p class="card-text">This is a test.</p>
-          </div>
-        </article>
-      </div>
-
-      <div class="col-sm-12 col-md-12 card-container">
-        <article class="card">
-          <div class="card-body">
-            <h4 class="card-title">Test title</h4>
-            <p class="card-text">This is a test.</p>
-          </div>
-        </article>
-      </div>-->
-
+    <div class="row list-group mx-auto" id="items-cards-holder">
 
     </div>
   </main>

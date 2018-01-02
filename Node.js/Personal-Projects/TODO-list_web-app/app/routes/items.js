@@ -14,7 +14,7 @@ module.exports = {
 
   getItem (req, res) {
     res.locals.db.collection('items')
-      .find( {_id: req.params.id} )
+      .find( {"_id": mongoDB.ObjectId(req.query.id)} )
       .toArray((err, item) => {
         if (err)
           throw err
@@ -30,7 +30,7 @@ module.exports = {
         throw err
 
       res.status(201).send(results)
-    })
+      })
   },
 
   updateItem (req, res) {
@@ -38,6 +38,13 @@ module.exports = {
   },
 
   deleteItem (req, res) {
-    res.status(200).send()
+    res.locals.db.collection('items')
+      .deleteOne( {"_id": mongoDB.ObjectId(req.query.id)}, (err, results) => {
+        if (err)
+         throw err
+
+        console.log(req.query.id)
+        res.status(200).send(results)
+      })
   }
 }

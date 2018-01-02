@@ -1,7 +1,7 @@
 'use strict'
 const router = require('express').Router()
 const items = require('./items.js')
-const mongoDB = require('mongodb')
+global.mongoDB = require('mongodb')
 const URL = 'mongodb://localhost:27017/todo-list_web-app'
 
 mongoDB.MongoClient.connect(URL, (err, database) => {
@@ -10,7 +10,7 @@ mongoDB.MongoClient.connect(URL, (err, database) => {
 
   const DB = database.db('todo-list_web-app')
 
-  // Use the MongoDB connection across the router:
+  // Use the MongoDB package and present connection across the router:
   router.use((req, res, next) => {
     res.locals.db = DB
     next()
@@ -20,10 +20,10 @@ mongoDB.MongoClient.connect(URL, (err, database) => {
 
   // Items CRUD Operations:
   router.get('/items', items.getItems)
-  router.get('/items/:id', items.getItem)
+  router.get('/items', items.getItem)
   router.post('/items', items.postItem)
   router.put('/items/:id', items.updateItem)
-  router.delete('/items/:id', items.deleteItem)
+  router.delete('/items', items.deleteItem)
 })
 
 module.exports = router
