@@ -42,7 +42,7 @@ $('document').ready(() => {
     leftStickY = mousePosition.y - STICK_HEIGHT / 2
   })
 
-  // Ball movement:
+  // Engine:
   const FRAMES_PER_SECOND = 35
   setInterval(() => {
     movementLogic()
@@ -94,7 +94,7 @@ const movementLogic = () => {
   ballX += ballSpeedX
   ballY += ballSpeedY
   // Horizontal:
-  if (ballX < 0 || ballX < LEFT_STICK_DISTANCE) {
+  if (ballX < 0) {
     if (ballY > leftStickY && ballY < leftStickY + STICK_HEIGHT) {
       ballSpeedX = -ballSpeedX
       // When deltaY=0, the ball is in the center of the stick.
