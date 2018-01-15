@@ -1,14 +1,22 @@
 // IN PROGRESS
 'use strict'
 domready(() => {
-  const SNAKE_SIZE = 20
-  const SNAKE_SPEED = 15
+  let player = {
+    name: '',
+    bestScore: 0
+  }
 
+  const SNAKE_SIZE = 20
+  const START_SPEED = 10
+  let snakeSpeed = 10
+
+  // INIT:
   let canvas = document.getElementById('canvas')
   let ctx = canvas.getContext('2d')
-  canvas.width = 700
-  canvas.height = 500
+  canvas.width = 500
+  canvas.height = 400
 
+  // UTILITY FUNCTIONS:
   const rect = (drawColor, x, y, width, height) => {
     ctx.fillStyle = drawColor
     ctx.fillRect(x, y, width, height)
@@ -18,7 +26,7 @@ domready(() => {
     return Math.floor((Math.random() * max) + 1)
   }
 
-  const getDist = (x1, x2, y1, y2) => {
+  const dist = (x1, x2, y1, y2) => {
     // Pythagorean Theorem
     let xDist = x1 - x2
     let yDist = y1 - y2
@@ -28,25 +36,38 @@ domready(() => {
   /* SNAKE DIRECTION CONTROLER: */
   window.addEventListener('keydown', (e) => {
     switch (e.keyCode) {
-      // up
+      // UP:
       case 38:
       case 87:
-        snake.direction(0, -SNAKE_SPEED)
+        // Don't let player turn the contrary direction:
+        if (snake.ySpeed === snakeSpeed) {
+          return
+        }
+        snake.direction(0, -snakeSpeed)
         break
-      // right
+      // RIGTH:
       case 39:
       case 68:
-        snake.direction(SNAKE_SPEED, 0)
+        if (snake.xSpeed === -snakeSpeed) {
+          return
+        }
+        snake.direction(snakeSpeed, 0)
         break
-      // down
+      // DOWN:
       case 40:
       case 83:
-        snake.direction(0, SNAKE_SPEED)
+        if (snake.ySpeed === -snakeSpeed) {
+          return
+        }
+        snake.direction(0, snakeSpeed)
         break
-      // left
+      // LEFT:
       case 37:
       case 65:
-        snake.direction(-SNAKE_SPEED, 0)
+        if (snake.xSpeed === snakeSpeed) {
+          return
+        }
+        snake.direction(-snakeSpeed, 0)
         break
     }
   })
@@ -54,12 +75,10 @@ domready(() => {
 
   class Snake {
     constructor () {
-      this.x = 400
-      this.y = 300
-      this.xSpeed = SNAKE_SPEED
+      this.x = 200
+      this.y = 200
+      this.xSpeed = snakeSpeed
       this.ySpeed = 0
-
-      this.total = 0
       this.tail = []
 
       this.direction = (x, y) => {
@@ -68,29 +87,47 @@ domready(() => {
       }
 
       this.eat = () => {
-        if (getDist(this.x, food.x, this.y, food.y) < SNAKE_SIZE - 2) {
-          this.total++
+        if (dist(this.x, food.x, this.y, food.y) < SNAKE_SIZE - (SNAKE_SIZE * 0.25)) {
           return true
-        } else {
-          return false
         }
+        return false
+      }
+
+      this.death = () => {
+        // Canvas edjes:
+        if (this.x < 0 || this.x > canvas.width - SNAKE_SIZE) {
+          return true
+        } else if (this.y < 0 || this.y > canvas.height - SNAKE_SIZE) {
+          return true
+        }
+        // Snake tail:
+        for (let i = 0; i < this.tail.length; i++) {
+          if (dist(this.x, this.tail[i].x, this.y, this.tail[i].y) < SNAKE_SIZE * 0.50) {
+            return true
+          }
+        }
+        return false
       }
 
       this.update = () => {
         // Shift the x and y positions of each part of the tail by the next one in line:
-        if (this.total >= 1) {
+        if (this.tail.length >= 0) {
           for (let i = 0; i < this.tail.length - 1; i++) {
             this.tail[i] = this.tail[i + 1]
           }
           // The last tail part indexes are the last indexes of the head:
-          this.tail[this.total - 1] = {
+          this.tail[this.tail.length - 1] = {
             x: this.x,
             y: this.y
           }
         }
-        // Move the snake head:
+        // Move position of the snake:
         this.x += this.xSpeed
         this.y += this.ySpeed
+      }
+
+      this.respawn = () => {
+        snake = new Snake()
       }
 
       this.show = () => {
@@ -109,15 +146,44 @@ domready(() => {
       this.x = x
       this.y = y
 
+      this.respawn = () => {
+        food = new Food(random(canvas.width - SNAKE_SIZE), random(canvas.height - SNAKE_SIZE))
+      }
+
       this.show = () => {
         rect('green', this.x, this.y, SNAKE_SIZE, SNAKE_SIZE)
       }
     }
   }
 
-  /* RENDER Function: */
+  /* GAME RULES: */
+  const checkRules = () => {
+    // Snake.death() event:
+    if (snake.death()) {
+      if (snake.tail.length > player.bestScore) {
+        player.bestScore = snake.tail.length
+        document.getElementById('bestScore').innerHTML = player.bestScore
+      }
+      snakeSpeed = START_SPEED
+      snake.respawn()
+    }
+
+    // Snake.eat() event:
+    if (snake.eat()) {
+      // The food (last snake head coordinates) goes into the tail:
+      snake.tail.push({
+        x: this.x,
+        y: this.y
+      })
+      // Respown the food:
+      food.respawn()
+      snakeSpeed += 0.2
+    }
+  }
+
+  /* RENDER: */
   let snake = new Snake()
-  let food = new Food(random(canvas.width), random(canvas.height))
+  let food = new Food(random(canvas.width - SNAKE_SIZE), random(canvas.height - SNAKE_SIZE))
 
   const render = () => {
     // Canvas:
@@ -130,17 +196,15 @@ domready(() => {
     // Food:
     food.show()
 
-    // New Food at snake.eat() event:
-    if (snake.eat()) {
-      food = new Food(random(canvas.width - SNAKE_SIZE), random(canvas.height - SNAKE_SIZE))
-    }
+    // Game rules:
+    checkRules()
   }
-  /* End of RENDER Function: */
+  /* End of RENDER. */
 
   /* ENGINE: */
-  const FRAMES_PER_SECOND = 20
+  const FRAMES_PER_SECOND = 15
   setInterval(() => {
     render()
   }, 1000 / FRAMES_PER_SECOND)
-  /* End of ENGINE: */
+  /* End of ENGINE. */
 })
