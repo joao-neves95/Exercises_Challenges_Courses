@@ -6,15 +6,16 @@ domready(() => {
     bestScore: 0
   }
 
-  const SNAKE_SIZE = 20
-  const START_SPEED = 10
-  let snakeSpeed = 10
+  const SNAKE_SIZE = 10
+  const START_SPEED = 6
+  let snakeSpeed = START_SPEED
 
   // INIT:
   let canvas = document.getElementById('canvas')
   let ctx = canvas.getContext('2d')
+  ctx.scale(2, 2)
   canvas.width = 500
-  canvas.height = 400
+  canvas.height = canvas.width
 
   // UTILITY FUNCTIONS:
   const rect = (drawColor, x, y, width, height) => {
@@ -22,8 +23,8 @@ domready(() => {
     ctx.fillRect(x, y, width, height)
   }
 
-  const random = (max) => {
-    return Math.floor((Math.random() * max) + 1)
+  const random = (canvasSize, gridSize) => {
+    return Math.floor(Math.random() * canvasSize / gridSize) * gridSize
   }
 
   const dist = (x1, x2, y1, y2) => {
@@ -75,9 +76,9 @@ domready(() => {
 
   class Snake {
     constructor () {
-      this.x = 200
-      this.y = 200
-      this.xSpeed = snakeSpeed
+      this.x = (canvas.width / 2) - (SNAKE_SIZE / 2)
+      this.y = (canvas.height / 2) - (SNAKE_SIZE / 2)
+      this.xSpeed = 0
       this.ySpeed = 0
       this.tail = []
 
@@ -87,7 +88,7 @@ domready(() => {
       }
 
       this.eat = () => {
-        if (dist(this.x, food.x, this.y, food.y) < SNAKE_SIZE - (SNAKE_SIZE * 0.25)) {
+      if (dist(this.x, food.x, this.y, food.y) < SNAKE_SIZE /* - (SNAKE_SIZE * 0.25)*/) {
           return true
         }
         return false
@@ -102,7 +103,7 @@ domready(() => {
         }
         // Snake tail:
         for (let i = 0; i < this.tail.length; i++) {
-          if (dist(this.x, this.tail[i].x, this.y, this.tail[i].y) < SNAKE_SIZE * 0.50) {
+          if (dist(this.x, this.tail[i].x, this.y, this.tail[i].y) < 1) {
             return true
           }
         }
@@ -142,12 +143,12 @@ domready(() => {
   }
 
   class Food {
-    constructor (x, y) {
-      this.x = x
-      this.y = y
+    constructor () {
+      this.x = random(canvas.width - SNAKE_SIZE, SNAKE_SIZE) + 1
+      this.y = random(canvas.width - SNAKE_SIZE, SNAKE_SIZE) + 1
 
       this.respawn = () => {
-        food = new Food(random(canvas.width - SNAKE_SIZE), random(canvas.height - SNAKE_SIZE))
+        food = new Food()
       }
 
       this.show = () => {
@@ -166,6 +167,7 @@ domready(() => {
       }
       snakeSpeed = START_SPEED
       snake.respawn()
+      food.respawn()
     }
 
     // Snake.eat() event:
@@ -175,15 +177,15 @@ domready(() => {
         x: this.x,
         y: this.y
       })
-      // Respown the food:
       food.respawn()
       snakeSpeed += 0.2
+      console.log(snakeSpeed)
     }
   }
 
   /* RENDER: */
   let snake = new Snake()
-  let food = new Food(random(canvas.width - SNAKE_SIZE), random(canvas.height - SNAKE_SIZE))
+  let food = new Food()
 
   const render = () => {
     // Canvas:
