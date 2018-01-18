@@ -88,7 +88,7 @@ domready(() => {
       }
 
       this.eat = () => {
-      if (dist(this.x, food.x, this.y, food.y) < SNAKE_SIZE /* - (SNAKE_SIZE * 0.25)*/) {
+        if (dist(this.x, food.x, this.y, food.y) < SNAKE_SIZE) {
           return true
         }
         return false
@@ -112,7 +112,7 @@ domready(() => {
 
       this.update = () => {
         // Shift the x and y positions of each part of the tail by the next one in line:
-        if (this.tail.length >= 0) {
+        if (this.tail.length >= 1) {
           for (let i = 0; i < this.tail.length - 1; i++) {
             this.tail[i] = this.tail[i + 1]
           }
@@ -144,8 +144,8 @@ domready(() => {
 
   class Food {
     constructor () {
-      this.x = random(canvas.width - SNAKE_SIZE, SNAKE_SIZE) + 1
-      this.y = random(canvas.width - SNAKE_SIZE, SNAKE_SIZE) + 1
+      this.x = random(canvas.width - SNAKE_SIZE, SNAKE_SIZE)
+      this.y = random(canvas.width - SNAKE_SIZE, SNAKE_SIZE)
 
       this.respawn = () => {
         food = new Food()
