@@ -18,8 +18,4 @@
 
 - Improve (add) RESTful API security;
 
-- Update MongoDB architecture (after authentication functionality)
-
- or 
- 
-- Migrate from MongoDB to MySQL (or other relational database).
+- Migrate from MongoDB to SQL Server (Azure or local).
