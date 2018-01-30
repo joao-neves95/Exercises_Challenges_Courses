@@ -25,16 +25,39 @@ module.exports = {
 
   postItem (req, res) {
     res.locals.db.collection('items')
-      .insertOne(req.body, (err, results) => {
-      if (err)
-        throw err
+      .insertOne({
+        "title": req.body.title,
+        "priority": req.body.priority,
+        "description": req.body.description,
+        "dueDate": req.body.dueDate,
+        "dueTime": req.body.dueTime
+      },
+      (err, results) => {
+        if (err)
+          throw err
 
       res.status(201).send(results)
       })
   },
 
   updateItem (req, res) {
-    res.status(200).send()
+    res.locals.db.collection('items')
+      .updateOne(
+        {"_id": mongoDB.ObjectId(req.query.id)},
+        {$set: {
+          "title": req.body.title,
+          "priority": req.body.priority,
+          "description": req.body.description,
+          "dueDate": req.body.dueDate,
+          "dueTime": req.body.dueTime
+          }
+        },
+        (err, results) => {
+          if (err)
+            throw err
+
+        res.status(200).send(results)
+      } )
   },
 
   deleteItem (req, res) {

@@ -17,12 +17,13 @@ app.use(compression())
 // Serve FrontPage and static files:
 app.use('/', express.static(path.join(__dirname, './public')))
 
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded( {extended: true} ))
+
 // Serve WebApp Page (Dashboard) and static files:
 app.use('/dashboard', express.static(path.join(__dirname, './app-pages')))
 
 // API:
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded( {extended: true} ))
 
 app.use('/api', routes)
 

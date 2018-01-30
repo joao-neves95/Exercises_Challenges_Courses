@@ -1,8 +1,11 @@
 'use strict'
 
 let postItems
+let updateItem
 let deleteItem
 let getItems
+let getItem
+let updateItemClick
 
 $('document').ready(() => {
 
@@ -11,6 +14,7 @@ $('document').ready(() => {
     return (" " + el.className + " ").replace(/[\n\t]/g, " ").indexOf(className) > -1
   }
 
+  // RESTFUL API AJAX REQUESTS:
   postItems = (formData) => {
     $.ajax({
       url: 'http://localhost:3000/api/items',
@@ -20,12 +24,25 @@ $('document').ready(() => {
       processData: true,
       success: 0,
       error: (jqXHR, textStatus, errorThrown) => {
-        console.log('jqXHR:');
-        console.log(jqXHR);
-        console.log('textStatus:');
-        console.log(textStatus);
-        console.log('errorThrown:');
-        console.log(errorThrown);
+        console.log(`jqXHR: ${jqXHR}`);
+        console.log(`textStatus: ${textStatus}`);
+        console.log(`errorThrown: ${errorThrown}`);
+      }
+    })
+  }
+
+  updateItem = (formData, id) => {
+    $.ajax({
+      url: 'http://localhost:3000/api/item?id=' + id,
+      dataType: 'json',
+      type: 'PUT',
+      data: formData,
+      processData: true,
+      success: 0,
+      error: (jqXHR, textStatus, errorThrown) => {
+        console.log(`jqXHR: ${jqXHR}`);
+        console.log(`textStatus: ${textStatus}`);
+        console.log(`errorThrown: ${errorThrown}`);
       }
     })
   }
@@ -36,12 +53,9 @@ $('document').ready(() => {
       type: 'DELETE',
       contentType: "application/json",
       error: (jqXHR, textStatus, errorThrown) => {
-        console.log('jqXHR:');
-        console.log(jqXHR);
-        console.log('textStatus:');
-        console.log(textStatus);
-        console.log('errorThrown:');
-        console.log(errorThrown);
+        console.log(`jqXHR: ${jqXHR}`);
+        console.log(`textStatus: ${textStatus}`);
+        console.log(`errorThrown: ${errorThrown}`);
       }
     })
   }
@@ -55,26 +69,48 @@ $('document').ready(() => {
       success: (json) => {
         document.getElementById('items-cards-holder').innerHTML = ''
         for (let i = 0; i < json.length; i++) {
-          document.getElementById('items-cards-holder').innerHTML += '<a href="#" class="list-group-item list-group-item-action flex-column align-items-start hoverable">' +
+          document.getElementById('items-cards-holder').innerHTML += `<a href="#" class="list-group-item list-group-item-action flex-column align-items-start" onclick="updateItemClick('${json[i]._id}'); getItems(); return false">` +
                                                                        '<div class="d-flex w-100 justify-content-between">' +
-                                                                         '<h5 class="mb-1">' + json[i].title+ '</h5>' +
-                                                                         '<button class="btn btn-danger btn-floating" id="delete-item" onclick="deleteItem(' + '\'' + json[i]._id + '\''+ '); getItems(); return false">x</button>' +
+                                                                         `<h5 class="mb-1">${json[i].title}</h5>` +
+                                                                         '<div>' +
+                                                                           `<button class="btn btn-danger btn-sm btn-floating float-right ml-1" id="delete-item" onclick="deleteItem('${json[i]._id}'); getItems(); return false" aria-label="Close">` +
+                                                                             '<span aria-hidden="true">&times;</span>' +
+                                                                           '</button>' +
+                                                                           // `<button class="btn btn-warning btn-sm btn-floating float-right" id="delete-item" onclick="updateItemClick('${json[i]._id}'); getItems(); return false" aria-label="Close">Edit</button>` +
+                                                                         '</div>' +
                                                                        '</div>'+
-                                                                         '<p class="mb-1">' + json[i].description + '</p>' +
+                                                                       `<p class="mb-1">${json[i].description}</p>` +
                                                                      '</a>'
+
         }
       },
       error: (jqXHR, textStatus, errorThrown) => {
-        console.log('jqXHR:');
-        console.log(jqXHR);
-        console.log('textStatus:');
-        console.log(textStatus);
-        console.log('errorThrown:');
-        console.log(errorThrown);
+        console.log(`jqXHR: ${jqXHR}`);
+        console.log(`textStatus: ${textStatus}`);
+        console.log(`errorThrown: ${errorThrown}`);
       }
     })
   }
 
+  getItem = (id, callback) => {
+    $.ajax({
+      url: 'http://localhost:3000/api/item?id=' + id,
+      dataType: 'json',
+      type: 'GET',
+      contentType: 'application/json; charset=UTF-8',
+      success: (json) => {
+        callback(json)
+      },
+      error: (jqXHR, textStatus, errorThrown) => {
+        console.log(`jqXHR: ${jqXHR}`);
+        console.log(`textStatus: ${textStatus}`);
+        console.log(`errorThrown: ${errorThrown}`);
+      }
+    })
+  }
+  // End of RESTFUL API AJAX REQUESTS.
+
+  // INITIALIZATION:
   $('#add-item-window').slideUp()
   getItems()
 
@@ -94,31 +130,67 @@ $('document').ready(() => {
       $('#add-item-window').slideUp()
     }
   })
+  // End of BUTTON "New Item".
 
-  // BUTTON "Save" on the "New Item" form ('click' EVENT):
+  // UPDATE ITEM ON ITEM CLICK:
+  updateItemClick = (id) => {
+    // Change the hidden "method" input from the "New Item" form:
+    // When the user clicks "SAVE", it checks the hidden "method" input -> 'PUT' / 'POST').
+    document.getElementById('method').value = 'PUT'
+
+    getItem(id, (json) => {
+      // Insert the item data on the "New Item" form:
+      document.getElementById('title').value = json[0].title
+      document.getElementById('itemId').value = id // Store the item id on an hidden input on the "New Item" form.
+      document.getElementById('method').value = 'PUT'
+      document.getElementById('priority').options.selectedIndex = json[0].priority - 1
+      document.getElementById('description').value = json[0].description
+      document.getElementById('datepicker').value = json[0].dueDate
+      document.getElementById('timepicker').value = json[0].dueTime
+
+      // Show the "New Item" form:
+      document.getElementById('btn-new-item').classList.add('active')
+      document.getElementById('add-item-window').style.display = ''
+      document.getElementById('add-item-window').style.visibility = 'visible'
+      $('#add-item-window').slideDown()
+    })
+  }
+
+  // BUTTON "Save" ON THE "New Item" FORM ('click' EVENT):
+  // It is used to POST and PUT items (that's why there are 2 chained 'if')
   document.getElementById('btn-save-item').addEventListener('click', () => {
-    let formData = {
-      "title": document.getElementById('title').value,
-      "priority": (document.getElementById('priority').options.selectedIndex + 1).toString(),
-      "description": document.getElementById('description').value,
-      "dueDate": document.getElementById('datepicker').value,
-      "dueTime": document.getElementById('timepicker').value
-    }
-    postItems(formData)
-    getItems()
     if (document.getElementById('title').value === '')
       return null
     else {
-      // Hide the "New Item" form:
+      let formData = {
+        "title": document.getElementById('title').value,
+        "priority": (document.getElementById('priority').options.selectedIndex + 1).toString(),
+        "description": document.getElementById('description').value,
+        "dueDate": document.getElementById('datepicker').value,
+        "dueTime": document.getElementById('timepicker').value
+      }
+
+      if (document.getElementById('method').value === 'PUT') {
+        updateItem(formData, document.getElementById('itemId').value)
+        getItems()
+      } else {
+        postItems(formData)
+        getItems()
+      }
+
+      // HIDE THE "New Item" FORM:
       document.getElementById('btn-new-item').classList.remove('active')
       $('#add-item-window').slideUp()
 
       // Clean form values:
       document.getElementById('title').value = ''
+      document.getElementById('title').value = ''
+      document.getElementById('method').value = 'POST'
       document.getElementById('priority').options.selectedIndex = 2
       document.getElementById('description').value = ''
       document.getElementById('datepicker').value = ''
       document.getElementById('timepicker').value = ''
     }
   })
+  // End of BUTTON "Save".
 })

@@ -1,21 +1,21 @@
 # TODO
 
-- Add UPDATE item functionality;
-
 - Improve UI:
 
   . Improve overall UI;
-
-  . Improve DELETE button UI;
 
   . Improve colours;
 
   . Add animations.
 
+- Improve POST requests (Add creteTimestamp and lastUpdateTimestamp. Server side.);
+
+- Add input validation;
+
 - Add search functionality;
 
-- Add authentication functionality;
+- Add authentication functionality (server side);
 
-- Improve (add) RESTful API security;
+- Improve/add RESTful API security;
 
 - Migrate from MongoDB to SQL Server (Azure or local).

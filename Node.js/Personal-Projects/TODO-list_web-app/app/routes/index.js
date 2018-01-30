@@ -10,7 +10,7 @@ mongoDB.MongoClient.connect(URL, (err, database) => {
 
   const DB = database.db('todo-list_web-app')
 
-  // Use the MongoDB package and present connection across the router:
+  // Use the MongoDB present connection across the router:
   router.use((req, res, next) => {
     res.locals.db = DB
     next()
@@ -20,9 +20,9 @@ mongoDB.MongoClient.connect(URL, (err, database) => {
 
   // Items CRUD Operations:
   router.get('/items', items.getItems)
-  router.get('/items', items.getItem)
+  router.get('/item', items.getItem)
   router.post('/items', items.postItem)
-  router.put('/items/:id', items.updateItem)
+  router.put('/item', items.updateItem)
   router.delete('/items', items.deleteItem)
 })
 

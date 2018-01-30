@@ -5,17 +5,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Just another TODO APP</title>
+  <meta name="description" content="Just another TODO List App."/>
+  <meta name="author" content="shivayl">
+  <meta property="og:description" content="Just another TODO List App."/>
+  <meta name="google" content="notranslate"/>
+  <title>Just another TODO List App.</title>
+  <meta name="keywords" content=""/>
+  <meta property="og:url" content="localhost:3000/dashboard"/>
+  <meta property="og:title" content="Just another TODO List App."/>
+  <meta property="og:type" content="website" />
   <!-- Bootstrap CSS -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
-    integrity="sha256-QUyqZrt5vIjBumoqQV0jM8CgGqscFfdGhN+nVCqX0vc="
-    crossorigin="anonymous"/>
+    crossorigin="anonymous"
+    type="text/css"/>
   <!-- Pickadate.js -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/themes/default.css" integrity="sha256-HJnF0By+MMhHfGTHjMMD7LlFL0KAQEMyWB86VbeFn4k=" crossorigin="anonymous"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/themes/default.date.css" integrity="sha256-Ex8MCGbDP5+fEwTgLt8IbGaIDJu2uj88ZDJgZJrxA4Y=" crossorigin="anonymous"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/themes/default.time.css" integrity="sha256-0GwWH1zJVNiu4u+bL27FHEpI0wjV0hZ4nSSRM2HmpK8=" crossorigin="anonymous"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/themes/default.css" crossorigin="anonymous" type="text/css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/themes/default.date.css" crossorigin="anonymous" type="text/css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/themes/default.time.css" crossorigin="anonymous" type="text/css"/>
   <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 
@@ -26,22 +34,16 @@
     <nav class="navbar navbar-expand-md navbar-fixed-top navbar-dark bg-dark main-nav">
       <div class="container">
         <a class="navbar-brand" href="#">TODO List</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="nav navbar-nav mx-auto">
-            <li class="nav-item">
-              <button class="btn btn-outline-success btn-floating" id="btn-new-item" type="submit">New Item</button>
-            </li>
-          </ul>
-          <ul class="nav navbar-nav float-right text-light">
-            <li class="nav-item">
-              <sub>Just Another TODO List App...</sub>
-            </li>
-          </ul>
-        </div>
+        <ul class="nav navbar-nav mx-auto">
+          <li class="nav-item">
+            <button class="btn btn-outline-success btn-floating" id="btn-new-item" type="submit">New Item</button>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav float-right text-light">
+          <li class="nav-item">
+            <sub>Just Another TODO List App...</sub>
+          </li>
+        </ul>
       </div>
     </nav>
     <!-- ADD NEW ITEM DROPDOWN FORM -->
@@ -53,6 +55,8 @@
               <label class="col-md-2 col-form-label" for="title">Title</label>
               <div class="col-md-10">
                 <input class="form-control" id="title" name="title" type="text">
+                <input id="itemId" name="method" type="hidden" value="">
+                <input id="method" name="method" type="hidden" value="POST">
               </div>
             </div>
           </div>
@@ -98,36 +102,43 @@
     </nav>
   </header>
 
-  <main class="container" id="main">
-    <div class="row list-group mx-auto" id="items-cards-holder">
+  <!-- ITEMS -->
+  <!-- role="main" - Indicates the significance of this element to programs that don't yet support the <main> element (such as screen readers) -->
+  <main class="container" id="main" role="main">
+    <!-- ITEMS FORM FILTER -->
+    <section class="row mt-3">
+      <form class="form-inline mx-auto">
+        <input class="form-control mr-sm-2" type="search" placeholder="Filter" aria-label="Search">
+      </form>
+    </section>
 
-    </div>
+    <!-- ITEMS CONTAINER -->
+    <section class="row list-group mx-auto" id="items-cards-holder">
+
+    </section>
   </main>
 
   <!-- jQuery -->
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
-    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous">
   </script>
   <!-- Popper.js -->
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
-    integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
     crossorigin="anonymous">
   </script>
   <!-- Bootstrap JS -->
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
-    integrity="sha256-GIa8Vh3sfESnVB2CN3rYGkD/MklvMq0lmITweQxE1qU="
     crossorigin="anonymous">
   </script>
   <!-- Pickadate.JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.js" integrity="sha256-A1y8n02GW5dvJFkEOX7UCbzJoko8kqgWUquWf9TWFS8=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.date.js" integrity="sha256-rTh8vmcE+ZrUK3k9M6QCNZIBmAd1vumeuJkagq0EU3g=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.time.js" integrity="sha256-vFMKre5X5oQN63N+oJU9cJzn22opMuJ+G9FWChlH5n8=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/legacy.js" integrity="sha256-+tnmYMGQCCEWBQPVVpcFkmLieNYuk8nuMaFUQuCwEvc=" crossorigin="anonymous"></script>
-  <script src="main.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.js" crossorigin="anonymous" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.date.js" crossorigin="anonymous" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.time.js" crossorigin="anonymous" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/legacy.js" crossorigin="anonymous" type="text/javascript"></script>
+  <script src="main.js" type="text/javascript"></script>
 </body>
 
 </html>

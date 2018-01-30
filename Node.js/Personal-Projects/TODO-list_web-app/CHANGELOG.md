@@ -2,7 +2,19 @@
 
 &nbsp;
 
-## *v0.2.0 (Jan 02, 2018)
+## *v0.3.0 (Jan 05, 2018)
+
+- Minor changes on the RESTful API routing links;
+
+- Added update functionality (fully functional). Frontend and backend;
+
+- Added a database schema on the MongoDB CRUD requests;
+
+- Added an input form item filter (not functional yet);
+
+&nbsp;
+
+## v0.2.0 (Jan 02, 2018)
 
 - Refactored TODO items UI;
 
