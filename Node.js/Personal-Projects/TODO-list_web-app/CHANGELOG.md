@@ -2,7 +2,7 @@
 
 &nbsp;
 
-## *v0.3.0 (Jan 05, 2018)
+## *v0.3.0 (Jan 30, 2018)
 
 - Minor changes on the RESTful API routing links;
 
