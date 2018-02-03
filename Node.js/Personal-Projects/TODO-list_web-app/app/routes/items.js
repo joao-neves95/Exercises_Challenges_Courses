@@ -2,8 +2,7 @@
 
 module.exports = {
   getItems (req, res) {
-    console.log("GET ITEMS")
-    res.locals.db.collection('items')
+    req.db.collection('items')
       .find( {} )
       .toArray((err, items) => {
         if (err)
@@ -14,8 +13,7 @@ module.exports = {
   },
 
   getItem (req, res) {
-    console.log("GET ONE ITEM")
-    res.locals.db.collection('items')
+    req.db.collection('items')
       .find( {"_id": mongoDB.ObjectId(req.query.id)} )
       .toArray((err, item) => {
         if (err)
@@ -26,8 +24,7 @@ module.exports = {
   },
 
   postItem (req, res) {
-    console.log("POST NEW ITEM")
-    res.locals.db.collection('items')
+    req.db.collection('items')
       .insertOne({
         "title": req.body.title,
         "priority": req.body.priority,
@@ -44,8 +41,7 @@ module.exports = {
   },
 
   updateItem (req, res) {
-    console.log("UPDATE ITEM")
-    res.locals.db.collection('items')
+    req.db.collection('items')
       .updateOne(
         {"_id": mongoDB.ObjectId(req.query.id)},
         {$set: {
@@ -65,8 +61,7 @@ module.exports = {
   },
 
   deleteItem (req, res) {
-    console.log("DELETE ITEM")
-    res.locals.db.collection('items')
+    req.db.collection('items')
       .deleteOne( {"_id": mongoDB.ObjectId(req.query.id)}, (err, results) => {
         if (err)
          throw err;

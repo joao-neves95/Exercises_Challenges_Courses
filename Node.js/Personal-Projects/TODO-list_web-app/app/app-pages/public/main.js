@@ -118,7 +118,7 @@ $('document').ready(() => {
   $('#datepicker').pickadate().get()
   $('#timepicker').pickatime().get()
 
-  // HEADER BUTTON "New Item" ('click' EVENT):
+  // HEADER BUTTON "New Item" DROP-DOWN ('click' EVENT):
   document.getElementById('btn-new-item').addEventListener('click', () => {
     if (!hasClass(document.getElementById('btn-new-item'), 'active')) {
       document.getElementById('btn-new-item').classList.add('active')
