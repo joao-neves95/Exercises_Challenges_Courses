@@ -24,7 +24,7 @@ $('document').ready(() => {
       processData: true,
       success: 0,
       error: (jqXHR, textStatus, errorThrown) => {
-        console.log(`jqXHR: ${jqXHR}`);
+        console.log(`jqXHR: ${jqXHR.message}`);
         console.log(`textStatus: ${textStatus}`);
         console.log(`errorThrown: ${errorThrown}`);
       }
@@ -40,7 +40,7 @@ $('document').ready(() => {
       processData: true,
       success: 0,
       error: (jqXHR, textStatus, errorThrown) => {
-        console.log(`jqXHR: ${jqXHR}`);
+        console.log(`jqXHR: ${jqXHR.message}`);
         console.log(`textStatus: ${textStatus}`);
         console.log(`errorThrown: ${errorThrown}`);
       }
@@ -53,7 +53,7 @@ $('document').ready(() => {
       type: 'DELETE',
       contentType: "application/json",
       error: (jqXHR, textStatus, errorThrown) => {
-        console.log(`jqXHR: ${jqXHR}`);
+        console.log(`jqXHR: ${jqXHR.message}`);
         console.log(`textStatus: ${textStatus}`);
         console.log(`errorThrown: ${errorThrown}`);
       }
@@ -85,7 +85,7 @@ $('document').ready(() => {
         }
       },
       error: (jqXHR, textStatus, errorThrown) => {
-        console.log(`jqXHR: ${jqXHR}`);
+        console.log(`jqXHR: ${jqXHR.message}`);
         console.log(`textStatus: ${textStatus}`);
         console.log(`errorThrown: ${errorThrown}`);
       }
@@ -102,7 +102,7 @@ $('document').ready(() => {
         callback(json)
       },
       error: (jqXHR, textStatus, errorThrown) => {
-        console.log(`jqXHR: ${jqXHR}`);
+        console.log(`jqXHR: ${jqXHR.message}`);
         console.log(`textStatus: ${textStatus}`);
         console.log(`errorThrown: ${errorThrown}`);
       }

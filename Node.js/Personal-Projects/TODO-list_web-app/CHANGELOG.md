@@ -2,7 +2,19 @@
 
 &nbsp;
 
-## *v0.3.0 (Jan 30, 2018)
+## *v0.3.1 (Feb 03, 2018)
+
+- Refactored mongoDB connection to prepare for future authentication architecture;
+
+- Added express-session package and set up session cookies;
+
+- Added dotenv package and set up .env file for secrets;
+
+- (Code style) Started using ";" on the end of statements.
+
+&nbsp;
+
+## v0.3.0 (Jan 30, 2018)
 
 - Minor changes on the RESTful API routing links;
 

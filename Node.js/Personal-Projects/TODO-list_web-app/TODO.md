@@ -14,8 +14,8 @@
 
 - Add search functionality;
 
-- Add authentication functionality (server side);
+- Add authentication functionality;
 
 - Improve/add RESTful API security;
 
-- Migrate from MongoDB to SQL Server (Azure or local).
+- Migrate from MongoDB to SQL Server (Azure or local), after set up authentication.

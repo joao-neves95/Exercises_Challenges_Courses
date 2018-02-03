@@ -167,4 +167,4 @@ $RECYCLE.BIN/
 
 node_modules/
 
-*.log
+*.env
