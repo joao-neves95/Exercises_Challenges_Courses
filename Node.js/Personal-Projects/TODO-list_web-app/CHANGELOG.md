@@ -2,7 +2,19 @@
 
 &nbsp;
 
-## *v0.3.1 (Feb 03, 2018)
+## *v0.4.0 (Feb 03, 2018)
+
+- Added BCrypt encryption package to hash and compare passwords;
+
+- Added and set-up passport-local authentication strategy;
+
+- Added authentication checks on the RESTful API routes;
+
+- Added a card with nav-tabs forms (login and registration) to the public homepage.
+
+&nbsp;
+
+## v0.3.1 (Feb 03, 2018)
 
 - Refactored mongoDB connection to prepare for future authentication architecture;
 

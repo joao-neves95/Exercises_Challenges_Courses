@@ -9,17 +9,90 @@
   <!-- Bootstrap CSS -->
   <link
     rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
-    integrity="sha256-QUyqZrt5vIjBumoqQV0jM8CgGqscFfdGhN+nVCqX0vc="
+    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha256-LA89z+k9fjgMKQ/kq4OO2Mrf8VltYml/VES+Rg0fh20="
     crossorigin="anonymous" />
   <link rel="stylesheet" href="style.css" type="text/css">
+  <!-- Font Awesome CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0="
+    crossorigin="anonymous" />
 </head>
 
 <body>
 
   <main class="container">
     <h1>Public HomePage</h1>
-    <a class="btn btn-success" role="button" href="/dashboard">Login</a>
+
+    <!-- FORM CARD -->
+    <div class="card text-center">
+      <!-- Header Tabs -->
+      <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs" id="tab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="login-tab" data-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="true">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="register-tab" data-toggle="tab" href="#register" role="tab" aria-controls="register" aria-selected="false">Register</a>
+          </li>
+        </ul>
+      </div>
+      <!-- End of Header Tabs -->
+      <!-- Tabs Content -->
+      <div class="tab-content">
+        <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+          <div class="card-body">
+            <!-- LOGIN FORM -->
+            <form action="/login" method="post">
+              <!-- Email Input -->
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="login-at"><i class="fa fa-at"></i></span>
+                </div>
+                <input type="email" name="email" class="form-control" aria-describedby="login-at" aria-label="Email" placeholder="Enter your email">
+              </div>
+              <!-- Password Input -->
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="login-pass"><i class="fa fa-unlock-alt"></i></span>
+                </div>
+                <input type="password" name="password" class="form-control" aria-describedby="login-pass" aria-label="Password" placeholder="Enter your password">
+              </div>
+              <button class="btn btn-primary float-right mb-2" type="submit">Login</button>
+            </form>
+            <!-- End of LOGIN FORM -->
+          </div>
+        </div>
+        <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+          <div class="card-body">
+            <!-- REGISTRATION FORM -->
+            <form action="/register" method="post">
+              <!-- Email Input -->
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="register-at"><i class="fa fa-at"></i></span>
+                </div>
+                <input type="email" name="email" class="form-control" aria-describedby="register-at" aria-label="Email" placeholder="Enter your email">
+              </div>
+              <!-- Password Input -->
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="register-pass"><i class="fa fa-unlock-alt"></i></span>
+                </div>
+                <input type="password" name="password" class="form-control" aria-describedby="register-pass" aria-label="Password" placeholder="Enter your password">
+              </div>
+              <button class="btn btn-primary float-right mb-2" type="submit">Register</button>
+            </form>
+            <!-- End of REGISTRATION FORM -->
+          </div>
+        </div>
+      </div>
+      <!-- End of Tabs Content -->
+    </div>
+    <!-- End of FORM CARD -->
+
   </main>
 
 <!-- jQuery -->
@@ -36,11 +109,10 @@
   </script>
   <!-- Bootstrap JS -->
   <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
-    integrity="sha256-GIa8Vh3sfESnVB2CN3rYGkD/MklvMq0lmITweQxE1qU="
+    src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha256-5+02zu5UULQkO7w1GIr6vftCgMfFdZcAHeDtFnKZsBs="
     crossorigin="anonymous">
-</script>
-
+    </script>
 </body>
 
 </html>
