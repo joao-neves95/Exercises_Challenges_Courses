@@ -1,19 +1,10 @@
 'use strict'
-const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const ObjectID = require('mongodb').ObjectID;
 const bcrypt = require('bcrypt')
 
 module.exports = (app, db) => {
-  app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: true,
-    saveUninitialized: true,
-    name: "sessionId",
-    cookie: {}
-  }));
-
   app.use(passport.initialize());
   app.use(passport.session());
 
