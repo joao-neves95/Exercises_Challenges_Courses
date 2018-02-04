@@ -4,7 +4,8 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const helmet = require('helmet');
-const auth = require('./middleware/auth');
+const sessionsConfig = require('./middleware/sessions');
+const authenticationConfig = require('./middleware/authentication');
 const bodyParser = require('body-parser');
 const compression = require('compression');
 const logger = require('morgan');
@@ -36,7 +37,8 @@ mongoDB.MongoClient.connect(URI, (err, database) => {
     next();
   });
 
-  auth(app, DB);
+  sessionsConfig(app);
+  authenticationConfig(app, DB);
 
   // ROUTES:
   app.use('/', routes);
@@ -44,5 +46,5 @@ mongoDB.MongoClient.connect(URI, (err, database) => {
   const PORT = process.env.PORT || 3000;
   app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);
-  })
+  });
 });

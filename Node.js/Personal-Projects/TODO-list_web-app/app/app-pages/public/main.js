@@ -132,7 +132,7 @@ $('document').ready(() => {
   })
   // End of BUTTON "New Item".
 
-  // UPDATE ITEM ON ITEM CLICK:
+  // UPDATE ITEM ON ITEM CLICK (It puts the item data on the form):
   updateItemClick = (id) => {
     // Change the hidden "method" input from the "New Item" form:
     // When the user clicks "SAVE", it checks the hidden "method" input -> 'PUT' / 'POST').
@@ -157,7 +157,7 @@ $('document').ready(() => {
   }
 
   // BUTTON "Save" ON THE "New Item" FORM ('click' EVENT):
-  // It is used to POST and PUT items (that's why there are 2 chained 'if')
+  // It is used to POST and PUT items (that's why there are 2 chained if statements)
   document.getElementById('btn-save-item').addEventListener('click', () => {
     if (document.getElementById('title').value === '')
       return null

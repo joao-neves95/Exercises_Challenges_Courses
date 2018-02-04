@@ -2,7 +2,13 @@
 
 &nbsp;
 
-## *v0.4.0 (Feb 03, 2018)
+## *v0.4.1 (Feb 04, 2018)
+
+- Minor security fixes on the session cookies configuration.
+
+&nbsp;
+
+## v0.4.0 (Feb 03, 2018)
 
 - Added BCrypt encryption package to hash and compare passwords;
 
