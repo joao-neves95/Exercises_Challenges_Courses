@@ -24,7 +24,7 @@
 
 - Add input validation;
 
-- Save persistent data (sessions) not locally;
+- Save persistent data (sessions) not on the server;
 
 - Migrate from MongoDB to SQL Server (Azure or local), after set up authentication;
 

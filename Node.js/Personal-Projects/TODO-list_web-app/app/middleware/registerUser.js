@@ -19,7 +19,8 @@ module.exports = (req, res, next) => {
           req.db.collection('users')
             .insertOne({
               email: req.body.email,
-              password: hash
+              password: hash,
+              created_on: new Date()
             }, (err, user) => {
               if (err)
                 return res.redirect('/');

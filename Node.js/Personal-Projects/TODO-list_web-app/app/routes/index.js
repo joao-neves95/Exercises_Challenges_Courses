@@ -7,15 +7,7 @@ const ensureAuthentication = require('../middleware/ensureAuthentication')
 const registerUser = require('../middleware/registerUser')
 const items = require('./items.js');
 
-// Serve WebApp Page (Dashboard) and static files:
-router.use('/dashboard/public', ensureAuthentication, express.static(path.join(process.cwd(), './app-pages/public')));
-router.get('/dashboard',
-  ensureAuthentication,
-  (req, res) => {
-    res.status(200).sendFile(path.join(process.cwd(), '/app-pages/index.html'));
-})
-
-// REGISTER:
+// REGISTER (Local):
 router.post('/register',
   registerUser,
   passport.authenticate('local', { failureRedirect: '/' }),
@@ -24,7 +16,7 @@ router.post('/register',
   }
 );
 
-// LOGIN:
+// LOGIN (Local):
 router.post('/login',
   passport.authenticate('local', { failureRedirect: '/dashboard' }),
   (req, res) => {
@@ -32,13 +24,31 @@ router.post('/login',
   }
 );
 
+// GITHUB:
+router.get('/auth/github', passport.authenticate('github'));
+
+router.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/' }), (red, res) => {
+  res.redirect('/dashboard');
+});
+
 // LOGOUT:
 router.get('/logout', (req, res) => {
   req.logout();
   res.status(202).redirect('/');
 });
 
-// API: Items CRUD Operations:
+// DASHBOARD and static files:
+router.use('/dashboard/public',
+  ensureAuthentication,
+  express.static(path.join(process.cwd(), './app-pages/public'))
+);
+router.get('/dashboard',
+  ensureAuthentication,
+  (req, res) => {
+    res.status(200).sendFile(path.join(process.cwd(), '/app-pages/index.html'));
+});
+
+// RESTful API: Items CRUD Operations:
 router.get('/api/items', ensureAuthentication, items.getItems);
 router.get('/api/item', ensureAuthentication, items.getItem);
 router.post('/api/items', ensureAuthentication, items.postItem);

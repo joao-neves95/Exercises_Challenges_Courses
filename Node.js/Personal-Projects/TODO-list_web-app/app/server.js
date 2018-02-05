@@ -1,5 +1,4 @@
 'use strict'
-
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
@@ -19,7 +18,7 @@ app.use(logger('dev'));
 app.use(helmet());
 app.use(compression());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded( {extended: true} ));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Serve Public FrontPage and static files:
 app.use('/', express.static(path.join(__dirname, './public')));
@@ -28,7 +27,7 @@ mongoDB.MongoClient.connect(URI, (err, database) => {
   if (err)
     return process.exit(1);
 
-  console.log('Connection successful.');
+  console.log('Database connection successful.');
   const DB = database.db('todo-list_web-app');
 
   // Use the MongoDB present connection across the router:

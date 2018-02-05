@@ -2,7 +2,15 @@
 
 &nbsp;
 
-## *v0.4.1 (Feb 04, 2018)
+## *v0.5.0 (Feb 05, 2018)
+
+- Added GitHub Passport OAuth2 authentication strategy.
+
+- Minor code refactorings.
+
+&nbsp;
+
+## v0.4.1 (Feb 04, 2018)
 
 - Minor security fixes on the session cookies configuration.
 
