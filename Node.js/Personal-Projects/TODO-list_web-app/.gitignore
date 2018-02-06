@@ -467,6 +467,12 @@ __pycache__/
 
 .idea/
 
+.bin/
+.bld/
+*.jsproj
+*.sln
+.vs/
+
 node_modules/
 
 *.env
