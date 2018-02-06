@@ -1,5 +1,4 @@
-# [Diploma in C# Programming](https://alison.com/course/diploma-in-c-sharp-programming)
-## Alison/Microsoft
+# [Diploma in C# Programming (Alison/Microsoft)](https://alison.com/course/diploma-in-c-sharp-programming)
 
 (The basics of C#)
 
