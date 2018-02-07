@@ -173,6 +173,8 @@ $('document').ready(() => {
       if (document.getElementById('method').value === 'PUT') {
         updateItem(formData, document.getElementById('itemId').value)
         getItems()
+        // Make the hidden input (AJAX method type) POST again:
+        document.getElementById('method').value = 'POST'
       } else {
         postItems(formData)
         getItems()
@@ -185,7 +187,6 @@ $('document').ready(() => {
       // Clean form values:
       document.getElementById('title').value = ''
       document.getElementById('title').value = ''
-      document.getElementById('method').value = 'POST'
       document.getElementById('priority').options.selectedIndex = 2
       document.getElementById('description').value = ''
       document.getElementById('datepicker').value = ''

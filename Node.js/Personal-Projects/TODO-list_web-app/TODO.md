@@ -28,4 +28,5 @@
 
 - Migrate from MongoDB to SQL Server (Azure or local), after set up authentication;
 
-- Handle errors.
+- Properly handle errors.
+

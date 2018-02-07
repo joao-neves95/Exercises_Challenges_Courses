@@ -470,6 +470,7 @@ __pycache__/
 .bin/
 .bld/
 *.jsproj
+*.njjproj
 *.sln
 .vs/
 

@@ -2,7 +2,15 @@
 
 &nbsp;
 
-## *v0.5.0 (Feb 05, 2018)
+## *v0.5.1 (Feb 07, 2018)
+
+- Prepared the files to add validation to the inputs (with ajv);
+
+- Minor code and comments refactorings.
+
+&nbsp;
+
+## v0.5.0 (Feb 05, 2018)
 
 - Added GitHub Passport OAuth2 authentication strategy.
 

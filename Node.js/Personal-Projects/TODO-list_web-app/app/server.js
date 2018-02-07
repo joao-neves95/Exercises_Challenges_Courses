@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
@@ -11,7 +11,6 @@ const logger = require('morgan');
 const routes = require('./routes/index.js');
 global.mongoDB = require('mongodb');
 const URI = 'mongodb://localhost:27017/todo-list_web-app';
-
 const app = express();
 
 app.use(logger('dev'));
