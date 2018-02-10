@@ -20,14 +20,16 @@ $('document').ready(() => {
       url: 'http://localhost:3000/api/items',
       dataType: 'json',
       type: 'POST',
+      method: "POST",
       data: formData,
       processData: true,
-      success: 0,
+      success: null,
       error: (jqXHR, textStatus, errorThrown) => {
         console.log(`jqXHR: ${jqXHR.message}`);
         console.log(`textStatus: ${textStatus}`);
         console.log(`errorThrown: ${errorThrown}`);
-      }
+      },
+      complete: () => { getItems(); }
     })
   }
 
@@ -36,14 +38,16 @@ $('document').ready(() => {
       url: 'http://localhost:3000/api/item?id=' + id,
       dataType: 'json',
       type: 'PUT',
+      method: "PUT",
       data: formData,
       processData: true,
-      success: 0,
+      success: null,
       error: (jqXHR, textStatus, errorThrown) => {
         console.log(`jqXHR: ${jqXHR.message}`);
         console.log(`textStatus: ${textStatus}`);
         console.log(`errorThrown: ${errorThrown}`);
-      }
+      },
+      complete: () => { getItems(); }
     })
   }
 
@@ -69,7 +73,7 @@ $('document').ready(() => {
       success: (json) => {
         document.getElementById('items-cards-holder').innerHTML = ''
         for (let i = 0; i < json.length; i++) {
-          document.getElementById('items-cards-holder').innerHTML += `<a href="#" class="list-group-item list-group-item-action flex-column align-items-start" onclick="updateItemClick('${json[i]._id}'); getItems(); return false">` +
+          document.getElementById('items-cards-holder').innerHTML += `<a href="#" class="list-group-item list-group-item-action flex-column align-items-start" onclick="updateItemClick('${json[i]._id}'); return false">` +
                                                                        '<div class="d-flex w-100 justify-content-between">' +
                                                                          `<h5 class="mb-1">${json[i].title}</h5>` +
                                                                          '<div>' +
@@ -112,6 +116,7 @@ $('document').ready(() => {
 
   // INITIALIZATION:
   $('#add-item-window').slideUp()
+  document.getElementById('method').value = 'POST'
   getItems()
 
   // Initialize the Pickadate.js plugin:
@@ -142,7 +147,6 @@ $('document').ready(() => {
       // Insert the item data on the "New Item" form:
       document.getElementById('title').value = json[0].title
       document.getElementById('itemId').value = id // Store the item id on an hidden input on the "New Item" form.
-      document.getElementById('method').value = 'PUT'
       document.getElementById('priority').options.selectedIndex = json[0].priority - 1
       document.getElementById('description').value = json[0].description
       document.getElementById('datepicker').value = json[0].dueDate
@@ -172,12 +176,10 @@ $('document').ready(() => {
 
       if (document.getElementById('method').value === 'PUT') {
         updateItem(formData, document.getElementById('itemId').value)
-        getItems()
         // Make the hidden input (AJAX method type) POST again:
         document.getElementById('method').value = 'POST'
-      } else {
+      } else if (document.getElementById('method').value === 'POST') {
         postItems(formData)
-        getItems()
       }
 
       // HIDE THE "New Item" FORM:

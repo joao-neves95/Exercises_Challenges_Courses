@@ -5,6 +5,7 @@ const path = require('path');
 const passport = require('passport');
 const ensureAuthentication = require('../middleware/ensureAuthentication')
 const registerUser = require('../middleware/registerUser')
+const validateItems = require('../middleware/itemsValidation');
 const items = require('./items.js');
 
 // REGISTER (Local):
@@ -51,8 +52,8 @@ router.get('/dashboard',
 // RESTful API: Items CRUD Operations:
 router.get('/api/items', ensureAuthentication, items.getItems);
 router.get('/api/item', ensureAuthentication, items.getItem);
-router.post('/api/items', ensureAuthentication, items.postItem);
-router.put('/api/item', ensureAuthentication, items.updateItem);
+router.post('/api/items', ensureAuthentication, validateItems, items.postItem);
+router.put('/api/item', ensureAuthentication, validateItems, items.updateItem);
 router.delete('/api/items', ensureAuthentication, items.deleteItem);
 
 module.exports = router;

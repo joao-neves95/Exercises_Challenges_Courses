@@ -2,7 +2,15 @@
 
 &nbsp;
 
-## *v0.5.1 (Feb 07, 2018)
+## *v0.5.2 (Feb 10, 2018)
+
+ - Fixed a bug on the AJAX POST/PUT items requests, where the GET items request after completion where getting fired up before the POST/PUT;
+
+ - Added validation to the items CRUD requests. More needs to be done.
+
+&nbsp;
+
+## v0.5.1 (Feb 07, 2018)
 
 - Prepared the files to add validation to the inputs (with ajv);
 

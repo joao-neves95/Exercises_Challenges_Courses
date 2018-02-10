@@ -1,5 +1,5 @@
 'use strict'
-const hashPassword = require('../helpers/hashPassword')
+const hashPassword = require('../utils/hashPassword')
 
 module.exports = (req, res, next) => {
   req.db.collection('users')
