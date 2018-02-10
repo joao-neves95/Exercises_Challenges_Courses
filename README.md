@@ -33,4 +33,4 @@ Exercises, challenges and courses from various sources
 
 1 - [Alison/Microsoft: Diploma in C# Programming (Introduction to C#)](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/Diploma-in-CSharp-Programming_Alison-Microsoft)
 
-2 - [Basics of Object Oriented Programming with C# (Udemy)](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/Basics-of-Object-Oriented-Programming-with-C#_Udemy)
+2 - [Basics of Object Oriented Programming with C# (Udemy)](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/Basics-of-Object-Oriented-Programming-with-C%23_Udemy)
