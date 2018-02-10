@@ -31,13 +31,9 @@ namespace Calculator
             InitializeComponent();
         }
 
-        // EQUAL BUTTON CLICK EVENT LOGIC:
-        private void btnEquals_Click(object sender, RoutedEventArgs e)
+        private decimal CalculateResult()
         {
-            decimal result = 0;
-            AllNumbers.Add(currentDisplayNumber);
-            result += AllNumbers[0];
-
+            decimal result = AllNumbers[0];
             int NumIndex = 1;
 
             for (int currentOperator = 0; currentOperator < AllOperators.Count; currentOperator++)
@@ -64,8 +60,14 @@ namespace Calculator
                         break;
                 }
             }
+            return result;
+        }
 
-            currentDisplayNumber = result;
+        // EQUAL BUTTON CLICK EVENT LOGIC:
+        private void btnEquals_Click(object sender, RoutedEventArgs e)
+        {
+            AllNumbers.Add(currentDisplayNumber);
+            currentDisplayNumber = CalculateResult();
             displayCurrentNumberBox.Text = currentDisplayNumber.ToString();
             displayAllCalculation.Text = "";
             AllNumbers.Clear();
