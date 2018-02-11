@@ -1,17 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Calculator
 {
@@ -197,22 +187,18 @@ namespace Calculator
 
         private void btnBackspace_Click(object sender, RoutedEventArgs e)
         {
-            if (AllNumbers.Count == 0)
-            {
-                return;
-            }
-            else if (currentDisplayNumber.ToString().Length == 1)
+            string currentNumber = currentDisplayNumber.ToString();
+
+            if (currentNumber.Length == 1)
             {
                 currentDisplayNumber = 0;
                 displayCurrentNumberBox.Text = currentDisplayNumber.ToString();
             }
             else
             {
-                StringBuilder currNum = new StringBuilder();
-                currNum.Append(currentDisplayNumber.ToString());
-                currNum.Remove(currNum.Length - 1, 1);
+                string removedNum = currentNumber.Remove(currentNumber.Length - 1, 1);
 
-                currentDisplayNumber = Convert.ToDecimal(currNum.ToString());
+                currentDisplayNumber = Convert.ToDecimal(removedNum);
                 displayCurrentNumberBox.Text = currentDisplayNumber.ToString();
             }
         }
