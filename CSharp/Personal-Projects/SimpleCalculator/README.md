@@ -4,4 +4,4 @@
 
 ## [Part-2](https://www.youtube.com/watch?v=hGS91tS9aC8)
 
-Built using C# WPF.
+Built in C# WPF .NET Framework.
