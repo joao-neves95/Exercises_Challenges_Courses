@@ -29,6 +29,8 @@ Exercises, challenges and courses from various sources
 
 ## C# / .NET
 
+- [Simple Calculator in C# WPF .NET Framework](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/Personal-Projects/SimpleCalculator)
+
 ### Courses
 
 1 - [Alison/Microsoft: Diploma in C# Programming (Introduction to C#)](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/Diploma-in-CSharp-Programming_Alison-Microsoft)
