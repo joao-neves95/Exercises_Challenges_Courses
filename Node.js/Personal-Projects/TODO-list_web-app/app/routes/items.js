@@ -3,7 +3,10 @@
 module.exports = {
   getItems (req, res) {
     req.db.collection('items')
-      .find( {} )
+      .find(
+        { "userId": req.user._id },
+        { "userId": 0 }
+      )
       .toArray((err, items) => {
         if (err)
           throw err;
@@ -14,7 +17,10 @@ module.exports = {
 
   getItem (req, res) {
     req.db.collection('items')
-      .find( {"_id": mongoDB.ObjectId(req.query.id)} )
+      .find(
+        { "_id": mongoDB.ObjectId(req.query.id), "userId": req.user._id },
+        { "userId": 0 }
+      )
       .toArray((err, item) => {
         if (err)
           throw err;
@@ -26,6 +32,7 @@ module.exports = {
   postItem (req, res) {
     req.db.collection('items')
       .insertOne({
+        "userId": req.user._id,
         "title": req.body.title,
         "priority": req.body.priority,
         "description": req.body.description,

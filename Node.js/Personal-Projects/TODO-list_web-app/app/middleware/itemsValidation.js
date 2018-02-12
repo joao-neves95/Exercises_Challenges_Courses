@@ -3,14 +3,15 @@ const Ajv = require('ajv');
 const ajv = new Ajv({ allErrors: true });
 
 const itemsSchema = {
+    //24
   "type": "object",
   "required": ["title", "priority"],
   "properties": {
-    "title": { "type": "string" },
-    "priority": { "type": "string", "pattern": "^([1-5])$", "maxLength": 1 },
+    "title": { "type": "string", "minLength": 1, "maxLength": 100 },
+    "priority": { "type": "string", "pattern": "^([1-5])$", "minLength": 1, "maxLength": 1 },
     "description": { "type": "string" },
-    "dueDate": { "type": "string"/*, "format": "date" */},
-    "dueTime": { "type": "string"/*, "format": "date" */}
+    "dueDate": { "type": "string"},
+    "dueTime": { "type": "string"}
   }
 }
 let validSchema = ajv.compile(itemsSchema)
