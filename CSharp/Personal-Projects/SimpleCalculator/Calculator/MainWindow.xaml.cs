@@ -7,7 +7,6 @@ namespace Calculator
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml.
-    /// I think I over complicated...
     /// </summary>
     public partial class MainWindow : Window
     {

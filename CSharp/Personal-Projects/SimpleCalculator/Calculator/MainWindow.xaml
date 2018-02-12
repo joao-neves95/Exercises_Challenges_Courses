@@ -24,34 +24,34 @@
         </Grid.RowDefinitions>
 
         <!-- Number Buttons -->
-        <Button x:Name="btn7" Grid.Row="2" Grid.Column="0" BorderThickness="0" Click="btn7_Click">7</Button>
-        <Button x:Name="btn8" Grid.Row="2" Grid.Column="1" BorderThickness="0" Click="btn8_Click">8</Button>
-        <Button x:Name="btn9" Grid.Row="2" Grid.Column="2" BorderThickness="0" Click="btn9_Click">9</Button>
-        <Button x:Name="btn4" Grid.Row="3" Grid.Column="0" BorderThickness="0" Click="btn4_Click">4</Button>
-        <Button x:Name="btn5" Grid.Row="3" Grid.Column="1" BorderThickness="0" Click="btn5_Click">5</Button>
-        <Button x:Name="btn6" Grid.Row="3" Grid.Column="2" BorderThickness="0" Click="btn6_Click">6</Button>
-        <Button x:Name="btn1" Grid.Row="4" Grid.Column="0" BorderThickness="0" Click="btn1_Click">1</Button>
-        <Button x:Name="btn2" Grid.Row="4" Grid.Column="1" BorderThickness="0" Click="btn2_Click">2</Button>
-        <Button x:Name="btn3" Grid.Row="4" Grid.Column="2" BorderThickness="0" Click="btn3_Click">3</Button>
-        <Button x:Name="btn0" Grid.Row="5" Grid.Column="1" BorderThickness="0" Click="btn0_Click">0</Button>
+        <Button x:Name="btn7" Grid.Row="2" Grid.Column="0" BorderThickness="0" Margin="2" Click="btn7_Click">7</Button>
+        <Button x:Name="btn8" Grid.Row="2" Grid.Column="1" BorderThickness="0" Margin="2" Click="btn8_Click">8</Button>
+        <Button x:Name="btn9" Grid.Row="2" Grid.Column="2" BorderThickness="0" Margin="2" Click="btn9_Click">9</Button>
+        <Button x:Name="btn4" Grid.Row="3" Grid.Column="0" BorderThickness="0" Margin="2" Click="btn4_Click">4</Button>
+        <Button x:Name="btn5" Grid.Row="3" Grid.Column="1" BorderThickness="0" Margin="2" Click="btn5_Click">5</Button>
+        <Button x:Name="btn6" Grid.Row="3" Grid.Column="2" BorderThickness="0" Margin="2" Click="btn6_Click">6</Button>
+        <Button x:Name="btn1" Grid.Row="4" Grid.Column="0" BorderThickness="0" Margin="2" Click="btn1_Click">1</Button>
+        <Button x:Name="btn2" Grid.Row="4" Grid.Column="1" BorderThickness="0" Margin="2" Click="btn2_Click">2</Button>
+        <Button x:Name="btn3" Grid.Row="4" Grid.Column="2" BorderThickness="0" Margin="2" Click="btn3_Click">3</Button>
+        <Button x:Name="btn0" Grid.Row="5" Grid.Column="1" BorderThickness="0" Margin="2" Click="btn0_Click">0</Button>
 
         <!-- Operator Buttons -->
-        <Button x:Name="btnDivide" Grid.Row="1" Grid.Column="5" BorderThickness="0" Click="btnDivide_Click">/</Button>
-        <Button x:Name="btnTimes" Grid.Row="2" Grid.Column="5" BorderThickness="0" Click="btnTimes_Click">x</Button>
-        <Button x:Name="btnMinus" Grid.Row="3" Grid.Column="5" BorderThickness="0" Click="btnMinus_Click">-</Button>
-        <Button x:Name="btnPlus" Grid.Row="4" Grid.Column="5" BorderThickness="0" Click="btnPlus_Click">+</Button>
-        <Button x:Name="btnEquals" Grid.Row="5" Grid.Column="5" BorderThickness="0" Click="btnEquals_Click">=</Button>
+        <Button x:Name="btnDivide" Grid.Row="1" Grid.Column="5" BorderThickness="0" Margin="2" Click="btnDivide_Click">/</Button>
+        <Button x:Name="btnTimes" Grid.Row="2" Grid.Column="5" BorderThickness="0" Margin="2" Click="btnTimes_Click">x</Button>
+        <Button x:Name="btnMinus" Grid.Row="3" Grid.Column="5" BorderThickness="0" Margin="2" Click="btnMinus_Click">-</Button>
+        <Button x:Name="btnPlus" Grid.Row="4" Grid.Column="5" BorderThickness="0" Margin="2" Click="btnPlus_Click">+</Button>
+        <Button x:Name="btnEquals" Grid.Row="5" Grid.Column="5" BorderThickness="0" Margin="2" Click="btnEquals_Click">=</Button>
 
         <!-- Clear Buttons -->
-        <Button x:Name="btnClearEntry" Grid.Row="1" Grid.Column="0" BorderThickness="0" Click="btnClearEntry_Click">CE</Button>
-        <Button x:Name="btnClear" Grid.Row="1" Grid.Column="1" BorderThickness="0" Click="btnClear_Click">C</Button>
-        <Button x:Name="btnBackspace" Grid.Row="1" Grid.Column="2" BorderThickness="0" Content="&lt;=" Click="btnBackspace_Click"></Button>
+        <Button x:Name="btnClearEntry" Grid.Row="1" Grid.Column="0" BorderThickness="0" Margin="2" Click="btnClearEntry_Click">CE</Button>
+        <Button x:Name="btnClear" Grid.Row="1" Grid.Column="1" BorderThickness="0" Margin="2" Click="btnClear_Click">C</Button>
+        <Button x:Name="btnBackspace" Grid.Row="1" Grid.Column="2" BorderThickness="0" Margin="2" Content="&lt;=" Click="btnBackspace_Click"></Button>
 
         <!-- Positive and Negative Button -->
-        <Button x:Name="btnPositiveNegative" Grid.Row="5" Grid.Column="0" BorderThickness="0" Click="btnPositiveNegative_Click">+-</Button>
+        <Button x:Name="btnPositiveNegative" Grid.Row="5" Grid.Column="0" BorderThickness="0" Margin="2" Click="btnPositiveNegative_Click">+-</Button>
 
         <!-- Comma Button -->
-        <Button x:Name="btnComma" Grid.Row="5" Grid.Column="2" BorderThickness="0" Content=","></Button>
+        <Button x:Name="btnComma" Grid.Row="5" Grid.Column="2" BorderThickness="0" Margin="2" Content=","></Button>
 
         <!-- Display Current Number Textbox -->
         <TextBox x:Name="displayCurrentNumberBox" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="40" BorderThickness="0" IsReadOnly="True" Height="52" Grid.ColumnSpan="4" Width="322" TextAlignment="Right" Margin="0,0,10,0">0</TextBox>
