@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="Just another TODO List App."/>
+  <meta name="author" content="shivayl">
+  <meta property="og:description" content="Just another TODO List App."/>
+  <meta name="google" content="notranslate"/>
+  <title>Just another TODO List App.</title>
+  <meta name="keywords" content=""/>
+  <meta property="og:url" content="localhost:3000/dashboard"/>
+  <meta property="og:title" content="Just another TODO List App."/>
+  <meta property="og:type" content="website" />
+  <!-- Bootstrap CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+    crossorigin="anonymous"
+    type="text/css"/>
+  <!-- Pickadate.js -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/themes/default.css" crossorigin="anonymous" type="text/css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/themes/default.date.css" crossorigin="anonymous" type="text/css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/themes/default.time.css" crossorigin="anonymous" type="text/css"/>
+  <link rel="stylesheet" href="/dashboard/public/style.css" type="text/css">
+</head>
+
+<body>
+
+  <header>
+    <!-- MAIN HEADER -->
+    <nav class="navbar navbar-expand-md navbar-fixed-top navbar-dark bg-dark main-nav">
+      <div class="container">
+        <a class="navbar-brand" href="#">TODO List</a>
+        <ul class="nav navbar-nav mx-auto">
+          <li class="nav-item">
+            <button class="btn btn-outline-success btn-floating" id="btn-new-item" type="submit">New Item</button>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav float-right text-light">
+          <li class="nav-item">
+            <sub>Just Another TODO List App...</sub>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- ADD NEW ITEM DROPDOWN FORM -->
+    <nav class="navbar navbar-expand-md navbar-light bg-light" id="add-item-window">
+      <form class="container" id="add-item-form">
+        <div class="row mx-auto">
+          <div class="col-md-12">
+            <div class="form-group row">
+              <label class="col-md-2 col-form-label" for="title">Title</label>
+              <div class="col-md-10">
+                <input class="form-control" id="title" name="title" type="text">
+                <input id="itemId" name="method" type="hidden" value="">
+                <!-- AJAX method type -->
+                <input id="method" name="method" type="hidden" value="POST">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group row">
+              <label class="col-md-2 col-form-label" for="priority">Priority</label>
+              <div class="col-md-10">
+                <select class="form-control" id="priority" name="priority">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3" selected>3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group row">
+              <label class="col-md-2 col-form-label" for="description">Description</label>
+              <div class="col-md-10">
+                <textarea class="form-control" id="description" name="description"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="datepicker">Due Date</label>
+              <input class="form-control form-control-sm" id="datepicker" name="dueDate" type="text">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="timepicker">Due Time</label>
+              <input class="form-control form-control-sm" id="timepicker" name="dueTime" type="text">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <button type="button" class="btn btn-success btn-floating float-right" id="btn-save-item">Save</button>
+          </div>
+        </div>
+      </form>
+    </nav>
+  </header>
+
+  <!-- ITEMS -->
+  <!-- role="main" - Indicates the significance of this element to programs that don't yet support the <main> element (such as screen readers) -->
+  <main class="container" id="main" role="main">
+    <!-- ITEMS FORM FILTER -->
+    <section class="row mt-3">
+      <form class="form-inline mx-auto">
+        <input class="form-control mr-sm-2" type="search" placeholder="Filter" aria-label="Search">
+      </form>
+    </section>
+
+    <!-- ITEMS CONTAINER -->
+    <section class="row list-group mx-auto" id="items-cards-holder">
+
+    </section>
+    <a href="/logout">Logout</a>
+  </main>
+
+  <!-- jQuery -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
+    crossorigin="anonymous">
+  </script>
+  <!-- Popper.js -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+    crossorigin="anonymous">
+  </script>
+  <!-- Bootstrap JS -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+    crossorigin="anonymous">
+  </script>
+  <!-- Pickadate.JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.js" crossorigin="anonymous" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.date.js" crossorigin="anonymous" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.time.js" crossorigin="anonymous" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/legacy.js" crossorigin="anonymous" type="text/javascript"></script>
+  <script src="/dashboard/public/main.js" type="text/javascript"></script>
+</body>
+
+</html>
