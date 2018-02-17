@@ -3,14 +3,13 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const helmet = require('helmet');
-const sessionsConfig = require('./middleware/sessions');
-const authenticationConfig = require('./middleware/authentication');
 const bodyParser = require('body-parser');
 const compression = require('compression');
 const logger = require('morgan');
+const sql = require('mssql');
+const sessionsConfig = require('./middleware/sessions');
+const authenticationConfig = require('./middleware/authentication');
 const routes = require('./routes/index.js');
-global.mongoDB = require('mongodb');
-const URI = 'mongodb://localhost:27017/todo-list_web-app';
 const app = express();
 
 app.use(logger('dev'));
@@ -22,21 +21,26 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Serve Public FrontPage and static files:
 app.use('/', express.static(path.join(__dirname, './public')));
 
-mongoDB.MongoClient.connect(URI, (err, database) => {
+const mssqlConfig = {
+  server: process.env.MSSQL_INSTANCE,
+  user: process.env.MSSQL_USER,
+  password: process.env.MSSQL_PASS,
+  database: 'TodoList'
+}
+
+sql.connect(mssqlConfig, (err) => {
   if (err)
-    return process.exit(1);
+    return console.error(err);
 
-  console.log('Database connection successful.');
-  const DB = database.db('todo-list_web-app');
+  console.log(`The connection to the MSSQL SERVER database ${mssqlConfig.database} was successful.`);
 
-  // Use the MongoDB present connection across the router:
   app.use((req, res, next) => {
-    req.db = DB;
+    req.sql = sql;
     next();
   });
 
   sessionsConfig(app);
-  authenticationConfig(app, DB);
+  authenticationConfig(app, sql);
 
   // ROUTES:
   app.use('/', routes);
@@ -45,4 +49,8 @@ mongoDB.MongoClient.connect(URI, (err, database) => {
   app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);
   });
+});
+
+sql.on('error', err => {
+  return console.error(err);
 });

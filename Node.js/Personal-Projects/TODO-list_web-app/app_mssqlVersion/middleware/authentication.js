@@ -5,58 +5,71 @@ const GitHubStrategy = require('passport-github').Strategy;
 const ObjectID = require('mongodb').ObjectID;
 const bcrypt = require('bcrypt')
 
-module.exports = (app, db) => {
+module.exports = (app, sql) => {
   app.use(passport.initialize());
   app.use(passport.session());
 
   passport.serializeUser((user, done) => {
-    done(null, user._id);
+    done(null, user.User_Id);
   });
 
+  // TODO: JOIN the other strategies data, when it's added a new one.
   passport.deserializeUser((id, done) => {
-    db.collection('users')
-      .findOne(
-        { _id: new ObjectID(id) },
-        (err, user) => {
-          if (err)
-            return done(err, null);
+    const request = new sql.Request();
+    request.query(
+      `SELECT dbo.Users.User_Id, dbo.LocalAuth.Email, dbo.LocalAuth.Password
+      FROM dbo.Users
+      INNER JOIN dbo.LocalAuth
+          ON dbo.Users.User_Id = dbo.LocalAuth.User_Id
+      WHERE dbo.Users.User_Id = ${id}`,
+      (err, data) => {
+        if (err) {
+          return done(err, null);
+        }
 
-          return done(null, user);
-        });
+      return done(null, data.recordsets[0][0]);
+    });
   });
 
   // TODO: Properly handle errors.
-  // LOCAL:
+  // LOCAL STRATEGY:
   passport.use(new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password'
   },
     (username, password, done) => {
-      db.collection('users')
-        .findOne({ email: username }, (err, user) => {
-          // Login attempt.
+      const request = new sql.Request();
+      request.query(
+        `SELECT *
+        FROM dbo.LocalAuth
+        WHERE Email = '${username}'`,
+        (err, data) => {
+        if (err) {
+          // Authentication error.
+          return done(err);
+        }
+        if (data.recordsets[0].length <= 0) {
+          // User does not exist/wrong email.
+          return done(null, false);
+        }
+        // Check passwords.
+        bcrypt.compare(password, data.recordsets[0][0].Password, (err, res) => {
           if (err) {
-            // Authentication error.
             return done(err);
           }
-          if (!user) {
-            // User does not exist/wrong email.
-            return done(null, false);
+
+          // Not the same passwords.
+          if (!res) {
+          return done(null, false);
           }
-          // Check passwords:
-          bcrypt.compare(password, user.password, (err, res) => {
-            if (err)
-              return done(null, false);
 
-            if (!res)
-              return done(null, false);
-
-            // Authentication successful.
-            return done(null, user)
-          });
+          // Authentication successful.
+          return done(null, data.recordsets[0][0]);
         });
+      });
     }));
 
+  // TODO: Implement Github Passport Strategy in MSSQL.
   // GITHUB:
   passport.use(new GitHubStrategy({
     clientID: process.env.GITHUB_CLIENT_ID,

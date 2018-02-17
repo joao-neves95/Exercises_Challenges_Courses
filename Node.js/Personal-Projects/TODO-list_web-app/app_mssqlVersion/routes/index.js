@@ -19,7 +19,7 @@ router.post('/register',
 
 // LOGIN (Local):
 router.post('/login',
-  passport.authenticate('local', { failureRedirect: '/dashboard' }),
+  passport.authenticate('local', { failureRedirect: '/' }),
   (req, res) => {
     res.status(202).redirect('/dashboard');
   }

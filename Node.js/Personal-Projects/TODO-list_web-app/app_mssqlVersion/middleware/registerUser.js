@@ -2,32 +2,50 @@
 const hashPassword = require('../utils/hashPassword')
 
 module.exports = (req, res, next) => {
-  req.db.collection('users')
-    .findOne({ email: req.body.email }, (err, user) => {
-      // TODO: Properly handle errors.
-      if (err)
-        return next(err);
+  let request = new req.sql.Request();
+  request.query(
+    `SELECT * 
+    FROM dbo.LocalAuth
+    WHERE Email = '${req.body.email}'`,
+    (err, data) => {
+    if (err)
+      return next(err);
 
-      else if (user)
-        return res.status(400).redirect('/');
+    // TODO: Add error hadling here to send "Email already exists" response.
+    else if (data.recordsets[0].length > 0) {
+      return res.status(400).redirect('/');
+    }
 
-      else {
-        const plainTextPassword = req.body.password;
+    else {
+      const plainTextPassword = req.body.password;
 
-        hashPassword(plainTextPassword, (err, hash) => {
-          console.log("Creating user.")
-          req.db.collection('users')
-            .insertOne({
-              email: req.body.email,
-              password: hash,
-              created_on: new Date()
-            }, (err, user) => {
-              if (err)
-                return res.redirect('/');
+      hashPassword(plainTextPassword, (err, hash) => {
+        request = new req.sql.Request();
+        request.query(
+          `INSERT INTO dbo.Users (FirstName, LastName) 
+          VALUES ('', '');
 
-              return next(null, user);
-            });
-        });
-      }
-    });
+          SELECT SCOPE_IDENTITY() AS User_Id;`,
+          (err, data) => {
+          if (err)
+            return console.log(`request2 error: ${err}`);
+
+          request = new req.sql.Request();
+          request.query(
+            `INSERT INTO dbo.LocalAuth 
+            VALUES (${data.recordsets[0][0].User_Id}, '${req.body.email}', '${hash}', GETDATE());
+
+            SELECT *
+            FROM dbo.LocalAuth
+            WHERE User_Id = ${data.recordsets[0][0].User_Id};`,
+            (err, data) => {
+            if (err)
+              return res.redirect('/');
+
+            return next(null, data.recordsets[0][0]);
+          })
+        })
+      });
+    }
+  });
 }
