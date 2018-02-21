@@ -54,7 +54,7 @@
         <Button x:Name="btnComma" Grid.Row="5" Grid.Column="2" BorderThickness="0" Margin="2" Content=","></Button>
 
         <!-- Display Current Number Textbox -->
-        <TextBox x:Name="displayCurrentNumberBox" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="40" BorderThickness="0" IsReadOnly="True" Height="52" Grid.ColumnSpan="4" Width="322" TextAlignment="Right" Margin="0,0,10,0">0</TextBox>
+        <TextBox x:Name="displayCurrentNumberBox" Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="40" BorderThickness="0" IsReadOnly="True" Height="52" Width="322" TextAlignment="Right" Margin="0,0,10,0">0</TextBox>
         <!-- All Calculation Dysplay -->
         <TextBox x:Name="displayAllCalculation" Height="23" Margin="0,11,10,52" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="15" BorderThickness="0" IsReadOnly="True" Text="" HorizontalAlignment="Right" Width="322" RenderTransformOrigin="0.502,0.55" Grid.ColumnSpan="4" TextAlignment="Right"/>
 
