@@ -1,5 +1,7 @@
 # TODO
 
+- Optimize front end (store items and only make a new request when something changes);
+
 - Improve UI:
 
   . Add logout button;
@@ -18,15 +20,9 @@
 
   . Style/improve the public homepage.
 
-- Link each item to its user/creator (user id);
-
-- Improve POST requests (Add creteTimestamp and lastUpdateTimestamp. Server side.);
-
 - Add input validation;
 
 - Save persistent data (sessions) not on the server;
-
-- Migrate from MongoDB to SQL Server (Azure or local), after set up authentication;
 
 - Properly handle errors.
 

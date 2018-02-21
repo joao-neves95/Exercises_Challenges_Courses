@@ -1,0 +1,10 @@
+SELECT *
+FROM dbo.Users;
+GO
+
+DELETE TOP(10)
+FROM dbo.Users;
+GO
+
+DROP DATABASE IF EXISTS TodoList;
+GO

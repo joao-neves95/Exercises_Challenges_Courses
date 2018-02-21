@@ -14,6 +14,7 @@ module.exports = (app, db) => {
   });
 
   passport.deserializeUser((id, done) => {
+    console.log(`deserializeUser, id: ${id}`);
     db.collection('users')
       .findOne(
         { _id: new ObjectID(id) },
@@ -21,7 +22,8 @@ module.exports = (app, db) => {
           if (err)
             return done(err, null);
 
-          return done(null, user);
+        console.log(`deserializeUser, user: ${user}`);
+        return done(null, user);
         });
   });
 

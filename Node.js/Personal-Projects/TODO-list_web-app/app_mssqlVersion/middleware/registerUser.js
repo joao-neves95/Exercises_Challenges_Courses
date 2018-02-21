@@ -2,32 +2,39 @@
 const hashPassword = require('../utils/hashPassword')
 
 module.exports = (req, res, next) => {
-  req.db.collection('users')
-    .findOne({ email: req.body.email }, (err, user) => {
-      // TODO: Properly handle errors.
-      if (err)
+  let request = new req.sql.Request();
+  request.query(
+    `SELECT Email
+    FROM dbo.Users
+    WHERE Email = '${req.body.email}'`,
+    (err, data) => {
+      if (err) {
         return next(err);
-
-      else if (user)
-        return res.status(400).redirect('/');
-
-      else {
+      }
+      // TODO: Add error handling here to send "Email already exists" response.
+      else if (data.recordsets[0].length > 0) {
+          return res.status(400).redirect('/');
+      } else {
         const plainTextPassword = req.body.password;
 
         hashPassword(plainTextPassword, (err, hash) => {
-          console.log("Creating user.")
-          req.db.collection('users')
-            .insertOne({
-              email: req.body.email,
-              password: hash,
-              created_on: new Date()
-            }, (err, user) => {
-              if (err)
-                return res.redirect('/');
+          request = new req.sql.Request();
+          request.query(
+            `INSERT INTO dbo.Users (Email, Password, FirstName, LastName, Created) 
+            VALUES ('${req.body.email}', '${hash}', '', '', GETDATE());
 
-              return next(null, user);
-            });
+            SELECT *
+            FROM dbo.Users
+            WHERE Email = '${req.body.email}';`,
+            (err, data) => {
+              if (err) {
+                return res.redirect('/');
+              }
+
+              return next(null, data.recordsets[0][0]);
+            }
+          );
         });
       }
-    });
+  });
 }
