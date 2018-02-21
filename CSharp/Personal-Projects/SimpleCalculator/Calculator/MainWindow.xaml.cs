@@ -13,7 +13,7 @@ namespace Calculator
         private decimal currentDisplayNumber = 0;
 
         private List<decimal> AllNumbers = new List<decimal>();
-        private List<string> AllOperators = new List<string>();
+        private List<Operator> AllOperators = new List<Operator>();
 
         public MainWindow()
         {
@@ -29,19 +29,19 @@ namespace Calculator
             {
                 switch (AllOperators[currentOperator])
                 {
-                    case "+":
+                    case Operator.Plus:
                         result += AllNumbers[NumIndex];
                         NumIndex++;
                         break;
-                    case "-":
+                    case Operator.Minus:
                         result -= AllNumbers[NumIndex];
                         NumIndex++;
                         break;
-                    case "/":
+                    case Operator.Divide:
                         result /= AllNumbers[NumIndex];
                         NumIndex++;
                         break;
-                    case "*":
+                    case Operator.Times:
                         result *= AllNumbers[NumIndex];
                         NumIndex++;
                         break;
@@ -68,14 +68,30 @@ namespace Calculator
             for (int i = 0; i < AllNumbers.Count; i++)
             {
                 allCalculation.Append(AllNumbers[i].ToString());
-                allCalculation.Append(AllOperators[i]);
+                switch (AllOperators[i])
+                {
+                    case Operator.Plus:
+                        allCalculation.Append("+");
+                        break;
+                    case Operator.Minus:
+                        allCalculation.Append("-");
+                        break;
+                    case Operator.Divide:
+                        allCalculation.Append("/");
+                        break;
+                    case Operator.Times:
+                        allCalculation.Append("*");
+                        break;
+                    default:
+                        break;
+                }
             }
 
             displayAllCalculation.Text = allCalculation.ToString();
         }
 
         // OPERATORS CLICK EVENT HANDLERS:
-        private void HandleOperatorLogic(string Operator)
+        private void HandleOperatorLogic(Operator Operator)
         {
             AllNumbers.Add(currentDisplayNumber);
             AllOperators.Add(Operator);
@@ -86,22 +102,22 @@ namespace Calculator
 
         private void btnPlus_Click(object sender, RoutedEventArgs e)
         {
-            HandleOperatorLogic("+");
+            HandleOperatorLogic(Operator.Plus);
         }
 
         private void btnMinus_Click(object sender, RoutedEventArgs e)
         {
-            HandleOperatorLogic("-");
+            HandleOperatorLogic(Operator.Minus);
         }
 
         private void btnDivide_Click(object sender, RoutedEventArgs e)
         {
-            HandleOperatorLogic("/");
+            HandleOperatorLogic(Operator.Divide);
         }
 
         private void btnTimes_Click(object sender, RoutedEventArgs e)
         {
-            HandleOperatorLogic("*");
+            HandleOperatorLogic(Operator.Times);
         }
 
         private void btnPositiveNegative_Click(object sender, RoutedEventArgs e)
