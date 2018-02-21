@@ -1,79 +1,79 @@
 'use strict'
+// const sql = require('mssql');
 
 module.exports = {
-  getItems (req, res) {
-    req.db.collection('items')
-      .find(
-        { "userId": req.user._id },
-        { "userId": 0 }
-      )
-      .toArray((err, items) => {
+  getItems(req, res) {
+    console.log(req.user.User_Id);
+    let request = new req.sql.Request();
+    request.query(
+      `SELECT Item_Id, Title, Priority, Description, DueDate, DueTime
+      FROM dbo.Item
+      WHERE User_Id = ${parseInt(req.user.User_Id)};`,
+      (err, data) => {
         if (err)
-          throw err;
+          return console.error(err);
 
-        res.status(200).send(items);
-      });
+        res.status(200).send(data.recordsets[0]);
+      }
+    );
   },
 
-  getItem (req, res) {
-    req.db.collection('items')
-      .find(
-        { "_id": mongoDB.ObjectId(req.query.id), "userId": req.user._id },
-        { "userId": 0 }
-      )
-      .toArray((err, item) => {
+  getItem(req, res) {
+    let request = new req.sql.Request();
+    request.query(
+      `SELECT Item_Id, Title, Priority, Description, DueDate, DueTime
+      FROM dbo.Item
+      WHERE Item_Id = ${req.query.id} AND User_Id = ${parseInt(req.user.User_Id)};`,
+      (err, data) => {
         if (err)
-          throw err;
+          return console.error(err);
 
-        res.status(200).send(item);
-      })
+        res.status(200).send(data.recordsets[0]);
+    });
   },
 
-  postItem (req, res) {
-    req.db.collection('items')
-      .insertOne({
-        "userId": req.user._id,
-        "title": req.body.title,
-        "priority": req.body.priority,
-        "description": req.body.description,
-        "dueDate": req.body.dueDate,
-        "dueTime": req.body.dueTime
-      },
-      (err, results) => {
+  postItem(req, res) {
+    let request = new req.sql.Request();
+    request.query(
+      `INSERT INTO dbo.Item (User_Id, Title, Priority, Description, DueDate, DueTime, Created, lastUpdate)
+      VALUES (${req.user.User_Id}, '${req.body.title}', ${req.body.priority}, '${req.body.description}', CONVERT(DATE, '${req.body.dueDate}', 5), CONVERT(TIME, '${req.body.dueTime}', 8), GETDATE(), GETDATE());`,
+      (err, data) => {
         if (err)
-          throw err;
+          return console.error(err);
 
-        res.status(201).send(results);
-      })
+        res.status(204).end();
+    });
   },
 
-  updateItem (req, res) {
-    req.db.collection('items')
-      .updateOne(
-        {"_id": mongoDB.ObjectId(req.query.id)},
-        {$set: {
-          "title": req.body.title,
-          "priority": req.body.priority,
-          "description": req.body.description,
-          "dueDate": req.body.dueDate,
-          "dueTime": req.body.dueTime
-          }
-        },
-        (err, results) => {
-          if (err)
-            throw err;
+  updateItem(req, res) {
+    let request = new req.sql.Request();
+    request.query(
+      `UPDATE dbo.Item
+      SET dbo.Item.Title = '${req.body.title}',
+          dbo.Item.Priority = ${parseInt(req.body.priority)},
+          dbo.Item.Description = '${req.body.description}',
+          dbo.Item.DueDate = CONVERT(DATE, '${req.body.dueDate}', 5),
+          dbo.Item.DueTime = CONVERT(TIME, '${req.body.dueTime}', 8),
+          dbo.Item.LastUpdate = GETDATE()
+      WHERE Item_Id = ${parseInt(req.query.id)};`,
+      (err, data) => {
+        if (err)
+          console.error(err);
 
-        res.status(200).send(results);
-      } )
+        res.status(204).end();
+    });
   },
 
-  deleteItem (req, res) {
-    req.db.collection('items')
-      .deleteOne( {"_id": mongoDB.ObjectId(req.query.id)}, (err, results) => {
+  deleteItem(req, res) {
+    let request = new req.sql.Request();
+    request.query(
+      `DELETE FROM dbo.Item
+      WHERE dbo.Item.Item_Id = ${parseInt(req.query.id)};`,
+      (err, data) => {
         if (err)
-         throw err;
+          return console.error(err);
 
-        res.status(200).send(results);
-      })
+        res.status(204).end();
+    });
   }
 }

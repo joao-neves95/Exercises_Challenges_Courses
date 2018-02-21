@@ -1,4 +1,5 @@
 # CHANGELOG
+(New MS SQL Server version of this app created. Further features/improvements/modifications will be added there.)
 
 &nbsp;
 

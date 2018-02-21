@@ -73,17 +73,17 @@ $('document').ready(() => {
       success: (json) => {
         document.getElementById('items-cards-holder').innerHTML = ''
         for (let i = 0; i < json.length; i++) {
-          document.getElementById('items-cards-holder').innerHTML += `<a href="#" class="list-group-item list-group-item-action flex-column align-items-start" onclick="updateItemClick('${json[i]._id}'); return false">` +
+          document.getElementById('items-cards-holder').innerHTML += `<a href="#" class="list-group-item list-group-item-action flex-column align-items-start" onclick="updateItemClick('${json[i].Item_Id}'); return false">` +
                                                                        '<div class="d-flex w-100 justify-content-between">' +
-                                                                         `<h5 class="mb-1">${json[i].title}</h5>` +
+                                                                         `<h5 class="mb-1">${json[i].Title}</h5>` +
                                                                          '<div>' +
-                                                                           `<button class="btn btn-danger btn-sm btn-floating float-right ml-1" id="delete-item" onclick="deleteItem('${json[i]._id}'); getItems(); return false" aria-label="Close">` +
+                                                                           `<button class="btn btn-danger btn-sm btn-floating float-right ml-1" id="delete-item" onclick="deleteItem('${json[i].Item_Id}'); getItems(); return false" aria-label="Close">` +
                                                                              '<span aria-hidden="true">&times;</span>' +
                                                                            '</button>' +
                                                                            // `<button class="btn btn-warning btn-sm btn-floating float-right" id="delete-item" onclick="updateItemClick('${json[i]._id}'); getItems(); return false" aria-label="Close">Edit</button>` +
                                                                          '</div>' +
                                                                        '</div>'+
-                                                                       `<p class="mb-1">${json[i].description}</p>` +
+                                                                       `<p class="mb-1">${json[i].Description}</p>` +
                                                                      '</a>'
 
         }
@@ -145,12 +145,12 @@ $('document').ready(() => {
 
     getItem(id, (json) => {
       // Insert the item data on the "New Item" form:
-      document.getElementById('title').value = json[0].title
+      document.getElementById('title').value = json[0].Title
       document.getElementById('itemId').value = id // Store the item id on an hidden input on the "New Item" form.
-      document.getElementById('priority').options.selectedIndex = json[0].priority - 1
-      document.getElementById('description').value = json[0].description
-      document.getElementById('datepicker').value = json[0].dueDate
-      document.getElementById('timepicker').value = json[0].dueTime
+      document.getElementById('priority').options.selectedIndex = json[0].Priority - 1
+      document.getElementById('description').value = json[0].Description
+      document.getElementById('datepicker').value = json[0].DueDate
+      document.getElementById('timepicker').value = json[0].DueTime
 
       // Show the "New Item" form:
       document.getElementById('btn-new-item').classList.add('active')
