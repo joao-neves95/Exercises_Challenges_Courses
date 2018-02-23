@@ -2,7 +2,13 @@
 
 &nbsp;
 
-## *v0.6.0 (Feb 21, 2018)
+## *v0.6.1 (Feb 23, 2018)
+
+ - Minor refactoring (front-end JS) for better organization.
+
+&nbsp;
+
+## v0.6.0 (Feb 21, 2018)
 
  - Migrated from MongoDB to the MS SQL SERVER Relational Database.
 

@@ -1,17 +1,33 @@
 'use strict'
 
-let postItems
-let updateItem
-let deleteItem
-let getItems
-let getItem
-let updateItemClick
+let postItems;
+let updateItem;
+let deleteItem;
+let getItems;
+let getItem;
+let updateItemClick;
 
 $('document').ready(() => {
 
+  // UTILS:
   const hasClass = (el, selector) => {
     let className = " " + selector + " "
     return (" " + el.className + " ").replace(/[\n\t]/g, " ").indexOf(className) > -1
+  }
+
+  // HTML:
+  const itemCards = (json) => {
+    return `<a href="#" class="list-group-item list-group-item-action flex-column align-items-start" onclick="updateItemClick('${json.Item_Id}'); return false">
+             <div class="d-flex w-100 justify-content-between">
+               <h5 class="mb-1">${json.Title}</h5>
+               <div>
+                 <button class="btn btn-danger btn-sm btn-floating float-right ml-1" id="delete-item" onclick="deleteItem('${json.Item_Id}'); getItems(); return false" aria-label="Close">
+                   <span aria-hidden="true">&times;</span>
+                 </button>
+               </div>
+             </div>
+             <p class="mb-1">${json.Description}</p>
+           </a>`
   }
 
   // RESTFUL API AJAX REQUESTS:
@@ -23,7 +39,6 @@ $('document').ready(() => {
       method: "POST",
       data: formData,
       processData: true,
-      success: null,
       error: (jqXHR, textStatus, errorThrown) => {
         console.log(`jqXHR: ${jqXHR.message}`);
         console.log(`textStatus: ${textStatus}`);
@@ -41,7 +56,6 @@ $('document').ready(() => {
       method: "PUT",
       data: formData,
       processData: true,
-      success: null,
       error: (jqXHR, textStatus, errorThrown) => {
         console.log(`jqXHR: ${jqXHR.message}`);
         console.log(`textStatus: ${textStatus}`);
@@ -72,21 +86,9 @@ $('document').ready(() => {
       contentType: 'application/json; charset=UTF-8',
       success: (json) => {
         document.getElementById('items-cards-holder').innerHTML = ''
-        for (let i = 0; i < json.length; i++) {
-          document.getElementById('items-cards-holder').innerHTML += `<a href="#" class="list-group-item list-group-item-action flex-column align-items-start" onclick="updateItemClick('${json[i].Item_Id}'); return false">` +
-                                                                       '<div class="d-flex w-100 justify-content-between">' +
-                                                                         `<h5 class="mb-1">${json[i].Title}</h5>` +
-                                                                         '<div>' +
-                                                                           `<button class="btn btn-danger btn-sm btn-floating float-right ml-1" id="delete-item" onclick="deleteItem('${json[i].Item_Id}'); getItems(); return false" aria-label="Close">` +
-                                                                             '<span aria-hidden="true">&times;</span>' +
-                                                                           '</button>' +
-                                                                           // `<button class="btn btn-warning btn-sm btn-floating float-right" id="delete-item" onclick="updateItemClick('${json[i]._id}'); getItems(); return false" aria-label="Close">Edit</button>` +
-                                                                         '</div>' +
-                                                                       '</div>'+
-                                                                       `<p class="mb-1">${json[i].Description}</p>` +
-                                                                     '</a>'
-
-        }
+          for (let i = 0; i < json.length; i++) {
+            document.getElementById('items-cards-holder').innerHTML += itemCards(json[i]);
+          }
       },
       error: (jqXHR, textStatus, errorThrown) => {
         console.log(`jqXHR: ${jqXHR.message}`);
@@ -164,7 +166,7 @@ $('document').ready(() => {
   // It is used to POST and PUT items (that's why there are 2 chained if statements)
   document.getElementById('btn-save-item').addEventListener('click', () => {
     if (document.getElementById('title').value === '')
-      return null
+      return null;
     else {
       let formData = {
         "title": document.getElementById('title').value,
