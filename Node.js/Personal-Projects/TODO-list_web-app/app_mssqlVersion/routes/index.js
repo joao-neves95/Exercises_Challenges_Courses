@@ -55,5 +55,6 @@ router.get('/api/item', ensureAuthentication, items.getItem);
 router.post('/api/items', ensureAuthentication, validateItems, items.postItem);
 router.put('/api/item', ensureAuthentication, validateItems, items.updateItem);
 router.delete('/api/items', ensureAuthentication, items.deleteItem);
+router.get('/api/community-items', ensureAuthentication, items.getCommunityItems);
 
 module.exports = router;

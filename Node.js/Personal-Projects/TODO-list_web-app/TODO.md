@@ -1,7 +1,5 @@
 # TODO
 
-- Optimize front end (store items and only make a new request when something changes);
-
 - Improve UI:
 
   . Add logout button;
@@ -25,4 +23,3 @@
 - Save persistent data (sessions) not on the server;
 
 - Properly handle errors.
-
