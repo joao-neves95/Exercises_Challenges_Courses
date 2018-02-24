@@ -6,7 +6,7 @@ module.exports = {
     console.log(req.user.User_Id);
     let request = new req.sql.Request();
     request.query(
-      `SELECT Item_Id, Title, Priority, Description, DueDate, DueTime
+      `SELECT Item_Id, Title, Priority, Description, IsPublic, DueDate, DueTime
       FROM dbo.Item
       WHERE User_Id = ${parseInt(req.user.User_Id)};`,
       (err, data) => {
@@ -21,7 +21,7 @@ module.exports = {
   getItem(req, res) {
     let request = new req.sql.Request();
     request.query(
-      `SELECT Item_Id, Title, Priority, Description, DueDate, DueTime
+      `SELECT Item_Id, Title, Priority, Description, IsPublic, DueDate, DueTime
       FROM dbo.Item
       WHERE Item_Id = ${req.query.id} AND User_Id = ${parseInt(req.user.User_Id)};`,
       (err, data) => {
@@ -35,8 +35,8 @@ module.exports = {
   postItem(req, res) {
     let request = new req.sql.Request();
     request.query(
-      `INSERT INTO dbo.Item (User_Id, Title, Priority, Description, DueDate, DueTime, Created, lastUpdate)
-      VALUES (${req.user.User_Id}, '${req.body.title}', ${req.body.priority}, '${req.body.description}', CONVERT(DATE, '${req.body.dueDate}', 5), CONVERT(TIME, '${req.body.dueTime}', 8), GETDATE(), GETDATE());`,
+      `INSERT INTO dbo.Item (User_Id, Title, Priority, Description, DueDate, DueTime, IsPublic, Created, lastUpdate)
+      VALUES (${req.user.User_Id}, '${req.body.title}', ${req.body.priority}, '${req.body.description}', CONVERT(DATE, '${req.body.dueDate}', 5), CONVERT(TIME, '${req.body.dueTime}', 8), CONVERT(BIT, ${req.body.isPublic}), GETDATE(), GETDATE());`,
       (err, data) => {
         if (err)
           return console.error(err);
@@ -54,11 +54,12 @@ module.exports = {
           dbo.Item.Description = '${req.body.description}',
           dbo.Item.DueDate = CONVERT(DATE, '${req.body.dueDate}', 5),
           dbo.Item.DueTime = CONVERT(TIME, '${req.body.dueTime}', 8),
+          dbo.Item.IsPublic = CONVERT(BIT, ${req.body.isPublic}),
           dbo.Item.LastUpdate = GETDATE()
       WHERE Item_Id = ${parseInt(req.query.id)};`,
       (err, data) => {
         if (err)
-          console.error(err);
+          return console.error(err);
 
         res.status(204).end();
     });
@@ -68,12 +69,27 @@ module.exports = {
     let request = new req.sql.Request();
     request.query(
       `DELETE FROM dbo.Item
-      WHERE dbo.Item.Item_Id = ${parseInt(req.query.id)};`,
+      WHERE dbo.Item.Item_Id = ${parseInt(req.query.id)} AND dbo.Item.User_Id = ${req.user.User_Id};`,
       (err, data) => {
         if (err)
           return console.error(err);
 
         res.status(204).end();
     });
+  },
+
+  getCommunityItems(req, res) {
+    let request = new req.sql.Request();
+    request.query(
+      `SELECT Title, Priority, Description, IsPublic, DueDate, DueTime
+      FROM dbo.Item
+      WHERE IsPublic = 1 AND User_Id != ${req.user.User_Id};`,
+      (err, data) => {
+        if (err)
+          return console.error(err);
+
+        res.status(200).send(data.recordsets[0])
+
+      });
   }
 }

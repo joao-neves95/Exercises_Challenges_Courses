@@ -2,7 +2,13 @@
 
 &nbsp;
 
-## *v0.6.1 (Feb 23, 2018)
+## *v0.7.0 (Feb 24, 2018)
+
+ - New Feature: Added the ability to turn items public to all users.
+
+&nbsp;
+
+## v0.6.1 (Feb 23, 2018)
 
  - Minor refactoring (front-end JS) for better organization.
 

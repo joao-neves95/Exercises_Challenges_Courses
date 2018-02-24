@@ -33,10 +33,15 @@
     <!-- MAIN HEADER -->
     <nav class="navbar navbar-expand-md navbar-fixed-top navbar-dark bg-dark main-nav">
       <div class="container">
-        <a class="navbar-brand" href="#">TODO List</a>
+        <a class="navbar-brand" href="#" id="btn-home">TODO List</a>
+        <ul class="nav navbar-nav text-light">
+          <li>
+            <a class="text-light" href="#" id="btn-comunityItems">Comunity Items</a>
+          </li>
+        </ul>
         <ul class="nav navbar-nav mx-auto">
-          <li class="nav-item">
-            <button class="btn btn-outline-success btn-floating" id="btn-new-item" type="submit">New Item</button>
+          <li class="nav-item mr-5">
+            <button class="btn btn-outline-success btn-floating mr-4" id="btn-new-item" type="submit">New Item</button>
           </li>
         </ul>
         <ul class="nav navbar-nav float-right text-light">
@@ -96,6 +101,12 @@
             </div>
           </div>
           <div class="col-md-12">
+            <div class="form-group">
+              <span class="switch switch-sm">
+                <input type="checkbox" class="switch" id="isPublic" name="isPublic">
+                <label for="isPublic">Make it Public</label>
+              </span>
+            </div>
             <button type="button" class="btn btn-success btn-floating float-right" id="btn-save-item">Save</button>
           </div>
         </div>
