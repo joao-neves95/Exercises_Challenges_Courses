@@ -1,0 +1,54 @@
+﻿<Window x:Class="WPF_MVVM_CaliburnMicro.Views.ShellView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_MVVM_CaliburnMicro.Views"
+        mc:Ignorable="d" FontSize="18"
+        Title="ShellView" Height="300" Width="300" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="20" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        <!-- Row 1 -->
+        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{ Binding Path=FullName, Mode=OneWay }"></TextBlock>
+        
+        <!-- Row 2 -->
+        <TextBox x:Name="FirstName" MinWidth="100" Grid.Row="2" Grid.Column="1"></TextBox>
+        <TextBox x:Name="LastName" MinWidth="100" Grid.Row="2" Grid.Column="2"></TextBox>
+
+        <!-- Row 3 -->
+        <ComboBox x:Name="People" Grid.Row="3" Grid.Column="1" 
+                  SelectedItem="{ Binding Path=SelectedPerson, Mode=OneWayToSource }"
+                  DisplayMemberPath="FullName" />
+        <TextBlock Grid.Row="3" Grid.Column="2" Text="{ Binding Path=SelectedPerson.FullName, Mode=OneWay }"></TextBlock>
+        <!--<TextBlock Grid.Row="3" Grid.Column="2" x:Name="SelectedPerson_LastName"></TextBlock>-->
+
+        <!-- Row 4 -->
+        <Button x:Name="ClearText" Grid.Row="4" Grid.Column="1">Clear Text</Button>
+
+        <!-- Row 5 -->
+        <Button x:Name="LoadPageOne" Grid.Row="5" Grid.Column="1">Load Frst Page</Button>
+        <Button x:Name="LoadPageTwo" Grid.Row="5" Grid.Column="2">Load Scnd Page</Button>
+
+        <!-- Row 6 -->
+        <ContentControl x:Name="ActiveItem" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="5" />
+
+    </Grid>
+</Window>

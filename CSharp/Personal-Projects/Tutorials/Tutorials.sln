@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2026
+VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator", "Calculator\Calculator.csproj", "{C06A1C4F-832A-41EA-82E8-30AA02F8AE7D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_1_Calculator", "Calculator\_1_Calculator.csproj", "{C06A1C4F-832A-41EA-82E8-30AA02F8AE7D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator_Simplified", "Calculator_Simplified\Calculator_Simplified.csproj", "{F88D3471-7C18-4498-9DDC-3A2923ECE70C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_2_Calculator_Simplified", "Calculator_Simplified\_2_Calculator_Simplified.csproj", "{F88D3471-7C18-4498-9DDC-3A2923ECE70C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF-MVVM-CaliburnMicro", "WPF-MVVM-CaliburnMicro\WPF-MVVM-CaliburnMicro.csproj", "{A47D19B4-C25D-4D21-AA85-FE72E7015B00}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,11 +23,15 @@ Global
 		{F88D3471-7C18-4498-9DDC-3A2923ECE70C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F88D3471-7C18-4498-9DDC-3A2923ECE70C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F88D3471-7C18-4498-9DDC-3A2923ECE70C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A47D19B4-C25D-4D21-AA85-FE72E7015B00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A47D19B4-C25D-4D21-AA85-FE72E7015B00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A47D19B4-C25D-4D21-AA85-FE72E7015B00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A47D19B4-C25D-4D21-AA85-FE72E7015B00}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {5E6E0950-CD42-4565-93EC-1AFD824B6DC2}
+		SolutionGuid = {D5829D69-6659-46BF-BC40-90AE008C2407}
 	EndGlobalSection
 EndGlobal
