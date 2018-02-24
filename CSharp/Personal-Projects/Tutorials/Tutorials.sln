@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_1_Calculator", "Calculator
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_2_Calculator_Simplified", "Calculator_Simplified\_2_Calculator_Simplified.csproj", "{F88D3471-7C18-4498-9DDC-3A2923ECE70C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF-MVVM-CaliburnMicro", "WPF-MVVM-CaliburnMicro\WPF-MVVM-CaliburnMicro.csproj", "{A47D19B4-C25D-4D21-AA85-FE72E7015B00}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_3_WPF-MVVM-CaliburnMicro", "WPF-MVVM-CaliburnMicro\_3_WPF-MVVM-CaliburnMicro.csproj", "{A47D19B4-C25D-4D21-AA85-FE72E7015B00}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
