@@ -17,6 +17,8 @@ Exercises, challenges and courses from various sources
 
 ## Node.js
 
+### Personal Project
+
 - [TODO List Web App (Just Another TODO List App)](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Node.js/Personal-Projects/TODO-list_web-app)
 
 ### Courses
@@ -29,7 +31,7 @@ Exercises, challenges and courses from various sources
 
 ## C# / .NET
 
-- [Simple Calculator in C# WPF .NET Framework](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/Personal-Projects/SimpleCalculator)
+- [Tutorials](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/Personal-Projects/Tutorials)
 
 ### Courses
 
