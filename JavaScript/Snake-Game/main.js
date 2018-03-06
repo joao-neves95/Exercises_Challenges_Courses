@@ -7,7 +7,7 @@ domready(() => {
   }
 
   const SNAKE_SIZE = 10
-  const START_SPEED = 6
+  const START_SPEED = 10
   let snakeSpeed = START_SPEED
 
   // INIT:
@@ -74,13 +74,53 @@ domready(() => {
   })
   /* End of SNAKE DIRECTION CONTROLER: */
 
+  const snakeAIController = (snakeAI, food) => {
+    if (food.x > snakeAI.x) {
+      if (snakeAI.xSpeed === -SNAKE_SIZE && snake.y >= canvas.height * 0.95) {
+        snakeAI.direction(0, -SNAKE_SIZE)
+      } else if (snakeAI.xSpeed === -SNAKE_SIZE && snake.y < canvas.height * 0.95) {
+        snakeAI.direction(0, SNAKE_SIZE)
+      }
+      snakeAI.direction(SNAKE_SIZE, 0)
+    }
+
+    if (food.x < snakeAI.x) {
+      if (snakeAI.xSpeed === SNAKE_SIZE && snake.y >= canvas.height * 0.95) {
+        snakeAI.direction(0, -SNAKE_SIZE)
+      } else if (snakeAI.xSpeed === SNAKE_SIZE && snake.y < canvas.height * 0.95) {
+        snakeAI.direction(0, SNAKE_SIZE)
+      }
+      snakeAI.direction(-SNAKE_SIZE, 0)
+    }
+
+    if (food.x === snakeAI.x && food.y > snakeAI.y) {
+      if (snakeAI.ySpeed === -SNAKE_SIZE && snake.y >= canvas.width * 0.95) {
+        snakeAI.direction(-SNAKE_SIZE, 0)
+      } else if (snakeAI.ySpeed === -SNAKE_SIZE && snake.y < canvas.width * 0.95) {
+        snakeAI.direction(SNAKE_SIZE, 0)
+      }
+      snakeAI.direction(0, SNAKE_SIZE)
+    }
+
+    if (food.x === snakeAI.x && food.y < snakeAI.y) {
+      if (snakeAI.ySpeed === SNAKE_SIZE && snake.y >= canvas.width * 0.95) {
+        snakeAI.direction(-SNAKE_SIZE, 0)
+      } else if (snakeAI.ySpeed === SNAKE_SIZE && snake.y < canvas.width * 0.95) {
+        snakeAI.direction(SNAKE_SIZE, 0)
+      }
+      snakeAI.direction(0, -SNAKE_SIZE)
+    }
+  }
+
   class Snake {
-    constructor () {
+    constructor (type) {
+      this.type = type
       this.x = (canvas.width / 2) - (SNAKE_SIZE / 2)
       this.y = (canvas.height / 2) - (SNAKE_SIZE / 2)
       this.xSpeed = 0
       this.ySpeed = 0
       this.tail = []
+      this.respawn = false
 
       this.direction = (x, y) => {
         this.xSpeed = x
@@ -131,12 +171,12 @@ domready(() => {
         snake = new Snake()
       }
 
-      this.show = () => {
+      this.show = (color) => {
         // Draw the head:
-        rect('white', this.x, this.y, SNAKE_SIZE, SNAKE_SIZE)
+        rect(color, this.x, this.y, SNAKE_SIZE, SNAKE_SIZE)
         // Draw the tail:
         for (let i = 0; i < this.tail.length; i++) {
-          rect('white', this.tail[i].x, this.tail[i].y, SNAKE_SIZE, SNAKE_SIZE)
+          rect(color, this.tail[i].x, this.tail[i].y, SNAKE_SIZE, SNAKE_SIZE)
         }
       }
     }
@@ -148,6 +188,7 @@ domready(() => {
       this.y = random(canvas.width - SNAKE_SIZE, SNAKE_SIZE)
 
       this.respawn = () => {
+        console.log('respawn')
         food = new Food()
       }
 
@@ -157,17 +198,31 @@ domready(() => {
     }
   }
 
+  let snake = new Snake('Player')
+
+  let snakeAI = new Snake('AI')
+  snakeAI.x = random(canvas.width - SNAKE_SIZE, SNAKE_SIZE)
+  snakeAI.y = random(canvas.width - SNAKE_SIZE, SNAKE_SIZE)
+
+  let food = new Food()
+
   /* GAME RULES: */
-  const checkRules = () => {
+  const gameRules = (snake) => {
     // Snake.death() event:
-    if (snake.death()) {
+    if (snake.death() && snake.type === 'Player') {
+      document.getElementById('score').innerHTML = 0
       if (snake.tail.length > player.bestScore) {
         player.bestScore = snake.tail.length
         document.getElementById('bestScore').innerHTML = player.bestScore
       }
-      snakeSpeed = START_SPEED
-      snake.respawn()
       food.respawn()
+      snake.respawn()
+      snakeSpeed = START_SPEED
+    }
+
+    if (snakeAI.death()) {
+      console.log('enemy dyed')
+      snakeAI = new Snake()
     }
 
     // Snake.eat() event:
@@ -177,15 +232,17 @@ domready(() => {
         x: this.x,
         y: this.y
       })
+
       food.respawn()
-      snakeSpeed += 0.2
-      console.log(snakeSpeed)
+      if (snake.type === 'Player') {
+        snakeSpeed += 0.2
+        const scoreShow = document.getElementById('score')
+        scoreShow.innerHTML = parseInt(scoreShow.innerHTML) + 1
+      }
     }
   }
 
   /* RENDER: */
-  let snake = new Snake()
-  let food = new Food()
 
   const render = () => {
     // Canvas:
@@ -193,13 +250,20 @@ domready(() => {
 
     // Snake:
     snake.update()
-    snake.show()
+    snake.show('white')
 
+    
     // Food:
     food.show()
+    
+    // AI Snake:
+    snakeAIController(snakeAI, food)
+    snakeAI.update()
+    snakeAI.show('red')
 
     // Game rules:
-    checkRules()
+    gameRules(snakeAI)
+    gameRules(snake)
   }
   /* End of RENDER. */
 
