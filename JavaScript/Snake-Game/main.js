@@ -83,16 +83,6 @@ domready(() => {
     if (snake.xSpeed === 0 && snake.ySpeed === 0 && gameStart)
       return
 
-    let snakeDistToFood = dist(snake.x, food.x, snake.y, food.y)
-    console.log(`snakeDistToFood: ${snakeDistToFood}`)
-    if (snakeDistToFood >= 225) {
-      snakeAISpeed = 8
-      console.log(`snakeAISpeed ${snakeAISpeed} \n tempAISpeed: ${tempAISpeed}`)
-    } else {
-      snakeAISpeed = tempAISpeed
-      console.log(`snakeAISpeed ${snakeAISpeed} \n tempAISpeed: ${tempAISpeed}`)
-    }
-
     if (food.x > snakeAI.x) {
       if (snakeAI.xSpeed === -snakeAISpeed && snake.y >= canvas.height * 0.95) {
         snakeAI.direction(0, -snakeAISpeed)
