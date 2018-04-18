@@ -1,0 +1,34 @@
+/* This is needed for some browsers support. */
+[draggable=true] {
+  -khtml-user-drag: element;
+}
+
+.droppable {
+  display: table-cell;
+	min-height: 10em !important;
+	padding: 0 0 !important;
+}
+
+.temp-card, .temp-category {
+  background-color: #cec9c973;
+  border-color: #888888;
+  border-style: dashed;
+  border-width: 1px;
+  margin-bottom: 1em;
+}
+
+.temp-card {
+  min-height: 5em !important;
+}
+
+.temp-category {
+  min-height: 10em !important;
+  max-width: 9em !important;
+}
+
+.slideUp {
+  overflow: hidden;
+  transform: scaleY(0);
+  opacity: 0;
+  transition: all 0.35s ease-out !important;
+}
