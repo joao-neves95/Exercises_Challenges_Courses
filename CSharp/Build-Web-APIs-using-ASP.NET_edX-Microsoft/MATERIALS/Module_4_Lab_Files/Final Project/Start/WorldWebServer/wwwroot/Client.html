@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>World</title>
+  <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+  <script>
+    $(function () {
+      var citiesList = $('#citiesList');
+      var dropdown1 = $('#dropdown1');
+      var dropdown2 = $('#dropdown2');
+
+      function fillCitiesList(cities) {
+        citiesList.empty();
+        for (var i in cities) {
+          var option = $('<option></option>').val(cities[i].id)
+            .text(cities[i].name + " " + cities[i].district + " " + cities[i].countryCode + " " + cities[i].population);
+          citiesList.append(option);
+        }
+      }
+
+      $.get('api/countries').done(function (countries) {
+        dropdown1.empty();
+        for (var i in countries) {
+          var option1 = $('<option></option>').attr('value', countries[i].code).text(countries[i].name);
+          var option2 = $('<option></option>').attr('value', countries[i].code).text(countries[i].name);
+          dropdown1.append(option1);
+          dropdown2.append(option2);
+        }
+      });
+
+      $('#clearCitiesBtn').click(function () {
+        citiesList.empty();
+      });
+
+      $('#citiesByCcBtn').click(function () {
+        var cc = dropdown1.val();
+        $.get('api/cities/cc/' + cc).done(function (cities) {
+          fillCitiesList(cities);
+        });
+      });
+
+      $('#allCitiesBtn').click(function () {
+        var cc = dropdown1.val();
+        $.get('api/cities').done(function (cities) {
+          fillCitiesList(cities);
+        });
+      });
+
+      $('#delCityBtn').click(function () {
+        var cityID = citiesList.val();
+        if (cityID) {
+          $.ajax({ url: 'api/cities/' + cityID, type: 'delete' }).done(function () {
+            alert('Seleted city is deleted, please reload.');
+          });
+        }
+      });
+
+      citiesList.change(function () {
+        var cityID = citiesList.val();
+        $.get('api/cities/' + cityID).done(function (city) {
+          $('#ucIdTxt').val(city.id);
+          $('#ucNameTxt').val(city.name);
+          $('#ucDisTxt').val(city.district);
+          $('#ucCcTxt').val(city.countryCode);
+          $('#ucPopTxt').val(city.population);
+        })
+      });
+
+      $('#ccBtn').click(function () {
+        var city = {
+          name: $('#ccNameTxt').val(),
+          district: $('#ccDisTxt').val(),
+          countryCode: $('#dropdown2').val(),
+          population: parseInt($('#ccPopTxt').val())
+        };
+
+        var json = JSON.stringify(city);
+
+        $.ajax({
+          type: 'POST',
+          url: 'api/cities',
+          dataType: 'json',
+          contentType: 'application/json; charset=utf-8',
+          data: json
+        }).done(function (city) {
+          alert('City #' + city.id + ' is created, please reload.');
+        });
+      });
+
+      $('#ucBtn').click(function () {
+        var city = {
+          id: parseInt($('#ucIdTxt').val()),
+          name: $('#ucNameTxt').val(),
+          district: $('#ucDisTxt').val(),
+          countryCode: $('#ucCcTxt').val(),
+          population: parseInt($('#ucPopTxt').val())
+        };
+
+        var json = JSON.stringify(city);
+
+        $.ajax({
+          type: 'PUT',
+          url: 'api/cities/'+city.id,
+          /*dataType: 'json', */ // there's no return value
+          contentType: 'application/json; charset=utf-8',
+          data: json
+        }).done(function () {
+          alert('City #' + city.id + ' is updated, please reload.');
+        });
+      });
+    })
+  </script>
+  <style>
+    .btn {
+      width: 120px;
+    }
+    
+    .txt {
+      width: 120px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>City Information</h1>
+  <hr/>
+  <h2>View Cities</h2>
+  <select id="dropdown1" style="width:240px;margin:2px" />
+  <input type="button" id="citiesByCcBtn" class="btn" value="Cities of Country" />
+  <input type="button" id="allCitiesBtn" class="btn" value="Cities of World" />
+  <input type="button" id="clearCitiesBtn" class="btn" value="Clear" />
+  <br/>
+  <select id="citiesList" size="10" style="border:black 1px solid; width:486px; margin:2px"></select>
+  <hr/>
+  <h2>Update City</h2>
+  ID: <input class="txt" id="ucIdTxt" readonly/> Name: <input class="txt" id="ucNameTxt" /> District:
+  <input class="txt" id="ucDisTxt" /> CC: <input class="txt" id="ucCcTxt" readonly/> Population: <input class="txt" id="ucPopTxt"
+  />
+  <input class="btn" type="button" id="ucBtn" value="Update" /><br/>
+  <hr/>
+  <h2>Create City</h2>
+  Country: <select id="dropdown2" style="width:120px;margin:2px"></select> Name: <input class="txt" id="ccNameTxt" /> District:
+  <input class="txt" id="ccDisTxt" /> Population: <input class="txt" id="ccPopTxt" />
+  <input class="btn" type="button" id="ccBtn" value="Create" /><br/>
+  <hr/>
+  <h2>Delete City</h2>
+  <input type="button" id="delCityBtn" value="Delete Seleted City" />
+</body>
+
+</html>

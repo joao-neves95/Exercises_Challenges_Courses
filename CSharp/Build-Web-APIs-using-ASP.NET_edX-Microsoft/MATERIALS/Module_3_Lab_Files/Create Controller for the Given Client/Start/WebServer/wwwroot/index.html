@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Products</title>
+    <style>
+        input {
+            width: 80px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script>
+        $(function () {
+            var pList = $('#pList');
+            function getAllProducts() {
+                $.get("api/products").done(function (products) {
+                    fillList(products);
+                })
+            }
+
+            function fillList(products) {
+                pList.empty();
+                for (var i in products) {
+                    opt = $("<option></option>").val(products[i].id).text(products[i].id + " | " + products[i].name + " | " + products[i].price);
+                    pList.append(opt);
+                }
+            }
+
+            getAllProducts();
+
+            $('#raiseBtn').click(function () {
+                var increase = $('#increase').val();
+                $.ajax({ url: "api/products/raise/" + increase, method: "PUT" }).done(function () {
+                    getAllProducts();
+                });
+            });
+
+            $('#allBtn').click(function () {
+                getAllProducts();
+            });
+
+            function filter() {
+                var from = $('#from').val();
+                var to = $('#to').val();
+                var url = "api/products/price/" + from + "/" + to;
+                $.get(url).done(function (products) {
+                    fillList(products);
+                })
+            }
+
+            $('#filterBtn').click(function () {
+                filter();
+            });
+
+            pList.change(function () {
+                var id = pList.val();
+                $.get("api/products/" + id).done(function (p) {
+                    $('#id2').val(p.id);
+                    $('#name2').val(p.name);
+                    $('#price2').val(p.price);
+                });
+            });
+
+            $('#cBtn').click(function () {
+                var p =
+                    {
+                        name: $('#name1').val(),
+                        price: $('#price1').val()
+                    }
+                var json = JSON.stringify(p);
+                $.ajax({
+                    type: 'POST',
+                    url: 'api/products',
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    data: json
+                }).done(function (p) {
+                    alert('Product #' + p.id + ' is created, please reload.');
+                    getAllProducts();
+                });
+            })
+
+            $('#uBtn').click(function () {
+                var p =
+                    {
+                        id: $('#id2').val(),
+                        name: $('#name2').val(),
+                        price: $('#price2').val()
+                    }
+                var json = JSON.stringify(p);
+                $.ajax({
+                    type: 'PUT',
+                    url: 'api/products/'+p.id,
+                    contentType: 'application/json; charset=utf-8',
+                    data: json
+                }).done(function (p) {
+                    alert("Update successful");
+                    getAllProducts();
+                });
+            })
+        });
+    </script>
+</head>
+
+<body>
+    <h1>Welcome to My Store</h1>
+    <hr/>
+    <h3>Product List</h3>
+    <span>Price From</span>
+    <input id="from" value="0" />
+    <span>To</span>
+    <input id="to" value="100" />
+    <input type="button" id="filterBtn" value="Filter" />
+    <input type="button" id="allBtn" value="Show All" /><br/>
+    <select name="pList" id="pList" size="14" style="width:320px"></select><br/>
+    <span>Increase</span><input id="increase" /><input type="button" id="raiseBtn" value="Raise" <br/>
+    <hr/>
+    <h3>Create and Update</h3>
+    <span>ID</span>
+    <input id="id1" disabled="disabled" />
+    <span>Name</span>
+    <input id="name1" />
+    <span>Price</span>
+    <input id="price1" />
+    <input type="button" id="cBtn" value="Create" /><br/>
+    <span>ID</span>
+    <input id="id2" disabled="disabled" />
+    <span>Name</span>
+    <input id="name2" />
+    <span>Price</span>
+    <input id="price2" />
+    <input type="button" id="uBtn" value="Update" /><br/>
+</body>
+
+</html>

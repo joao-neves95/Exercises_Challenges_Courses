@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>SeDes</title>
+    <script>
+    var rockets = [
+        { ID: 0, Builder: "NASA", Target: "Moon", Speed: 7.8 },
+        { ID: 1, Builder: "NASA", Target: "Mars", Speed: 10.9 },
+        { ID: 2, Builder: "NASA", Target: "Kepler-452b", Speed: 42.1 },
+        { ID: 3, Builder: "NASA", Target: "N/A", Speed: 0.0 }];
+
+    // Serialization
+    var jsonStr = JSON.stringify(rockets);
+    document.write(jsonStr);
+    document.write('<br/>')
+
+    // Deserialization
+    var objects = JSON.parse(jsonStr);
+    for (var i in objects) {
+        document.write("ID:" + objects[i].ID + " Builder:" + objects[i].Builder + " Target:" + objects[i].Target + " Speed:" + objects[i].Speed);
+        document.write('<br/>')
+    }
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
