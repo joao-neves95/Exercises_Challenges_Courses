@@ -167,7 +167,6 @@ WHERE product.product_id = 7;
 --
 
 /* SIMULATING ORDERS: */
--- This part is unnecessary, it was only made for the purposes of this university project.
 
 -- 1:
     -- Insert the order:
