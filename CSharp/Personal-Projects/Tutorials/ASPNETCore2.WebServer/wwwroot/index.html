@@ -1,0 +1,174 @@
+﻿<!-- Login Page -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+  <main>
+    <div>
+      <h4>Login:</h4>
+      <label>Username:</label> <input id="l-username" name="username" type="text" />
+      <label>Password:</label> <input id="l-password" name="password" type="password" />
+      <button id="login-btn">Login</button>
+    </div>
+    <div>
+      <h4>Register:</h4>
+      <label>Username:</label> <input id="r-username" name="username" type="text" />
+      <label>Password:</label> <input id="r-password" name="password" type="password" />
+      <label>Confirm Password:</label> <input id="confirm-password" type="password" />
+      <button id="register-btn">Register</button>
+    </div>
+  </main>
+
+  <section>
+    <p id="message"></p>
+  </section>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+          integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+          crossorigin="anonymous">
+  </script>
+
+  <script type="text/javascript">
+
+    let l_username
+    let l_password
+    let r_username
+    let r_password
+    let confirmPassword
+    let message
+
+    class AjaxJSONRequest {
+      constructor(url, type, data, beforeSend, onSuccess, onError) {
+        this.url = url;
+        this.type = type;
+        this.data = JSON.stringify(data);
+        this.request = () => {
+          $.ajax({
+            url: this.url,
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            type: this.type,
+            data: this.data,
+            processData: true,
+            success: (data) => { if (onSuccess) onSuccess(data) },
+            error: (jqXHR, textStatus, errorThrown) => {
+              if (onError)
+                onError(jqXHR, textStatus, errorThrown)
+              message.innerText = jqXHR.responseText
+              new CleanMesssageTimer(10000)
+              console.log('jqXHR', jqXHR)
+              console.log(`jqXHR.responseText: ${jqXHR.responseText}`)
+              console.log('textStatus:')
+              console.log(textStatus)
+              console.log('errorThrown:')
+              console.log(errorThrown)
+            }
+          })
+        }
+        this.request()
+      }
+    }
+
+    class AuthorizedGetRequest {
+      constructor(url, beforeSend, onSuccess, onError) {
+        this.url = url;
+        this.request = () => {
+          $.ajax({
+            url: this.url,
+            contentType: "application/json; charset=utf-8",
+            type: 'GET',
+            beforeSend: function (xhr) {
+              /* Authorization header */
+              xhr.setRequestHeader("Authorization", 'Bearer ' + localStorage.getItem('sessionToken'))
+              if (beforeSend)
+                beforeSend(xhr)
+            },
+            processData: true,
+            success: (data) => { if (onSuccess) onSuccess(data) },
+            error: (jqXHR, textStatus, errorThrown) => {
+              if (onError)
+                onError(jqXHR, textStatus, errorThrown)
+              message.innerText = jqXHR.responseText
+              new CleanMesssageTimer(10000)
+              console.log('jqXHR', jqXHR)
+              console.log(`jqXHR.responseText: ${jqXHR.responseText}`)
+              console.log('textStatus:')
+              console.log(textStatus)
+              console.log('errorThrown:')
+              console.log(errorThrown)
+            }
+          })
+        }
+        this.request()
+      }
+    }
+
+    class CleanMesssageTimer {
+      constructor(time) {
+        this.timer = time
+        this.init = () => {
+          setTimeout(() => message.innerText = '', this.timer)
+        }
+        this.init()
+      }
+    }
+
+    const buttons = document.getElementsByTagName('button')
+    for (let i = 0; i < buttons.length; i++) {
+      buttons[i].addEventListener('click', (e) => {
+        submitButtonHandler(e)
+      })
+    }
+
+    const submitButtonHandler = (e) => {
+      e.preventDefault()
+      e.stopPropagation()
+      l_username = document.getElementById('l-username')
+      l_password = document.getElementById('l-password')
+      r_username = document.getElementById('r-username')
+      r_password = document.getElementById('r-password')
+      confirmPassword = document.getElementById('confirm-password')
+      message = document.getElementById('message')
+      message.value = ''
+
+      console.log(e.target)
+
+      if (e.target.id === 'register-btn') {
+        const formData = {
+          email: r_username.value,
+          password: r_password.value
+        }
+
+        if (confirmPassword.value !== formData.password) {
+          message.innerText = 'The passwords do not match.'
+          return new CleanMesssageTimer(10000)
+        }
+
+        new AjaxJSONRequest('api/users/register', 'POST', formData, null, (data) => {
+          localStorage.setItem('sessionToken', data.value)
+          message.innerText = 'Successful registration.'
+          document.location.href = '/app'
+          new CleanMesssageTimer(10000)
+        }, null)
+
+      } else {
+        const formData = {
+          email: l_username.value,
+          password: l_password.value
+        }
+
+        new AjaxJSONRequest('api/users/login', 'POST', formData, null, (data) => {
+          localStorage.setItem('sessionToken', data.value)
+          new AuthorizedGetRequest('/app', null, (data) => {
+            document.location.href = '/app'
+          }, () => { console.log('get error') })
+        }, null)
+      }
+    }
+  </script>
+</body>
+</html>
