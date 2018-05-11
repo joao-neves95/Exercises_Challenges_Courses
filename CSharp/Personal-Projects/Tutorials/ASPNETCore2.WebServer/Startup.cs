@@ -102,15 +102,6 @@ namespace WebServer
             app.UseStaticFiles();
             app.UseMvc();
 
-            app.Use(async (context, next) =>
-            {
-                await next.Invoke();
-                if (context.Response.StatusCode == StatusCodes.Status401Unauthorized)
-                {
-                    context.Response.Redirect(context.Request.PathBase);
-                }
-            });
-
             // ===== Create the Identity tables ======
             dbContext.Database.EnsureCreated();
         }
