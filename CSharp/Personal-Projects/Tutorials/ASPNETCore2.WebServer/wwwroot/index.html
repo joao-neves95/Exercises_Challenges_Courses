@@ -117,6 +117,16 @@
       }
     }
 
+    const redirectToApp = () => {
+      new AuthorizedGetRequest('/app', null, (data) => {
+        document.location.href = '/app'
+      }, () => { console.log('get error') })
+    }
+
+    const JWTTOKEN = localStorage.getItem('sessionToken');
+    if (JWTTOKEN)
+      redirectToApp()
+
     const buttons = document.getElementsByTagName('button')
     for (let i = 0; i < buttons.length; i++) {
       buttons[i].addEventListener('click', (e) => {
@@ -163,9 +173,7 @@
 
         new AjaxJSONRequest('api/users/login', 'POST', formData, null, (data) => {
           localStorage.setItem('sessionToken', data.value)
-          new AuthorizedGetRequest('/app', null, (data) => {
-            document.location.href = '/app'
-          }, () => { console.log('get error') })
+          redirectToApp()
         }, null)
       }
     }

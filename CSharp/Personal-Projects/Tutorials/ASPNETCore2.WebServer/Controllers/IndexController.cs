@@ -12,6 +12,7 @@ namespace WebServer.Controllers
         [HttpGet]
         public IActionResult Get()
         {
+            Response.ContentType = "text/html";
             string index = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "index.html");
             return PhysicalFile(index, "text/html");
         }
@@ -20,6 +21,7 @@ namespace WebServer.Controllers
         [Authorize]
         public IActionResult GetPrivate()
         {
+            Response.ContentType = "text/html";
             string index = Path.Combine(Directory.GetCurrentDirectory(), "Pages", "index.html");
             return PhysicalFile(index, "text/html");
         }

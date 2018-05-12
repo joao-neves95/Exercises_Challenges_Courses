@@ -42,11 +42,6 @@ namespace WebServer
                 options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-            .AddCookie(options => {
-                options.Cookie.Domain = "SessionCookie";
-                options.LoginPath = "/";
-                options.AccessDeniedPath = "/";
-            })
             .AddJwtBearer(options =>
             {
                 options.RequireHttpsMetadata = false; // For development.
@@ -100,6 +95,20 @@ namespace WebServer
 
             app.UseAuthentication();
             app.UseStaticFiles();
+
+            app.Use(async (context, _next) =>
+            {
+                await _next();
+                Console.WriteLine(context.Response.StatusCode);
+
+                if (context.Response.StatusCode == StatusCodes.Status401Unauthorized || context.Response.StatusCode == StatusCodes.Status403Forbidden)
+                {
+                    context.Response.Redirect("/");
+                    return;
+                }
+
+            });
+
             app.UseMvc();
 
             // ===== Create the Identity tables ======
