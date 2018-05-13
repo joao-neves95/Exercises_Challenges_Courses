@@ -7,7 +7,7 @@ namespace WebServer.Models
 {
     public class ErrorLogin
     {
-        private const string ERROR = "Invalid login attempt.";
+        private const string ERROR = "Wrong email or password.";
 
         public string Error
         {

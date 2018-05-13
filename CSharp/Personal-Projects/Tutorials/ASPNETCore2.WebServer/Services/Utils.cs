@@ -20,6 +20,7 @@ namespace WebServer.Services
             return errors;
         }
 
+        // It returns an instance of a T class from a dictionary contents.
         public static T GetObject<T>(Dictionary<string, object> dictionary)
         {
             Type type = typeof(T);

@@ -8,7 +8,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using WebServer.Services;
@@ -35,8 +34,9 @@ namespace WebServer
             services.AddIdentity<IdentityUser, IdentityRole>()
                     .AddEntityFrameworkStores<MySqlDbContext>()
                     .AddDefaultTokenProviders();
+
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear(); // remove default claims.
-            services.AddAuthentication(options => 
+            services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -44,8 +44,8 @@ namespace WebServer
             })
             .AddJwtBearer(options =>
             {
-                options.RequireHttpsMetadata = false; // For development.
-                options.SaveToken = true;
+            options.RequireHttpsMetadata = false; // For development.
+            options.SaveToken = true;
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     SaveSigninToken = true,
@@ -66,6 +66,12 @@ namespace WebServer
                     ValidIssuer = DotNetEnv.Env.GetString("JWT_ISSUER")
                 };
             });
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.Name = "AuthToken";
+                options.LoginPath = "/";
+            });
+
             services.AddLogging();
             services.AddMvc()
                     .AddJsonOptions(options => 
@@ -99,9 +105,8 @@ namespace WebServer
             app.Use(async (context, _next) =>
             {
                 await _next();
-                Console.WriteLine(context.Response.StatusCode);
 
-                if (context.Response.StatusCode == StatusCodes.Status401Unauthorized || context.Response.StatusCode == StatusCodes.Status403Forbidden)
+                if (context.Response.StatusCode == StatusCodes.Status401Unauthorized)
                 {
                     context.Response.Redirect("/");
                     return;
