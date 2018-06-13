@@ -1,4 +1,6 @@
+//
 // My implementation of a simple dictionary.
+//
 
 class Errors {
   static get existingKey() { return 'An item with the same key has already been added.' };
@@ -10,36 +12,35 @@ class Dictionary {
 
     this.uniqueKeys = uniqueKeys;
     if (!uniqueKeys) this.uniqueKeys = false;
-  }
-    
-  get count() {
-    return this.elements.length;
-  };
 
-  add(key, value) {
-    console.debug(this.findIndexOfKey(key))
-    if (this.uniqueKeys && this.findIndexOfKey(key) !== undefined)
-      throw new Error(Errors.existingKey);
+    this.count = () => {
+      this.elements.length;
+    };
 
-    this.elements.push({ [key]: value });
-  };
+    this.add = (key, value) => {
+      if (this.uniqueKeys && this.findIndexOfKey(key) !== undefined)
+        throw new Error(Errors.existingKey);
 
-  remove(key) {
-    this.elements.splice(this.findIndexOfKey(key), 1);
-  };
+      this.elements.push({ [key]: value });
+    };
 
-  get clear() {
-    this.elements = [];
-  }
+    this.remove = (key) => {
+      this.elements.splice(this.findIndexOfKey(key), 1);
+    };
 
-  getByKey (key) {
-    return this.elements[this.findIndexOfKey(key)][key];
-  };
+    this.clear = () => {
+      this.elements = [];
+    }
 
-  findIndexOfKey(key, Callback) {
-    for (let i = 0; i < this.elements.length; i++) {
-      if (Object.keys(this.elements[i])[0] === key) {
-        return i;
+    this.getByKey = (key) => {
+      return this.elements[this.findIndexOfKey(key)][key];
+    };
+
+    this.findIndexOfKey = (key, Callback) => {
+      for (let i = 0; i < this.elements.length; i++) {
+        if (Object.keys(this.elements[i])[0] === key) {
+          return i;
+        }
       }
     }
   }
