@@ -1,47 +1,64 @@
-//
-// My implementation of a simple dictionary.
-//
-
 class Errors {
   static get existingKey() { return 'An item with the same key has already been added.' };
+
+  static wrongType(type) { return `The value is not from the same type as the List<${type}>` };
 }
 
 class Dictionary {
+  /**
+   * 
+   * @param {Boolean} uniqueKeys
+   * Whether the keys should be unique or not.
+   * Optional. It defaults to false.
+   */
   constructor(uniqueKeys) {
     this.elements = [];
 
     this.uniqueKeys = uniqueKeys;
     if (!uniqueKeys) this.uniqueKeys = false;
+  };
 
-    this.count = () => {
-      this.elements.length;
-    };
+  get all() {
+    return this.elements;
+  }
 
-    this.add = (key, value) => {
-      if (this.uniqueKeys && this.findIndexOfKey(key) !== undefined)
-        throw new Error(Errors.existingKey);
+  get length() {
+    return this.elements.length;
+  };
 
-      this.elements.push({ [key]: value });
-    };
+  add(key, value) {
+    if (this.uniqueKeys && this.findIndexOfKey(key) !== undefined)
+      throw new Error(Errors.existingKey);
 
-    this.remove = (key) => {
-      this.elements.splice(this.findIndexOfKey(key), 1);
-    };
+    this.elements.push({ [key]: value });
+  };
 
-    this.clear = () => {
-      this.elements = [];
-    }
+  remove(key) {
+    const index = this.findIndexOfKey(key);
+    if (!index)
+      return false;
+  
+    this.elements.splice(index, 1);
+  };
 
-    this.getByKey = (key) => {
-      return this.elements[this.findIndexOfKey(key)][key];
-    };
+  clear() {
+    this.elements = [];
+  }
 
-    this.findIndexOfKey = (key, Callback) => {
-      for (let i = 0; i < this.elements.length; i++) {
-        if (Object.keys(this.elements[i])[0] === key) {
-          return i;
-        }
+  getByIndex(index) {
+    return Object.values(this.elements[index]);
+  };
+
+  getByKey(key) {
+    return this.elements[this.findIndexOfKey(key)][key];
+  };
+
+  findIndexOfKey(key, Callback) {
+    for (let i = 0; i < this.elements.length; i++) {
+      if (Object.keys(this.elements[i])[0] === key) {
+        return i;
       }
     }
+    return false;
   }
 }
