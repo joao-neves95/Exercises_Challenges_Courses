@@ -11,7 +11,7 @@ class Errors {
 
   static get noTypeProvided() { throw new Error('No type provided on Collection instantiation.') };
 
-  static wrongType(type) { throw new Error(`The value is not from the same type as the List<${type}>`); };
+  static wrongType(value, type) { throw new Error(`The value ${value} is not from the same type as the List<${type}>`); };
 }
 
 class Collection {
@@ -138,7 +138,7 @@ class List extends Collection {
         if (typeof value === this.type && value !== 'float' && value !== 'int')
           this.push(value);
         else
-          throw Errors.wrongType(this.type);
+          throw Errors.wrongType(value, this.type);
     }
   };
 
