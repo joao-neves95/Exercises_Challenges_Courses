@@ -11,14 +11,14 @@ class Errors {
 
   static get noTypeProvided() { throw new Error('No type provided on Collection instantiation.') };
 
-  static wrongType(value, type) { throw new Error(`The value ${value} is not from the same type as the List<${type}>`); };
+  static wrongType(type) { throw new Error(`The value is not from the same type as the List<${type}>`); };
 }
 
 class Collection {
   constructor(uniqueKeys, type) {
     this.elements = [];
     this.uniqueKeys = (uniqueKeys || false);
-    
+
     if (!type) throw Errors.noTypeProvided;
     this.type = type;
   }
@@ -30,7 +30,7 @@ class Collection {
 
   /**
    * Get all elements from the Collection.
-   * @returns {any[]} elements
+   * Returns elements[]
    */
   getAll() {
     return this.elements;
@@ -52,11 +52,11 @@ class Collection {
     this.elements.push(value);
   }
 
- /**
-   * (private)
-   * No checks. For private class use.
-   * @param {Number} index
-   */
+  /**
+    * (private)
+    * No checks. For private class use.
+    * @param {Number} index
+    */
   splice(index) {
     this.elements.splice(index, 1);
   }
@@ -73,6 +73,16 @@ class Dictionary extends Collection {
     super(uniqueKeys, 'any');
   };
 
+  getAllValues() {
+    let allValues = [];
+
+    for (let i = 0; i < this.elements.length; ++i) {
+      allValues.push(Object.values(this.elements[i])[0]);
+    }
+
+    return allValues;
+  }
+
   add(key, value) {
     if (this.uniqueKeys && this.findIndexOfKey(key) !== undefined)
       throw new Error(Errors.existingKey);
@@ -84,16 +94,34 @@ class Dictionary extends Collection {
     const index = this.findIndexOfKey(key);
     if (!index)
       return false;
-  
+
     this.splice(index);
   };
 
+  /**
+   * Get a value with its index. Returns an array with the values.
+   * @param {number} index
+   * @return {any[]}
+   */
   getByIndex(index) {
-    return Object.values(this.elements[index]);
+    return Object.values( this.elements[index] )[0];
   };
 
+  /**
+   * Get a key with its index.
+   * @param {number} index
+   * @return {any}
+   */
+  getKeyByIndex(index) {
+    return Object.keys( this.elements[index] )[0];
+  }
+
   getByKey(key) {
-    return this.elements[this.findIndexOfKey(key)][key];
+    try {
+      return this.elements[this.findIndexOfKey(key)][key];
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   findIndexOfKey(key, Callback) {
@@ -138,7 +166,7 @@ class List extends Collection {
         if (typeof value === this.type && value !== 'float' && value !== 'int')
           this.push(value);
         else
-          throw Errors.wrongType(value, this.type);
+          throw Errors.wrongType(this.type);
     }
   };
 
