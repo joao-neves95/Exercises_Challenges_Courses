@@ -3,6 +3,4 @@
 
 const EnvironmentType ENVIRONMENT = kDevelopment;
 
-const unsigned short HTTP_PORT = 3080;
-
-const unsigned short P2P_PORT = 6080;
+const unsigned short SERVER_PORT = 3080;

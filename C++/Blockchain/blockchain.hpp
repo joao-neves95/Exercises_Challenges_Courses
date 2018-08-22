@@ -3,7 +3,8 @@
 #include <vector>
 using namespace std;
 
-#include "libs\crow\include\crow\json.h"
+#include "libs\json-3.2.0\single_include\nlohmann\json.hpp"
+using namespace nlohmann;
 #include "models\block.hpp"
 
 class Blockchain
@@ -28,15 +29,17 @@ class Blockchain
 
         Block getLatestBlock();
 
-        void generateNextBlock(std::string _BlockData);
+        void generateNextBlock(const std::string _BlockData);
 
-        std::string calculateBlockHash(Block _Block);
+        std::string calculateBlockHash(const Block _Block);
 
-        bool validateNewBlock(Block _BlockToValidate);
+        bool validateNewBlock(const Block _BlockToValidate );
 
-        void replaceChain(std::vector<Block> newChain);
+        void replaceChain(const std::vector<Block> newChain);
 
-        static crow::json::wvalue blockToJson( Block _Block );
+        static json blockToJson(const Block _Block);
 
-        static void printBlockInfo(Block _Block);
+        static std::string chainToJson(const std::vector<Block> _Chain);
+
+        static void printBlockInfo(const Block _Block);
 };
