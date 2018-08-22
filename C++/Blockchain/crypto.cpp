@@ -1,9 +1,8 @@
 #include <string>
+#include <vector>
 
 #include "crypto.hpp"
-#include "libs\cryptopp700\dll.h"
-#include "libs\cryptopp700\sha.h"
-#include "libs\cryptopp700\hex.h"
+#include "libs\PicoSHA2\picosha2.h"
 
 Crypto::Crypto()
 {
@@ -14,17 +13,12 @@ Crypto::~Crypto()
 {
 }
 
-// TODO: Fix criptopp lib.
-std::string Crypto::toSha256Str(std::string data) {
-    CryptoPP::byte digest[CryptoPP::SHA256::DIGESTSIZE];
-    CryptoPP::SHA256().CalculateDigest( digest, (CryptoPP::byte*)data.c_str(), data.length() );
 
-    CryptoPP::HexEncoder encoder;
+std::string Crypto::toSha256Str(std::string _Data) {
+    std::vector<unsigned char> hash( picosha2::k_digest_size );
+    picosha2::hash256( _Data.begin(), _Data.end(), hash.begin(), hash.end() );
 
-    std::string outputHashStr;
-    encoder.Attach( new CryptoPP::StringSink( outputHashStr ) );
-    encoder.Put( digest, sizeof( digest ) );
-    encoder.MessageEnd();
+    std::string outputHashHexStr = picosha2::bytes_to_hex_string( hash.begin(), hash.end() );
 
-    return outputHashStr;
+    return outputHashHexStr;
 }

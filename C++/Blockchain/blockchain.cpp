@@ -10,6 +10,8 @@
 
 Blockchain::Blockchain()
 {
+    // Temporary.
+    this->genesis();
 }
 
 Blockchain::~Blockchain()
@@ -37,6 +39,13 @@ void Blockchain::genesis()
     Block genesisBlock = Block::Block(0, "0", "The GENESIS block.");
     genesisBlock.hash = calculateBlockHash( genesisBlock );
     chain.push_back( genesisBlock );
+    this->genesisComplete = true;
+
+    Console::log( "\n\n" );
+    Console::log( "Created the genesis block:\n" );
+    Console::log( "\n" );
+    Blockchain::printBlockInfo( genesisBlock );
+    Console::log( "\n\n" );
 }
 
 Block Blockchain::getLatestBlock() {
@@ -100,8 +109,8 @@ crow::json::wvalue Blockchain::blockToJson( Block _Block ) {
 void Blockchain::printBlockInfo( Block _Block ) {
     std::cout << "Id: " << std::to_string( _Block.index )
               << "\nTimestamp: " << _Block.timestamp
-              << "\nHash: " << _Block.hash
+              << "Hash: " << _Block.hash
               << "\nPrevious Hash: " << _Block.previousHash
-              << "Data: " << _Block.data
+              << "\nData: " << _Block.data
               << std::endl;
 }
