@@ -44,6 +44,7 @@
     <ProjectGuid>{09cdac08-e6ae-48a9-8de7-0fbc779eebde}</ProjectGuid>
     <RootNamespace>cryptest</RootNamespace>
     <ConfigurationType>Application</ConfigurationType>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <!-- Use DefaultPlatformToolset after Microsoft.Cpp.Default.props -->
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -196,6 +197,11 @@
   <Target Name="CopyCryptestToRoot">
     <Exec Command="copy $(Platform)\Output\$(Configuration)\cryptest.exe $(SolutionDir)" />
   </Target>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL-Import Debug|x64'">
+    <ClCompile>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+    </ClCompile>
+  </ItemDefinitionGroup>
   <!-- Source Files -->
   <ItemGroup>
     <ClCompile Include="adhoc.cpp" />

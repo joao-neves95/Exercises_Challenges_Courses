@@ -23,6 +23,7 @@
     <ProjectGuid>{607138FB-E399-405E-97C6-39749FB4B3DD}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <ProjectName>Blockchain</ProjectName>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -65,13 +66,15 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);C:\Users\Utilizador\odrive\ISTEC\DEV\Exercises_Challenges_Courses\C++\Blockchain\libs\boost_1_55_0</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);C:\Users\Utilizador\odrive\ISTEC\DEV\Exercises_Challenges_Courses\C++\Blockchain\libs\boost_1_68_0</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -80,12 +83,14 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <AdditionalIncludeDirectories>C:\Users\Utilizador\odrive\ISTEC\DEV\Exercises_Challenges_Courses\C++\Blockchain\libs\boost_1_55_0</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <TargetMachine>MachineX64</TargetMachine>
+      <TargetMachine>MachineX86</TargetMachine>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
+      <AdditionalLibraryDirectories>C:\Users\Utilizador\odrive\ISTEC\DEV\Exercises_Challenges_Courses\C++\Blockchain\libs\boost_1_55_0\stage\lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -105,23 +110,32 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <EnablePREfast>true</EnablePREfast>
+      <EnablePREfast>false</EnablePREfast>
+      <AdditionalIncludeDirectories>C:\Users\Utilizador\odrive\ISTEC\DEV\Exercises_Challenges_Courses\C++\Blockchain\libs\boost_1_55_0</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
+    <Link>
+      <TargetMachine>MachineX64</TargetMachine>
+      <AdditionalLibraryDirectories>C:\Users\Utilizador\odrive\ISTEC\DEV\Exercises_Challenges_Courses\C++\Blockchain\libs\boost_1_68_0\stage\x64\lib</AdditionalLibraryDirectories>
+    </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="block.cpp" />
     <ClCompile Include="blockchain.cpp" />
     <ClCompile Include="crypto.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="models\block.cpp" />
+    <ClCompile Include="server\server.cpp" />
     <ClCompile Include="utils\console.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="block.hpp" />
     <ClInclude Include="blockchain.hpp" />
+    <ClInclude Include="config.hpp" />
     <ClInclude Include="crypto.hpp" />
+    <ClInclude Include="enums\environmentType.hpp" />
+    <ClInclude Include="models\block.hpp" />
+    <ClInclude Include="server\server.hpp" />
     <ClInclude Include="utils\console.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets">
-  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets" />
 </Project>

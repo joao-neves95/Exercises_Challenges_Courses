@@ -1,11 +1,12 @@
 #pragma once
 #include <string>
 
-static class Crypto
+class Crypto
 {
-    public:
+    private:
         Crypto();
         ~Crypto();
 
+    public:
         static std::string toSha256Str(std::string data);
 };

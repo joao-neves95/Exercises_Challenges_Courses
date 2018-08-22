@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="block.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -30,18 +27,33 @@
     <ClCompile Include="utils\console.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="server\server.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="models\block.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="crypto.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="block.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="blockchain.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="utils\console.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="models\block.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="enums\environmentType.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="config.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="server\server.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,7 +1,11 @@
+#include <mutex>
+#include <iostream>
 #include <string>
 
 #include "blockchain.hpp"
-#include "block.hpp"
+#include "libs\crow\include\crow\json.h"
+#include "crypto.hpp"
+#include "models\block.hpp"
 #include "utils\console.hpp"
 
 Blockchain::Blockchain()
@@ -12,12 +16,26 @@ Blockchain::~Blockchain()
 {
 }
 
+Blockchain* Blockchain::instance = nullptr;
+std::once_flag Blockchain::onceFlag;
+
+void Blockchain::createInstance() {
+    Blockchain::instance = new Blockchain();
+}
+
+Blockchain* Blockchain::getInstance() {
+    std::call_once( Blockchain::onceFlag, Blockchain::createInstance );
+
+    return Blockchain::instance;
+}
+
 void Blockchain::genesis() 
 {
-    if (genesisComplete)
+    if (this->genesisComplete)
         return;
 
-    const Block genesisBlock = Block::Block(0, "0", "The GENESIS block.");
+    Block genesisBlock = Block::Block(0, "0", "The GENESIS block.");
+    genesisBlock.hash = calculateBlockHash( genesisBlock );
     chain.push_back( genesisBlock );
 }
 
@@ -28,28 +46,34 @@ Block Blockchain::getLatestBlock() {
 void Blockchain::generateNextBlock(std::string _BlockData) 
 {
     const Block latestBlock = getLatestBlock();
-    const Block newBlock = Block::Block(latestBlock.index + 1, latestBlock.hash, _BlockData);
+    Block newBlock = Block::Block(latestBlock.index + 1, latestBlock.hash, _BlockData);
+    newBlock.hash = calculateBlockHash( newBlock );
     chain.push_back( newBlock );
+}
+
+std::string Blockchain::calculateBlockHash(Block _Block) {
+    std::string data = std::to_string(_Block.index) + _Block.previousHash + _Block.timestamp + _Block.data;
+    return Crypto::toSha256Str( data );
 }
 
 bool Blockchain::validateNewBlock(Block _BlockToValidate) 
 {
-    Console::log("Validating new block...");
+    Console::log( "Validating new block..." );
     const Block latestBlock = getLatestBlock();
 
     if (_BlockToValidate.index != latestBlock.index + 1)
     {
-        Console::log("Invalid index.");
+        Console::log( "Invalid index." );
         return false;
     }
     else if (_BlockToValidate.previousHash != latestBlock.previousHash)
     {
-        Console::log("Invalid previous hash.");
+        Console::log( "Invalid previous hash." );
         return false;
     }
-    else if (_BlockToValidate.hash != _BlockToValidate.calculateHash())
+    else if (_BlockToValidate.hash != calculateBlockHash( _BlockToValidate ))
     {
-        Console::log("Invalid hash.");
+        Console::log( "Invalid hash." );
         return false;
     }
 
@@ -57,8 +81,27 @@ bool Blockchain::validateNewBlock(Block _BlockToValidate)
 }
 
 void Blockchain::replaceChain(std::vector<Block> newChain) {
-    if (newChain.size() > chain.size())
+    if (newChain.size() > this->chain.size())
     {
         chain = newChain;
     }
+}
+
+crow::json::wvalue Blockchain::blockToJson( Block _Block ) {
+    crow::json::wvalue jsonBlock;
+    jsonBlock["index"] = _Block.index;
+    jsonBlock["timestamp"] = _Block.timestamp;
+    jsonBlock["previousHash"] = _Block.previousHash;
+    jsonBlock["hash"] = _Block.hash;
+
+    return jsonBlock;
+}
+
+void Blockchain::printBlockInfo( Block _Block ) {
+    std::cout << "Id: " << std::to_string( _Block.index )
+              << "\nTimestamp: " << _Block.timestamp
+              << "\nHash: " << _Block.hash
+              << "\nPrevious Hash: " << _Block.previousHash
+              << "Data: " << _Block.data
+              << std::endl;
 }
