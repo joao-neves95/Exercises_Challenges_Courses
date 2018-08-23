@@ -1,10 +1,10 @@
-// Build Boost in VS2017 (14.1) - https://studiofreya.com/2017/04/23/building-boost-1-64-with-visual-studio-2017/
+/ Build Boost in VS2017 (14.1) - https://studiofreya.com/2017/04/23/building-boost-1-64-with-visual-studio-2017/
 // TODO: Migrate to Boost.Beast (already on libs) for a complete client/server.
 // Boost.Beast repo: https://github.com/boostorg/beast.
 //
 // Using Crow
 // https://github.com/ipkn/crow
-#include "server.hpp"
+#include "httpServer.hpp"
 #include "..\libs\crow\include\crow.h"
 #include "..\libs\json-3.2.0\single_include\nlohmann\json.hpp"
 using namespace nlohmann;
@@ -13,25 +13,25 @@ using namespace nlohmann;
 #include "..\models\block.hpp"
 #include "..\config.hpp"
 
-Server::Server()
+HttpServer::Server()
 {
     setHTTPRoutes();
-    setP2PRoutes();
+    // setP2PRoutes();
 }
 
-Server::Server( bool _Run ) {
+HttpServer::Server( bool _Run ) {
     setHTTPRoutes();
-    setP2PRoutes();
+    //setP2PRoutes();
 
     if (_Run)
         this->run();
 }
 
-Server::~Server()
+HttpServer::~Server()
 {
 }
 
-void Server::setHTTPRoutes() {
+void HttpServer::setHTTPRoutes() {
     CROW_ROUTE(app, "/").methods( crow::HTTPMethod::Get )
     ([] {
         crow::json::wvalue json;
@@ -96,7 +96,8 @@ void Server::setHTTPRoutes() {
     });
 }
 
-void Server::setP2PRoutes() {
+// This never gets called (commented out).
+void HttpServer::setP2PRoutes() {
     CROW_ROUTE( app, "/ws" )
         .websocket()
         .onopen( [&]( crow::websocket::connection& conn ) 
@@ -123,7 +124,7 @@ void Server::setP2PRoutes() {
         } );
 }
 
-void Server::run() 
+void HttpServer::run() 
 {
     if (ENVIRONMENT == kDevelopment)
         app.loglevel( crow::LogLevel::Debug );

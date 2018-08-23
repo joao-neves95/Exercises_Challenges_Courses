@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "server\server.hpp"
+#include "server\HttpServer.hpp"
 #include "blockchain.hpp"
 #include "utils\console.hpp"
 
@@ -10,7 +10,7 @@ int main(int argc, char** argv)
 {
     Blockchain::Blockchain();
 
-    new Server( true );
+    new HttpServer( true );
 
 	return 0;
 }

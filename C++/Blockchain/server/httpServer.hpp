@@ -3,7 +3,7 @@
 #include <unordered_set>
 #include "..\libs\crow\include\crow.h"
 
-class Server
+class HttpServer
 {
     private:
         crow::SimpleApp app;
@@ -14,9 +14,9 @@ class Server
         void setP2PRoutes();
 
     public:
-        Server();
-        Server( bool _Run );
-        ~Server();
+        HttpServer();
+        HttpServer( bool _Run );
+        ~HttpServer();
 
         void run();
 };
