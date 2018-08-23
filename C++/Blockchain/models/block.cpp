@@ -3,33 +3,31 @@
 using namespace std;
 
 #include "block.hpp"
-#include "..\crypto.hpp"
+#include "..\utilities\crypto.hpp"
+#include "..\utilities\utils.hpp"
+#include "..\config.hpp"
 
 Block::Block() {}
 
 Block::Block( unsigned long long _Index, std::string _PreviousHash, std::string _Data ) {
-    index = _Index;
-
-    time_t now = time( 0 );
-    tm *utc = gmtime( &now );
-    timestamp = asctime( utc );
-
-    previousHash = _PreviousHash;
-    data = _Data;
+    this->index = _Index;
+    this->timestamp = Utils::getUTCTimestampStr();
+    this->previousHash = _PreviousHash;
+    this->data = _Data;
+    this->hash = "";
+    this->targetBits = TARGET_BITS;
+    this->nounce = 0;
 }
 
-Block::Block( unsigned long long _Index, std::string _PreviousHash, std::string _Data, std::string _Hash )
+Block::Block( unsigned long long _Index, std::string _PreviousHash, std::string _Data, std::string _Hash, long long _Nounce )
 {
-        index = _Index;
-
-        time_t now = time(0);
-        tm *utc = gmtime(&now);
-        timestamp = asctime(utc);
-
-        previousHash = _PreviousHash;
-        data = _Data;
-
-        hash = _Hash;
+    this->index = _Index;
+    this->timestamp = Utils::getUTCTimestampStr();
+    this->previousHash = _PreviousHash;
+    this->data = _Data;
+    this->hash = _Hash;
+    this->targetBits = TARGET_BITS;
+    this->nounce = _Nounce;
 };
 
 Block::~Block() {};

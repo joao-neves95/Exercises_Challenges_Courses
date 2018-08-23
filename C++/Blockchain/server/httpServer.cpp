@@ -8,8 +8,9 @@
 #include "..\libs\crow\include\crow.h"
 #include "..\libs\json-3.2.0\single_include\nlohmann\json.hpp"
 using namespace nlohmann;
+
 #include "..\blockchain.hpp"
-#include "..\utils\console.hpp"
+#include "..\utilities\console.hpp"
 #include "..\models\block.hpp"
 #include "..\config.hpp"
 
@@ -82,7 +83,7 @@ void HttpServer::setHTTPRoutes() {
         int i;
         for (i = 0; i < ammount; ++i) {
             Console::log( std::to_string( i + 1 ) );
-            Blockchain::getInstance()->generateNextBlock( "Block number " + std::to_string( i + 1 ) );
+            Blockchain::getInstance()->generateNewBlock( "Block number " + std::to_string( i + 1 ) );
         }
 
         return crow::response( 200 );

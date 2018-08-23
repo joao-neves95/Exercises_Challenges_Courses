@@ -123,20 +123,21 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="blockchain.cpp" />
-    <ClCompile Include="crypto.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="mining.cpp" />
     <ClCompile Include="models\block.cpp" />
     <ClCompile Include="server\httpServer.cpp" />
-    <ClCompile Include="utils\console.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="blockchain.hpp" />
     <ClInclude Include="config.hpp" />
-    <ClInclude Include="crypto.hpp" />
     <ClInclude Include="enums\environmentType.hpp" />
+    <ClInclude Include="mining.hpp" />
     <ClInclude Include="models\block.hpp" />
     <ClInclude Include="server\httpServer.hpp" />
-    <ClInclude Include="utils\console.hpp" />
+    <ClInclude Include="utilities\console.hpp" />
+    <ClInclude Include="utilities\crypto.hpp" />
+    <ClInclude Include="utilities\utils.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

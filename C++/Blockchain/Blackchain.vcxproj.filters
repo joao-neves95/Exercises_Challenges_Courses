@@ -18,13 +18,7 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="crypto.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="blockchain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="utils\console.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="models\block.cpp">
@@ -33,15 +27,12 @@
     <ClCompile Include="server\httpServer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="mining.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="crypto.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="blockchain.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="utils\console.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="models\block.hpp">
@@ -54,6 +45,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="server\httpServer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mining.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="utilities\crypto.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="utilities\utils.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="utilities\console.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

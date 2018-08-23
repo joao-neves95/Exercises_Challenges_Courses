@@ -29,9 +29,13 @@ class Blockchain
 
         Block getLatestBlock();
 
-        void generateNextBlock(const std::string _BlockData);
+        void addBlockToChain( const Block _Block );
 
-        std::string calculateBlockHash(const Block _Block);
+        void generateNewBlock(const std::string _BlockData);
+
+        static std::string getBlockData( const Block _Block );
+
+        static std::string calculateBlockHash(const Block _Block);
 
         bool validateNewBlock(const Block _BlockToValidate );
 
