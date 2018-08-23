@@ -126,7 +126,7 @@
     <ClCompile Include="crypto.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="models\block.cpp" />
-    <ClCompile Include="server\server.cpp" />
+    <ClCompile Include="server\httpServer.cpp" />
     <ClCompile Include="utils\console.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -135,7 +135,7 @@
     <ClInclude Include="crypto.hpp" />
     <ClInclude Include="enums\environmentType.hpp" />
     <ClInclude Include="models\block.hpp" />
-    <ClInclude Include="server\server.hpp" />
+    <ClInclude Include="server\httpServer.hpp" />
     <ClInclude Include="utils\console.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

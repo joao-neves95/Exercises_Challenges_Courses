@@ -1,4 +1,4 @@
-/ Build Boost in VS2017 (14.1) - https://studiofreya.com/2017/04/23/building-boost-1-64-with-visual-studio-2017/
+// Build Boost in VS2017 (14.1) - https://studiofreya.com/2017/04/23/building-boost-1-64-with-visual-studio-2017/
 // TODO: Migrate to Boost.Beast (already on libs) for a complete client/server.
 // Boost.Beast repo: https://github.com/boostorg/beast.
 //
@@ -13,13 +13,13 @@ using namespace nlohmann;
 #include "..\models\block.hpp"
 #include "..\config.hpp"
 
-HttpServer::Server()
+HttpServer::HttpServer()
 {
     setHTTPRoutes();
     // setP2PRoutes();
 }
 
-HttpServer::Server( bool _Run ) {
+HttpServer::HttpServer( bool _Run ) {
     setHTTPRoutes();
     //setP2PRoutes();
 
@@ -27,7 +27,7 @@ HttpServer::Server( bool _Run ) {
         this->run();
 }
 
-HttpServer::~Server()
+HttpServer::~HttpServer()
 {
 }
 
