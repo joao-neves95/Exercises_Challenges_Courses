@@ -99,6 +99,7 @@ std::string Blockchain::calculateBlockHash(const Block _Block)
     return Crypto::toSha256Str( data );
 }
 
+// TODO: Validate timestamps.
 bool Blockchain::validateNewBlock(const Block _BlockToValidate)
 {
     Console::log( "Validating new block..." );

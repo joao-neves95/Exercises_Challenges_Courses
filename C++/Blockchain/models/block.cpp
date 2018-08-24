@@ -3,6 +3,7 @@
 using namespace std;
 
 #include "block.hpp"
+#include "..\mining.hpp"
 #include "..\utilities\crypto.hpp"
 #include "..\utilities\utils.hpp"
 #include "..\config.hpp"
@@ -15,7 +16,7 @@ Block::Block( unsigned long long _Index, std::string _PreviousHash, std::string 
     this->previousHash = _PreviousHash;
     this->data = _Data;
     this->hash = "";
-    this->targetBits = TARGET_BITS;
+    this->targetBits = Mining::getTargetBits();
     this->nounce = 0;
 }
 
@@ -26,7 +27,7 @@ Block::Block( unsigned long long _Index, std::string _PreviousHash, std::string 
     this->previousHash = _PreviousHash;
     this->data = _Data;
     this->hash = _Hash;
-    this->targetBits = TARGET_BITS;
+    this->targetBits = Mining::getTargetBits();
     this->nounce = _Nounce;
 };
 

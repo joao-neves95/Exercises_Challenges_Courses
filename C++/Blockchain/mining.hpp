@@ -11,6 +11,9 @@ class Mining
         ~Mining();
 
     public:
+        /** Consensus. The mining difficulty. */
+        static unsigned int getTargetBits();
+
         static bool hashMatchesTargetBits( std::string _Hash );
 
         /** The mine function. The proof of work. */

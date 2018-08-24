@@ -19,11 +19,17 @@ Mining::~Mining()
 {
 }
 
+unsigned int Mining::getTargetBits() {
+    // Hard coded for now.
+    return 4;
+}
+
 bool Mining::hashMatchesTargetBits( std::string _Hash ) 
 {
     const string hashBinary = Utils::hexStrToBinary( _Hash );
-    const string requiredPrefixZeros = Utils::strRepeat( "0", TARGET_BITS );
+    const string requiredPrefixZeros = Utils::strRepeat( "0", Mining::getTargetBits() );
 
+    // The mining hash attempt must have the required 0's (target bits) at the start of its binary form.
     return Utils::strStartsWith( hashBinary, requiredPrefixZeros );
 }
 
