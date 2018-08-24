@@ -43,6 +43,12 @@ Exercises, challenges and courses from various sources
 
 ---
 
+## C
+
+- [Algorithms](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/C)
+
+---
+
 ## Unity (C#)
 
 1 - [Project 1](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Unity/Project1) - A small and simple Unity2d 2d platformer game, from internet tutorials, I did for a university class preparation.
