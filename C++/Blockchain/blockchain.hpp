@@ -1,3 +1,14 @@
+// --------------------------------------------------------------------------
+//
+// Copyright (c) 2018 shivayl (João Neves - https://github.com/joao-neves95)
+//
+// Licensed under the MIT License (https://opensource.org/licenses/MIT).
+//
+// The license of this source code can be found in the MIT-LICENSE file 
+// located in the root of this project.
+//
+// --------------------------------------------------------------------------
+
 #pragma once
 #include <list>
 #include <vector>
@@ -5,6 +16,8 @@ using namespace std;
 
 #include "libs\json-3.2.0\single_include\nlohmann\json.hpp"
 using namespace nlohmann;
+
+#include "db.hpp"
 #include "models\block.hpp"
 
 class Blockchain
@@ -18,7 +31,8 @@ class Blockchain
         static void createInstance();
 
     public:
-        std::vector<Block> chain;
+        // std::vector<Block> chain;
+        DB* chain;
 
         Blockchain();
         ~Blockchain();
@@ -27,7 +41,7 @@ class Blockchain
 
         void genesis();
 
-        Block getLatestBlock();
+        json getLatestBlock();
 
         void addBlockToChain( const Block _Block );
 
@@ -39,7 +53,7 @@ class Blockchain
 
         bool validateNewBlock(const Block _BlockToValidate );
 
-        void replaceChain(const std::vector<Block> newChain);
+        void replaceChain(const std::vector<Block> _NewChain);
 
         static json blockToJson(const Block _Block);
 

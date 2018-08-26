@@ -448,3 +448,4 @@ Corridor/Library/metadata/
 !.vscode/extensions.json
 
 *.env
+*.licenseheader

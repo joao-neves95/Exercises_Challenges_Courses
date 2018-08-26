@@ -1,6 +1,7 @@
 
 ## Libraries beeing used:
 
+- [Google/levelDB](https://github.com/google/leveldb)
 - [nlohmann::json](https://github.com/nlohmann/json)
 - [PicoSHA2](https://github.com/okdshin/PicoSHA2)
 - [Boost](https://www.boost.org/)

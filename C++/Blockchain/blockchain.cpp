@@ -1,12 +1,28 @@
+// --------------------------------------------------------------------------
+//
+// Copyright (c) 2018 shivayl (João Neves - https://github.com/joao-neves95)
+//
+// Licensed under the MIT License (https://opensource.org/licenses/MIT).
+//
+// The license of this source code can be found in the MIT-LICENSE file 
+// located in the root of this project.
+//
+// --------------------------------------------------------------------------
+//
+// The block generation process:
+//  .generateNewBlock() -> .mine(); -> .validateNewBlock(); -> .addBlockToChain();
+//
+
 #include <mutex>
 #include <iostream>
 #include <string>
 
 #include "blockchain.hpp"
-#include "libs\crow\include\crow\json.h"
 #include "libs\json-3.2.0\single_include\nlohmann\json.hpp"
 using namespace nlohmann;
 
+#include "config.hpp"
+#include "db.hpp"
 #include "utilities\crypto.hpp"
 #include "utilities\console.hpp"
 #include "mining.hpp"
@@ -14,8 +30,6 @@ using namespace nlohmann;
 
 Blockchain::Blockchain()
 {
-    // Temporary.
-    this->genesis();
 }
 
 Blockchain::~Blockchain()
@@ -28,6 +42,10 @@ std::once_flag Blockchain::onceFlag;
 void Blockchain::createInstance() 
 {
     Blockchain::instance = new Blockchain();
+    Blockchain::instance->chain = new DB( DATABASE_BLOCKS );
+
+    // Temporary.
+    Blockchain::instance->genesis();
 }
 
 Blockchain* Blockchain::getInstance() 
@@ -45,7 +63,6 @@ void Blockchain::genesis()
 
     Block genesisBlock = Block::Block(0, "0", "The GENESIS block.");
     genesisBlock.hash = calculateBlockHash( genesisBlock );
-    chain.push_back( genesisBlock );
     this->genesisComplete = true;
 
     Console::log( "\n\n" );
@@ -53,17 +70,27 @@ void Blockchain::genesis()
     Console::log( "\n" );
     Blockchain::printBlockInfo( genesisBlock );
     Console::log( "\n\n" );
+
+    Block* minedBlock = Mining::mine( genesisBlock );
+
+    if (minedBlock->hash != "")
+        this->addBlockToChain( *minedBlock );
+
+    delete minedBlock;
 }
 
-Block Blockchain::getLatestBlock() 
+json Blockchain::getLatestBlock() 
 {
-    return chain[chain.size() - 1];
+    std::string latestBlockKey = this->chain->get( kLastBlockKey );
+    return json::parse( this->chain->get(latestBlockKey) );
 }
 
 void Blockchain::addBlockToChain( const Block _Block ) 
 {
     if (this->validateNewBlock( _Block )) {
-        this->chain.push_back( _Block );
+        this->chain->del( kLastBlockKey );
+        this->chain->put( _Block.hash, Blockchain::blockToJson( _Block ).dump() );
+        this->chain->put( kLastBlockKey, _Block.hash );
         Console::log( "New block successfully added to the chain:\n" );
         Blockchain::printBlockInfo( _Block );
     }
@@ -71,8 +98,8 @@ void Blockchain::addBlockToChain( const Block _Block )
 
 void Blockchain::generateNewBlock(const std::string _BlockData)
 {
-    const Block latestBlock = getLatestBlock();
-    const Block newBlock = Block::Block(latestBlock.index + 1, latestBlock.hash, _BlockData);
+    const json latestBlock = getLatestBlock();
+    const Block newBlock = Block::Block( latestBlock["index"].get<unsigned long long>() + 1, latestBlock["hash"].get<std::string>(), _BlockData);
 
     Console::log( "\nGenerated a new block:\n" );
     Blockchain::printBlockInfo( newBlock );
@@ -102,15 +129,22 @@ std::string Blockchain::calculateBlockHash(const Block _Block)
 // TODO: Validate timestamps.
 bool Blockchain::validateNewBlock(const Block _BlockToValidate)
 {
-    Console::log( "Validating new block..." );
-    const Block latestBlock = getLatestBlock();
+    if (this->chain->count(true) <= 0) return true;
 
-    if (_BlockToValidate.index != latestBlock.index + 1)
+    Console::log( "Validating new block..." );
+    const json latestBlock = getLatestBlock();
+
+    //char * pEnd;
+    //std::string indexStr = latestBlock["index"].get<std::string>();
+    //char *indexCStr = new char[indexStr.length() + 1];
+    //strcpy( indexCStr, indexStr.c_str() );
+
+    if (_BlockToValidate.index != latestBlock["index"].get<unsigned long long>() + 1)
     {
         Console::log( "Invalid index." );
         return false;
     }
-    else if (_BlockToValidate.previousHash != latestBlock.hash)
+    else if (_BlockToValidate.previousHash != latestBlock["hash"].get<std::string>())
     {
         Console::log( "Invalid previous hash." );
         return false;
@@ -121,15 +155,25 @@ bool Blockchain::validateNewBlock(const Block _BlockToValidate)
         return false;
     }
 
+    // delete[] indexCStr;
+
     Console::log( "The block is valid." );
     return true;
 }
 
-void Blockchain::replaceChain(const std::vector<Block> newChain) 
+void Blockchain::replaceChain(const std::vector<Block> _NewChain) 
 {
-    if (newChain.size() > this->chain.size())
+    if (_NewChain.size() > this->chain->count(true))
     {
-        this->chain = newChain;
+        leveldb::DestroyDB( DATABASE_BLOCKS, leveldb::Options() );
+
+        unsigned long long int i;
+        for (i = 0; i < _NewChain.size(); ++i) {
+            this->chain->put( _NewChain[i].hash, Blockchain::blockToJson( _NewChain[i] ).dump() );
+        }
+
+        // Update cached block count.
+        this->chain->count();
     }
 }
 
@@ -138,9 +182,11 @@ json Blockchain::blockToJson( const Block _Block )
     json jsonBlock = {
         {"index", _Block.index},
         {"timestamp", _Block.timestamp},
+        {"hash", _Block.hash},
         {"previousHash", _Block.previousHash},
         {"targetBits", _Block.targetBits},
-        {"hash", _Block.hash}
+        {"targetBits", _Block.nounce},
+        {"targetBits", _Block.data}
     };
 
     return jsonBlock;
