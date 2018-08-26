@@ -74,7 +74,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <RunCodeAnalysis>false</RunCodeAnalysis>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);C:\Users\Utilizador\odrive\ISTEC\DEV\Exercises_Challenges_Courses\C++\Blockchain\libs\boost_1_68_0;</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);C:\Users\Utilizador\odrive\ISTEC\DEV\Exercises_Challenges_Courses\C++\Blockchain\src\libs\boost_1_68_0;</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -111,41 +111,41 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <EnablePREfast>false</EnablePREfast>
-      <AdditionalIncludeDirectories>C:\Users\Utilizador\odrive\ISTEC\DEV\Exercises_Challenges_Courses\C++\Blockchain\libs\boost_1_55_0;C:\Users\Utilizador\odrive\ISTEC\DEV\Exercises_Challenges_Courses\C++\Blockchain\libs\leveldb\include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Utilizador\odrive\ISTEC\DEV\Exercises_Challenges_Courses\C++\Blockchain\src\libs\boost_1_68_0;C:\Users\Utilizador\odrive\ISTEC\DEV\Exercises_Challenges_Courses\C++\Blockchain\src\libs\leveldb\include;</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp14</LanguageStandard>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <TargetMachine>MachineX64</TargetMachine>
-      <AdditionalLibraryDirectories>C:\Users\Utilizador\odrive\ISTEC\DEV\Exercises_Challenges_Courses\C++\Blockchain\libs\boost_1_68_0\stage\x64\lib;C:\Users\Utilizador\odrive\ISTEC\DEV\Exercises_Challenges_Courses\C++\Blockchain\libs\leveldb\debug\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Utilizador\odrive\ISTEC\DEV\Exercises_Challenges_Courses\C++\Blockchain\src\libs\boost_1_68_0\stage\x64\lib;C:\Users\Utilizador\odrive\ISTEC\DEV\Exercises_Challenges_Courses\C++\Blockchain\src\libs\leveldb\debug\lib;</AdditionalLibraryDirectories>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;shlwapi.lib;leveldb.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="blockchain.cpp" />
-    <ClCompile Include="config.cpp" />
-    <ClCompile Include="db.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="mining.cpp" />
-    <ClCompile Include="models\block.cpp" />
-    <ClCompile Include="models\transaction.cpp" />
-    <ClCompile Include="server\httpServer.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="blockchain.hpp" />
-    <ClInclude Include="config.hpp" />
-    <ClInclude Include="db.hpp" />
-    <ClInclude Include="enums\environmentType.hpp" />
-    <ClInclude Include="mining.hpp" />
-    <ClInclude Include="models\block.hpp" />
-    <ClInclude Include="models\transaction.hpp" />
-    <ClInclude Include="server\httpServer.hpp" />
-    <ClInclude Include="utilities\console.hpp" />
-    <ClInclude Include="utilities\crypto.hpp" />
-    <ClInclude Include="utilities\utils.hpp" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Blockchain.licenseheader" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\blockchain.cpp" />
+    <ClCompile Include="src\config.cpp" />
+    <ClCompile Include="src\db.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\mining.cpp" />
+    <ClCompile Include="src\models\block.cpp" />
+    <ClCompile Include="src\models\transaction.cpp" />
+    <ClCompile Include="src\server\httpServer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\blockchain.hpp" />
+    <ClInclude Include="src\config.hpp" />
+    <ClInclude Include="src\db.hpp" />
+    <ClInclude Include="src\enums\environmentType.hpp" />
+    <ClInclude Include="src\mining.hpp" />
+    <ClInclude Include="src\models\block.hpp" />
+    <ClInclude Include="src\models\transaction.hpp" />
+    <ClInclude Include="src\server\httpServer.hpp" />
+    <ClInclude Include="src\utilities\console.hpp" />
+    <ClInclude Include="src\utilities\crypto.hpp" />
+    <ClInclude Include="src\utilities\utils.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
