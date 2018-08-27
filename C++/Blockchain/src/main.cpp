@@ -33,7 +33,6 @@ int main(int argc, char** argv)
         Console::log( "\n" );
         // Encoded hash.
         Console::log(Crypto::toArgon2dByteArr( "Hello this is number " + std::to_string( i + 1 ) ));
-        Console::log( "\n" );
     }
 
     system( "pause" );

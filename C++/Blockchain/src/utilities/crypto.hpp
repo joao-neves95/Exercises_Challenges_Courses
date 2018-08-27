@@ -24,8 +24,9 @@ extern "C" {
 #include "utils.hpp"
 #include "console.hpp"
 
-#define HASHLEN 64 // digest length.
+#define HASHLEN 32 // digest length.
 #define SALTLEN 16
+#define ENCODEDLEN 98
 
 class Crypto
 {
@@ -61,11 +62,11 @@ class Crypto
             char *salt = new char[SALTLEN + 1];
             strcpy( salt, Utils::randomAlphanumStr( SALTLEN ).c_str() );
 
-            char encoded[200];
+            char encoded[ENCODEDLEN];
 
             // Using both functions for testing purposes only.
 
-            argon2d_hash_encoded(t_cost, m_cost, parallelism, dataCStr, dataLen, salt, SALTLEN, HASHLEN, encoded, 200);
+            argon2d_hash_encoded( t_cost, m_cost, parallelism, dataCStr, dataLen, salt, SALTLEN, HASHLEN, encoded, ENCODEDLEN );
 
             argon2d_hash_raw( t_cost, m_cost, parallelism, dataCStr, dataLen, salt, SALTLEN, hash, HASHLEN );
 
@@ -75,8 +76,9 @@ class Crypto
             // Hash in hex (testing):
             unsigned int i;
             for (i = 0; i < HASHLEN; ++i) {
-                printf( "%02x", hash[i] );
+                Console::logx( hash[i] );
             }
+            Console::log( "\n" );
 
             CString encodedCStr( encoded );
             std::string encodedStr( (LPCTSTR)encodedCStr );

@@ -26,12 +26,12 @@ class Console
         }
 
         /** Log hex. */
-        static void logx( uint8_t _IntMessage ) {
-            std::cout << std::hex << _IntMessage;
+        static void logx( uint8_t _UIntMessage ) {
+            printf( "%02x", _UIntMessage );
         }
 
         /** Log hex. */
-        static void logxLine( uint8_t _IntMessage ) {
-            std::cout << std::hex << _IntMessage << std::endl;
+        static void logxLine( uint8_t _UIntMessage ) {
+            printf( "%02x\n", _UIntMessage );
         }
 };
