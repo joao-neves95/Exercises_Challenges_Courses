@@ -15,39 +15,60 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="block.cpp">
+    <ClCompile Include="src\blockchain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="src\db.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="crypto.cpp">
+    <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="blockchain.cpp">
+    <ClCompile Include="src\mining.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="utils\console.cpp">
+    <ClCompile Include="src\server\httpServer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="server\server.cpp">
+    <ClCompile Include="src\models\block.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\models\transaction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="crypto.hpp">
+    <ClInclude Include="src\blockchain.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="block.hpp">
+    <ClInclude Include="src\config.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="blockchain.hpp">
+    <ClInclude Include="src\db.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="utils\console.hpp">
+    <ClInclude Include="src\mining.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="server\server.h">
+    <ClInclude Include="src\utilities\console.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utilities\crypto.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utilities\utils.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\server\httpServer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\models\block.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\models\transaction.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\enums\environmentType.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -15,6 +15,8 @@
 
 #include "console.hpp"
 
+static const char alphanum[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+
 class Utils 
 {
     public:
@@ -88,5 +90,22 @@ class Utils
                 case 'E': return "1110";
                 case 'F': return "1111";
             }
+        }
+
+        /** Return a (pseudo) random char, number or letter. */
+        static char randomChar() {
+            return alphanum[rand() % (sizeof( alphanum ) - 1)];
+        }
+
+        /** Return a sequence of (pseudo) random string of numbers and letters. */
+        static std::string randomAlphanumStr( int _Size ) {
+            std::string randomStr;
+
+            for (unsigned int i = 0; i < _Size; ++i)
+            {
+                randomStr += randomChar();
+            }
+
+            return randomStr;
         }
 };

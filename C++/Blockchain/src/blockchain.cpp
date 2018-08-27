@@ -134,7 +134,6 @@ bool Blockchain::validateNewBlock(const Block _BlockToValidate)
     Console::log( "Validating new block..." );
     const json latestBlock = getLatestBlock();
 
-    //char * pEnd;
     //std::string indexStr = latestBlock["index"].get<std::string>();
     //char *indexCStr = new char[indexStr.length() + 1];
     //strcpy( indexCStr, indexStr.c_str() );

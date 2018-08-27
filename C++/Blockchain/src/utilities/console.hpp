@@ -24,4 +24,14 @@ class Console
         static void logi( int _IntMessage ) {
             std::cout << _IntMessage << std::endl;
         }
+
+        /** Log hex. */
+        static void logx( uint8_t _UIntMessage ) {
+            printf( "%02x", _UIntMessage );
+        }
+
+        /** Log hex. */
+        static void logxLine( uint8_t _UIntMessage ) {
+            printf( "%02x\n", _UIntMessage );
+        }
 };
