@@ -32,7 +32,7 @@ int main(int argc, char** argv)
     for (i = 0; i < 10; ++i) {
         Console::log( "\n" );
         // Encoded hash.
-        Console::log(Crypto::toArgon2dByteArr( "Hello this is number " + std::to_string( i + 1 ) ));
+        Console::log(Crypto::toArgon2dHexStr( "Hello this is number " + std::to_string( i + 1 ) ));
     }
 
     system( "pause" );
