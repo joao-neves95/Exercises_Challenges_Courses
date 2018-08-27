@@ -39,7 +39,8 @@ class Crypto
 
     public:
         /** Returns a SHA256 HEX string hashed version of the data. */
-        static std::string toSha256Str(std::string _Data) {
+        static std::string toSha256Str(std::string _Data) 
+        {
             std::vector<unsigned char> hash( picosha2::k_digest_size );
             picosha2::hash256( _Data.begin(), _Data.end(), hash.begin(), hash.end() );
 
@@ -48,18 +49,27 @@ class Crypto
             return outputHashHexStr;
         }
 
-        // TODO: Avoid code repetition in the Argon2d methods.
+        /**
+            Returns a pointer to a char array.
+            IMPORTANT: Destroy after using the returned CString ( destroy[] ) to avoid memory leaks.
+        */
+        inline static char * generateSalt( int _SaltLen = SALTLEN ) 
+        {
+            char *salt = new char[_SaltLen + 1];
+            strcpy( salt, Utils::randomAlphanumStr( _SaltLen ).c_str() );
+
+            return salt;
+        }
 
         /** 
-            m_cost = 97656.3 == 100.0000512 mb. Memory usage in kibibytes. 
+            m_cost = 68359.4 == 70.0000256 mb. Memory usage in kibibytes. 
         */
-        inline static std::string toArgon2dHexStr( std::string _Data, uint32_t m_cost = 97656.3 ) {
-            char *dataCStr = new char[_Data.length() + 1];
-            strcpy( dataCStr, _Data.c_str() );
+        inline static std::string toArgon2dHexStr( std::string _Data, uint32_t m_cost = 68359.4 ) 
+        {
+            char *dataCStr = Utils::strToCStr( _Data );
             uint32_t dataLen = strlen( (char *)dataCStr );
 
-            char *salt = new char[SALTLEN + 1];
-            strcpy( salt, Utils::randomAlphanumStr( SALTLEN ).c_str() );
+            char *salt = generateSalt();
 
             uint8_t hash[HASHLEN];
 
@@ -76,13 +86,15 @@ class Crypto
             return outputHashHexStr;
         }
 
-        inline static std::string toArgon2dEncodedStr( std::string _Data, uint32_t m_cost = 97656.3 ) {
-            char *dataCStr = new char[_Data.length() + 1];
-            strcpy( dataCStr, _Data.c_str() );
+        /**
+            m_cost = 68359.4 == 70.0000256 mb. Memory usage in kibibytes.
+        */
+        inline static std::string toArgon2dEncodedStr( std::string _Data, uint32_t m_cost = 68359.4 ) 
+        {
+            char *dataCStr = Utils::strToCStr( _Data );
             uint32_t dataLen = strlen( (char *)dataCStr );
 
-            char *salt = new char[SALTLEN + 1];
-            strcpy( salt, Utils::randomAlphanumStr( SALTLEN ).c_str() );
+            char *salt = generateSalt();
 
             char encoded[ENCODEDLEN];
 
@@ -91,8 +103,20 @@ class Crypto
             delete[] dataCStr;
             delete[] salt;
 
-            CString encodedCStr( encoded );
-            std::string encodedStr( (LPCTSTR)encodedCStr );
+            std::string encodedStr = Utils::cStrToStr( encoded );
             return encodedStr;
+        }
+
+        inline static bool verifyArgon2d(std::string _EncodedHash, std::string _EncodedHashToVerify) 
+        {
+            char *hashCStr = Utils::strToCStr( _EncodedHash );
+            char *toVerifyCStr = Utils::strToCStr( _EncodedHashToVerify );
+            uint32_t toVerifyLen = strlen( (char *)toVerifyCStr );
+            int result = argon2d_verify( hashCStr, toVerifyCStr, toVerifyLen );
+
+            if (result == 1)
+                return true;
+
+            return false;
         }
 };

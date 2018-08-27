@@ -10,6 +10,7 @@
 // --------------------------------------------------------------------------
 
 // https://jeiwan.cc/posts/building-blockchain-in-go-part-2/
+//
 #include "mining.hpp"
 #include <limits>
 using namespace std;
@@ -30,12 +31,19 @@ Mining::~Mining()
 {
 }
 
-unsigned int Mining::getTargetBits() {
-    // Hard coded for now.
-    return 4;
+unsigned int Mining::getTargetBits()
+{
+    // Hard coded for now (testing).
+    return 8;
 }
 
-bool Mining::hashMatchesTargetBits( std::string _Hash ) 
+unsigned int Mining::getTargetDifficulty()
+{
+    // Hard coded for now (testing).
+    return 1000;
+}
+
+bool Mining::hashMatchesTargetBits( std::string _Hash )
 {
     const string hashBinary = Utils::hexStrToBinary( _Hash );
     const string requiredPrefixZeros = Utils::strRepeat( "0", Mining::getTargetBits() );
@@ -44,24 +52,75 @@ bool Mining::hashMatchesTargetBits( std::string _Hash )
     return Utils::strStartsWith( hashBinary, requiredPrefixZeros );
 }
 
-Block * Mining::mine( Block _Block ) 
+Block * Mining::mineSHA256( Block _Block )
 {
     Console::log( "\nMining the new block containing \"" + _Block.data + "\".\n" );
 
-    // Counter.
-    long long nounce = 0;
     string currentHashAttempt;
 
     // "_I64_MAX" is for preventing any possible overflows.
-    while (nounce < _I64_MAX) {
-        currentHashAttempt = Blockchain::calculateBlockHash( _Block );
+    while (_Block.nounce < _I64_MAX) {
+        // SHA256( data ), where data.nounce increments until it matches the target bits.
+        // See: .hashMatchesTargetBits(hash).
+        currentHashAttempt = _Block.calculateSHA256Hash();
 
         if (Mining::hashMatchesTargetBits( currentHashAttempt )) {
             Console::log( "Successfully mined the new block.\n\n" );
             return new Block( _Block.index, _Block.previousHash, _Block.data, currentHashAttempt, _Block.nounce );
         }
 
-        // ++nounce;
+        ++_Block.nounce;
+    }
+
+    Console::log( "Unsuccessful mining." );
+    return NULL;
+}
+
+/** NOT TESTED YET. */
+Block * Mining::mineArgon2d( Block _Block )
+{
+    Console::log( "\nMining the new block containing \"" + _Block.data + "\".\n" );
+    unsigned int difficulty = Mining::getTargetDifficulty();
+    std::string targetHash = Crypto::toArgon2dHexStr( _Block.getData(), difficulty );
+
+    string currentHashAttempt;
+
+    // "_I64_MAX" is for preventing any possible overflows.
+    while (_Block.nounce < _I64_MAX) {
+        currentHashAttempt = _Block.calculateArgon2dHexHash( difficulty );
+
+        if (currentHashAttempt == targetHash) {
+            Console::log( "Successfully mined the new block.\n\n" );
+            return new Block( _Block.index, _Block.previousHash, _Block.data, currentHashAttempt, _Block.nounce );
+        }
+
+        // The nounce here serves as the memory usage in kibibytes to hash the block data.
+        ++_Block.nounce;
+    }
+
+    Console::log( "Unsuccessful mining." );
+    return NULL;
+}
+
+/** NOT TESTED YET. */
+Block * Mining::mineHybrid( Block _Block )
+{
+    Console::log( "\nMining the new block containing \"" + _Block.data + "\".\n" );
+    unsigned int difficulty = Mining::getTargetDifficulty();
+
+    string currentHashAttempt;
+
+    // "_I64_MAX" is for preventing any possible overflows.
+    while (_Block.nounce < _I64_MAX) {
+        // SHA256( Argon2d( blockData ) + blockData.nounce ), where blockData.nounce, including the blockData inside Argon2d, increments until it matches the target bits.
+        // See: .hashMatchesTargetBits(hash).
+        currentHashAttempt = _Block.calculateHybridHash( difficulty );
+
+        if (Mining::hashMatchesTargetBits( currentHashAttempt )) {
+            Console::log( "Successfully mined the new block.\n\n" );
+            return new Block( _Block.index, _Block.previousHash, _Block.data, currentHashAttempt, _Block.nounce );
+        }
+
         ++_Block.nounce;
     }
 

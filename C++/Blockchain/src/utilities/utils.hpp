@@ -20,20 +20,23 @@ static const char alphanum[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijkl
 class Utils 
 {
     public:
-        static const tm* getUTCTimestamp() {
+        static const tm* getUTCTimestamp() 
+        {
             const time_t now = time( 0 );
             const tm* utc = gmtime( &now );
 
             return utc;
         }
 
-        static std::string getUTCTimestampStr() {
+        static std::string getUTCTimestampStr() 
+        {
             const tm* utc = Utils::getUTCTimestamp();
 
             return asctime( utc );
         }
 
-        static std::string strRepeat( std::string _String, unsigned int _Times ) {
+        static std::string strRepeat( std::string _String, unsigned int _Times ) 
+        {
             std::string res = _String;
 
             unsigned int i;
@@ -44,7 +47,8 @@ class Utils
             return res;
         }
 
-        static bool strStartsWith( std::string _String, std::string _RequiredStart ) {
+        static bool strStartsWith( std::string _String, std::string _RequiredStart ) 
+        {
             unsigned int i;
             for (i = 0; i < _RequiredStart.length(); ++i) {
                 if (_String[i] == _RequiredStart[i])
@@ -56,7 +60,8 @@ class Utils
             return true;
         }
 
-        static std::string hexStrToBinary( std::string _String ) {
+        static std::string hexStrToBinary( std::string _String ) 
+        {
             string res;
 
             int i;
@@ -93,12 +98,14 @@ class Utils
         }
 
         /** Return a (pseudo) random char, number or letter. */
-        static char randomChar() {
+        static char randomChar() 
+        {
             return alphanum[rand() % (sizeof( alphanum ) - 1)];
         }
 
         /** Return a sequence of (pseudo) random string of numbers and letters. */
-        static std::string randomAlphanumStr( int _Size ) {
+        static std::string randomAlphanumStr( int _Size ) 
+        {
             std::string randomStr;
 
             for (unsigned int i = 0; i < _Size; ++i)
@@ -107,5 +114,26 @@ class Utils
             }
 
             return randomStr;
+        }
+
+        /** 
+            Convert from std::string to a c scring (char array).
+            Returns a pointer to a char array.
+            IMPORTANT: Destroy after using the returned CString ( destroy[] ) to avoid memory leaks.
+        */
+        static char * strToCStr( std::string _String ) 
+        {
+            char *dataCStr = new char[_String.length() + 1];
+            strcpy( dataCStr, _String.c_str() );
+
+            return dataCStr;
+        }
+
+        static std::string cStrToStr( char * _CString ) 
+        {
+            CString cStr( _CString );
+            std::string str( (LPCTSTR)cStr );
+
+            return str;
         }
 };

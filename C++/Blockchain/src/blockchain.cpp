@@ -12,13 +12,14 @@
 // The block generation process:
 //  .generateNewBlock() -> .mine(); -> .validateNewBlock(); -> .addBlockToChain();
 //
+// TODO: BUG: Block index is allways 1 now.
+#include "blockchain.hpp"
 
 #include <mutex>
 #include <iostream>
 #include <string>
 
-#include "blockchain.hpp"
-#include "libs\json-3.2.0\single_include\nlohmann\json.hpp"
+#include "json-3.2.0\single_include\nlohmann\json.hpp"
 using namespace nlohmann;
 
 #include "config.hpp"
@@ -50,7 +51,6 @@ void Blockchain::createInstance()
 
 Blockchain* Blockchain::getInstance() 
 {
-    // TODO: FIX BUG: This is beeing called twice.
     std::call_once( Blockchain::onceFlag, Blockchain::createInstance );
 
     return Blockchain::instance;
@@ -62,8 +62,7 @@ void Blockchain::genesis()
         return;
 
     Block genesisBlock = Block::Block(0, "0", "The GENESIS block.");
-    genesisBlock.hash = calculateBlockHash( genesisBlock );
-    this->genesisComplete = true;
+    genesisBlock.hash = genesisBlock.calculateHybridHash( genesisBlock.targetBits );
 
     Console::log( "\n\n" );
     Console::log( "Created the genesis block:\n" );
@@ -71,12 +70,15 @@ void Blockchain::genesis()
     Blockchain::printBlockInfo( genesisBlock );
     Console::log( "\n\n" );
 
-    Block* minedBlock = Mining::mine( genesisBlock );
+    // Block* minedBlock = Mining::mineSHA256( genesisBlock );
+    Block* minedBlock = Mining::mineHybrid( genesisBlock );
 
-    if (minedBlock->hash != "")
-        this->addBlockToChain( *minedBlock );
+    if (minedBlock == NULL)
+        return;
 
+    this->addBlockToChain( *minedBlock );
     delete minedBlock;
+    this->genesisComplete = true;
 }
 
 json Blockchain::getLatestBlock() 
@@ -85,18 +87,18 @@ json Blockchain::getLatestBlock()
     return json::parse( this->chain->get(latestBlockKey) );
 }
 
-void Blockchain::addBlockToChain( const Block _Block ) 
+void Blockchain::addBlockToChain( Block _Block ) 
 {
     if (this->validateNewBlock( _Block )) {
         this->chain->del( kLastBlockKey );
-        this->chain->put( _Block.hash, Blockchain::blockToJson( _Block ).dump() );
+        this->chain->put( _Block.hash, _Block.toJson().dump() );
         this->chain->put( kLastBlockKey, _Block.hash );
         Console::log( "New block successfully added to the chain:\n" );
         Blockchain::printBlockInfo( _Block );
     }
 }
 
-void Blockchain::generateNewBlock(const std::string _BlockData)
+void Blockchain::generateNewBlock( const std::string _BlockData )
 {
     const json latestBlock = getLatestBlock();
     const Block newBlock = Block::Block( latestBlock["index"].get<unsigned long long>() + 1, latestBlock["hash"].get<std::string>(), _BlockData);
@@ -105,38 +107,23 @@ void Blockchain::generateNewBlock(const std::string _BlockData)
     Blockchain::printBlockInfo( newBlock );
     Console::log( "\n" );
 
-    Block* minedBlock = Mining::mine( newBlock );
+    // Block* minedBlock = Mining::mineSHA256( newBlock );
+    Block* minedBlock = Mining::mineHybrid( newBlock );
 
-    if (minedBlock->hash != "")
-        this->addBlockToChain( *minedBlock );
+    if (minedBlock == NULL)
+        return;
 
+    this->addBlockToChain( *minedBlock );
     delete minedBlock;
 }
 
-std::string Blockchain::getBlockData( const Block _Block )
-{
-    const string blockData = std::to_string( _Block.index ) + _Block.timestamp + _Block.previousHash + _Block.data + std::to_string( _Block.targetBits ) + std::to_string( _Block.nounce );
-
-    return blockData;
-}
-
-std::string Blockchain::calculateBlockHash(const Block _Block) 
-{
-    const std::string data = Blockchain::getBlockData( _Block );
-    return Crypto::toSha256Str( data );
-}
-
 // TODO: Validate timestamps.
-bool Blockchain::validateNewBlock(const Block _BlockToValidate)
+bool Blockchain::validateNewBlock( Block _BlockToValidate )
 {
     if (this->chain->count(true) <= 0) return true;
 
     Console::log( "Validating new block..." );
     const json latestBlock = getLatestBlock();
-
-    //std::string indexStr = latestBlock["index"].get<std::string>();
-    //char *indexCStr = new char[indexStr.length() + 1];
-    //strcpy( indexCStr, indexStr.c_str() );
 
     if (_BlockToValidate.index != latestBlock["index"].get<unsigned long long>() + 1)
     {
@@ -148,19 +135,20 @@ bool Blockchain::validateNewBlock(const Block _BlockToValidate)
         Console::log( "Invalid previous hash." );
         return false;
     }
-    else if (_BlockToValidate.hash != Blockchain::calculateBlockHash( _BlockToValidate ))
+    // else if (_BlockToValidate.hash != _BlockToValidate.calculateSHA256Hash())
+    // TODO: Debug.
+    // Problem here.
+    else if (_BlockToValidate.hash != _BlockToValidate.calculateHybridHash(_BlockToValidate.targetBits))
     {
         Console::log( "Invalid hash." );
         return false;
     }
 
-    // delete[] indexCStr;
-
     Console::log( "The block is valid." );
     return true;
 }
 
-void Blockchain::replaceChain(const std::vector<Block> _NewChain) 
+void Blockchain::replaceChain( std::vector<Block> _NewChain) 
 {
     if (_NewChain.size() > this->chain->count(true))
     {
@@ -168,7 +156,7 @@ void Blockchain::replaceChain(const std::vector<Block> _NewChain)
 
         unsigned long long int i;
         for (i = 0; i < _NewChain.size(); ++i) {
-            this->chain->put( _NewChain[i].hash, Blockchain::blockToJson( _NewChain[i] ).dump() );
+            this->chain->put( _NewChain[i].hash, _NewChain[i].toJson().dump() );
         }
 
         // Update cached block count.
@@ -176,28 +164,13 @@ void Blockchain::replaceChain(const std::vector<Block> _NewChain)
     }
 }
 
-json Blockchain::blockToJson( const Block _Block ) 
-{
-    json jsonBlock = {
-        {"index", _Block.index},
-        {"timestamp", _Block.timestamp},
-        {"hash", _Block.hash},
-        {"previousHash", _Block.previousHash},
-        {"targetBits", _Block.targetBits},
-        {"targetBits", _Block.nounce},
-        {"targetBits", _Block.data}
-    };
-
-    return jsonBlock;
-}
-
-std::string Blockchain::chainToJson( const std::vector<Block> _Chain ) 
+std::string Blockchain::chainToJson( std::vector<Block> _Chain ) 
 {
     std::vector<json> jsonChain;
     
     unsigned long long i;
     for (i = 0; i < _Chain.size(); ++i) {
-        jsonChain.push_back( Blockchain::blockToJson( _Chain[i] ) );
+        jsonChain.push_back( _Chain[i].toJson() );
     }
 
     json j_vec( jsonChain );
@@ -207,11 +180,12 @@ std::string Blockchain::chainToJson( const std::vector<Block> _Chain )
 
 void Blockchain::printBlockInfo( const Block _Block ) 
 {
-    std::cout << "Id: " << std::to_string( _Block.index )
+    std::cout << "Index: " << std::to_string( _Block.index )
               << "\nTimestamp: " << _Block.timestamp
               << "Hash: " << _Block.hash
               << "\nPrevious Hash: " << _Block.previousHash
               << "\nTarget Bits: " << _Block.targetBits
+              << "\nNounce: " << _Block.nounce
               << "\nData: " << _Block.data
               << std::endl;
 }

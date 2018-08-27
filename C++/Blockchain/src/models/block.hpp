@@ -12,6 +12,8 @@
 #pragma once
 #include <string>
 
+#include "json-3.2.0\single_include\nlohmann\json.hpp"
+
 class Block {
     public:
         unsigned long long index;
@@ -30,4 +32,19 @@ class Block {
         Block( unsigned long long _Index, std::string _PreviousHash, std::string _Data, std::string _Hash, long long _Nounce );
 
         ~Block();
+
+        std::string getData();
+
+        std::string getDataNoNounce();
+
+        nlohmann::json toJson();
+
+        std::string calculateSHA256Hash();
+  
+        std::string calculateArgon2dHexHash( uint32_t m_cost = 68359.4 );
+        
+        std::string calculateArgon2dEncodedHash( uint32_t m_cost = 68359.4 );
+
+        std::string calculateHybridHash( uint32_t m_cost = 68359.4 );
+
 };
