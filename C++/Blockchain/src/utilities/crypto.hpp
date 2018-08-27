@@ -11,10 +11,9 @@
 
 #pragma once
 #include <string>
-// #include <cstring>
+#include <cstdint>
 #include <atlstr.h>
 #include <vector>
-#include <cstdint>
 
 #include "picosha2.h"
 extern "C" {
@@ -27,6 +26,10 @@ extern "C" {
 #define HASHLEN 32 // digest length.
 #define SALTLEN 16
 #define ENCODEDLEN 98
+
+// Argon2d.
+static const uint32_t t_cost = 1; // 1-pass computation. Number of iterations.
+static const uint32_t parallelism = 2; // Number of threads and compute lanes.
 
 class Crypto
 {
@@ -45,16 +48,35 @@ class Crypto
             return outputHashHexStr;
         }
 
-        inline static std::string toArgon2dByteArr( std::string _Data ) {
+        // TODO: Avoid code repetition in the Argon2d methods.
+
+        /** 
+            m_cost = 97656.3 == 100.0000512 mb. Memory usage in kibibytes. 
+        */
+        inline static std::string toArgon2dHexStr( std::string _Data, uint32_t m_cost = 97656.3 ) {
+            char *dataCStr = new char[_Data.length() + 1];
+            strcpy( dataCStr, _Data.c_str() );
+            uint32_t dataLen = strlen( (char *)dataCStr );
+
+            char *salt = new char[SALTLEN + 1];
+            strcpy( salt, Utils::randomAlphanumStr( SALTLEN ).c_str() );
+
             uint8_t hash[HASHLEN];
-            // char hash[HASHLEN];
-            // uint8_t salt[SALTLEN];
 
-            uint32_t t_cost = 1; // 1-pass computation. Number of iterations.
-            // uint32_t m_cost = (1 << 16); // 2^16 (== 67.1089 mb).
-            uint32_t m_cost = 97656.3; // == 100.0000512 mb. Memory usage in kibibytes.
-            uint32_t parallelism = 2; // Number of threads and compute lanes.
+            argon2d_hash_raw( t_cost, m_cost, parallelism, dataCStr, dataLen, salt, SALTLEN, hash, HASHLEN );
 
+            delete[] dataCStr;
+            delete[] salt;
+
+            std::vector<uint8_t> hashVec;
+            hashVec.insert( hashVec.begin(), hash, hash + HASHLEN );
+
+            const std::string outputHashHexStr = picosha2::bytes_to_hex_string( hashVec.begin(), hashVec.end() );
+
+            return outputHashHexStr;
+        }
+
+        inline static std::string toArgon2dEncodedStr( std::string _Data, uint32_t m_cost = 97656.3 ) {
             char *dataCStr = new char[_Data.length() + 1];
             strcpy( dataCStr, _Data.c_str() );
             uint32_t dataLen = strlen( (char *)dataCStr );
@@ -64,21 +86,10 @@ class Crypto
 
             char encoded[ENCODEDLEN];
 
-            // Using both functions for testing purposes only.
-
             argon2d_hash_encoded( t_cost, m_cost, parallelism, dataCStr, dataLen, salt, SALTLEN, HASHLEN, encoded, ENCODEDLEN );
-
-            argon2d_hash_raw( t_cost, m_cost, parallelism, dataCStr, dataLen, salt, SALTLEN, hash, HASHLEN );
 
             delete[] dataCStr;
             delete[] salt;
-
-            // Hash in hex (testing):
-            unsigned int i;
-            for (i = 0; i < HASHLEN; ++i) {
-                Console::logx( hash[i] );
-            }
-            Console::log( "\n" );
 
             CString encodedCStr( encoded );
             std::string encodedStr( (LPCTSTR)encodedCStr );
