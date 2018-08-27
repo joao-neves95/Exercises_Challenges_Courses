@@ -86,37 +86,14 @@ unsigned long long int DB::count( const bool _GetCachedCount )
 
 std::string DB::getLastKey() 
 {
-    leveldb::Iterator* it = this->db->NewIterator( leveldb::ReadOptions( this->readOptions ) );
-    it->SeekToLast();
-
-    std::string key = it->key().ToString();
-
-    if (!it->status().ok()) {
-        delete it;
-        return NULL;
-    }
-
-    delete it;
+    std::string key;
     return key;
 }
 
 std::string DB::getLastValue() 
 {
-    if (this->cachedCount <= 0)
-        return "";
-
-    leveldb::Iterator* it = this->db->NewIterator( leveldb::ReadOptions( this->readOptions ) );
-    it->SeekToLast();
-
-    if (!it->status().ok()) {
-        delete it;
-        return NULL;
-    }
-
-    delete it;
-    Console::log( it->status().ToString() );
-    Console::log( it->value().ToString() );
-    return it->value().ToString();
+    std::string value;
+    return value;
 }
 
 std::vector<std::string> DB::getAllValues() 
