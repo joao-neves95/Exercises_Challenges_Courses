@@ -9,6 +9,8 @@
 //
 // --------------------------------------------------------------------------
 
+// TODO: Fix cached block count.
+
 #include "db.hpp"
 #include "utilities\console.hpp"
 #include "config.hpp"

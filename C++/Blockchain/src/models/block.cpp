@@ -22,50 +22,73 @@ using namespace nlohmann;
 #include "..\utilities\utils.hpp"
 #include "..\config.hpp"
 
+// TODO: Have timestampCreation and timestampMined properties.
+
 Block::Block() {};
 
-Block::Block( unsigned long long _Index, std::string _PreviousHash, std::string _Data ) {
-    this->index = _Index;
-    this->timestamp = Utils::getUTCTimestampStr();
-    this->previousHash = _PreviousHash;
-    this->data = _Data;
-    this->hash = "";
-    // this->targetBits = Mining::getTargetBits();
-    this->targetBits = Mining::getTargetDifficulty();
-    this->nounce = 0;
-}
-
-Block::Block( unsigned long long _Index, std::string _PreviousHash, std::string _Data, std::string _Hash, long long _Nounce )
+Block::Block( unsigned long long _Index, std::string _PreviousHash, std::string _Data )
 {
     this->index = _Index;
     this->timestamp = Utils::getUTCTimestampStr();
     this->previousHash = _PreviousHash;
     this->data = _Data;
+    this->hash = "";
+    this->argonHash = "";
+    this->targetBits = Mining::getTargetBits();
+    this->difficulty = Mining::getTargetDifficulty();
+    this->nounce = 0;
+}
+
+Block::Block( unsigned long long _Index, std::string _TimestampCreation, std::string _PreviousHash, std::string _Data, std::string _Hash, long long _Nounce )
+{
+    this->index = _Index;
+    this->timestamp = _TimestampCreation;
+    this->previousHash = _PreviousHash;
+    this->data = _Data;
     this->hash = _Hash;
-    // this->targetBits = Mining::getTargetBits();
-    this->targetBits = Mining::getTargetDifficulty();
+    this->argonHash = "";
+    this->targetBits = Mining::getTargetBits();
+    this->difficulty = Mining::getTargetDifficulty();
+    this->nounce = _Nounce;
+};
+
+Block::Block( unsigned long long _Index, std::string _TimestampCreation, std::string _PreviousHash, std::string _Data, std::string _Hash, std::string _ArgonHash, long long _Nounce )
+{
+    this->index = _Index;
+    this->timestamp = _TimestampCreation;
+    this->previousHash = _PreviousHash;
+    this->data = _Data;
+    this->hash = _Hash;
+    this->argonHash = _ArgonHash;
+    this->targetBits = Mining::getTargetBits();
+    this->difficulty = Mining::getTargetDifficulty();
     this->nounce = _Nounce;
 };
 
 Block::~Block() {};
 
-std::string Block::getDataNoNounce() {
-    return std::to_string( this->index ) + this->timestamp + this->previousHash + this->data + std::to_string( this->targetBits );
+std::string Block::getDataNoNounce() 
+{
+    return std::to_string( this->index ) + this->timestamp + this->previousHash + this->data + std::to_string( this->targetBits ) + std::to_string( this->difficulty );
 }
 
-std::string Block::getData() {
+std::string Block::getData() 
+{
     const string blockData = this->getDataNoNounce() + std::to_string( this->nounce );
 
     return blockData;
 }
 
-json Block::toJson() {
+json Block::toJson()
+{
     json jsonBlock = {
         {"index", this->index},
         {"timestamp", this->timestamp},
         {"hash", this->hash},
+        {"argonHash", this->argonHash},
         {"previousHash", this->previousHash},
         {"targetBits", this->targetBits},
+        {"difficulty", this->difficulty},
         {"nounce", this->nounce},
         {"data", this->data}
     };
@@ -73,25 +96,25 @@ json Block::toJson() {
     return jsonBlock;
 }
 
-std::string Block::calculateSHA256Hash() {
+std::string Block::calculateSHA256Hash()
+{
     return Crypto::toSha256Str( this->getData() );
 }
 
-std::string Block::calculateArgon2dHexHash( uint32_t m_cost ) {
+std::string Block::calculateArgon2dHexHash( uint32_t m_cost )
+{
     return Crypto::toArgon2dHexStr( this->getData(), m_cost );
 }
 
-std::string Block::calculateArgon2dEncodedHash( uint32_t m_cost ) {
+std::string Block::calculateArgon2dEncodedHash( uint32_t m_cost )
+{
     return Crypto::toArgon2dEncodedStr( this->getData(), m_cost );
 }
 
 /**  
     SHA256( Argon2d( blockData ) + blockData.nounce )
 */
-std::string Block::calculateHybridHash( uint32_t m_cost ) {
-    std::string argon2dHexHash = Crypto::toArgon2dHexStr( this->getData(), m_cost );
-
-    return Crypto::toSha256Str( argon2dHexHash + std::to_string( this->nounce ) );
+std::string Block::calculateHybridHash()
+{
+    return Crypto::toSha256Str( this->argonHash + std::to_string( this->nounce ) );
 }
-
-

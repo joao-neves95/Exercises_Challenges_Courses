@@ -107,14 +107,14 @@ class Crypto
             return encodedStr;
         }
 
-        inline static bool verifyArgon2d(std::string _EncodedHash, std::string _EncodedHashToVerify) 
+        inline static bool verifyArgon2d(std::string _EncodedHash, std::string _DataToVerify) 
         {
             char *hashCStr = Utils::strToCStr( _EncodedHash );
-            char *toVerifyCStr = Utils::strToCStr( _EncodedHashToVerify );
+            char *toVerifyCStr = Utils::strToCStr( _DataToVerify );
             uint32_t toVerifyLen = strlen( (char *)toVerifyCStr );
             int result = argon2d_verify( hashCStr, toVerifyCStr, toVerifyLen );
 
-            if (result == 1)
+            if (result == 0)
                 return true;
 
             return false;

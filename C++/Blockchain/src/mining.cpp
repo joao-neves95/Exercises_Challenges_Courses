@@ -34,13 +34,13 @@ Mining::~Mining()
 unsigned int Mining::getTargetBits()
 {
     // Hard coded for now (testing).
-    return 8;
+    return 5;
 }
 
 unsigned int Mining::getTargetDifficulty()
 {
     // Hard coded for now (testing).
-    return 1000;
+    return 500;
 }
 
 bool Mining::hashMatchesTargetBits( std::string _Hash )
@@ -66,7 +66,7 @@ Block * Mining::mineSHA256( Block _Block )
 
         if (Mining::hashMatchesTargetBits( currentHashAttempt )) {
             Console::log( "Successfully mined the new block.\n\n" );
-            return new Block( _Block.index, _Block.previousHash, _Block.data, currentHashAttempt, _Block.nounce );
+            return new Block( _Block.index, _Block.timestamp, _Block.previousHash, _Block.data, currentHashAttempt, _Block.nounce );
         }
 
         ++_Block.nounce;
@@ -76,49 +76,26 @@ Block * Mining::mineSHA256( Block _Block )
     return NULL;
 }
 
-/** NOT TESTED YET. */
-Block * Mining::mineArgon2d( Block _Block )
-{
-    Console::log( "\nMining the new block containing \"" + _Block.data + "\".\n" );
-    unsigned int difficulty = Mining::getTargetDifficulty();
-    std::string targetHash = Crypto::toArgon2dHexStr( _Block.getData(), difficulty );
-
-    string currentHashAttempt;
-
-    // "_I64_MAX" is for preventing any possible overflows.
-    while (_Block.nounce < _I64_MAX) {
-        currentHashAttempt = _Block.calculateArgon2dHexHash( difficulty );
-
-        if (currentHashAttempt == targetHash) {
-            Console::log( "Successfully mined the new block.\n\n" );
-            return new Block( _Block.index, _Block.previousHash, _Block.data, currentHashAttempt, _Block.nounce );
-        }
-
-        // The nounce here serves as the memory usage in kibibytes to hash the block data.
-        ++_Block.nounce;
-    }
-
-    Console::log( "Unsuccessful mining." );
-    return NULL;
-}
-
-/** NOT TESTED YET. */
+/** 
+    The hybrid mining algorithm. It's a combination of Argon2d hashing and SHA256 PoW.
+    SHA256( Argon2d( blockData ) + blockData.nounce ), where blockData.nounce, including the nounce inside Argon2d's blockData, increments until it matches the target bits.
+*/
 Block * Mining::mineHybrid( Block _Block )
 {
     Console::log( "\nMining the new block containing \"" + _Block.data + "\".\n" );
-    unsigned int difficulty = Mining::getTargetDifficulty();
 
     string currentHashAttempt;
 
     // "_I64_MAX" is for preventing any possible overflows.
     while (_Block.nounce < _I64_MAX) {
-        // SHA256( Argon2d( blockData ) + blockData.nounce ), where blockData.nounce, including the blockData inside Argon2d, increments until it matches the target bits.
+        // SHA256( Argon2d( blockData ) + blockData.nounce ), where blockData.nounce, including the nounce inside Argon2d's blockData, increments until it matches the target bits.
         // See: .hashMatchesTargetBits(hash).
-        currentHashAttempt = _Block.calculateHybridHash( difficulty );
+        _Block.argonHash = _Block.calculateArgon2dEncodedHash( _Block.difficulty );
+        currentHashAttempt = _Block.calculateHybridHash();
 
         if (Mining::hashMatchesTargetBits( currentHashAttempt )) {
             Console::log( "Successfully mined the new block.\n\n" );
-            return new Block( _Block.index, _Block.previousHash, _Block.data, currentHashAttempt, _Block.nounce );
+            return new Block( _Block.index, _Block.timestamp, _Block.previousHash, _Block.data, currentHashAttempt, _Block.argonHash, _Block.nounce );
         }
 
         ++_Block.nounce;

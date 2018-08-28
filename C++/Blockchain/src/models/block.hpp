@@ -20,16 +20,20 @@ class Block {
         /** UTC asctime timestamp. */
         std::string timestamp;
         std::string hash;
+        std::string argonHash;
         std::string previousHash;
         /** The difficulty at wich this block was mined. */
         unsigned int targetBits;
+        unsigned int difficulty;
         long long nounce;
+        // Data is temporary. To be substituted by a Transaction vector.
         std::string data;
 
         Block();
         /** Generates a block without hash (for mining). */
         Block( unsigned long long _Index, std::string _PreviousHash, std::string _Data );
-        Block( unsigned long long _Index, std::string _PreviousHash, std::string _Data, std::string _Hash, long long _Nounce );
+        Block( unsigned long long _Index, std::string _TimestampCreation, std::string _PreviousHash, std::string _Data, std::string _Hash, long long _Nounce );
+        Block( unsigned long long _Index, std::string _TimestampCreation, std::string _PreviousHash, std::string _Data, std::string _Hash, std::string _ArgonHash, long long _Nounce );
 
         ~Block();
 
@@ -45,6 +49,6 @@ class Block {
         
         std::string calculateArgon2dEncodedHash( uint32_t m_cost = 68359.4 );
 
-        std::string calculateHybridHash( uint32_t m_cost = 68359.4 );
+        std::string calculateHybridHash();
 
 };

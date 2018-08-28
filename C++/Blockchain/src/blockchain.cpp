@@ -62,7 +62,6 @@ void Blockchain::genesis()
         return;
 
     Block genesisBlock = Block::Block(0, "0", "The GENESIS block.");
-    genesisBlock.hash = genesisBlock.calculateHybridHash( genesisBlock.targetBits );
 
     Console::log( "\n\n" );
     Console::log( "Created the genesis block:\n" );
@@ -70,7 +69,6 @@ void Blockchain::genesis()
     Blockchain::printBlockInfo( genesisBlock );
     Console::log( "\n\n" );
 
-    // Block* minedBlock = Mining::mineSHA256( genesisBlock );
     Block* minedBlock = Mining::mineHybrid( genesisBlock );
 
     if (minedBlock == NULL)
@@ -89,13 +87,16 @@ json Blockchain::getLatestBlock()
 
 void Blockchain::addBlockToChain( Block _Block ) 
 {
-    if (this->validateNewBlock( _Block )) {
+    if (this->validateNewBlock( _Block )) 
+    {
         this->chain->del( kLastBlockKey );
         this->chain->put( _Block.hash, _Block.toJson().dump() );
         this->chain->put( kLastBlockKey, _Block.hash );
         Console::log( "New block successfully added to the chain:\n" );
         Blockchain::printBlockInfo( _Block );
     }
+    else
+        Console::log( "Validation failded." );
 }
 
 void Blockchain::generateNewBlock( const std::string _BlockData )
@@ -107,7 +108,6 @@ void Blockchain::generateNewBlock( const std::string _BlockData )
     Blockchain::printBlockInfo( newBlock );
     Console::log( "\n" );
 
-    // Block* minedBlock = Mining::mineSHA256( newBlock );
     Block* minedBlock = Mining::mineHybrid( newBlock );
 
     if (minedBlock == NULL)
@@ -118,6 +118,7 @@ void Blockchain::generateNewBlock( const std::string _BlockData )
 }
 
 // TODO: Validate timestamps.
+// TODO: Validate target bits / difficulty.
 bool Blockchain::validateNewBlock( Block _BlockToValidate )
 {
     if (this->chain->count(true) <= 0) return true;
@@ -130,21 +131,35 @@ bool Blockchain::validateNewBlock( Block _BlockToValidate )
         Console::log( "Invalid index." );
         return false;
     }
-    else if (_BlockToValidate.previousHash != latestBlock["hash"].get<std::string>())
+
+    Console::log( "The index is valid. " );
+
+    if (_BlockToValidate.previousHash != latestBlock["hash"].get<std::string>())
     {
         Console::log( "Invalid previous hash." );
         return false;
     }
-    // else if (_BlockToValidate.hash != _BlockToValidate.calculateSHA256Hash())
-    // TODO: Debug.
-    // Problem here.
-    else if (_BlockToValidate.hash != _BlockToValidate.calculateHybridHash(_BlockToValidate.targetBits))
+
+    Console::log( "The previous hash is valid." );
+
+    Console::log( "Validating hashes..." );
+
+    if (Crypto::verifyArgon2d( _BlockToValidate.argonHash, _BlockToValidate.getData()) == 0 )
+    {
+        Console::log( "Invalid ArgonHash" );
+        return false;
+    }
+    
+    std::string validBlockHash = _BlockToValidate.calculateHybridHash();
+    
+    if (_BlockToValidate.hash != validBlockHash)
     {
         Console::log( "Invalid hash." );
         return false;
     }
 
-    Console::log( "The block is valid." );
+    Console::log( "The hashes are valid." );
+    Console::log( "The block was successfully validated." );
     return true;
 }
 
@@ -182,9 +197,11 @@ void Blockchain::printBlockInfo( const Block _Block )
 {
     std::cout << "Index: " << std::to_string( _Block.index )
               << "\nTimestamp: " << _Block.timestamp
-              << "Hash: " << _Block.hash
-              << "\nPrevious Hash: " << _Block.previousHash
+              << "Previous Hash: " << _Block.previousHash
+              << "\nHash: " << _Block.hash
+              << "\nArgonHash: " << _Block.argonHash
               << "\nTarget Bits: " << _Block.targetBits
+              << "\nDifficulty: " << _Block.difficulty
               << "\nNounce: " << _Block.nounce
               << "\nData: " << _Block.data
               << std::endl;
