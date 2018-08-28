@@ -1,5 +1,5 @@
 # Exercises_Challenges_Courses
-Exercises, challenges and courses from various sources
+Exercises, experiments, challenges and courses from various sources
 
 ## JavaScript
 
