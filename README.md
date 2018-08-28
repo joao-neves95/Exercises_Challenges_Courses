@@ -43,6 +43,14 @@ Exercises, challenges and courses from various sources
 
 ---
 
+## C++
+
+- [Blockchain](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/C%2B%2B/Blockchain): A blockchain implementation in C++, with an hybrid Proof of Work that includes Argon2d hashing (RAM instensive; maximizes resistance to GPU and ASIC's cracking attacks) and a SHA256 PoW (GPU).<br/>
+```SHA256( Argon2d( blockData ) + blockData.nounce )```<br/>
+To find the block's nounce**s**, the miner must do the two hashes until he reaches the desired target bits. The difficulty increments the Argon2d memory requirements.<br/>
+
+---
+
 ## C
 
 - [Algorithms](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/C)
