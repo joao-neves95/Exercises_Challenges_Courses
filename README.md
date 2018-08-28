@@ -60,3 +60,9 @@ To find the block's nounce**s**, the miner must do the two hashes until he reach
 ## Unity (C#)
 
 1 - [Project 1](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Unity/Project1) - A small and simple Unity2d 2d platformer game, from internet tutorials, I did for a university class preparation.
+
+---
+
+## Academic Work (SQL, JavaScript, Unity)
+
+- [Repository](https://github.com/joao-neves95/academic-work)
