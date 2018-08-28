@@ -22,11 +22,18 @@ class Mining
         ~Mining();
 
     public:
-        /** Consensus. The mining difficulty. */
+        /** Consensus. The mining target difficulty (for SHA256). */
         static unsigned int getTargetBits();
+
+        /** Consensus. The mining target difficulty (for Argon2d). */
+        static unsigned int getTargetDifficulty();
 
         static bool hashMatchesTargetBits( std::string _Hash );
 
         /** The mine function. The proof of work. */
-        static Block * mine( const Block _Block );
+        static Block * mineArgon2d( const Block _Block );
+
+        static Block * mineSHA256( Block _Block );
+
+        static Block * mineHybrid( Block _Block );
 };

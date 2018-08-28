@@ -47,15 +47,9 @@ class Blockchain
 
         void generateNewBlock(const std::string _BlockData);
 
-        static std::string getBlockData( const Block _Block );
-
-        static std::string calculateBlockHash(const Block _Block);
-
         bool validateNewBlock(const Block _BlockToValidate );
 
         void replaceChain(const std::vector<Block> _NewChain);
-
-        static json blockToJson(const Block _Block);
 
         static std::string chainToJson(const std::vector<Block> _Chain);
 
