@@ -447,8 +447,13 @@ Corridor/Library/metadata/
 !.vscode/launch.json
 !.vscode/extensions.json
 
+#######################################
+
 *.env
 *.licenseheader
 stage/
 vs2015/
 leveldb.lib
+
+# Local folders.
+AI/
