@@ -40,6 +40,7 @@ Exercises, experiments, challenges and courses from various sources
 2 - [Basics of Object Oriented Programming with C# (Udemy)](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/Basics-of-Object-Oriented-Programming-with-C%23_Udemy)
 
 3 - [Build Web APIs using ASP.NET (edX/Microsoft - DEV247x)](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/Build-Web-APIs-using-ASP.NET_edX-Microsoft)
+  - [Extension of the final project's WebAPI with custom authentication](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/Personal-Projects/Tutorials/ASPNETCore2.WebServer)
 
 ---
 
