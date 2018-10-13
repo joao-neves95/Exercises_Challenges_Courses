@@ -4,6 +4,7 @@ Exercises, experiments, challenges and courses from various sources
 ## JavaScript
 
 - [Algorithms](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/JavaScript)
+  - [Collections.js](https://github.com/joao-neves95/Exercises_Challenges_Courses/blob/master/JavaScript/Collections.js): JavaScript collections (type safe List & Dictionary) inspired by .NET
 
 - [Snake Game](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/JavaScript/Snake-Game)
 
