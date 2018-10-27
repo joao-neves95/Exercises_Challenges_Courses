@@ -1,8 +1,13 @@
 /*
+Copyright (c) 2018 João Pedro Martins Neves <joao95neves@gmail.com> - All Rights Reserved
+Written by João Pedro Martins Neves <joao95neves@gmail.com>
+
+https://github.com/joao-neves95/Exercises_Challenges_Courses/blob/master/JavaScript/Collections.js
+
 
 Class Dictionary(): let dictionary = new Dictionary(uniqueKeys = false)
 
-Type safe Class List(): let list = new List('string' | 'number' | 'int' | 'float' | 'boolean')
+Type safe Class List(): let list = new List('string' | 'number' | 'int' | 'float' | 'boolean' | 'any')
 
 */
 
@@ -15,9 +20,9 @@ class Errors {
 }
 
 class Collection {
-  constructor( uniqueKeys, type ) {
+  constructor( uniqueKeys = false, type = 'any' ) {
     this.elements = [];
-    this.uniqueKeys = ( uniqueKeys || false );
+    this.uniqueKeys = uniqueKeys;
 
     if ( !type ) throw Errors.noTypeProvided;
     this.type = type;
@@ -26,7 +31,7 @@ class Collection {
 
   get length() {
     return this.elements.length;
-  };
+  }
 
   /**
    * Get all elements from the Collection.
@@ -96,7 +101,7 @@ class Dictionary extends Collection {
       throw new Error( Errors.existingKey );
 
     this.push( { [key]: value } );
-  };
+  }
 
   remove( key ) {
     const index = this.findIndexOfKey( key );
@@ -104,7 +109,7 @@ class Dictionary extends Collection {
       return false;
 
     this.splice( index );
-  };
+  }
 
   /**
    * Get a value with its index. Returns an array with the values.
@@ -113,7 +118,7 @@ class Dictionary extends Collection {
    */
   getByIndex( index ) {
     return Object.values( this.elements[index] )[0];
-  };
+  }
 
   /**
    * Get a key with its index.
@@ -172,24 +177,24 @@ class List extends Collection {
   add( value ) {
     switch ( this.type ) {
       case 'any':
-        this.push( value );
-        break;
+        return this.push( value );
       case 'int':
         if ( this.isInt( value ) ) {
-          this.push( value );
-          break;
+          return this.push( value );
         }
+        break;
       case 'float':
         if ( this.isFloat( value ) ) {
-          this.push( value );
-          break;
+          return this.push( value );
         }
+        break;
       default:
-        if ( typeof value === this.type && value !== 'float' && value !== 'int' )
-          this.push( value );
-        else
-          throw Errors.wrongType( this.type );
+        if ( typeof value === this.type )
+          return this.push( value );
+        break;
     }
+
+    throw Errors.wrongType( this.type );
   }
 
   /**
