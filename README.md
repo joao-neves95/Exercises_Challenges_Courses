@@ -1,4 +1,7 @@
 # Exercises_Challenges_Courses
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/joao-neves95/Exercises_Challenges_Courses.svg)](https://greenkeeper.io/)
+
 Exercises, experiments, challenges and courses from various sources
 
 ## JavaScript
