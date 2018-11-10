@@ -10,7 +10,7 @@
   "author": "shivayl",
   "license": "MIT",
   "dependencies": {
-    "async": "2.6.0",
-    "mongodb": "3.0.0"
+    "async": "2.6.1",
+    "mongodb": "3.1.9"
   }
 }
