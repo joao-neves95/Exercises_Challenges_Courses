@@ -1,0 +1,13 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "Node.js/Introduction-to-NodeJS-edX_Microsoft/Lab1-csv_to_json/package.json",
+        "Node.js/Introduction-to-NodeJS-edX_Microsoft/Lab2-RESTful_Blog_API/package.json",
+        "Node.js/Introduction-to-NodeJS-edX_Microsoft/Lab3_MongoDB-Migration-Node-Script/package.json",
+        "Node.js/Personal-Projects/TODO-list_web-app/app_mongoVersion/package.json",
+        "Node.js/Personal-Projects/TODO-list_web-app/app_mssqlVersion/package.json"
+      ]
+    }
+  }
+}
