@@ -61,7 +61,9 @@ To find the block's nounce**s**, the miner must do the two hashes until he reach
 
 ## Unity (C#)
 
-1 - [Project 1](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Unity/Project1) - A small and simple Unity2d 2d platformer game, from internet tutorials, I did for a university class preparation.
+1 - [Project 1](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Unity/Project1) - A simple Unity3D 2D platformer game, from internet tutorials, I did for a university class preparation.
+
+2 - [TheLostChests](https://github.com/joao-neves95/academic-work/tree/master/Unity/TheLostChests) - A simple Unity3D 2D platformer game made for an university class project.
 
 ---
 
