@@ -42,6 +42,10 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 
 3 - [Build Web APIs using ASP.NET (edX/Microsoft - DEV247x)](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/Build-Web-APIs-using-ASP.NET_edX-Microsoft)
   - [Extension of the final project's WebAPI with custom authentication](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/Personal-Projects/Tutorials/ASPNETCore2.WebServer)
+  
+### WPF
+
+ - [Braces](https://github.com/joao-neves95/Braces): A prototype of a text editor in Windows Presentation Foundation (WPF).
 
 ---
 
