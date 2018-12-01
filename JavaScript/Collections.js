@@ -97,18 +97,58 @@ class Dictionary extends Collection {
   }
 
   add( key, value ) {
-    if ( this.uniqueKeys && this.findIndexOfKey( key ) !== false )
-      throw new Error( Errors.existingKey );
+    if ( this.uniqueKeys ) {
+      if ( this.findIndexOfKey( key ) !== false )
+        throw new Error( Errors.existingKey );
+    }
 
     this.push( { [key]: value } );
   }
-
+  
+  /*
+   * Removes an item in the Dictionary with the provided key.
+   * @return { bool }
+   */
   remove( key ) {
     const index = this.findIndexOfKey( key );
     if ( index === false )
       return false;
 
     this.splice( index );
+    return true;
+  }
+
+  /*
+   * Updates an item in the Dictionary with the provided key.
+   * @param { any } key
+   * @param { any } newValue
+   * @return { bool }
+   */
+  updateByKey( key, newValue ) {
+    const index = this.findIndexOfKey( key );
+    if ( index === false )
+      return false;
+
+    return this.updateByIndex( index, newValue );
+  }
+  /*
+   * Updates an item in the Dictionary with the provided index.
+   * @param { any } key
+   * @param { any } newValue
+   * @return { bool }
+   */
+
+  updateByIndex( idx, newValue ) {
+    try {
+      Object.defineProperty( this.elements[idx], key, {
+        value: newValue
+      } );
+
+      return true;
+
+    } catch ( e ) {
+      return false;
+    }
   }
 
   /**
