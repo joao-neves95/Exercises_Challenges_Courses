@@ -54,7 +54,16 @@ class Collection {
    */
   clear() {
     this.elements = [];
-  };
+  }
+
+  /**
+   * (private) 
+   */
+  __forEach( Callback ) {
+    for (let i = 0; i < this.elements.length; ++i) {
+      Callback( this.elements[i] );
+    }
+  }
 
   /**
    * (private)
@@ -196,6 +205,11 @@ class Dictionary extends Collection {
 
     return false;
   }
+
+  forEachValue( Callback ) {
+    this.__forEach( ( item ) => {
+      Callback( Object.values( item )[0] );
+    } )  }
 }
 
 // Type safe list.
@@ -243,7 +257,13 @@ class List extends Collection {
    */
   remove( index ) {
     this.splice( index );
-  };
+  }
+
+  forEach( Callback ) {
+    this.__forEach( ( item ) => {
+      Callback( item );
+    } );
+  }
 
   /**
    * (private)
