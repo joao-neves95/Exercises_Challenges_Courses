@@ -1,13 +1,15 @@
 /*
-Copyright (c) 2018 João Pedro Martins Neves <joao95neves@gmail.com> - All Rights Reserved
-Written by João Pedro Martins Neves <joao95neves@gmail.com>
 
-https://github.com/joao-neves95/Exercises_Challenges_Courses/blob/master/JavaScript/Collections.js
+  Copyright (c) 2018 João Pedro Martins Neves <joao95neves@gmail.com> - All Rights Reserved
+  Written by João Pedro Martins Neves <joao95neves@gmail.com>
+
+  https://github.com/joao-neves95/Exercises_Challenges_Courses/blob/master/JavaScript/Collections.js
 
 
-Class Dictionary(): let dictionary = new Dictionary(uniqueKeys = false)
 
-Type safe Class List(): let list = new List('string' | 'number' | 'int' | 'float' | 'boolean' | 'any')
+  Class Dictionary(): let dictionary = new Dictionary(uniqueKeys = false)
+
+  Type safe Class List(): let list = new List('string' | 'number' | 'int' | 'float' | 'boolean' | 'any')
 
 */
 
@@ -34,6 +36,13 @@ class Collection {
   }
 
   /**
+   * (private)
+   */
+  get __last() {
+    return this.elements[this.length - 1];
+  }
+
+  /**
    * Get all elements from the Collection.
    * Returns elements[]
    */
@@ -42,7 +51,7 @@ class Collection {
   }
 
   /**
-   * 
+   *
    * @param { number } index
    */
   get( index ) {
@@ -56,11 +65,12 @@ class Collection {
     this.elements = [];
   }
 
+
   /**
-   * (private) 
+   * (private)
    */
   __forEach( Callback ) {
-    for (let i = 0; i < this.elements.length; ++i) {
+    for ( let i = 0; i < this.elements.length; ++i ) {
       Callback( this.elements[i] );
     }
   }
@@ -95,6 +105,10 @@ class Dictionary extends Collection {
     super( uniqueKeys, 'any' );
   }
 
+  get lastValue() {
+    return Object.values( this.__last )[0];
+  }
+
   getAllValues() {
     let allValues = [];
 
@@ -105,6 +119,7 @@ class Dictionary extends Collection {
     return allValues;
   }
 
+
   add( key, value ) {
     if ( this.uniqueKeys ) {
       if ( this.findIndexOfKey( key ) !== false )
@@ -113,7 +128,7 @@ class Dictionary extends Collection {
 
     this.push( { [key]: value } );
   }
-  
+
   /*
    * Removes an item in the Dictionary with the provided key.
    * @return { bool }
@@ -123,7 +138,7 @@ class Dictionary extends Collection {
     if ( index === false )
       return false;
 
-    this.splice( index );
+    this.splice( index, 1 );
     return true;
   }
 
@@ -209,19 +224,24 @@ class Dictionary extends Collection {
   forEachValue( Callback ) {
     this.__forEach( ( item ) => {
       Callback( Object.values( item )[0] );
-    } )  }
+    } );
+  }
 }
 
 // Type safe list.
 class List extends Collection {
   /**
-   * 
+   *
    * The Type of the list.
    * ('string' | 'number' | 'int' | 'float' | 'boolean' | 'any')
    * @param {String} type
    */
   constructor( type ) {
     super( false, type );
+  }
+
+  get last() {
+    return this.__last;
   }
 
   /**
@@ -258,6 +278,7 @@ class List extends Collection {
   remove( index ) {
     this.splice( index );
   }
+
 
   forEach( Callback ) {
     this.__forEach( ( item ) => {
