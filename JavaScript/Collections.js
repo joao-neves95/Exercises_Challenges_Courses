@@ -67,7 +67,7 @@ class Collection {
 
 
   /**
-   * (private)
+   * (private) 
    */
   __forEach( Callback ) {
     for ( let i = 0; i < this.elements.length; ++i ) {
@@ -105,8 +105,18 @@ class Dictionary extends Collection {
     super( uniqueKeys, 'any' );
   }
 
+  /**
+   * Returns the last element of the Dictionary or false.
+   *
+   * @returns { any }
+   */
   get lastValue() {
-    return Object.values( this.__last )[0];
+    try {
+      return Object.values( this.__last )[0];
+
+    } catch ( e ) {
+      return false;
+    }
   }
 
   getAllValues() {
@@ -231,7 +241,7 @@ class Dictionary extends Collection {
 // Type safe list.
 class List extends Collection {
   /**
-   *
+   * 
    * The Type of the list.
    * ('string' | 'number' | 'int' | 'float' | 'boolean' | 'any')
    * @param {String} type
@@ -240,8 +250,18 @@ class List extends Collection {
     super( false, type );
   }
 
+  /**
+   * Returns the last element of the List or false.
+   *
+   * @returns { any }
+   */
   get last() {
-    return this.__last;
+    try {
+      return this.__last;
+
+    } catch ( e ) {
+      return false;
+    }
   }
 
   /**
