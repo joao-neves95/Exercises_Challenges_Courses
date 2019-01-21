@@ -41,9 +41,11 @@ class Collection {
   get __last() {
     return this.elements[this.length - 1];
   }
-
+  
   /**
    * Get all elements from the Collection.
+   * For Dictionary is best to use .getAllValues()
+   * 
    * Returns elements[]
    */
   getAll() {
