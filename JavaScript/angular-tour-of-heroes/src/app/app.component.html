@@ -1,7 +1,24 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div class="title">
-  <h1>
-    {{ title }}
-  </h1>
-</div>
-<app-heroes></app-heroes>
+<header>
+
+  <div class="title">
+    <h1>
+      {{ title }}
+    </h1>
+  </div>
+
+  <nav>
+    <ul class="no-bullets">
+      <li>
+        <a [routerLink]="[ '/dashboard' ]">Dashboard</a>
+      </li>
+      <li>
+        <a [routerLink]="[ '/heroes' ]">Heroes</a>
+      </li>
+    </ul>
+  </nav>
+
+</header>
+
+<router-outlet></router-outlet>
+<app-messages></app-messages>

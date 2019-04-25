@@ -1,0 +1,13 @@
+<h2>Hero Details</h2>
+
+<ul class="heroes">
+
+    <li class="hero no-bullets"
+        *ngFor="let hero of heroes; let i=index;">
+
+        <a routerLink="/heroes/{{ hero.id }}">
+            <span class="badge">{{ hero.id }}</span> {{ hero.name }}
+        </a>
+    </li>
+
+</ul>
