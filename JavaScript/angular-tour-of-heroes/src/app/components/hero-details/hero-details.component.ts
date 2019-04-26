@@ -20,14 +20,20 @@ export class HeroDetailsComponent implements OnInit {
     private location:Location
   ) { }
 
-  hero:Hero;
-
   ngOnInit() {
     this.getHero();
   }
 
+  hero:Hero;
+  inputChanged:Boolean = false;
+
   goBack():void {
     this.location.back();
+  }
+
+  save():void {
+    this.heroService.updateHero(this.hero)
+                    .subscribe(() => this.goBack());
   }
 
   getHero():void {
