@@ -11,6 +11,7 @@ import { MessagesComponent } from './components/messages/messages.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HeroDetailsComponent } from './components/hero-details/hero-details.component';
 import { InMemoryDataService } from './services/in-memory-data/in-memory-data.service';
+import { HeroSearchComponent } from './components/dashboard/hero-search/hero-search.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { InMemoryDataService } from './services/in-memory-data/in-memory-data.se
     HeroesComponent,
     MessagesComponent,
     DashboardComponent,
-    HeroDetailsComponent
+    HeroDetailsComponent,
+    HeroSearchComponent
   ],
   imports: [
     BrowserModule,

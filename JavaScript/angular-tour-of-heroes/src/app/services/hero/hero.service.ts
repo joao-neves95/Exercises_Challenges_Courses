@@ -4,8 +4,6 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from '../message/message.service';
 import { Hero } from '../../models/hero';
-import { type } from 'os';
-import { THROW_IF_NOT_FOUND } from '@angular/core/src/di/injector';
 
 const httpOptions:object = {
   headers: new HttpHeaders({"Content-Type": "application/json"})
@@ -39,11 +37,10 @@ export class HeroService {
   getHero(id:number):Observable<Hero> {
     // this.messageService.add(`HeroService: fetched hero ${id}`);
     // return of(HeroesDB.find(hero => hero.id === id));
-    const url = `${this.heroesApiUrl}/${id}`;
-    return this.http.get<Hero>(url)
+    return this.http.get<Hero>(`${this.heroesApiUrl}/${id}`)
                     .pipe(
                       tap(_ => this.log(`Fetched hero id=${id}`)),
-                      catchError(this.handleError<Hero[]>(`getHero id=${id}`))
+                      catchError(this.handleError<Hero>(`getHero id=${id}`))
                     );
   }
 
@@ -70,6 +67,25 @@ export class HeroService {
                       tap(_ => this.log(`Added hero id=${hero.id}`)),
                       catchError(this.handleError<Hero>('addHero'))
                     );
+  }
+
+  deleteHero(id:number):Observable<any> {
+    return this.http.delete(`${this.heroesApiUrl}/${id}`, httpOptions)
+                    .pipe(
+                      tap(_ => this.log(`Deleted hero id=${id}`)),
+                      catchError(this.handleError<Hero>('addHero'))
+                    );
+  }
+
+  searchHeroes(term:string):Observable<Hero[]> {
+    if(!term.trim())
+      return of([]);
+
+      return this.http.get<Hero[]>(`${this.heroesApiUrl}/?name=${term}`)
+                      .pipe(
+                        tap(_ => this.log(`Found heroes matching "${term}"`)),
+                        catchError(this.handleError<Hero[]>('searchHeroes', []))
+                      );
   }
 
 }
