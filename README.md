@@ -14,13 +14,22 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 
 - [Udemy's "Code Your First Game: Arcade Classic in JavaScript on Canvas"](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/JavaScript/Code-Your-First-Game_Udemy)
 
+- [Angular TourOfHeroes Tutorial](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/JavaScript/angular-tour-of-heroes)
+
 ---
 
 ## Node.js
 
 ### Personal Project
 
-- [TODO List Web App (Just Another TODO List App)](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Node.js/Personal-Projects/TODO-list_web-app)
+- [PortfolioOS]()
+  
+  A social network for programmers and simulates an operative system. Users can make their one apps and integrate them on the OS.
+  The frontend was made with pure vanilla JavaScript ES8+ with different patterns, inckuding MVC.
+  The server was made on Node.js with Express.js.
+  The databese is PostgreSQL and it was normalized.
+
+- [TODO List Web App (Just Another TODO List App)](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Node.js/Personal-Projects/TODO-list_web-app/app_mssqlVersion)
 
 ### Courses
 
@@ -45,7 +54,7 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
   
 ### WPF
 
- - [Braces](https://github.com/joao-neves95/Braces): A prototype of a text editor in Windows Presentation Foundation (WPF).
+ - [Braces](https://github.com/joao-neves95/Braces): An in development text editor in Windows Presentation Foundation (WPF) and .NET Core, where the idea is that everything is a plugin. The text editor and the plugins talk in real-time through SignalR.
 
 ---
 
