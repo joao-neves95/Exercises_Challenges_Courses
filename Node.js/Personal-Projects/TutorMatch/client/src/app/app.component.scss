@@ -1,0 +1,16 @@
+
+@import 'contants.scss';
+
+app-header, app-copy, app-main {
+  width: 100%;
+}
+
+app-copy {
+  text-align: center;
+  padding: 6em;
+  background-color: $header-color;
+}
+
+app-main {
+  padding: 0 5em;
+}

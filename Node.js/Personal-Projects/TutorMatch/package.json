@@ -1,0 +1,22 @@
+{
+  "name": "tutormatch",
+  "version": "0.1.0",
+  "description": "TutorMatch is a startup that helps students find the best tutors.",
+  "main": "./server/server.js",
+  "scripts": {
+    "test": "npm audit",
+    "start": "node ./server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joao-neves95"
+  },
+  "author": "shivayl (João Neves)",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "helmet": "^3.18.0",
+    "morgan": "^1.9.1"
+  }
+}

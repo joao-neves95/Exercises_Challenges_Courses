@@ -1,0 +1,61 @@
+
+@import '../contants.scss';
+
+.content-title {
+  width: 100%;
+  text-align: center;
+  display: table;
+  padding: 3em;
+}
+
+.filter {
+  padding-left: $main-content-padding + 1.5em;
+
+  div.btn-group {
+    margin-left: .5em;
+    margin-right: 1.8em;
+  }
+}
+
+.card-container {
+  padding: $main-content-padding;
+
+  mdb-card {
+    max-width: $card-max-width;
+    padding: 0;
+    margin: .5em;
+
+    mdb-card-body {
+      background-color: #e0e0e0;
+
+      p {
+        margin: 0;
+      }
+
+      mdb-badge {
+        color: #0d0d0d !important;
+        margin-bottom: 1em;
+      }
+
+      .student-icon-group {
+        display: inline-block;
+
+        img {
+          display: inline;
+          margin-right: .5em;
+          background-color: #f2f0f0;
+          border-radius: 50%;
+          padding-top: .3em;
+          padding-left: .2em;
+          padding-right: .2em;
+        }
+      }
+    }
+  }
+
+  .see-all-btn-wrapper {
+    width: 100%;
+    padding: 2em;
+    text-align: center;
+  }
+}

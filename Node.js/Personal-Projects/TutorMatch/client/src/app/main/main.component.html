@@ -1,0 +1,74 @@
+
+<div class="row content-title">
+  <h2>
+    Our Tutors
+  </h2>
+  <p>
+    We have more than 100 tutors from various disciplines ready to match with you.
+  </p>
+</div>
+
+<div class="row filter">
+
+  <label> Filter by: </label>
+  <div class="btn-group btn-group-sm" role="group" aria-label="Filter by:">
+    <button mdbBtn type="button" color="unique" size="sm" class="waves-light" mdbWavesEffect
+            *ngFor=" let city of cityNames "
+            [class.active]=" city === filterBy "
+            (click)=" changeFilterBy( city ) ">
+      {{ city }}
+    </button>
+  </div>
+
+  <label> Sort by: </label>
+  <div class="btn-group btn-group-sm" role="group" aria-label="Filter by:">
+    <button mdbBtn type="button" color="unique" size="sm" class="waves-light" mdbWavesEffect
+            *ngFor=" let sortByName of sortByNames "
+            [class.active]=" sortByName === sortBy "
+            (click)=" sortTutorsBy( sortByName ) ">
+      {{ sortByName }}
+    </button>
+  </div>
+
+</div>
+
+<div class="row card-container">
+
+  <div class="card-wrapper col-12 col-sm-6 col-md-6 col-lg-3"
+       *ngFor="let tutor of tutors"
+       [style.display]=" tutor.city === filterBy || filterBy === '[ALL]' ? 'block' : 'none' ">
+
+    <mdb-card>
+      <div class="view overlay waves-light" mdbWavesEffect>
+        <mdb-card-img src="http://localhost:9999/assets/img/user-photo.jpg" alt="Card image cap"></mdb-card-img>
+        <a>
+          <div class="mask rgba-white-slight"></div>
+        </a>
+      </div>
+
+      <mdb-card-body>
+        <mdb-card-title>
+          <h4>{{ tutor.name }}</h4>
+        </mdb-card-title>
+
+        <p>City</p>
+        <mdb-badge>{{ tutor.city }}</mdb-badge>
+
+        <p>Students so far</p>
+        <div class="student-icon-group">
+          <img src="http://localhost:9999/assets/img/student-photo.svg" height="30" alt="Student Photo"
+               *ngFor="let student of tutor.students">
+        </div>
+      </mdb-card-body>
+    </mdb-card>
+
+  </div>
+
+  <div class="see-all-btn-wrapper">
+    <button mdbBtn type="button" color="unique" size="md" class="waves-light" mdbWavesEffect
+            (click)=" changeFilterBy( filterBy ) ">
+      See all Tutors
+    </button>
+  </div>
+
+</div>
