@@ -20,7 +20,7 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 
 ## Node.js
 
-### Personal Project
+### Personal Projects
 
 - [PortfolioOS](https://github.com/joao-neves95/portfolio-os)
   
@@ -46,6 +46,16 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 
 - [Tutorials](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/Personal-Projects/Tutorials)
 
+### Personal Projects
+
+ - [Braces](https://github.com/joao-neves95/Braces):
+ 
+ More than a code editor. It is a specification for code editors.
+ An API communicating through SignalR (WebSockets).
+ The idea is to create a bridge between code editors/IDEs and plugins/extensions,
+ in order for developers be able to use any plugin/extension in any code editor/IDE.
+ It is made in .NET Core 3.
+
 ### Courses
 
 1 - [Alison/Microsoft: Diploma in C# Programming (Introduction to C#)](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/Diploma-in-CSharp-Programming_Alison-Microsoft)
@@ -57,7 +67,7 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
   
 ### WPF
 
- - [Braces](https://github.com/joao-neves95/Braces): An in development text editor in Windows Presentation Foundation (WPF) and .NET Core, where the idea is that everything is a plugin. The text editor and the plugins talk in real-time through SignalR.
+ - [Braces](https://github.com/joao-neves95/Braces)
 
 ---
 
