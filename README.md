@@ -10,7 +10,7 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 
 ### Courses
 
-- [freeCodeCamp Projects](https://github.com/joao-neves95/freeCodeCampProjects)
+- [freeCodeCamp Projects](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/freeCodeCampProjects)
 
 - [Udemy's "Code Your First Game: Arcade Classic in JavaScript on Canvas"](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/JavaScript/Code-Your-First-Game_Udemy)
 
@@ -22,9 +22,10 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 
 ### Personal Project
 
-- [PortfolioOS]()
+- [PortfolioOS](https://github.com/joao-neves95/portfolio-os)
   
-  A social network for programmers and simulates an operative system. Users can make their one apps and integrate them on the OS.
+  A social network for programmers, that simulates an operative system with a fully interactive and dynamic desktop.
+  Users can make their own apps and integrate them on the OS.
   The frontend was made with pure vanilla JavaScript ES8+ with different patterns, inckuding MVC.
   The server was made on Node.js with Express.js.
   The databese is PostgreSQL and it was normalized.
@@ -33,7 +34,7 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 
 ### Courses
 
-- [freeCodeCamp Projects](https://github.com/joao-neves95/freeCodeCampProjects)
+- [freeCodeCamp Projects](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/freeCodeCampProjects)
 
 - [EDX/MICROSOFT COURSE: "Introduction to Node.js" (Node.js, Express and MongoDB)](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Node.js/Introduction-to-NodeJS-edX_Microsoft)
 
