@@ -78,8 +78,14 @@ It is capable of generating multiple code conversions.
 
 ## C++
 
-- [Blockchain](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/C%2B%2B/Blockchain): A blockchain implementation in C++, with an hybrid Proof of Work that includes Argon2d hashing (RAM instensive; maximizes resistance to GPU and ASIC's cracking attacks) and a SHA256 PoW (GPU).<br/>
+- [Blockchain](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/C%2B%2B/Blockchain):
+
+A basic blockchain with block mining. It uses an hybrid Proof of Work algorithm that
+includes Argon2d hashing - RAM instensive; maximizes resistance to GPU and ASIC's
+cracking attacks - and a SHA256 PoW - GPU intensive:<br/>
 ```SHA256( Argon2d( blockData ) + blockData.nounce )```<br/>
+The persistence of blocks is made through LevelDB.
+Curently there is no server nor transactions.<br/>
 To find the block's nounce**s**, the miner must do the two hashes until he reaches the desired target bits. The difficulty increments the Argon2d memory requirements.<br/>
 
 ---
