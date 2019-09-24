@@ -48,6 +48,11 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 
 ### Personal Projects
 
+ - [ClassStudio](https://github.com/joao-neves95/ClassStudio):
+ 
+A code generation tool with a desktop GUI in Electron.NET and a backend in .NET Core 3.0.
+It is capable of generating multiple code conversions.
+
  - [Braces](https://github.com/joao-neves95/Braces):
  
  More than a code editor. It is a specification for code editors.
