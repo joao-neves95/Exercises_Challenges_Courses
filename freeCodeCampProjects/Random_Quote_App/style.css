@@ -1,0 +1,49 @@
+body {
+  min-height: 100vh
+}
+
+html {
+  min-height: 100vh;
+  position: relative
+}
+
+main {
+  min-height: 100%;
+  padding: 0px;
+  position: absolute;
+  overflow: hidden
+}
+
+.center {
+  margin: auto
+}
+
+#card-styles {
+  margin-top: 25vh;
+  max-width: 30em;
+}
+
+/* Google Icons*/
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/materialicons/v29/2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2) format('woff2');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -moz-font-feature-settings: 'liga';
+  -moz-osx-font-smoothing: grayscale;
+}

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="application-name" content="freeCodeCamp Wikipedia Viewer Search Engine">
+  <!-- Tells Google not to provide a translation for this page -->
+  <meta name="google" content="notranslate">
+  <title>Wikipedia Viewer Search Engine</title>
+  <link type="text/css" rel="stylesheet" href="style.css">
+  <!-- Materialize CSS -->
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.1/css/materialize.min.css"
+    integrity="sha256-KLXLCrcIWxo4m4dJaO8s49ZuGuDQapGh1LWmdM8XtnY="
+    crossorigin="anonymous">
+</head>
+
+<body>
+
+  <header>
+    <nav class="nav-wrapper blue darken-1">
+      <ul>
+        <a href="">
+          <li class="brand-logo left" id="wikipedia-logo"><img src="https://png.icons8.com/wikipedia/win8/50/ffffff"></li>
+        </a>
+        <li class="brand-logo center hvr-bounce-to-bottom" id="search-btn-container">
+          <a id="search-btn" href="#">Search
+            <i class="material-icons btn-white right">search</i>
+          </a>
+        </li>
+      </ul>
+      <ul class="about right hvr-bounce-to-bottom">
+        <li id="about-btn-container">
+          <a id="about-btn" href="#">About</a>
+        </li>
+      </ul>
+    </nav>
+    <nav class="nav-wrapper blue darken-2 z-depth-3" id="search-form">
+      <form>
+        <div class="input-field">
+          <input type="search" placeholder="Type your search here and press enter" id="search-input">
+          <a href="#" onclick="newPopUp('Special:Random', false); return false;" class="btn waves-effect waves-light right blue darken-2 z-depth-3" id="random-search-btn">Random</a>
+        </div>
+      </form>
+    </nav>
+  </header>
+
+  <!-- WIKIPEDIA CONTENT PAGE -->
+  <main class="container">
+    <!-- Total Pages Badge -->
+    <article class="row">
+      <div class="col s12" id="results-container">
+      </div>
+    </article>
+    <!-- Wikipedia Cards Holder: -->
+    <section class="row" id="wiki-cards-holder">
+
+    </section>
+  </main>
+
+  <!-- Wikipedia Embedded Content iFrame Pop-Up -->
+  <section id="iframe-popup">
+
+  </section>
+
+
+  <!-- ABOUT PAGE -->
+  <section id="about-page" class="container flow-text dark-text blue lighten-3 z-depth-2">
+    <div class="row">
+      <div class="col s12">
+        <h1 id="header-about">About</h1>
+        <h4 id="stack"><i class="material-icons">build</i>Stack</h4>
+        <div class="p-about">
+          <p><i class="material-icons">web</i>Front End Frame Work: Materialize.css by Google</p>
+          <p><i class="material-icons">wb_iridescent</i> Animations: Hover.css and Magic.css</p>
+          <p><i class="material-icons">widgets</i>Icons: Material Design Google Icons</p>
+          <p><i class="material-icons">usb</i>API: <a href="https://www.mediawiki.org/wiki/API:Main_page" target="_blank"> MediaWiki</a></p>
+        </div>
+        <h4 id="find-me"><i class="material-icons">language</i> Find me on the web</h4>
+        <div class="row list-inline">
+          <ul>
+            <li>
+              <a href="https://pt.linkedin.com/in/jo%C3%A3o-neves-1995-dg" target="_blanck">
+                <i class="fa fa-linkedin-square fa-2x dark-text" aria-hidden="true"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.behance.net/joao-neves25" target="_blanck">
+                <i class="fa fa-behance-square fa-2x dark-text" aria-hidden="true"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/joao-neves95" target="_blanck">
+                <i class="fa fa-github-square fa-2x dark-text" aria-hidden="true"></i>
+              </a></li>              
+            <li>
+              <a href="https://www.freecodecamp.org/joao-neves95" target="_blanck">
+                <i class="fa fa-free-code-camp fa-2x dark-text" aria-hidden="true"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <h4 id="repo">
+          <a href="https://github.com/joao-neves95/freeCodeCamp/tree/master/Wikipedia_Viewer_App" target="_blanck">
+            <i class="fa fa-github-square dark-text" aria-hidden="true"></i>
+          </a>
+          &nbsp;GitHub Repository
+        </h4>
+      </div>
+    </div>
+  </section>
+
+  <!-- JQuery JS -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+  <!-- Materialize JS -->
+  <script
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.1/js/materialize.min.js"
+    integrity="sha256-lz8daOJziB9AEs+1JbjG/CcDlppneKaMdCdDEb2q5nA="
+    crossorigin="anonymous">
+  </script>
+  <script type="text/javascript" src="main.js"></script>
+
+</body>
+
+</html>

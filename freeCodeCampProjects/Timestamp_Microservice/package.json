@@ -1,0 +1,32 @@
+{
+  "name": "timestamp-microservicet",
+  "version": "0.1.0",
+  "description": "freeCodeCamp's Timestamp Microservice Back End Project",
+  "main": "server.js",
+  "scripts": {
+    "start": "node-dev server.js"
+  },
+  "dependencies": {
+    "express": "4.16.2",
+    "moment": "2.20.1"
+  },
+  "devDependencies": {
+    "node-dev": "^3.1.3"
+  },
+  "engines": {
+    "node": "8.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joao-neves95/freeCodeCamp/tree/master/Timestamp_Microservice"
+  },
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "glitch",
+    "express",
+    "unix timestamp",
+    "timestamp",
+    "microservice"
+  ]
+}

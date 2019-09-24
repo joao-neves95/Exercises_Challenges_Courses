@@ -1,0 +1,31 @@
+{
+  "name": "findimages",
+  "version": "0.0.1",
+  "description": "What am I about?",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "4.16.2",
+    "request": "2.84.0",
+    "mongodb": "3.0.1",
+    "helmet": "^3.9.0",
+    "compression": "^1.7.1",
+    "cors": "^2.8.4"
+  },
+  "engines": {
+    "node": "8.x"
+  },
+  "repository": {
+    "url": "https://glitch.com/edit/#!/welcome-project"
+  },
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "glitch",
+    "express",
+    "freeCodeCamp",
+    "Google API"
+  ]
+}

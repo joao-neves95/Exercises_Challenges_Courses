@@ -1,0 +1,52 @@
+<!-- https://www.freecodecamp.org/challenges/timestamp-microservice -->
+<!-- index.html based on: https://timestamp-ms.herokuapp.com/ -->
+
+<!doctype html>
+<html lang="en">
+  
+<head>
+  <title>Timestamp Microservice</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+</head>
+  
+<body>
+  <div class="container">
+    <h1 class="header text-center mt-3">
+      API Basejump:
+      <a href="https://www.freecodecamp.org/challenges/timestamp-microservice" target="_blank">Timestamp Microservice</a>
+      <br>
+      (freeCodeCamp Back End Project)
+    </h1>
+    <blockquote class="mt-4">
+      <h3>
+        User stories:
+      </h3>
+      <ul>1) I can pass a string as a parameter, and it will check to see whether that string 
+      contains either a unix timestamp or a natural language date (example: January 1, 2016)</ul>
+      <ul>2) If it does, it returns both the Unix timestamp and the natural language form of that date.</ul>
+      <ul>3) If it does not contain a date or Unix timestamp, it returns null for those properties.</ul>
+    </blockquote>
+    <h3>Example usage:</h3>
+    <code>https://timestamp-microservice-shivayl.glitch.me/January%2010,%202018</code><br>
+    <code>https://timestamp-microservice-shivayl.glitch.me/1515542400</code>
+    <h3>Example output:</h3>
+    <pre>
+      {
+        "status":	"Success."
+        "input":	"January 10, 2018"
+        "response":	{
+          "unix":	1515542400
+          "natural":	"January 10, 2018"
+        }
+      }
+    </pre>
+    <h5>
+      <a href="https://github.com/joao-neves95" target="_blank">My GitHub Profile</a>
+    </h5>
+    <h5>
+      <a href="https://github.com/joao-neves95/freeCodeCamp/tree/master/Timestamp_Microservice" target="_blank">GitHub Project Repository</a>
+    </h5>
+  </div>
+</body>
+  
+</html>

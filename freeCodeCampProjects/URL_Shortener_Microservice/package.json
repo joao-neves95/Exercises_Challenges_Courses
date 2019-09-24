@@ -1,0 +1,32 @@
+{
+  "name": "xs-url",
+  "version": "0.1.0",
+  "description": "freeCodeCamp's URL Shortener Microservice Project",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "4.16.2",
+    "mongodb": "3.0.1",
+    "crypto-random-string": "1.0.0",
+    "is-absolute-url": "2.1.0"
+  },
+  "devDependencies": {
+    "morgan": "^1.9.0"
+  },
+  "engines": {
+    "node": "8.x"
+  },
+  "repository": {
+    "url": "https://glitch.com/edit/#!/welcome-project"
+  },
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "glitch",
+    "express",
+    "freeCodeCamp",
+    "url shortener"
+  ]
+}

@@ -1,0 +1,119 @@
+<!-- https://www.freecodecamp.org/challenges/url-shortener-microservice -->
+
+<!doctype html>
+<html lang="en">
+  
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>XS-URL | URL Shortener</title>
+  <meta name="description" content="freeCodeCamp's URL Shortener Microservice Project">
+  <meta name="application-name" content="XS-URL">
+  <meta name="keywords" content="freeCodeCamp, url shortener, microservice, api, short url, url">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="google" content="notranslate">
+  <!-- BOOTSTRAP CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
+  <!-- MAGIC CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magic/1.1.0/magic.min.css" integrity="sha256-IyWF/uZ87xakgLbo5I+VtxrKkMZFnltnRJdiTE3OzAE=" crossorigin="anonymous" />
+</head>
+  
+<body>
+
+  <div class="container">
+    <!-- URL MODAL -->
+    <div class="modal fade" id="url-modal" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modal-title">Your short URL</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="modal-url-link">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- TITLE HEADER -->
+    <h1 class="header text-center mt-3">
+      <a href="https://www.freecodecamp.org/challenges/url-shortener-microservice" target="_blank">freeCodeCamps's URL Shortener Microservice</a>
+      <br>
+      (freeCodeCamp Back End Project)
+    </h1>
+    <!-- URL SHORTENER FORM -->
+    <form>
+      <div class="form-group mt-5">
+        <div id="errors"></div>
+        <input class="form-control" id="inputUrl" type="url" aria-describedby="originalUrl" placeholder="Original URL">
+        <small id="originalUrl" class="form-text text-muted">All shortened URL's are public and can be accessed by anyone.</small>
+      </div>
+      <button id="submit-button" class="btn btn-primary" type="submit">
+        SHORTEN URL
+      </button>
+    </form>
+    <!-- USER STORIES -->
+    <blockquote class="mt-5">
+      <h3 class="mt-3">
+        User Stories:
+      </h3>
+      <ol>
+        <li>I can pass a URL as a parameter and I will receive a shortened URL in the JSON response.</li>
+        <li>If I pass an invalid URL that doesn't follow the valid http://www.example.com format, the JSON response will contain an error instead.</li>
+        <li>When I visit that shortened URL, it will redirect me to my original link.</li>
+      </ol>
+    </blockquote>
+    <!-- EXAMPLE USAGE -->
+    <h3 class="mt-3">Example usage:</h3>
+    <code>
+      <a href="https://xs-url.glitch.me/shorten/https://www.freecodecamp.org/challenges/url-shortener-microservice" target="_blank">
+        https://xs-url.glitch.me/shorten/https://www.freecodecamp.org/challenges/url-shortener-microservice
+      </a>
+    </code>
+    <!-- EXAMPLE OUTPUT -->
+    <h3 class="mt-3">Example output:</h3>
+    <pre>
+      {
+        "originalUrl": "https://github.com/joao-neves95/freeCodeCamp",
+        "shortUrl": "<a href="https://xs-url.glitch.me/5f0ac507" target="blank">https://xs-url.glitch.me/5f0ac507</a>",
+        "info": {
+          "posterIP": "11.111.111.111",
+          "timestamp": "2018-01-11 22:23:46.691"
+        }
+      }
+    </pre>
+    <!-- GITHUB LINKS -->
+    <h5>
+      <a href="https://github.com/joao-neves95" target="_blank">My GitHub Profile</a>
+    </h5>
+    <h5>
+      <a href="https://github.com/joao-neves95/freeCodeCamp/tree/master/URL_Shortener_Microservice" target="_blank">GitHub Project Repository</a>
+    </h5>
+    
+  </div>
+  <!-- JQUERY JS-->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous">
+  </script>
+  <!-- POPPER JS -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"
+    integrity="sha256-pS96pU17yq+gVu4KBQJi38VpSuKN7otMrDQprzf/DWY="
+    crossorigin="anonymous">
+  </script>
+  <!-- BOOTSTRAP JS -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.3/js/bootstrap.min.js"
+    integrity="sha256-JNyuT3QsYBdyeKxKBwnGJAJiACWcow2TjhNruIFFPMQ="
+    crossorigin="anonymous">
+  </script>
+  <script type="text/javascript" src="main.js"></script>
+</body>
+  
+</html>

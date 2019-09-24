@@ -1,0 +1,156 @@
+/* Hover CSS */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.1.1/css/hover-min.css");
+/* Magic CSS */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/magic/1.1.0/magic.min.css');
+/* Font Awesome */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+
+.dark-text {
+  color: #212529;
+}
+
+.btn-white {
+  color: white !important;
+}
+
+#wikipedia-logo {
+  margin-top: 0.17em;
+  margin-left: 1em;
+}
+
+/* About Button */
+ul.about {
+  margin-right: 1em;
+}
+a#about-btn {
+  width: 8em;
+  text-align: center;
+}
+/* End of About Button */
+
+#random-search-btn {
+  margin-right: 1em;
+}
+
+/* Main */
+#wiki-cards-holder {
+  margin-top: 2em;
+}
+
+main a:link {
+  color: black;
+}
+
+#results-container {
+  margin-top: 1em;
+}
+
+#results {
+  margin-right: 47.1%;
+}
+/* End of Main */
+
+/* Wikipedia Embedded Content iFrame Pop-Up */
+#iframe-container {
+  background-color: white;
+  position: fixed;
+  top: 10%;
+  left: 2%;
+  right: 2%;
+  margin: auto;
+  padding-top: 10em;
+  text-align: center;
+  height: 85%;
+  width: 96%;
+  z-index: 99;
+}
+
+#iframe-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding-bottom: 0.9em;
+}
+
+section#iframe-popup a.btn {
+  margin-top: 0.25em;
+  margin-left: 0.25em;
+}
+
+section#iframe-popup a.btn-floating {
+  margin-top: 0.20em;
+  margin-right: 0.25em;
+}
+
+i.material-icons {
+  color: black;
+  margin-right: 0.5em;
+}
+
+iframe {
+  padding-top: 3em;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right:0;
+  height: 100%;
+  width: 100%;
+}
+/* End of Wikipedia embedded content iFrame */
+
+/* About Page */
+#about-page {
+  background-color: #CAC8C8;
+  border-radius: 0.2em;
+  margin-top: 1em;
+  padding: 0 0 0.3em 1em;
+}
+
+#stack, #find-me, #repo {
+  margin-top: 2em;
+  margin-left: 1em;
+}
+
+div.p-about {
+  margin-left: 2.8em;
+}
+
+section#about-page a:link {
+  color: #1f9b1f;
+}
+
+div.list-inline {
+  margin-left: 3em !important;
+}
+
+div.list-inline li {
+  display: inline;
+  list-style-type: none;
+  margin-left: 0.3em;
+}
+/* End of About Page */
+
+/* Material Design Google Icons */
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/materialicons/v31/2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2) format('woff2');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -moz-font-feature-settings: 'liga';
+  -moz-osx-font-smoothing: grayscale;
+}

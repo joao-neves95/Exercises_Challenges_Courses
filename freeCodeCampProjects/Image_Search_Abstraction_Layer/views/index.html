@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>FindImages.com</title>
+    <meta name="description" content="">
+    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+    <!-- Bootstrap Material Design CSS -->
+    <!-- Docs: https://fezvrasta.github.io/bootstrap-material-design/docs/4.0/getting-started/introduction/  -->
+    <link
+      rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.0.0-beta.4/dist/css/bootstrap-material-design.min.css"
+      integrity="sha384-R80DC0KVBO4GSTw+wZ5x2zn2pu4POSErBkf8/fSFhPXHxvHJydT0CSgAP2Yo2r4I"
+      crossorigin="anonymous">
+    <link rel="stylesheet" href="/style.css">
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <ul class="navbar-nav mr-auto mx-auto">
+          <a class="navbar-brand" href="#">FindImages.com</a>
+          <li class="nav-item">
+            <a class="nav-link active" href="#" id="btn-about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="btn-last-searches">Last Searches</a>
+          </li>
+        </ul>
+        <form class="form-inline mx-auto navbar-logo">
+          <input id="search-input" class="form-control mx-auto mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+          <button id="btn-search" class="btn btn-outline-success my-2 my-sm-0" type="button">Search</button>
+        </form>
+      </nav>
+      <input type="hidden" id="offset" value="0">
+    </header>
+
+    <main class="container">
+      <section id="about">
+        <!-- TITLE HEADER -->
+        <h1 class="header text-center mt-3">
+          <a href="https://www.freecodecamp.org/challenges/image-search-abstraction-layer" target="_blank">freeCodeCamps's Image Search Abstraction Layer</a>
+          <br>
+          (freeCodeCamp Back End Project)
+        </h1>
+        <!-- USER STORIES -->
+        <blockquote class="mt-5">
+          <h3 class="mt-4">
+            User Stories:
+          </h3>
+          <ol>
+            <li>I can get the image URLs, alt text and page urls for a set of images relating to a given search string.</li>
+            <li>I can paginate through the responses by adding a ?offset=2 parameter to the URL.</li>
+            <li>I can get a list of the most recently submitted search strings.</li>
+          </ol>
+        </blockquote>
+        <!-- EXAMPLE USAGE -->
+        <h3 class="mt-4">Example usage:</h3>
+        <h5 class="mt-3">
+          GET request to the API to get the images:
+        </h5>
+          <a href="https://findimage.glitch.me/api/search/something?offset=0" target="_blank">
+          https://findimage.glitch.me/api/search/something?offset=0
+          </a>
+          (Page One)
+          <br>
+          <a href="https://findimage.glitch.me/api/search/something?offset=1" target="_blank">
+            https://findimage.glitch.me/api/search/something?offset=1
+          </a>
+          (Page Two)
+          <br>
+          <a href="https://findimage.glitch.me/api/search/something?offset=2" target="_blank">
+            https://findimage.glitch.me/api/search/something?offset=2
+          </a>
+          (Page Three)
+        <h5 class="mt-3">
+          GET request to the API to get the last searches from the database:
+        </h5>
+        <a href="https://findimages.glitch.me/api/last" target="_blank">
+          https://findimages.glitch.me/api/last
+        </a>
+        <br>
+        <a href="https://findimages.glitch.me/api/last/all" target="_blank">
+          https://findimages.glitch.me/api/last/all
+        </a>
+      </section>
+  
+      <section id="images" class="row mx-auto">
+        <a id="next-page" href="#">Next Page &gt;</a>
+      </section>
+      
+      <section id="last-searches" class="row mx-auto">
+      </section>
+
+      <footer>
+        <!-- GITHUB LINKS -->
+        <h5>
+          <a href="https://github.com/joao-neves95" target="_blank">My GitHub Profile</a>
+        </h5>
+        <h5>
+          <a href="https://github.com/joao-neves95/freeCodeCampProjects/tree/master/Image_Search_Abstraction_Layer" target="_blank">GitHub Project Repository</a>
+        </h5>
+        <p>
+          &copy; Copyright 2018 - João Pedro Martins Neves
+        </p>
+      </footer>
+    </main>
+
+    <!-- JQuery JS -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous">
+    </script>
+    <!-- Popper JS -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"
+      integrity="sha256-pS96pU17yq+gVu4KBQJi38VpSuKN7otMrDQprzf/DWY="
+      crossorigin="anonymous">
+    </script>
+    <!-- Bootstrap Material Design JS -->
+    <script
+      src="https://unpkg.com/bootstrap-material-design@4.0.0-beta.4/dist/js/bootstrap-material-design.js"
+      integrity="sha384-3xciOSDAlaXneEmyOo0ME/2grfpqzhhTcM4cE32Ce9+8DW/04AGoTACzQpphYGYe"
+      crossorigin="anonymous">
+    </script>
+    <script src="main.js" type="text/javascript"></script>
+
+  </body>
+</html>
