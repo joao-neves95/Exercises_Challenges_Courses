@@ -59,7 +59,7 @@ It is capable of generating multiple code conversions.
  An API communicating through SignalR (WebSockets).
  The idea is to create a bridge between code editors/IDEs and plugins/extensions,
  in order for developers be able to use any plugin/extension in any code editor/IDE.
- It is made in .NET Core 3.
+ It is made in .NET Core 3 and plugins/extension run in the PluginHost inside a Docker container.
 
 ### Courses
 
