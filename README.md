@@ -74,6 +74,12 @@ It is capable of generating multiple code conversions.
 
  - [Braces](https://github.com/joao-neves95/Braces)
 
+### Unity (C#)
+
+1 - [Project 1](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Unity/Project1) - A simple Unity3D 2D platformer game, from internet tutorials, I did for a university class preparation.
+
+2 - [TheLostChests](https://github.com/joao-neves95/academic-work/tree/master/Unity/TheLostChests) - A simple Unity3D 2D platformer game made for an university class project.
+
 ---
 
 ## C++
@@ -88,19 +94,13 @@ The persistence of blocks is made through LevelDB.
 Curently there is no server nor transactions.<br/>
 To find the block's nounce**s**, the miner must do the two hashes until he reaches the desired target bits. The difficulty increments the Argon2d memory requirements.<br/>
 
+- [Algorithms](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/C%2B%2B/Algorithms)
+
 ---
 
 ## C
 
 - [Algorithms](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/C)
-
----
-
-## Unity (C#)
-
-1 - [Project 1](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Unity/Project1) - A simple Unity3D 2D platformer game, from internet tutorials, I did for a university class preparation.
-
-2 - [TheLostChests](https://github.com/joao-neves95/academic-work/tree/master/Unity/TheLostChests) - A simple Unity3D 2D platformer game made for an university class project.
 
 ---
 
