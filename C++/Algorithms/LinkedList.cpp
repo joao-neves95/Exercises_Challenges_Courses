@@ -6,15 +6,51 @@ using namespace std;
 
 template <typename T>
 class LinkedList {
+    private:
+      LinkedList<int>* next;
+      LinkedList<int>* last;
+    
     public:
       LinkedList(T value) {
         this->value = value;
       }
       
       T value;
-      LinkedList<int>* next;
       
-      T printList() {
+      LinkedList<int>* getNext() {
+          return this->next;
+      }
+      
+      LinkedList<int>* getLast() {
+          return this->last;
+      }
+      
+      void dispose() {
+          LinkedList<int>* currentNode = this;
+          LinkedList<int>* nextNode = NULL;
+          
+          while (currentNode != NULL) {
+            nextNode = currentNode->next;
+            delete currentNode;
+            currentNode = nextNode;
+          }
+          
+          delete currentNode;
+          delete nextNode;
+      }
+      
+      void add(LinkedList<int>* node) {
+          if (this->next == NULL || this->last == NULL) {
+              this->next = node;
+          
+          } else {
+              this->last->next = node;
+          }
+          
+          this->last = node;
+      }
+      
+      void printList() {
           LinkedList<int>* currentNode = this;
           
           while (currentNode != NULL) {
@@ -31,16 +67,16 @@ int main()
     
     // HEAD.
     LinkedList<int>* linkedList = new LinkedList<int>( values[0] );
-    LinkedList<int>* currentNode = linkedList;
     int i;
     for (i = 1; i < ARRAY_SIZE( values ); ++i) {
-        currentNode->next = new LinkedList<int>( values[i] );
-        currentNode = currentNode->next;
+        linkedList->add( new LinkedList<int>( values[i] ) );
     }
     
     linkedList->printList();
-    
-    delete currentNode;
+
+    cout << "The last value is: " << linkedList->getLast()->value << endl;
+
+    linkedList->dispose();
     delete linkedList;
     return 0;
 }
