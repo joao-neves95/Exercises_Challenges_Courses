@@ -4,7 +4,8 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 ## JavaScript
 
 - [Algorithms](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/JavaScript)
-  - [Collections.js](https://github.com/joao-neves95/Exercises_Challenges_Courses/blob/master/JavaScript/Collections.js): JavaScript collections (type safe List & Dictionary) inspired by .NET
+
+- [js.system.collections](https://github.com/joao-neves95/js.system.collections): JavaScript collections inspired by .NET (type safe List & Dictionary)
 
 - [Snake Game](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/JavaScript/Snake-Game)
 
@@ -21,6 +22,10 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 ## Node.js
 
 ### Personal Projects
+
+- [MergerJS](https://github.com/joao-neves95/merger-js)
+
+  Yet another simple cross-platform CLI build tool to bundle JavaScript files, with a custom file import syntax, ES8+ minification, auto   build capabilities, and native OS notifications.
 
 - [PortfolioOS](https://github.com/joao-neves95/portfolio-os)
   
