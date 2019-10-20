@@ -1,0 +1,142 @@
+.category {
+    h2 {
+        font-size: 1.6em;
+        text-align: center;
+        margin: 0;
+    }
+    a.btn-floating {
+        margin-bottom: 0.5em;
+    }
+    padding: 2px;
+    padding-top: 7px !important;
+}
+
+article.hoverable:hover {
+    cursor: pointer;
+}
+
+.card {
+    margin-top: 0;
+    transform-origin: 0 0;
+    .card-content {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    .card-title {
+        font-size: 1.2em;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .info {
+        color: #cecece;
+        font-size: 0.8em;
+        position: relative;
+        &.icon {
+            padding-left: 20px;
+        }
+        .material-icons {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
+    }
+    button.options {
+        background-color: rgba(0, 0, 0, 0.0);
+        &:hover,
+        &:active,
+        &.open {
+            background-color: rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s;
+        }
+        padding: 0;
+        padding-top: 5px;
+        padding-left: 5px;
+        padding-right: 5px;
+        border: none;
+        position: absolute;
+        right: 0;
+        transition: background-color 0.3s;
+        i {
+            color: white;
+        }
+    }
+    button.user {
+        border-radius: 20px;
+        border: none;
+        position: relative;
+        padding: 2px 10px;
+        padding-right: 20px;
+        background-color: #06b106;
+        i {
+            font-size: 1rem;
+            position: absolute;
+            right: 5px;
+            top: 5px;
+        }
+    }
+}
+
+.add-category {
+    margin-top: 7px;
+    margin-bottom: 14px;
+    border-radius: 20px;
+    padding: 5px 5px !important;
+    border: 2px dashed 9f9f9f;
+    h2 {
+        color: #9f9f9f;
+    }
+}
+
+.menu {
+    position: absolute;
+    z-index: 3;
+    right: 38px;
+    width: 105px;
+    top: 0;
+    margin-top: 0;
+    background-color: white;
+    li {
+        width: 105px;
+        a {
+            color: black;
+            width: inherit;
+            display: block;
+            padding: 8px 10px;
+            &:hover {
+                background-color: #d7d6d6;
+                cursor: pointer;
+            }
+        }
+        border-bottom: 1px solid #d7d6d6;
+    }
+}
+
+.flex-category {
+    width: 200px;
+}
+
+//Card size for phones
+@media(max-width: 768px) {
+    .flex-category {
+        width: 300px;
+    }
+}
+
+//Card size for l
+@media(min-width: 768) and (max-width: 992px) {
+    .flex-category {
+        width: 200px;
+    }
+}
+
+@media(min-width: 993px) and (max-width: 1200px) {
+    .flex-category {
+        width: 200px;
+    }
+}
+
+@media(min-width: 1201px) {
+    .flex-category {
+        width: 200px;
+    }
+}

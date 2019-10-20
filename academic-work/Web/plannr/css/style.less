@@ -1,0 +1,157 @@
+@import "loadingPage.less";
+@import "text-style.less";
+@import "panel.less";
+@import "aside.less";
+@import "cards.less";
+@import "scrollbar.less";
+@import "footer.less";
+@import "dragAndDrop.less";
+@import "cardsModal.less";
+
+body {
+	font-family: 'Oxygen', sans-serif;
+	height: 100vh !important;
+	min-height: 100vh !important;
+	min-width: 100vw !important;
+	overflow: hidden;
+}
+
+main{
+	overflow: auto;
+	padding-left: 35px!important;
+}
+
+html {
+	height: 100% !important;
+	position: relative;
+}
+
+
+#maincontent {
+	height: 90vh;
+	max-height: 100%;
+	margin: 0;
+}
+
+main {
+	height: 100%;
+	display: flex;
+	.category{
+		flex: 0 0 auto;
+	}
+}
+
+#options-bar {
+	margin: 1.2em;
+}
+
+h1 {
+  font-weight: 500;
+}
+
+.mr1-5em {
+	margin-right: 1.5em; 
+}
+
+.mb1em {
+	margin-bottom: 1em;
+}
+
+.font1-1rem {
+  font-size: 1.1rem;
+}
+
+.hoverable:hover{
+	cursor: pointer;
+}
+
+.larger {
+	font-size: 30px !important;
+	margin-top: 0px !important;
+	padding-top: 0px !important;
+	vertical-align: middle !important;
+}
+
+.larger-2 {
+	font-size: 40px !important;
+	margin-top: 0px !important;
+	padding-top: 0px !important;
+	vertical-align: middle !important;
+}
+
+.larger-3 {
+	font-size: 50px !important;
+	margin-top: 0px !important;
+	padding-top: 0px !important;
+	vertical-align: middle !important;
+}
+
+.larger-4 {
+	font-size: 60px !important;
+	margin-top: 0px !important;
+	padding-top: 0px !important;
+	vertical-align: middle !important;
+}
+
+.larger-5 {
+	font-size: 70px !important;
+	margin-top: 0px !important;
+	padding-top: 0px !important;
+	vertical-align: middle !important;
+}
+
+.row-absolute {
+	position: absolute;
+	z-index: 1;
+	width: 100%;
+}
+
+.hidden{
+	display: none!important;
+}
+
+.blackout{
+	position: absolute;
+	z-index: 10;
+	background-color: rgba(0,0,0,0.4);
+	width: 100vw;
+	height: 100vh;
+	max-width: 100%;
+	margin: 0;
+}
+
+.btn {
+	&.pickButton{
+		position: relative!important;
+	}
+	.color-picker{
+	position: absolute;
+    top: 40px;
+    right: -126px;
+	z-index: 2;
+	}
+}
+
+.relative{
+	position: relative;
+}
+
+span.green{
+	color: rgb(0,193,16);
+	background-color: rgba(0,0,0,0.0)!important;
+}
+
+span.red{
+	color: rgb(193,0,16)!important;
+	background-color: rgba(0,0,0,0.0)!important;
+}
+
+.menu li a:hover {
+  background-color: #d7d6d6
+}
+
+.flex-container {
+	display: flex;
+	flex: 0 0 auto;
+	flex-direction: row;
+}

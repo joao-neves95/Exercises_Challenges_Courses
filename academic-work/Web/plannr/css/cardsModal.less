@@ -1,0 +1,61 @@
+.cards-modal {
+  padding: 1em;
+  .materialize-textarea {
+    font-size: 1.08rem !important;
+    transition: font-size 0.3s !important;
+  }
+  .disabled {
+    border-bottom: none !important;
+    font-size: 1.25rem !important;
+    cursor: pointer;
+  }
+  .input-field > p, #m-cardAssigned {
+    color: #989892;
+    font-size: 0.8rem;
+    pointer-events: all;
+  }
+  #m-cardAssigned {
+    cursor: pointer;
+  }
+  #m-cardDesc {
+    margin-bottom: 0.5em;
+    padding-bottom: 0.5em;
+  }
+  #m-assignedUsers {
+    padding-top: 0.6em;
+    .chip {
+      margin-right: 0.5em;
+    }
+  }
+  #m-cardComments {
+    display: inline-block;
+    width: 100%;
+    border: none;
+    margin-top: .7em;
+    .comments-label {
+      margin-top: 0.5em;
+      margin-bottom: 0.4em;
+      font-size: 2rem;
+    }
+    li {
+      overflow: hidden;
+      padding-right: 1em;
+      border: 1px solid;
+      margin-bottom: 0.8em;
+      .comment {
+        float: left;
+        margin: 0;
+        width: 95%;
+        min-height: 2rem;
+        height: 2.1rem;
+        padding: 0;
+      }
+      .delete-comment {
+        float: right;
+        width: 4%;
+        color: #e03131;
+        cursor: pointer;
+      }
+    }
+  }
+}

@@ -1,0 +1,104 @@
+@navColor: #4db6ac;
+
+aside {
+    color: white;
+    height: 100%;
+    position: relative;
+    padding: 0!important;
+    z-index: 1;
+    .brand-logo {
+        font-size: 2rem;
+    }
+    h3 {
+        font-size: 1.5rem;
+        padding-left: 15px;
+    }
+    ul {
+        li {
+            position: relative;
+            a {
+                color: white;
+                display: -webkit-box;
+                padding: 5px 15px;
+                padding-left: 15px;
+                transition: all 0.3s, color 0.3s;
+                &::after{
+                    content: "";
+                    transform: scaleX(0);
+                    background-color: #F44336;
+                    transform-origin: 0% 50%;                    
+                    transition: transform 0.3s ease-out;
+                    border-radius: 0 20px 20px 0;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    z-index: -1;
+                }
+                &:hover::after, &.active::after{
+                    content: "";
+                    transform: scaleX(1.05);
+                    transform-origin: 0% 50%;
+                    transition: transform 0.3s ease-in-out;
+                }
+                &:hover, &.active {
+                    cursor: pointer;
+                    padding-left: 25px;
+                    transition: padding-left 0.3s;
+                }
+                i{
+                    font-size: 20px !important;
+                    display: inline-flex;
+                    vertical-align: middle;
+                }
+
+                span.text{
+                    margin-left: 10px;
+                }
+            }
+            > i.material-icons {
+                margin-top: 1em;
+                &:hover {
+                    cursor: pointer;
+                    color: #dfdfdf;
+                    transition: color 0.3s, color 0.3s
+                }
+            }
+        }
+    }
+}
+
+aside.float-bar{
+    position: absolute;
+}
+
+.float-button{
+    position: absolute;
+    right: -30px;
+    width: 30px;
+    top: 5px;
+    border: 0;
+    padding: 0px 5px;
+    border-radius: 0 20px 20px 0;
+    background-color: #F44336;
+    i{
+        color: white;
+        vertical-align: middle;
+        font-size: 20px;
+        width: 20px;
+    }
+    transition: all 0.3s;
+}
+
+button.show{
+    left: 0;
+    right: auto;
+    width: wrap-content;
+    z-index: 10;
+}
+
+.float-button:hover, .float-button:active, .float-button:focus{
+    background-color: #F44326;
+    transition: all 0.3s;
+}
