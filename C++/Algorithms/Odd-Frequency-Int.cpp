@@ -28,7 +28,7 @@ int findOdd(const std::vector<int>& numbers){
     currentInt = freq.find(numbers[i]);
     
     if (currentInt != freq.end()) {
-      currentInt->second = ++currentInt->second;
+      ++currentInt->second;
     
     } else {
       freq.emplace(numbers[i], 1);
