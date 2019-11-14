@@ -1,11 +1,6 @@
 /*
 
-Last week I had a maths lesson at my university about numbering systems, and how to convert a decimal base number 
-into other bases.
-
-I thought to myself while I was at that class: 
-"What better way of practicing javascript and learn maths, 
-than doing a program that converts decimal base numbers into binary base ones?"
+------------------------------ THIS IS ALL HORRIBLE ------------------------------
 
 binaryToDecimal():
 https://github.com/joao-neves95/Exercises_Challenges/blob/master/JavaScript/binaryToDecimal.js
