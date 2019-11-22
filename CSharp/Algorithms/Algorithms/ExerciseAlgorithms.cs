@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -93,6 +93,119 @@ namespace Algorithms
                 return true;
 
             return false;
+        }
+
+        /*
+            Given a 2D Array,
+
+            1 1 1 0 0 0
+            0 1 0 0 0 0
+            1 1 1 0 0 0
+            0 0 0 0 0 0
+            0 0 0 0 0 0
+            0 0 0 0 0 0
+
+            We define an hourglass in to be the  graphical representation:
+
+            a b c
+              d
+            e f g
+
+            There are 16 hourglasses in the array, and an hourglass sum is the 
+            sum of an hourglass' values.
+            Calculate the hourglass sum for every hourglass in the array, then
+            print the maximum hourglass sum.
+.
+         */
+        /*
+           [ SOLUTION LOGIC NOTES ]
+           Matrix:
+
+           j [0 <= j,i <= 5]
+           |
+        i- 1 1 1 0 0 0
+           0 1 0 0 0 0
+           1 1 1 0 0 0
+           0 0 2 4 4 0
+           0 0 0 2 0 0
+           0 0 1 2 4 0
+
+           Hourglass:
+           1 1 1
+             1
+           1 1 1
+
+           Facts:
+           - Matrix:
+             - In each row of hourglasses we have 4 hourglasses.
+             - In each collumn of hourglasses we have 4 hourglasses.
+           - Hourglass:
+             - Each hourglass has 3 rows and 3 collumns.
+             - The middle hourglass row has only the center node.
+
+           END: When i and j == 5
+        */
+
+        private const int HG_SIZE = 3;
+        private const int MAX_GLASS_NUM = 4;
+
+        // Complete the hourglassSum function below.
+        public static int HourglassSum(int[][] arr)
+        {
+            // -63, the minimum possible sum.
+            int maxSum = -9 * 7;
+            int thisSum = 0;
+            int thisMatrixColIdx = 0;
+            int thisMatrixRowIdx = 0;
+            int thisRowGlassNum = 0;
+
+            int i = 0;
+            int j = 0;
+            while (thisMatrixRowIdx <= HG_SIZE &&
+                   thisMatrixColIdx <= HG_SIZE)
+            {
+
+                for (i = thisMatrixRowIdx; i < thisMatrixRowIdx + HG_SIZE; ++i)
+                {
+                    // Middle row.
+                    if (i == thisMatrixRowIdx + 1)
+                    {
+                        thisSum += arr[i][thisMatrixColIdx + 1];
+                        continue;
+                    }
+
+                    // Normal rows.
+                    for (j = thisMatrixColIdx; j < thisMatrixColIdx + HG_SIZE; ++j)
+                    {
+                        thisSum += arr[i][j];
+                    }
+                }
+
+                if (thisSum > maxSum)
+                {
+                    maxSum = thisSum;
+                }
+
+                thisSum = 0;
+                ++thisRowGlassNum;
+
+                // End of row.
+                if (thisRowGlassNum == MAX_GLASS_NUM)
+                {
+                    ++thisMatrixRowIdx;
+                    thisMatrixColIdx = 0;
+                    thisRowGlassNum = 0;
+
+                    // Continue row.
+                }
+                else
+                {
+                    ++thisMatrixColIdx;
+                }
+
+            }
+
+            return maxSum;
         }
     }
 }
