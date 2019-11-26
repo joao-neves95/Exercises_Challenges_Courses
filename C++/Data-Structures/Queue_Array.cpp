@@ -44,6 +44,9 @@ class Queue {
 };
 
 int main() {
+    
+  cout << "Queue with array." << endl << endl;
+    
   Queue<string> *queueOfStrings = new Queue<string>(12);
   queueOfStrings->enqueue("1");
   queueOfStrings->enqueue("2");
