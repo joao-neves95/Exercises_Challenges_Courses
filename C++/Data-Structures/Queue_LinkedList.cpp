@@ -71,6 +71,7 @@ class QueueLinkedList {
             T headValue = headNode->value;
             delete headNode;
             headNode = NULL;
+            --this->count;
             return headValue;            
         }
         
