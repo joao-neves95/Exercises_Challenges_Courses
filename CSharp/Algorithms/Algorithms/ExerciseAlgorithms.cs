@@ -207,5 +207,33 @@ namespace Algorithms
 
             return maxSum;
         }
+
+
+        /*
+         Given a square matrix, calculate the absolute difference between the sums of its diagonals. 
+
+         1 2 3
+         4 5 6
+         9 8 9
+
+         The left-to-right diagonal = [1 + 5 + 9 = 15].
+         The right to left diagonal = [3 + 5 + 9 = 17].
+         Their absolute difference is [ | 15 - 17 | = 2 ].
+
+         */
+        public static int DiagonalDifference(List<List<int>> arr)
+        {
+            int result = 0;
+
+            int i;
+            int j;
+            for (i = 0, j = arr.Count - 1; i < arr.Count; ++i, --j)
+            {
+                result += arr[i][i];
+                result -= arr[i][j];
+            }
+
+            return result < 0 ? result * -1 : result;
+        }
     }
 }
