@@ -1,0 +1,20 @@
+[
+    {
+        "id": 0,
+        "Name": "Diogo Geada",
+        "Permission": "Admin",
+        "Role": "Back-end Developer"
+    },
+    {
+        "id": 1,
+        "Name": "João Neves",
+        "Permission": "Admin",
+        "Role": "Front-End Developer"
+    },
+    {
+        "id": 2,
+        "Name": "Luís Barros",
+        "Permission": "Admin",
+        "Role": "Middle-End Developer"
+    }
+]

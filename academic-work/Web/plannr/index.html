@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html">
+  <title>Plannr</title>
+  <meta name="application-name" content="Plannr">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Tells Google not to provide a translation for this page -->
+  <meta name="google" content="notranslate">
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet">
+  <!-- MATERIALIZE CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" integrity="sha256-e22BQKCF7bb/h/4MFJ1a4lTRR2OuAe8Hxa/3tgU5Taw="
+    crossorigin="anonymous" />
+  <!-- ANIMATE CSS -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
+    integrity="sha384-OHBBOqpYHNsIqQy8hL1U+8OXf9hH6QRxi0+EODezv82DfnZoV7qoHAZDwMwEJvSw"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  <link rel="stylesheet" href="colorPicker\css\bootstrap-colorpicker.min.css">
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+  <script type="text/javascript" src="js/loadingPage.js"></script>
+</head>
+
+<body oncontextmenu="return false;">
+  <ul class="menu menu_0_0" id="categoryMenu" data-state="off">
+    <li>
+      <a id="menu-delete">Delete</a>
+    </li>
+	<li>
+	  <a id="menu-complete">Complete</a>
+	</li>
+  </ul>
+  <!-- LOADING PAGE -->
+  <section id="loadingPage">
+  </section>
+  <script type="text/javascript">
+    openLoadingPage()
+  </script>
+  <!-- Filter - Urgency Selector -->
+  <section id="manage-filtersort" class="blackout row">
+     <article class="panel urgencies-panel container">
+	   <div class="row">
+        <div class="col s12">
+          <ul class="tabs">
+            <li class="tab col s12">
+              <a class="active" href="#">Filtering and Sorting</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+	  <div class="row">
+		<div class="row col s12">
+			<div id="c-filter-container" class="input-field text-white text-center col s12" style="display:block!important;">
+			  <select id="c-filter" multiple>
+				<option value="" disabled selected>Filter by...</option>
+				<option value="1">Urgency</option>
+				<option value="2">Due this week</option>
+				<option value="3">Starting this week</option>
+				<option value="4">Complete</option>
+			  </select>
+			</div>
+			<div class="input-field text-white text-center col s12" style="display:block!important;">
+			  <select id="c-sortby">
+				<option value="0" selected>Sort by...</option>
+				<option value="1">Urgency</option>
+				<option value="2">Due date</option>
+			  </select>
+			</div>
+		</div>
+        <div id="manage_urgency" class="panel-content col-12">
+		  <div class="row col s12">
+			<table id="filter-urgencies-table" class="urgency-table col s12">
+			</table>
+		  </div>
+		</div>
+      </div>
+	</article>
+  </section>
+  <!-- Cards Modal -->
+  <section id="cards-modal" class="modal cards-modal container-fluid">
+  </section>
+  <!-- URGENCIES PANEL POPUP -->
+  <section id="manage-urgencies" class="blackout row">
+    <article class="panel urgencies-panel container">
+      <div class="row">
+        <div class="col s12">
+          <ul class="tabs">
+            <li class="tab col s12">
+              <a class="active" href="#manage_urgency">Urgencies</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div id="manage_urgency" class="panel-content col-12">
+          <div class="row">
+            <div class="col s12 m3">
+              <p class="title">Add New</p>
+            </div>
+            <div class="input-field col s12 m3">
+              <input id="urgency_name" type="text" class="validate">
+              <label for="urgency_name" data-error="Name can't be empty">Name</label>
+            </div>
+            <div class="input-field col s12 m3 file-field" id="color-picker">
+              <button class="btn" id="picker" value="#5367ce">
+                <div class="color-picker" id="color-container"></div>
+              </button>
+              <div class="file-path-wrapper relative">
+                <input type="text" id="color-input" class="validate" />
+                <label for="color_input" data-error="Wrong format">Color</label>
+              </div>
+            </div>
+            <div class="input-field col s12 m2 file-field">
+              <a class="btn-floating btn-medium waves-effect waves-light red" id="add_urgency">
+                <i class="material-icons">add</i>
+              </a>
+            </div>
+          </div>
+          <div class="row col s12">
+            <table class="urgency-table col s12">
+            </table>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>
+  <!-- SETTINGS POPUP -->
+  <article class="modal" id="settings">
+    <div class="modal-content">
+      <!-- Theme Switch -->
+      <div class="switch center-align mb1em">
+        <label>
+          Light Theme
+          <input type="checkbox" id="theme-checkbox">
+          <span class="lever"></span>
+          Dark Theme
+        </label>
+      </div>
+    </div>
+  </article>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <div class="container-fluid">
+    <div id="maincontent" class="row">
+      <!-- ASIDE -->
+      <aside class="col s4 m3 l2" id="sidebar">
+        <h1 class="brand-logo text-center">P<span class="text">lannr </span>&trade;</h1>
+        <ul>
+          <li>
+            <a href="index.html" class="active">
+              <i class="material-icons small">assignment</i><span class="text">Tasks</span></a>
+          </li>
+          <li>
+          <a href="schedule.html">
+              <i class="material-icons small">view_agenda</i><span class="text">Planner</span>
+            </a>
+          </li>
+        </ul>
+        <h3>Manage</h3>
+        <ul>
+          <li>
+            <a href="#" id="open-manage-urgencies" class="urgencies">
+              <i class="material-icons small">warning</i><span class="text">Urgencies</span>
+            </a>
+          </li>
+		  <li>
+			<a href="#" id="open-manage-filtersort" class="urgencies">
+			    <i class="material-icons small">filter_none</i><span class="text">Filters & sorting</span>
+			</a>
+		  </li>
+          <li>
+            <a href="#" id="settings-btn">
+              <i class="material-icons small">settings</i><span class="text">Settings</span>
+            </a>
+          </li>
+        </ul>
+        <button class="float-button" id="sidebar-hide"><i class="material-icons small left">chevron_left</i></button>
+      </aside>
+       <button class="float-button show hidden" data-state="on" id="sidebar-show"><i class="material-icons small left">chevron_right</i></button>
+      <!-- CATEGORIES -->
+      <main class="col s8 m9 l10" id="planner">
+        <section id="categories" class="flex-container droppable">
+        </section>
+        <!-- ADD CATEGORY BUTTON -->
+        <section class="category">
+          <a id="addcategory" class="btn-floating btn-medium waves-effect waves-light red tooltipped" data-position="right" data-delay="50"
+            data-tooltip="Add New Category">
+            <i class="small material-icons">add</i>
+          </a>
+        </section>
+      </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="page-footer">
+      <div class="footer-copyright">
+        <div class="container">
+          Plannr &trade;
+          <span class="right"> Trabalho realizado por João Neves, Diogo Geada & Luis Barros, DPM B.</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- JQUERY -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <!-- MATERIALIZE JS -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js" integrity="sha256-uWtSXRErwH9kdJTIr1swfHFJn/d/WQ6s72gELOHXQGM="
+    crossorigin="anonymous">
+  </script>
+  <!-- BOOTSTRAP COLORPICKER JS -->
+  <script type="text/javascript" src="colorPicker\js\bootstrap-colorpicker.min.js"></script>
+  <!-- MOMENT JS -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment-with-locales.min.js"></script>
+
+  <script>
+    $(function () {
+      setTimeout(() => {
+        closeLoadingPage()
+      }, 500)
+
+      $('#color-input').colorpicker({
+        // Alpha is not supported for some html elements.
+        format: 'rgb',
+        // Gets the actual background color
+        color: $('#picker').css('background-color'),
+        container: "#color-container",
+        component: '#picker'
+      }).on('changeColor', function (ev) {
+        // Sets the new color while it is changing.
+        $("#picker").css('background-color', ev.color.toHex());
+      });
+	  $('#categoryMenu').hide();
+	  $('#manage-urgencies').hide();
+	  $('#manage-filtersort').hide();
+      $('#c-filter').material_select();
+      $('#c-sortby').material_select();
+    });
+  </script>
+  <!-- Plannr JS -->
+  <script type="text/javascript" src="js/Html.js"></script>
+  <script type="text/javascript" src="js/Themes.js"></script>
+  <script type="text/javascript" src="js/objects.js"></script>
+  <script type="text/javascript" src="js/CardsModal.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
+  <script type="text/javascript" src="js/functions.js"></script>
+  <script type="text/javascript" src="js/dragAndDrop.js"></script>
+  <script type="text/javascript" src="js/Cards.js"></script>
+  <script type="text/javascript" src="js/panel.js"></script>
+  <script type="text/javascript" src="js/urgencies.js"></script>
+  <script type="text/javascript" src="js/menu.js"></script>
+  <script type="text/javascript" src="js/aside.js"></script>
+</body>
+
+</html>
