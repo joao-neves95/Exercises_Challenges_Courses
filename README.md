@@ -101,6 +101,8 @@ To find the block's nounce**s**, the miner must do the two hashes until he reach
 
 - [Algorithms](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/C%2B%2B/Algorithms)
 
+- [Data Structures](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/C%2B%2B/Data-Structures)
+
 ---
 
 ## C
