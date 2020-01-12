@@ -1,3 +1,5 @@
+; Change every space for a "#".
+;------------------------------------
 ;Construa uma string na Memória,
 ;a partir de um conjunto de carateres digitados,
 ;o qual deve ser terminado pressionando a tecla ENTER.
