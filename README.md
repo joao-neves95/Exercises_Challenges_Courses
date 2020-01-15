@@ -1,52 +1,6 @@
 # Exercises_Challenges_Courses
 Courses, tutorials, exercises, challenges and experiments from various sources.
 
-## JavaScript
-
-- [Algorithms](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/JavaScript)
-
-- [js.system.collections](https://github.com/joao-neves95/js.system.collections): JavaScript collections inspired by .NET (type safe List & Dictionary)
-
-- [Snake Game](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/JavaScript/Snake-Game)
-
-### Courses
-
-- [freeCodeCamp Projects](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/freeCodeCampProjects)
-
-- [Udemy's "Code Your First Game: Arcade Classic in JavaScript on Canvas"](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/JavaScript/Code-Your-First-Game_Udemy)
-
-- [Angular TourOfHeroes Tutorial](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/JavaScript/angular-tour-of-heroes)
-
----
-
-## Node.js
-
-### Personal Projects
-
-- [MergerJS](https://github.com/joao-neves95/merger-js)
-
-  Yet another simple cross-platform CLI build tool to bundle JavaScript files, with a custom file import syntax, ES8+ minification, auto   build capabilities, and native OS notifications.
-
-- [PortfolioOS](https://github.com/joao-neves95/portfolio-os)
-  
-  A social network for programmers, that simulates an operative system with a fully interactive and dynamic desktop.
-  Users can make their own apps and integrate them on the OS.
-  The frontend was made with pure vanilla JavaScript ES8+ with different patterns, inckuding MVC.
-  The server was made on Node.js with Express.js.
-  The databese is PostgreSQL and it was normalized.
-
-- [TutorMatch](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Node.js/Personal-Projects/TutorMatch)
-
-- [TODO List Web App (Just Another TODO List App)](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Node.js/Personal-Projects/TODO-list_web-app/app_mssqlVersion)
-
-### Courses
-
-- [freeCodeCamp Projects](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/freeCodeCampProjects)
-
-- [EDX/MICROSOFT COURSE: "Introduction to Node.js" (Node.js, Express and MongoDB)](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Node.js/Introduction-to-NodeJS-edX_Microsoft)
-
----
-
 ## C# / .NET
 
 - [Tutorials](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/Personal-Projects/Tutorials)
@@ -78,6 +32,54 @@ It is capable of generating multiple code conversions.
 ### WPF
 
  - [Braces](https://github.com/joao-neves95/Braces)
+ 
+ ---
+ 
+ ## Node.js
+
+### Personal Projects
+
+- [MergerJS](https://github.com/joao-neves95/merger-js)
+
+  Yet another simple cross-platform CLI build tool to bundle JavaScript files, with a custom file import syntax, ES8+ minification, auto   build capabilities, and native OS notifications.
+
+- [PortfolioOS](https://github.com/joao-neves95/portfolio-os)
+  
+  A social network for programmers, that simulates an operative system with a fully interactive and dynamic desktop.
+  Users can make their own apps and integrate them on the OS.
+  The frontend was made with pure vanilla JavaScript ES8+ with different patterns, inckuding MVC.
+  The server was made on Node.js with Express.js.
+  The databese is PostgreSQL and it was normalized.
+
+- [TutorMatch](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Node.js/Personal-Projects/TutorMatch)
+
+- [TODO List Web App (Just Another TODO List App)](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Node.js/Personal-Projects/TODO-list_web-app/app_mssqlVersion)
+
+### Courses
+
+- [freeCodeCamp Projects](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/freeCodeCampProjects)
+
+- [EDX/MICROSOFT COURSE: "Introduction to Node.js" (Node.js, Express and MongoDB)](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Node.js/Introduction-to-NodeJS-edX_Microsoft)
+
+---
+
+## JavaScript
+
+- [Algorithms](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/JavaScript)
+
+- [js.system.collections](https://github.com/joao-neves95/js.system.collections): JavaScript collections inspired by .NET (type safe List & Dictionary)
+
+- [Snake Game](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/JavaScript/Snake-Game)
+
+### Courses
+
+- [freeCodeCamp Projects](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/freeCodeCampProjects)
+
+- [Udemy's "Code Your First Game: Arcade Classic in JavaScript on Canvas"](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/JavaScript/Code-Your-First-Game_Udemy)
+
+- [Angular TourOfHeroes Tutorial](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/JavaScript/angular-tour-of-heroes)
+
+---
 
 ### Unity (C#)
 
