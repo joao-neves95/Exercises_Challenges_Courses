@@ -1,0 +1,31 @@
+# Project: ISTEC_2019_PI_Lab11_JoaoNeves_ex02
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+OBJ      = main.o primeNumbers.o
+LINKOBJ  = main.o primeNumbers.o
+LIBS     = -L"D:/Program-Files/Dev-Cpp/MinGW64/lib" -L"D:/Program-Files/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc -m64 -nostdlib
+INCS     = -I"D:/Program-Files/Dev-Cpp/MinGW64/include" -I"D:/Program-Files/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/Program-Files/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
+CXXINCS  = -I"D:/Program-Files/Dev-Cpp/MinGW64/include" -I"D:/Program-Files/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/Program-Files/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"D:/Program-Files/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
+BIN      = ISTEC_2019_PI_Lab11_JoaoNeves_ex02.exe
+CXXFLAGS = $(CXXINCS) -Ofast -m64 -std=gnu99 -nostdlib -std=c++11
+CFLAGS   = $(INCS) -Ofast -m64 -std=gnu99 -nostdlib -std=c++11
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+main.o: main.c
+	$(CC) -c main.c -o main.o $(CFLAGS)
+
+primeNumbers.o: primeNumbers.c
+	$(CC) -c primeNumbers.c -o primeNumbers.o $(CFLAGS)
