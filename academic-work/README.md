@@ -9,6 +9,11 @@ The repository for some of my academic projects.
   - [Remove every occurrence of the word "ana" in a frase](https://github.com/joao-neves95/Exercises_Challenges_Courses/blob/master/academic-work/Assembly/Ficha003_Assembly8086_ex002.asm)
 
 
+## C
+
+  - [Programming I class lab exercises](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/academic-work/C)
+
+
 ## SQL
 
   - [Final Project](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/academic-work/SQL_FinalProject) (minor degree).
