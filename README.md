@@ -7,6 +7,10 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 
 ### Personal Projects
 
+ - [Amplifir](https://github.com/joao-neves95/Amplifir):
+ 
+A Twitter implementation in .NET Core 3+ and Angular 8+, using DRY, Onion Architecture/Clean Architecture and some Domain Driven Design principles.
+
  - [ClassStudio](https://github.com/joao-neves95/ClassStudio):
  
 A code generation tool with a desktop GUI in Electron.NET and a backend in .NET Core 3.0.
