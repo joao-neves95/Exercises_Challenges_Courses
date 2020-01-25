@@ -69,9 +69,9 @@ It is capable of generating multiple code conversions.
 
 ## JavaScript
 
-- [Algorithms](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/JavaScript)
-
 - [js.system.collections](https://github.com/joao-neves95/js.system.collections): JavaScript collections inspired by .NET (type safe List & Dictionary)
+
+- [Algorithms](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/JavaScript)
 
 - [Snake Game](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/JavaScript/Snake-Game)
 
@@ -122,3 +122,5 @@ To find the block's nounce**s**, the miner must do the two hashes until he reach
 - [Complete Repository](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/academic-work)
 
 - [Assembly](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/academic-work/Assembly)
+
+- [C](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/academic-work/C)
