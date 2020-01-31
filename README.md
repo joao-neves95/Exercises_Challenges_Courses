@@ -8,16 +8,16 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 ### Personal Projects
 
  - [Amplifir](https://github.com/joao-neves95/Amplifir):
- 
+
 A Twitter implementation in .NET Core 3+ and Angular 8+, using DRY, Onion Architecture/Clean Architecture and some Domain Driven Design principles.
 
  - [ClassStudio](https://github.com/joao-neves95/ClassStudio):
- 
+
 A code generation tool with a desktop GUI in Electron.NET and a backend in .NET Core 3.0.
 It is capable of generating multiple code conversions.
 
  - [Braces](https://github.com/joao-neves95/Braces):
- 
+
  More than a code editor. It is a specification for code editors.
  An API communicating through SignalR (WebSockets).
  The idea is to create a bridge between code editors/IDEs and plugins/extensions,
@@ -32,13 +32,13 @@ It is capable of generating multiple code conversions.
 
 3 - [Build Web APIs using ASP.NET (edX/Microsoft - DEV247x)](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/Build-Web-APIs-using-ASP.NET_edX-Microsoft)
   - [Extension of the final project's WebAPI with custom authentication](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/Personal-Projects/Tutorials/ASPNETCore2.WebServer)
-  
+
 ### WPF
 
  - [Braces](https://github.com/joao-neves95/Braces)
- 
+
  ---
- 
+
  ## Node.js
 
 ### Personal Projects
@@ -48,7 +48,7 @@ It is capable of generating multiple code conversions.
   Yet another simple cross-platform CLI build tool to bundle JavaScript files, with a custom file import syntax, ES8+ minification, auto   build capabilities, and native OS notifications.
 
 - [PortfolioOS](https://github.com/joao-neves95/portfolio-os)
-  
+
   A social network for programmers, that simulates an operative system with a fully interactive and dynamic desktop.
   Users can make their own apps and integrate them on the OS.
   The frontend was made with pure vanilla JavaScript ES8+ with different patterns, inckuding MVC.
@@ -68,6 +68,8 @@ It is capable of generating multiple code conversions.
 ---
 
 ## JavaScript
+
+- [js.web.components](https://github.com/joao-neves95/js.web.components): A vanilla JavaScript framework inspired by Angular, React and ASP.NET.
 
 - [js.system.collections](https://github.com/joao-neves95/js.system.collections): JavaScript collections inspired by .NET (type safe List & Dictionary)
 
