@@ -2,12 +2,12 @@
 
 int main(int argc, char const *argv[])
 {
-    LinkedList<int>* newList = new LinkedList<int>;
+    SingleLinkedList<int>* newList = new SingleLinkedList<int>();
 
     newList->add(1);
-    newList->add(1);
-    newList->add(1);
-    newList->add(1);
+    newList->add(2);
+    newList->add(3);
+    newList->add(4);
 
     cout << "The count is: " << newList->count() << endl;
 

@@ -2,37 +2,37 @@
 using namespace std;
 
 template <class T>
-class ListNode {
+class SingleListNode {
     public:
-        ListNode<T>() {
+        SingleListNode<T>() {
             this->value = nullptr;
             this->next = nullptr;
         }
 
-        ListNode<T>(T value) {
+        SingleListNode<T>(T value) {
             this->value = value;
             this->next = nullptr;
         }
 
         T value;
-        ListNode<T>* next;
+        SingleListNode<T>* next;
 };
 
 template <class T>
-class LinkedList {
+class SingleLinkedList {
     private:
         unsigned int length;
 
     public:
-        ListNode<T>* first;
-        ListNode<T>* last;
+        SingleListNode<T>* first;
+        SingleListNode<T>* last;
 
         unsigned int count() {
             return this->length;
         }
 
         void add(T newValue) {
-            ListNode<T>* newNode = new ListNode<T>(newValue);
+            SingleListNode<T>* newNode = new SingleListNode<T>(newValue);
 
             if (this->length == 0) {
                 this->first = newNode;
@@ -54,7 +54,7 @@ class LinkedList {
                 return this->last;
             }
 
-            ListNode<T>* theNode = this->first;
+            SingleListNode<T>* theNode = this->first;
             unsigned int i;
             for (i = 0; i < index && theNode-> next != nullptr; ++i) {
                 theNode = theNode->next;
@@ -65,10 +65,11 @@ class LinkedList {
 
         void printAllValues() {
             if (this->length == 0) {
+                cout << "The list is empty" << endl;
                 return;
             }
 
-            ListNode<T>* currNode = this->first;
+            SingleListNode<T>* currNode = this->first;
 
             unsigned int i;
             for (i = 0; i < this->length && currNode != nullptr; ++i) {
