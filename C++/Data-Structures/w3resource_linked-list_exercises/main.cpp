@@ -14,5 +14,9 @@ int main(int argc, char const *argv[])
     cout << "Print all values: " << endl;
     newList->printAllValues();
 
+    cout << "Reverse all values: " << endl;
+    newList->reverseSequential();
+    newList->printAllValues();
+
     return 0;
 };

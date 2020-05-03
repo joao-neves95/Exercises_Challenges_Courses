@@ -63,6 +63,24 @@ class SingleLinkedList {
             return theNode->value;
         }
 
+        void reverseSequential() {
+            SingleListNode<T>* start = this->first;
+            SingleListNode<T>* nextHead = start->next;
+            start->next = nullptr; // The first is now the last node, so nothing after it.
+
+            this->first = nextHead;
+            nextHead = nextHead->next;
+            this->first->next = start;
+
+            unsigned int i;
+            for (i = 0; nextHead != nullptr; ++i) {
+                start = this->first;
+                this->first = nextHead;
+                nextHead = nextHead->next;
+                this->first->next = start;
+            }
+        }
+
         void printAllValues() {
             if (this->length == 0) {
                 cout << "The list is empty" << endl;
