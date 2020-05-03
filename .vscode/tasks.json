@@ -1,0 +1,67 @@
+{
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "gcc Linux build active folder",
+            "command": "/usr/bin/gcc",
+            "args": [
+                "-Wall",
+                "-std=c++17",
+                "-v",
+                "-g",
+                "${fileDirname}/**.cpp",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}"
+            ],
+            "options": {
+                "cwd": "/usr/bin"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+        },
+        {
+            "type": "shell",
+            "label": "g++ Linux build active folder",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-Wall",
+                "-std=c++17",
+                "-g",
+                "${fileDirname}/**.cpp",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}"
+            ],
+            "options": {
+                "cwd": "/usr/bin"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build"
+        },
+        {
+            "type": "shell",
+            "label": "clang++ Linux build active folder",
+            "command": "/usr/bin/clang++",
+            "args": [
+                "-Wall",
+                "-v",
+                "-xc++",
+                "-std=c++17",
+                "-stdlib=libc++",
+                "-g",
+                "${fileDirname}/**.cpp",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}"
+            ],
+            "options": {
+                "cwd": "/usr/bin"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        }
+    ],
+    "version": "2.0.0"
+}

@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "hash_map": "cpp",
+        "chrono": "cpp"
+    }
+}
