@@ -31,6 +31,9 @@ class SingleLinkedList {
             return this->length;
         }
 
+        /**
+         * Add a new value to the end of the list.
+         */
         void add(T newValue) {
             SingleListNode<T>* newNode = new SingleListNode<T>(newValue);
 
@@ -43,6 +46,18 @@ class SingleLinkedList {
                 this->last = newNode;
             }
 
+            ++this->length;
+        }
+
+        void addToStart(T newValue) {
+            if (this->length == 0) {
+                this->add(newValue);
+                return;
+            }
+
+            SingleListNode<T>* newNode = new SingleListNode<T>(newValue);
+            newNode->next = this->first;
+            this->first = newNode;
             ++this->length;
         }
 

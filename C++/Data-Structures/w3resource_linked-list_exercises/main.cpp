@@ -17,6 +17,10 @@ int main(int argc, char const *argv[])
     cout << "Reverse all values: " << endl;
     newList->reverseSequential();
     newList->printAllValues();
+    
+    cout << "Add a value to the biggining: " << endl;
+    newList->addToStart(-1);
+    newList->printAllValues();   
 
     return 0;
 };
