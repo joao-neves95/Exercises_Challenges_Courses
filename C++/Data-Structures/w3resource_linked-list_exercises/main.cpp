@@ -22,5 +22,7 @@ int main(int argc, char const *argv[])
     newList->addToStart(-1);
     newList->printAllValues();   
 
+    // Just to be sure.
+    newList->dispose();
     return 0;
 };

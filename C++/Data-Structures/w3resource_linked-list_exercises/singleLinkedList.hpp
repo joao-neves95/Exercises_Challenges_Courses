@@ -27,8 +27,26 @@ class SingleLinkedList {
         SingleListNode<T>* first;
         SingleListNode<T>* last;
 
+        SingleLinkedList() {}
+
+        ~SingleLinkedList() {
+            this->dispose();
+        }
+
         unsigned int count() {
             return this->length;
+        }
+
+        void dispose() {
+            SingleListNode<T>* current = this->first;
+            SingleListNode<T>* next = current->next;
+            delete current;
+
+            while (next != nullptr) {
+                current = next;
+                next = current->next;
+                delete current;
+            }
         }
 
         /**
@@ -71,7 +89,7 @@ class SingleLinkedList {
 
             SingleListNode<T>* theNode = this->first;
             unsigned int i;
-            for (i = 0; i < index && theNode-> next != nullptr; ++i) {
+            for (i = 0; i != index; ++i) {
                 theNode = theNode->next;
             }
 
@@ -87,8 +105,7 @@ class SingleLinkedList {
             nextHead = nextHead->next;
             this->first->next = start;
 
-            unsigned int i;
-            for (i = 0; nextHead != nullptr; ++i) {
+            while (nextHead != nullptr) {
                 start = this->first;
                 this->first = nextHead;
                 nextHead = nextHead->next;
