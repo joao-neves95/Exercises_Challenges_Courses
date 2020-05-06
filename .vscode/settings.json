@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "hash_map": "cpp",
-        "chrono": "cpp"
+        "chrono": "cpp",
+        "iostream": "cpp",
+        "locale": "cpp"
     }
 }
