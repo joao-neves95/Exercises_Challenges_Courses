@@ -3,7 +3,7 @@
     // Hover to view descriptions of existing attributes.
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
-    "configurations": [      
+    "configurations": [
         {
             "name": "gcc - Linux - Build and debug active folder",
             "type": "cppdbg",
@@ -14,16 +14,16 @@
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
+            "preLaunchTask": "gcc Linux build active folder",
             "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb",
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",
                     "text": "-enable-pretty-printing",
                     "ignoreFailures": true
                 }
-            ],
-            "preLaunchTask": "gcc Linux build active folder",
-            "miDebuggerPath": "/usr/bin/gdb"
+            ]
         },
         {
             "name": "g++ - Linux - Build and debug active folder",
@@ -35,16 +35,16 @@
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
+            "preLaunchTask": "g++ Linux build active folder",
             "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb",
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",
                     "text": "-enable-pretty-printing",
                     "ignoreFailures": true
                 }
-            ],
-            "preLaunchTask": "g++ Linux build active folder",
-            "miDebuggerPath": "/usr/bin/gdb"
+            ]
         },
         {
             "name": "CLang++ - Linux - Build and debug active folder",
@@ -56,16 +56,37 @@
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
+            "preLaunchTask": "clang++ Linux build active folder",
             "MIMode": "lldb",
+            "miDebuggerPath": "/usr/bin/gdb",
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",
                     "text": "-enable-pretty-printing",
                     "ignoreFailures": true
                 }
-            ],
-            "preLaunchTask": "clang++ Linux build active folder",
-            "miDebuggerPath": "/usr/bin/gdb"
-        }
+            ]
+        },
+        {
+            "name": "g++ - Windows - Build and debug active folder",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}/${fileBasenameNoExtension}.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "preLaunchTask": "g++ Windows build active folder",
+            "MIMode": "gdb",
+            "miDebuggerPath": "D:/Program-Files/MinGW/bin/gdb.exe",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
     ]
 }

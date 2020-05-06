@@ -61,6 +61,31 @@
             "problemMatcher": [
                 "$gcc"
             ]
+        },
+        {
+            "type": "shell",
+            "label": "g++ Windows build active folder",
+            "command": "D:/Program-Files/MinGW/bin/g++",
+            "args": [
+                "-Wall",
+                "-v",
+                "-xc++",
+                "-std=c++17",
+                "-g",
+                "${fileDirname}/**.cpp",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}.exe"
+            ],
+            "options": {
+                "cwd": "D:/Program-Files/MinGW/bin"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+              }
         }
     ],
     "version": "2.0.0"
