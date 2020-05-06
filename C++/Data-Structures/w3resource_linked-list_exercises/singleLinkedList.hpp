@@ -105,9 +105,47 @@ class SingleLinkedList {
             ++this->length;
         }
 
-        T get(unsigned int index) {
+        void removeFirst() {
             if (this->length == 0) {
                 return;
+            }
+
+            SingleListNode<T>* nodeToDelete = this->first;
+            this->first = nodeToDelete->next;
+            delete nodeToDelete;
+            --this->length;
+        }
+
+        void removeLast() {
+            if (this->length == 0) {
+                return;
+            }
+
+            delete this->last;
+            --this->length;
+            this->last = this->getNode(this->length - 1);
+            this->last->next = nullptr;
+        }
+
+        /**
+         * In case it does not find the value, it returns the size of the type.
+         */
+        T get(unsigned int index) {
+            if (this->length == 0) {
+                return sizeof(T);
+            }
+
+            SingleListNode<T>* theNode = this->getNode(index);
+            if (theNode == nullptr) {
+                return sizeof(T);
+            }
+
+            return theNode->value;
+        }
+
+        SingleListNode<T>* getNode(unsigned int index) {
+            if (this->length == 0) {
+                return nullptr;
 
             } else if (index >= this->length) {
                 return this->last;
@@ -115,11 +153,11 @@ class SingleLinkedList {
 
             SingleListNode<T>* theNode = this->first;
             unsigned int i;
-            for (i = 0; i != index; ++i) {
+            for (i = 0; i < index; ++i) {
                 theNode = theNode->next;
             }
 
-            return theNode->value;
+            return theNode;
         }
 
         void reverse() {
