@@ -27,7 +27,9 @@ class SingleLinkedList {
         SingleListNode<T>* first;
         SingleListNode<T>* last;
 
-        SingleLinkedList() {}
+        SingleLinkedList() {
+            this->length = 0;
+        }
 
         ~SingleLinkedList() {
             this->dispose();
@@ -41,11 +43,13 @@ class SingleLinkedList {
             SingleListNode<T>* current = this->first;
             SingleListNode<T>* next = current->next;
             delete current;
+            --this->length;
 
             while (next != nullptr) {
                 current = next;
                 next = current->next;
                 delete current;
+                --this->length;
             }
         }
 
@@ -79,6 +83,28 @@ class SingleLinkedList {
             ++this->length;
         }
 
+        void addToMiddle(T newValue) {
+            if (this->length == 0) {
+                this->add(newValue);
+                return;
+            }
+
+            // If the number is odd, because we are calculating in an int,
+            // we lose the decimal part (auto floor).
+            unsigned int middle = this->length / 2;
+
+            SingleListNode<T>* theNode = this->first;
+            unsigned int i;
+            for (i = 1; i < middle; ++i) {
+                theNode = theNode->next;
+            }
+
+            SingleListNode<T>* newNode = new SingleListNode<T>(newValue);
+            newNode->next = theNode->next;
+            theNode->next = newNode;
+            ++this->length;
+        }
+
         T get(unsigned int index) {
             if (this->length == 0) {
                 return;
@@ -96,10 +122,11 @@ class SingleLinkedList {
             return theNode->value;
         }
 
-        void reverseSequential() {
+        void reverse() {
             SingleListNode<T>* start = this->first;
             SingleListNode<T>* nextHead = start->next;
             start->next = nullptr; // The first is now the last node, so nothing after it.
+            this->last = start;
 
             this->first = nextHead;
             nextHead = nextHead->next;

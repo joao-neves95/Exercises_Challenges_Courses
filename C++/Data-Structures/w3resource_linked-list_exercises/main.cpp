@@ -9,18 +9,29 @@ int main(int argc, char const *argv[])
     newList->add(3);
     newList->add(4);
 
-    cout << "The count is: " << newList->count() << endl;
-
     cout << "Print all values: " << endl;
+    cout << "The count is: " << newList->count() << endl;
     newList->printAllValues();
 
     cout << "Reverse all values: " << endl;
-    newList->reverseSequential();
+    newList->reverse();
+    cout << "The count is: " << newList->count() << endl;
     newList->printAllValues();
-    
+
     cout << "Add a value to the biggining: " << endl;
     newList->addToStart(-1);
-    newList->printAllValues();   
+    cout << "The count is: " << newList->count() << endl;
+    newList->printAllValues();
+
+    cout << "Add a value to the end: " << endl;
+    newList->add(-1);
+    cout << "The count is: " << newList->count() << endl;
+    newList->printAllValues();
+
+    cout << "Add a value to the middle: " << endl;
+    newList->addToMiddle(69);
+    cout << "The count is: " << newList->count() << endl;
+    newList->printAllValues();
 
     // Just to be sure.
     newList->dispose();
