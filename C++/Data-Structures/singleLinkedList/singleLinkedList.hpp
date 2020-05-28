@@ -43,12 +43,14 @@ class SingleLinkedList {
             SingleListNode<T>* current = this->first;
             SingleListNode<T>* next = current->next;
             delete current;
+            current = nullptr;
             --this->length;
 
             while (next != nullptr) {
                 current = next;
                 next = current->next;
                 delete current;
+                current = nullptr;
                 --this->length;
             }
         }
