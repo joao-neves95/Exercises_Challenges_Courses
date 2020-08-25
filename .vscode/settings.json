@@ -3,6 +3,7 @@
         "hash_map": "cpp",
         "chrono": "cpp",
         "iostream": "cpp",
-        "locale": "cpp"
+        "locale": "cpp",
+        "vector": "cpp"
     }
 }

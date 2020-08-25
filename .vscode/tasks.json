@@ -19,6 +19,7 @@
             "problemMatcher": [
                 "$gcc"
             ],
+            "group": "build"
         },
         {
             "type": "shell",
@@ -70,8 +71,9 @@
                 "-Wall",
                 "-v",
                 "-xc++",
+                "-m64",
                 "-std=c++17",
-                "-g",
+                "-g3",
                 "${fileDirname}/**.cpp",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}.exe"
@@ -85,7 +87,33 @@
             "group": {
                 "kind": "build",
                 "isDefault": true
-              }
+            }
+        },
+        {
+            "type": "shell",
+            "label": "g++ Windows build active file",
+            "command": "D:/Program-Files/MinGW/bin/g++",
+            "args": [
+                "-Wall",
+                "-v",
+                "-xc++",
+                "-m64",
+                "-std=c++17",
+                "-g3",
+                "${fileDirname}/${fileBasename}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}.exe"
+            ],
+            "options": {
+                "cwd": "D:/Program-Files/MinGW/bin"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         }
     ],
     "version": "2.0.0"
