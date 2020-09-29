@@ -4,6 +4,8 @@
         "chrono": "cpp",
         "iostream": "cpp",
         "locale": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "ostream": "cpp",
+        "cmath": "cpp"
     }
 }
