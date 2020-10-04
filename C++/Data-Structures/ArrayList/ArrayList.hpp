@@ -12,10 +12,10 @@ private:
 
     T* elements;
     size_t elemCount;
-    size_t size;
+    size_t arrSize;
 
     void newCopy(const size_t limit) {
-        T* elemBak = new T[this->size];
+        T* elemBak = new T[this->arrSize];
         size_t i;
 
         for (i = 0; i < limit; ++i) {
@@ -30,18 +30,18 @@ private:
     }
 
     void doubleSize() {
-        this->size *= 2;
-        this->newCopy(this->size / 2);
+        this->arrSize *= 2;
+        this->newCopy(this->arrSize / 2);
     }
 
     void reduceSize() {
-        this->size /= 2;
-        this->newCopy(this->size);
+        this->arrSize /= 2;
+        this->newCopy(this->arrSize);
     }
 
 public:
     ArrayList(size_t initialSize = 0) {
-        this->size = initialSize <= this->defaultSize ? this->defaultSize : initialSize;
+        this->arrSize = initialSize <= this->defaultSize ? this->defaultSize : initialSize;
         this->elements = new T[initialSize];
         this->elemCount = 0;
     }
@@ -54,6 +54,17 @@ public:
         delete[] this->elements;
     }
 
+    /**
+     * The current total size.
+     * This is value is volatile, since it's a dynamic array.
+     */
+    size_t size() const {
+        return this->arrSize;
+    }
+
+    /**
+     * The number of elements.
+    */
     size_t count() const {
         return this->elemCount;
     }
@@ -63,7 +74,7 @@ public:
     }
 
     void push(const T value) {
-        if (this->elemCount == this->size) {
+        if (this->elemCount == this->arrSize) {
             this->doubleSize();
         }
 
@@ -76,7 +87,7 @@ public:
     }
 
     T remove(const size_t i) {
-        if (this->elemCount == this->size / 4) {
+        if (this->elemCount == this->arrSize / 4) {
             this->reduceSize();
         }
 
