@@ -49,11 +49,11 @@ It is capable of generating multiple code conversions.
 
 - [PortfolioOS](https://github.com/joao-neves95/portfolio-os)
 
-  A social network for programmers, that simulates an operative system with a fully interactive and dynamic desktop.
-  Users can make their own apps and integrate them on the OS.
-  The frontend was made with pure vanilla JavaScript ES8+ with different patterns, inckuding MVC.
-  The server was made on Node.js with Express.js.
-  The databese is PostgreSQL and it was normalized.
+  A social network for programmers, that simulates an operative system with a fully interactive and dynamic desktop.\
+  Users can make their own apps and integrate them on the OS. It has a forum similar to 4chan, profiles/portfolios, a terminal with a working file system, and more.\
+  The frontend was made with pure vanilla JavaScript ES8+ following an MVC pattern.\
+  The server was made on Node.js and Express.js.\
+  The databese is PostgreSQL and it is normalized.
 
 - [TutorMatch](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Node.js/Personal-Projects/TutorMatch)
 
@@ -69,7 +69,7 @@ It is capable of generating multiple code conversions.
 
 ## JavaScript
 
-- [js.web.components](https://github.com/joao-neves95/js.web.components): A vanilla JavaScript framework inspired by Angular, React and ASP.NET.
+- [js.web.components](https://github.com/joao-neves95/js.web.components): A vanilla JavaScript framework inspired by Angular, React and ASP.NET, with a custom templating engine compiler, component, and template view utils like for loops and if statements.
 
 - [js.system.collections](https://github.com/joao-neves95/js.system.collections): JavaScript collections inspired by .NET (type safe List & Dictionary)
 
