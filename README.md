@@ -16,6 +16,11 @@ A Twitter implementation in .NET Core 3+ and Angular 8+, using DRY, Onion Archit
 A code generation tool with a desktop GUI in Electron.NET and a backend in .NET Core 3.0.
 It is capable of generating multiple code conversions.
 
+ - [RegexQuery](https://github.com/joao-neves95/RegexQuery)
+
+Regular expressions in english. Create regular expression in an idiomatic way.
+Made with C#, with object oriented APIs for .NET, JavaScript and Typescript.
+
  - [Braces](https://github.com/joao-neves95/Braces):
 
  More than a code editor. It is a specification for code editors.
@@ -69,9 +74,10 @@ It is capable of generating multiple code conversions.
 
 ## JavaScript
 
-- [js.web.components](https://github.com/joao-neves95/js.web.components): A vanilla JavaScript framework inspired by Angular, React and ASP.NET, with a custom templating engine compiler, component, and template view utils like for loops and if statements.
+- [js.system.collections](https://github.com/joao-neves95/js.system.collections):
+JavaScript collections inspired by .NET, that implements a list and multiple implementations of a dictionary with different complexities to choose from.
 
-- [js.system.collections](https://github.com/joao-neves95/js.system.collections): JavaScript collections inspired by .NET (type safe List & Dictionary)
+- [js.web.components](https://github.com/joao-neves95/js.web.components): A vanilla JavaScript framework inspired by Angular, React and ASP.NET, with a custom templating engine compiler, component, and template view utils like for loops and if statements.
 
 - [Algorithms](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/JavaScript)
 
