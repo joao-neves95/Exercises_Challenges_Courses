@@ -72,7 +72,7 @@ Made with C#, with object oriented APIs for .NET, JavaScript and Typescript.
 
 ---
 
-## JavaScript
+## JavaScript & TypeScript
 
 - [js.system.collections](https://github.com/joao-neves95/js.system.collections):
 JavaScript collections inspired by .NET, that implements a list and multiple implementations of a dictionary with different complexities to choose from.
@@ -83,13 +83,13 @@ JavaScript collections inspired by .NET, that implements a list and multiple imp
 
 - [Snake Game](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/JavaScript/Snake-Game)
 
-### Courses
+### Courses/Tutorials
 
 - [freeCodeCamp Projects](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/freeCodeCampProjects)
 
 - [Udemy's "Code Your First Game: Arcade Classic in JavaScript on Canvas"](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/JavaScript/Code-Your-First-Game_Udemy)
 
-- [Angular TourOfHeroes Tutorial](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/JavaScript/angular-tour-of-heroes)
+- [Angular 7 TourOfHeroes Tutorial](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/TypeScript/angular-07_tour-of-heroes)
 
 ---
 
