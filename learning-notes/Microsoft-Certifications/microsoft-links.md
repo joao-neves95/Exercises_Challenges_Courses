@@ -1,0 +1,31 @@
+# Microsoft Docs Links
+
+- [Azure for .NET developers](https://docs.microsoft.com/en-us/dotnet/azure/)
+  - [App Service documentation](https://docs.microsoft.com/en-us/azure/app-service/)
+  - Quickstarts:
+    - [Quickstart: Create an ASP.NET Core web app in Azure](https://docs.microsoft.com/en-us/azure/app-service/quickstart-dotnetcore?pivots=platform-linux)
+    - [Quickstart: Docker in Visual Studio](https://docs.microsoft.com/en-us/visualstudio/containers/container-tools?view=vs-2019)
+    - [Create a multi-container (preview) app using a Docker Compose configuration](https://docs.microsoft.com/en-us/azure/app-service/quickstart-multi-container)
+- [ASP.NET documentation](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-3.1)
+  - Tutorials:
+    - [Create a web app with ASP.NET Core MVC](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/?view=aspnetcore-3.1)
+    - [Create a Razor Pages web app with ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/tutorials/razor-pages/?view=aspnetcore-3.1)
+    - [Create a web API with ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-3.1&tabs=visual-studio)
+    - [ASP.NET Core MVC with EF Core](https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/?view=aspnetcore-3.1)
+    - [Build a Blazor todo list app](https://docs.microsoft.com/en-us/aspnet/core/tutorials/build-a-blazor-app?view=aspnetcore-3.1)
+    - [Introduction to ASP.NET Core SignalR](https://docs.microsoft.com/en-us/aspnet/core/signalr/introduction?view=aspnetcore-3.1)
+  - [Routing in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/routing?view=aspnetcore-3.1)
+  - [App Secrets in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets)
+  - [Session and state management in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/app-state?view=aspnetcore-3.1)
+  - [Handle errors in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-3.1)
+  - [Logging in .NET Core and ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/logging/?view=aspnetcore-3.1)
+- [Entity Framework documentation](https://docs.microsoft.com/en-us/ef/)
+- Architecture
+  - [Cloud Design Patterns](https://docs.microsoft.com/en-us/azure/architecture/patterns/)
+  - [Azure Application Architecture Guide](https://docs.microsoft.com/en-us/azure/architecture/guide/)
+  - [All Azure Architectures](https://docs.microsoft.com/en-us/azure/architecture/browse/)
+- [Xamarin documentation](https://docs.microsoft.com/en-us/xamarin/)
+- Others tech stacks:
+  - [Azure for JavaScript & Node.js developers](https://docs.microsoft.com/en-us/azure/developer/javascript/)
+  - [Azure for Python Developers](https://docs.microsoft.com/en-us/azure/developer/python/)
+  - [Azure for Java developers](https://docs.microsoft.com/en-us/azure/developer/java/)
