@@ -63,11 +63,17 @@ public:
                     Utils::logg(",");
                 }
             }
-            
+
             Utils::logg("]");
         }
 
         Utils::logg("]");
+    }
+
+    template <typename T>
+    static void loggVectorNL(const vector<vector<T>>& vect) {
+        Utils::loggVector(vect);
+        Utils::loggNL();
     }
 
     template <typename T>

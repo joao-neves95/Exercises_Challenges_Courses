@@ -61,9 +61,9 @@ public:
 
 int main()
 {
-    Utils::loggVector(PascalTriangle::generate(5));
+    Utils::loggVectorNL(PascalTriangle::generate(5));
+    Utils::loggVectorNL(PascalTriangle::generate(10));
     Utils::loggNL();
-    Utils::loggVector(PascalTriangle::generate(10));
 
     return 0;
 }
