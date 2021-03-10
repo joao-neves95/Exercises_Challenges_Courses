@@ -44,6 +44,33 @@ public:
     }
 
     template <typename T>
+    static void loggVector(const vector<vector<T>> vect) {
+        Utils::logg("[");
+
+        size_t i;
+        size_t j;
+
+        size_t innerVectSize = 0;
+
+        for (i = 0; i < vect.size(); ++i) {
+            Utils::logg("[");
+            innerVectSize = vect[i].size();
+
+            for (j = 0; j < innerVectSize; ++j) {
+                Utils::logg(vect[i][j]);
+
+                if (j < innerVectSize - 1) {
+                    Utils::logg(",");
+                }
+            }
+            
+            Utils::logg("]");
+        }
+
+        Utils::logg("]");
+    }
+
+    template <typename T>
     static size_t arrSize(T* arr) {
         return sizeof(arr) / sizeof(arr[0]);
     }
