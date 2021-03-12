@@ -24,6 +24,27 @@
             ],
             "preLaunchTask": "C/C++: clang++ Linux build active file",
             //"miDebuggerPath": "/usr/bin/lldb-mi"
+        },
+        {
+            "name": "clang++ Windows - Build and debug active file",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${fileDirname}/${fileBasenameNoExtension}",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            //"MIMode": "lldb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "C/C++: clang++ Windows build active file",
+            //"miDebuggerPath": "lldb-mi"
         }
     ]
 }
