@@ -13,11 +13,11 @@
 #include <string>
 #include <vector>
 
-#include "../Utils.hpp"
+#include "../../Utils.hpp"
 
 class Solution {
 private:
-    
+
 public:
     static string longestCommonPrefix(const vector<string>& strs) {
         const string EMPTY_STR = "";
@@ -25,7 +25,7 @@ public:
         if (strs.size() == 0 || strs[0].size() == 0) {
             return EMPTY_STR;
         }
-        
+
         // We find the longest string, to be safer.
         int longestIdx = 0;
         string longestStr = strs[0];
@@ -35,26 +35,26 @@ public:
                 longestIdx = i;
             }
         }
-        
+
         string result = EMPTY_STR;
-        
+
         // We mirror the longest str.
         for (int i = 0; i < longestStr.size(); ++i) {
             // Let's store it here even if it's not a valid char.
             result += longestStr[i];
-            
+
             for (int j = 0; j < strs.size(); ++j) {
                 if (j == longestIdx) {
                     continue;
                 }
-                
+
                 if (i > (strs[j].size() - 1) || strs[j][i] != result.back()) {
                     result.pop_back();
                     return result;
                 }
             }
         }
-        
+
         return result;
     }
 };
@@ -62,6 +62,6 @@ public:
 int main() {
     Utils::loggNL(Solution::longestCommonPrefix( { "flower","flow","flight" } ));
     Utils::loggNL(Solution::longestCommonPrefix( { "flower","flower","flower","flower" } ));
-    
+
     return 0;
 }

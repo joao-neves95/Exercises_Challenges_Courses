@@ -11,7 +11,7 @@
 
 #include <vector>
 
-#include "../Utils.hpp"
+#include "../../Utils.hpp"
 
 class PascalTriangle
 {

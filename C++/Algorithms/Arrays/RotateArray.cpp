@@ -22,7 +22,7 @@
 #include <cmath>
 using namespace std;
 
-#include "../Utils.hpp"
+#include "../../Utils.hpp"
 
 class RotateArray {
 public:

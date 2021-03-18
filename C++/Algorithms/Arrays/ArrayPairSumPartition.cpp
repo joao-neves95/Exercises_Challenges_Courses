@@ -22,7 +22,7 @@
 #include <algorithm>
 using namespace std;
 
-#include "../Utils.hpp"
+#include "../../Utils.hpp"
 
 class Solution {
 public:
