@@ -28,7 +28,7 @@ struct TreeNode {
 
 class Solution {
 public:
-    vector<int> preorderTraversal(TreeNode* root) {
+    vector<int> preorderTraversalIterative(TreeNode* root) {
         // Visual notes:
         // [root, left1, right1, left2, right2]
         //
