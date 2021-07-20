@@ -13,13 +13,17 @@ A Twitter implementation in .NET Core 3+ and Angular 8+, using DRY, Onion Archit
 
  - [ClassStudio](https://github.com/joao-neves95/ClassStudio):
 
-A code generation tool with a desktop GUI in Electron.NET and a backend in .NET Core 3.0.
+A code generation tool with a desktop GUI in Electron.NET and a backend in .NET 5.
 It is capable of generating multiple code conversions.
 
  - [RegexQuery](https://github.com/joao-neves95/RegexQuery)
 
 Regular expressions in english. Create regular expression in an idiomatic way.
 Made with C#, with object oriented APIs for .NET, JavaScript and Typescript.
+
+ - [CSharpToTypescript](https://github.com/joao-neves95/CSharpToTypescript)
+
+Fork maintenance of a C# to TypeScript converter, modified and adapted to migrate to .NET Standard 2.0 and compile with Visual Studio 2019.
 
  - [Braces](https://github.com/joao-neves95/Braces):
 
