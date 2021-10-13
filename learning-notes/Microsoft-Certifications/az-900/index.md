@@ -30,3 +30,8 @@
 6. Describe Azure cost management and service level agreements - [Microsoft Learn](https://docs.microsoft.com/en-us/learn/paths/az-900-describe-azure-cost-management-service-level-agreements)\
     6.1 [Plan and manage costs](6.1_describe-cost-management-and-SLA_costs.md)\
     6.2 [SLAs and service lifecycle](6.2_describe-cost-management-and-SLA_SLAs.md)
+
+## Certificate
+
+- [Credly Badge](https://www.credly.com/badges/71f132d6-94c7-4f68-a8ac-ea3e4f61c2a2)
+- [PDF File](./Microsoft_Certified_Professional_Certificate_João-Neves.pdf)
