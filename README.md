@@ -1,4 +1,5 @@
 # Exercises_Challenges_Courses
+
 Courses, tutorials, exercises, challenges and experiments from various sources.
 
 ## C# / .NET
@@ -7,32 +8,31 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 
 ### Personal Projects
 
- - [Amplifir](https://github.com/joao-neves95/Amplifir):
-
+ - [Amplifir](https://github.com/joao-neves95/Amplifir):\
 A Twitter implementation in .NET Core 3+ and Angular 8+, using DRY, Onion Architecture/Clean Architecture and some Domain Driven Design principles.
 
- - [ClassStudio](https://github.com/joao-neves95/ClassStudio):
-
-A code generation tool with a desktop GUI in Electron.NET and a backend in .NET 5.
-It is capable of generating multiple code conversions.
+ - [ClassStudio](https://github.com/joao-neves95/ClassStudio):\
+  A code generation tool with a desktop GUI in Electron.NET and a backend in .NET 5.
+  It is capable of generating multiple code conversions.
 
  - [RegexQuery](https://github.com/joao-neves95/RegexQuery)
 
-Regular expressions in english. Create regular expression in an idiomatic way.
-Made with C#, with object oriented APIs for .NET, JavaScript and Typescript.
+  Regular expressions in english. Create regular expression in an idiomatic way.
+  Made with C#, with object oriented APIs for .NET, JavaScript and Typescript.
 
  - [CSharpToTypescript](https://github.com/joao-neves95/CSharpToTypescript)
 
-Fork maintenance of a C# to TypeScript converter, modified and adapted to migrate to .NET Standard 2.0 and compile with Visual Studio 2019.
+  Fork maintenance of a C# to TypeScript converter, modified and adapted to migrate to .NET Standard 2.0 and compile with Visual Studio 2019.
 
  - [Braces](https://github.com/joao-neves95/Braces):
 
+ (This project was abandoned and it's not finished)
  More than a code editor. It is a specification for code editors.
  An API communicating through SignalR (WebSockets).
  The idea is to create a bridge between code editors/IDEs and plugins/extensions,
  in order for developers be able to use any plugin/extension in any code editor/IDE.
  It is made in .NET Core 3 and plugins/extension run in the PluginHost inside a Docker container.
-
+ 
 ### Courses
 
 1 - [Alison/Microsoft: Diploma in C# Programming (Introduction to C#)](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/Diploma-in-CSharp-Programming_Alison-Microsoft)
@@ -64,9 +64,11 @@ Fork maintenance of a C# to TypeScript converter, modified and adapted to migrat
   The server was made on Node.js and Express.js.\
   The databese is PostgreSQL and it is normalized.
 
+- [TODO List Web App (Just Another TODO List App)](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Node.js/Personal-Projects/TODO-list_web-app/app_mssqlVersion)
+
 - [TutorMatch](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Node.js/Personal-Projects/TutorMatch)
 
-- [TODO List Web App (Just Another TODO List App)](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Node.js/Personal-Projects/TODO-list_web-app/app_mssqlVersion)
+  A random and useless landing page.
 
 ### Courses
 
@@ -79,9 +81,12 @@ Fork maintenance of a C# to TypeScript converter, modified and adapted to migrat
 ## JavaScript & TypeScript
 
 - [js.system.collections](https://github.com/joao-neves95/js.system.collections):
+
 JavaScript collections inspired by .NET, that implements a list and multiple implementations of a dictionary with different complexities to choose from.
 
-- [js.web.components](https://github.com/joao-neves95/js.web.components): A vanilla JavaScript framework inspired by Angular, React and ASP.NET, with a custom templating engine compiler, component, and template view utils like for loops and if statements.
+- [js.web.components](https://github.com/joao-neves95/js.web.components):
+
+A vanilla JavaScript framework inspired by Angular, React and ASP.NET, with a custom templating engine compiler, component, and template view utils like for loops and if statements.
 
 - [Algorithms](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/JavaScript)
 
@@ -99,9 +104,13 @@ JavaScript collections inspired by .NET, that implements a list and multiple imp
 
 ### Unity (C#)
 
-1 - [Project 1](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Unity/Project1) - A simple Unity3D 2D platformer game, from internet tutorials, I did for a university class preparation.
+1 - [Project 1](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Unity/Project1)
 
-2 - [TheLostChests](https://github.com/joao-neves95/academic-work/tree/master/Unity/TheLostChests) - A simple Unity3D 2D platformer game made for an university class project.
+A simple Unity3D 2D platformer game, from internet tutorials, I did for a university class preparation.
+
+2 - [TheLostChests](https://github.com/joao-neves95/academic-work/tree/master/Unity/TheLostChests)
+
+A simple Unity3D 2D platformer game made for an university class project.
 
 ---
 
@@ -136,3 +145,17 @@ To find the block's nounce**s**, the miner must do the two hashes until he reach
 - [Assembly](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/academic-work/Assembly)
 
 - [C](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/academic-work/C)
+
+---
+
+## Solidity
+
+- [LockedVault](https://github.com/joao-neves95/Exercises_Challenges_Courses/blob/master/Solidity/LockedVault/LockedStratBase.sol)
+
+  Some abstract base classes/contracts and libraries, all fattened on a single file, to serve as base for private DeFi strategies.
+
+- [CryptoZombies](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Solidity/CryptoZombies)
+
+  The CryptoZombies Solidity tutorial made locally.
+
+---
