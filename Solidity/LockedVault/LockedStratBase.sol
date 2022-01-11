@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-// OpenZeppelin Contracts v4.4.0-rc.0 (token/ERC20/IERC20.sol)
-
 pragma solidity ^0.8.0;
+
+// OpenZeppelin Contracts v4.4.1 (utils/Context.sol)
 
 /**
  * @dev Provides information about the current execution context, including the
@@ -25,7 +25,7 @@ abstract contract Context {
 }
 
 
-// OpenZeppelin Contracts v4.4.0-rc.0 (utils/math/SafeMath.sol)
+// OpenZeppelin Contracts v4.4.1 (utils/math/SafeMath.sol)
 
 // CAUTION
 // This version of SafeMath should only be used with Solidity 0.8 or later,
@@ -251,7 +251,7 @@ library SafeMath {
 }
 
 
-// OpenZeppelin Contracts v4.4.0-rc.0 (utils/Address.sol)
+// OpenZeppelin Contracts v4.4.1 (utils/Address.sol)
 
 /**
  * @dev Collection of functions related to the address type
@@ -467,7 +467,7 @@ library Address {
 }
 
 
-// OpenZeppelin Contracts v4.4.0-rc.0 (utils/Context.sol)
+// OpenZeppelin Contracts v4.4.1 (token/ERC20/IERC20.sol)
 
 /**
  * @dev Interface of the ERC20 standard as defined in the EIP.
@@ -548,7 +548,7 @@ interface IERC20 {
 }
 
 
-// OpenZeppelin Contracts v4.4.0-rc.0 (token/ERC20/utils/SafeERC20.sol)
+// OpenZeppelin Contracts v4.4.1 (token/ERC20/utils/SafeERC20.sol)
 
 /**
  * @title SafeERC20
@@ -643,7 +643,7 @@ library SafeERC20 {
 }
 
 
-// Modified OpenZeppelin Contracts v4.4.0-rc.0 (access/Ownable.sol)
+// Modified OpenZeppelin Contracts v4.4.1 (access/Ownable.sol)
 
 /**
  * @dev Contract module which provides a basic access control mechanism, where
@@ -745,6 +745,8 @@ interface ILockedStrat {
 
     function withdraw(uint256 _amount) external;
 
+    function deploy() external;
+
     function execute() external;
 
 }
@@ -771,7 +773,7 @@ abstract contract LockedStratVault is ILockedStratVault, PrivatelyOwnable {
         IERC20(underlyingAssetAddress).safeTransferFrom( msg.sender, address(this), _amount );
     }
 
-    function withdrawAllUndeployed() override external onlyOwner {
+    function withdrawAllUndeployed() override public onlyOwner {
         IERC20 underlyingAssetContract = IERC20(underlyingAssetAddress);
         underlyingAssetContract.safeTransfer( msg.sender, underlyingAssetContract.balanceOf(address(this)) );
     }
@@ -814,20 +816,31 @@ abstract contract LockedStratBase is ILockedStrat, LockedStratVault {
         underlyingAssetContract.safeTransfer( msg.sender, underlyingAssetContract.balanceOf(address(this)) );
     }
 
+    function unpanic() virtual external onlyOwner {
+        // Not yet implemented.
+        require(false == true);
+    }
+
     function retire() virtual external onlyOwner {
         address payable owner = payable(owner());
         selfdestruct(owner);
     }
 
     function withdrawAll() virtual external onlyOwner {
-        require(false == true);
+        withdrawAllUndeployed();
     }
 
     function withdraw(uint256 _amount) virtual external onlyOwner {
+        withdrawAllUndeployed();
+    }
+
+    function deploy() virtual external onlyOwner {
+        // Not yet implemented.
         require(false == true);
     }
 
     function execute() virtual external {
+        // Not yet implemented.
         require(false == true);
     }
 
