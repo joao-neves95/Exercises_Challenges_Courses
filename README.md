@@ -9,9 +9,11 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 ### Personal Projects
 
  - [Amplifir](https://github.com/joao-neves95/Amplifir):\
-A Twitter implementation in .NET Core 3+ and Angular 8+, using DRY, Onion Architecture/Clean Architecture and some Domain Driven Design principles.
+
+  A Twitter implementation in .NET Core 3+ and Angular 8+, using DRY, Onion Architecture/Clean Architecture and some Domain Driven Design principles.
 
  - [ClassStudio](https://github.com/joao-neves95/ClassStudio):\
+
   A code generation tool with a desktop GUI in Electron.NET and a backend in .NET 5.
   It is capable of generating multiple code conversions.
 
@@ -26,13 +28,13 @@ A Twitter implementation in .NET Core 3+ and Angular 8+, using DRY, Onion Archit
 
  - [Braces](https://github.com/joao-neves95/Braces):
 
- (This project was abandoned and it's not finished)
- More than a code editor. It is a specification for code editors.
- An API communicating through SignalR (WebSockets).
- The idea is to create a bridge between code editors/IDEs and plugins/extensions,
- in order for developers be able to use any plugin/extension in any code editor/IDE.
- It is made in .NET Core 3 and plugins/extension run in the PluginHost inside a Docker container.
- 
+  (This project was abandoned and it's not finished)
+  More than a code editor. It is a specification for code editors.
+  An API communicating through SignalR (WebSockets).
+  The idea is to create a bridge between code editors/IDEs and plugins/extensions,
+  in order for developers be able to use any plugin/extension in any code editor/IDE.
+  It is made in .NET Core 3 and plugins/extension run in the PluginHost inside a Docker container.
+
 ### Courses
 
 1 - [Alison/Microsoft: Diploma in C# Programming (Introduction to C#)](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/Diploma-in-CSharp-Programming_Alison-Microsoft)
@@ -46,9 +48,9 @@ A Twitter implementation in .NET Core 3+ and Angular 8+, using DRY, Onion Archit
 
  - [Braces](https://github.com/joao-neves95/Braces)
 
- ---
+---
 
- ## Node.js
+## Node.js
 
 ### Personal Projects
 
@@ -153,6 +155,11 @@ To find the block's nounce**s**, the miner must do the two hashes until he reach
 - [LockedVault](https://github.com/joao-neves95/Exercises_Challenges_Courses/blob/master/Solidity/LockedVault/LockedStratBase.sol)
 
   Some abstract base classes/contracts and libraries, all fattened on a single file, to serve as base for private DeFi strategies.
+
+- [Vault](https://github.com/joao-neves95/Exercises_Challenges_Courses/blob/master/Solidity/Vault/Vault.sol)
+
+  A vault that represents multi-user share of the total value locked. All fattened.\
+  (WIP, not ready for production)
 
 - [CryptoZombies](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Solidity/CryptoZombies)
 
