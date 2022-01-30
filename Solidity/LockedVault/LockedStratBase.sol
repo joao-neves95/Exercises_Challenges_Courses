@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-// OpenZeppelin Contracts v4.4.1 (token/ERC20/IERC20.sol)
+pragma solidity ^0.8.11;
 
-pragma solidity ^0.8.0;
+// OpenZeppelin Contracts v4.4.1 (token/ERC20/IERC20.sol)
 
 /**
  * @dev Interface of the ERC20 standard as defined in the EIP.
@@ -83,7 +83,11 @@ interface IERC20 {
 }
 
 
+// OpenZeppelin Contracts v4.4.1 (token/ERC20/utils/SafeERC20.sol)
+
+
 // OpenZeppelin Contracts v4.4.1 (utils/Address.sol)
+
 
 
 /**
@@ -300,8 +304,6 @@ library Address {
 }
 
 
-// OpenZeppelin Contracts v4.4.1 (token/ERC20/utils/SafeERC20.sol)
-
 /**
  * @title SafeERC20
  * @dev Wrappers around ERC20 operations that throw on failure (when the token
@@ -396,6 +398,8 @@ library SafeERC20 {
 
 
 // OpenZeppelin Contracts v4.4.1 (utils/math/SafeMath.sol)
+
+
 
 // CAUTION
 // This version of SafeMath should only be used with Solidity 0.8 or later,
@@ -623,6 +627,7 @@ library SafeMath {
 
 // OpenZeppelin Contracts v4.4.1 (utils/Context.sol)
 
+
 /**
  * @dev Provides information about the current execution context, including the
  * sender of the transaction and its data. While these are generally available
@@ -767,10 +772,10 @@ abstract contract LockedStratVault is ILockedStratVault, PrivatelyOwnable {
     }
 
     function depositAll() override external {
-        this.deposit( IERC20(underlyingAssetAddress).balanceOf(msg.sender) );
+        deposit( IERC20(underlyingAssetAddress).balanceOf(msg.sender) );
     }
 
-    function deposit(uint256 _amount) override external {
+    function deposit(uint256 _amount) override public {
         IERC20(underlyingAssetAddress).safeTransferFrom( msg.sender, address(this), _amount );
     }
 
@@ -801,14 +806,16 @@ abstract contract LockedStratBase is ILockedStrat, LockedStratVault {
     }
 
     function getTvl() external view returns (uint256) {
-        return this.getUndeployedBalance().add( this.getDeployedBalance() );
+        return getUndeployedBalance().add( getDeployedBalance() );
     }
 
-    function getDeployedBalance() virtual external view returns (uint256) {
+    function getDeployedBalance() virtual public view returns (uint256) {
+        // Not yet implemented.
         return 0;
     }
 
     function getPendingRewardAmount() virtual external view returns (uint256) {
+        // Not yet implemented.
         return 0;
     }
 
@@ -818,13 +825,11 @@ abstract contract LockedStratBase is ILockedStrat, LockedStratVault {
     }
 
     function unpanic() virtual external onlyOwner {
-        // Not yet implemented.
-        require(false == true);
+        require(false == true, "Not yet implemented");
     }
 
     function retire() virtual external onlyOwner {
-        address payable owner = payable(owner());
-        selfdestruct(owner);
+        selfdestruct(payable(msg.sender));
     }
 
     function withdrawAll() virtual external onlyOwner {
@@ -836,13 +841,11 @@ abstract contract LockedStratBase is ILockedStrat, LockedStratVault {
     }
 
     function deploy() virtual external onlyOwner {
-        // Not yet implemented.
-        require(false == true);
+        require(false == true, "Not yet implemented");
     }
 
     function execute() virtual external {
-        // Not yet implemented.
-        require(false == true);
+        require(false == true, "Not yet implemented");
     }
 
 }
