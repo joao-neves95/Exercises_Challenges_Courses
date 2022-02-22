@@ -91,6 +91,7 @@ JavaScript collections inspired by .NET, that implements a list and multiple imp
 A vanilla JavaScript framework inspired by Angular, React and ASP.NET, with a custom templating engine compiler, component, and template view utils like for loops and if statements.
 
 - [Algorithms](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/JavaScript)
+  This was my first attempt at doing algorithms, so they're pretty bad.
 
 - [Snake Game](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/JavaScript/Snake-Game)
 
