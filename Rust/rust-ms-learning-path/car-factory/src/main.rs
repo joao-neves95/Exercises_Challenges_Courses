@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 #[derive(Clone, Debug)]
 struct Car {
     color: String,
@@ -45,6 +47,7 @@ fn car_factory(order_id: u32, miles: u32, print_details: Option<bool>) -> Car {
 
     let transmission: Transmission;
     let mut convertible = false;
+
     if order_id % 2 == 0 {
         transmission = Transmission::Manual;
     } else if order_id % 3 == 0 {
@@ -62,19 +65,24 @@ fn car_factory(order_id: u32, miles: u32, print_details: Option<bool>) -> Car {
     };
 
     if print_details.unwrap_or(false) {
-        print_convertible_car_factory_details(&car);
+        print_car_order_details(order_id, &car);
     }
 
     return car;
 }
 
-fn print_convertible_car_factory_details(car: &Car) {
+fn print_car_order_details(order_id: u32, car: &Car) {
+    println!("Car order: {}: {:?}", order_id, car);
+    print_convertible_car_details(car);
+}
+
+fn print_convertible_car_details(car: &Car) {
     if !(car.convertible) {
         return;
     }
 
     println!(
-        "This is a used non-convertible car! Here are some details: {:?}, color {}, hard top, with {} miles\n",
+        "This is a used non-convertible car! Here are some details: {:?}, color {}, hard top, with {} miles",
         car.transmission, car.color, car.age.1
     );
 }
@@ -86,16 +94,18 @@ fn main() {
 
     let cars_to_create_num = 10;
 
-    let mut cars: Vec<Car> = Vec::new();
+    let mut orders: HashMap<u32, Car> = HashMap::new();
 
     let mut i: u32 = 0;
     while i < cars_to_create_num {
         let is_even: bool = i % 2 == 0;
 
-        let new_car = car_factory(i, if is_even { 0 } else { i * 1000 }, Some(true));
+        orders.insert(
+            i,
+            car_factory(i, if is_even { 0 } else { i * 1000 }, Some(false)),
+        );
 
-        println!("{:#?}", new_car);
-        cars.push(new_car);
+        print_car_order_details(i, orders.get(&i).unwrap_or(&car_factory(i, 0, None)));
 
         i = i + 1;
     }
