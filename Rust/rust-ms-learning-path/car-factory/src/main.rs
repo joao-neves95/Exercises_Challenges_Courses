@@ -96,8 +96,7 @@ fn main() {
 
     let mut orders: HashMap<u32, Car> = HashMap::new();
 
-    let mut i: u32 = 0;
-    while i < cars_to_create_num {
+    for i in 0..cars_to_create_num {
         let is_even: bool = i % 2 == 0;
 
         orders.insert(
@@ -106,8 +105,6 @@ fn main() {
         );
 
         print_car_order_details(i, orders.get(&i).unwrap_or(&car_factory(i, 0, None)));
-
-        i = i + 1;
     }
 
     // println!("Let's increase mileage.");
