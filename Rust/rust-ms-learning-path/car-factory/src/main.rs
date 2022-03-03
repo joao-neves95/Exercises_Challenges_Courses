@@ -1,3 +1,4 @@
+use rand::distributions::{Distribution, Uniform};
 use std::collections::HashMap;
 
 #[derive(Clone, Debug)]
@@ -88,12 +89,13 @@ fn print_convertible_car_details(car: &Car) {
 }
 
 fn main() {
-    println!("Hello, world!");
+    let mut rng = rand::thread_rng();
+    let rand_num = Uniform::from(0..999);
 
+    println!("Hello, world!");
     println!("Let's create some cars.");
 
     let cars_to_create_num = 10;
-
     let mut orders: HashMap<u32, Car> = HashMap::new();
 
     for i in 0..cars_to_create_num {
@@ -101,7 +103,15 @@ fn main() {
 
         orders.insert(
             i,
-            car_factory(i, if is_even { 0 } else { i * 1000 }, Some(false)),
+            car_factory(
+                i,
+                if is_even {
+                    0
+                } else {
+                    i * 1000 + rand_num.sample(&mut rng)
+                },
+                Some(false),
+            ),
         );
 
         print_car_order_details(i, orders.get(&i).unwrap_or(&car_factory(i, 0, None)));
