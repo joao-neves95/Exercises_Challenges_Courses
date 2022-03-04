@@ -66,26 +66,58 @@ fn car_factory(order_id: u32, miles: u32, print_details: Option<bool>) -> Car {
     };
 
     if print_details.unwrap_or(false) {
-        print_car_order_details(order_id, &car);
+        print_car_order_details(order_id, Some(&car));
     }
 
     return car;
 }
 
-fn print_car_order_details(order_id: u32, car: &Car) {
-    println!("Car order: {}: {:?}", order_id, car);
-    print_convertible_car_details(car);
-}
-
-fn print_convertible_car_details(car: &Car) {
-    if !(car.convertible) {
+fn print_car_order_details(order_id: u32, car: Option<&Car>) {
+    if car.is_none() {
         return;
     }
 
-    println!(
-        "This is a used non-convertible car! Here are some details: {:?}, color {}, hard top, with {} miles",
-        car.transmission, car.color, car.age.1
-    );
+    println!("Car order: {}: {:?}", order_id, car);
+    print_convertible_car_details(car);
+
+    fn print_convertible_car_details(car: Option<&Car>) {
+        match car {
+            Some(car) => {
+                if !car.convertible {
+                    return;
+                }
+                println!(
+                    "This is a used non-convertible car! Here are some details: {:?}, color {}, hard top, with {} miles",
+                    car.transmission, car.color, car.age.1
+                )
+            }
+
+            None => return,
+        }
+    }
+}
+
+struct Person {
+    first: String,
+    middle: Option<String>,
+    last: String,
+}
+
+impl Person {
+    fn build_full_name(&mut self) -> String {
+        let mut full_name = String::new();
+        full_name.push_str(&self.first);
+        full_name.push_str("");
+
+        if let Some(middle) = &self.middle {
+            full_name.push_str(&middle);
+            full_name.push_str("");
+        }
+
+        full_name.push_str(&self.last);
+
+        full_name
+    }
 }
 
 fn main() {
@@ -95,7 +127,7 @@ fn main() {
     println!("Hello, world!");
     println!("Let's create some cars.");
 
-    let cars_to_create_num = 10;
+    let cars_to_create_num = 11;
     let mut orders: HashMap<u32, Car> = HashMap::new();
 
     for i in 0..cars_to_create_num {
@@ -114,7 +146,7 @@ fn main() {
             ),
         );
 
-        print_car_order_details(i, orders.get(&i).unwrap_or(&car_factory(i, 0, None)));
+        print_car_order_details(i, orders.get(&i));
     }
 
     // println!("Let's increase mileage.");
