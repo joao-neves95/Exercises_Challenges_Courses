@@ -33,7 +33,7 @@ impl Task {
     }
 
     pub fn print_tasks(journal_path: PathBuf) -> Result<(), Error> {
-        let all_tasks = task_file_db::get_all_tasks(journal_path)?;
+        let all_tasks: Vec<Task> = task_file_db::get_all_tasks(journal_path)?;
 
         for i in 0..all_tasks.len() {
             println!("{}: {}", i + 1, all_tasks[i]);

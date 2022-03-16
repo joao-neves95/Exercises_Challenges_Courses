@@ -1,3 +1,4 @@
+use anyhow::anyhow;
 use structopt::StructOpt;
 
 mod cli;
@@ -7,7 +8,7 @@ mod tasks;
 use cli::Action;
 use tasks::Task;
 
-fn main() {
+fn main() -> anyhow::Result<()> {
     // let cli::CommandLineArgs {
     //     action,
     //     journal_file,
@@ -17,12 +18,13 @@ fn main() {
     let journal_path = args
         .journal_file
         .or_else(Task::find_default_db_path)
-        .expect("Failed to find the DB file");
+        .ok_or(anyhow!("Failed to find the DB file"))?;
 
     match args.action {
         Action::Add { task } => Task::add_task(journal_path, Task::new(task)),
         Action::Done { position } => Task::complete_task(journal_path, position),
         Action::List => tasks::Task::print_tasks(journal_path),
-    }
-    .expect("Failed to run the command");
+    }?;
+
+    Ok(())
 }
