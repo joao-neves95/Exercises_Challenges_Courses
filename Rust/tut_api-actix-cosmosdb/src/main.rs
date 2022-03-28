@@ -4,6 +4,7 @@ use mongodb::{options::ClientOptions, Client};
 use std::sync::*;
 
 mod controllers;
+mod models;
 
 struct MongoDbOptions<'l> {
     connection_string: &'l str,
