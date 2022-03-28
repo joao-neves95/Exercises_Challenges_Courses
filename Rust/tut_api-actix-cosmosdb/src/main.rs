@@ -32,7 +32,7 @@ async fn main() -> anyhow::Result<(), anyhow::Error> {
         })?;
 
     mongodb_client_options.app_name = Some(mongodb_args.app_name.to_string());
-    let mongodb_client = web::Data::new(Mutex::new(Client::with_options(mongodb_client_options)));
+    let mongodb_client = web::Data::new(Mutex::new(Client::with_options(mongodb_client_options)?));
 
     Ok(match HttpServer::new(move || {
         App::new()

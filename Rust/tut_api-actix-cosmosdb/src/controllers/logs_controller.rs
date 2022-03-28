@@ -7,7 +7,7 @@ use mongodb::{options::FindOptions, Client, Collection};
 use serde::Deserialize;
 use std::sync::Mutex;
 
-const MONGO_DB: &'static str = "logs_1";
+const MONGO_DB: &'static str = "logs-1";
 const MONGO_DB_COLL_LOGS: &'static str = "logs";
 
 #[derive(Deserialize)]
@@ -33,6 +33,7 @@ async fn get_logs(data: web::Data<Mutex<Client>>) -> HttpResponse {
         .find(filter, find_options)
         .await
         .with_context(|| format!("Error while connecting to MongoDB"))
+        // Any possible panic from a failed connection to the DB will be picked up by Anyhow.
         .unwrap();
 
     let mut results: Vec<Document> = Vec::new();
