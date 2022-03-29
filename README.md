@@ -4,15 +4,13 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 
 ## C# / .NET
 
-- [Tutorials](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/Personal-Projects/Tutorials)
-
 ### Personal Projects
 
- - [Amplifir](https://github.com/joao-neves95/Amplifir):\
+ - [Amplifir](https://github.com/joao-neves95/Amplifir):
 
   A Twitter implementation in .NET Core 3+ and Angular 8+, using DRY, Onion Architecture/Clean Architecture and some Domain Driven Design principles.
 
- - [ClassStudio](https://github.com/joao-neves95/ClassStudio):\
+ - [ClassStudio](https://github.com/joao-neves95/ClassStudio):
 
   A code generation tool with a desktop GUI in Electron.NET and a backend in .NET 5.
   It is capable of generating multiple code conversions.
@@ -34,6 +32,10 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
   The idea is to create a bridge between code editors/IDEs and plugins/extensions,
   in order for developers be able to use any plugin/extension in any code editor/IDE.
   It is made in .NET Core 3 and plugins/extension run in the PluginHost inside a Docker container.
+
+### Tutorials
+
+   - https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/Personal-Projects/Tutorials
 
 ### Courses
 
@@ -121,13 +123,11 @@ A simple Unity3D 2D platformer game made for an university class project.
 
 - [Blockchain](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/C%2B%2B/Blockchain):
 
-A basic blockchain with block mining. It uses an hybrid Proof of Work algorithm that
-includes Argon2d hashing - RAM instensive; maximizes resistance to GPU and ASIC's
-cracking attacks - and a SHA256 PoW - GPU intensive:<br/>
-```SHA256( Argon2d( blockData ) + blockData.nounce )```<br/>
-The persistence of blocks is made through LevelDB.
-Curently there is no server nor transactions.<br/>
-To find the block's nounce**s**, the miner must do the two hashes until he reaches the desired target bits. The difficulty increments the Argon2d memory requirements.<br/>
+  A basic blockchain with block mining. It uses an hybrid Proof of Work algorithm that includes Argon2d hashing - RAM instensive; maximizes resistance to GPU and ASIC's cracking attacks - and a SHA256 PoW - GPU:<br/>
+  `SHA256( Argon2d( blockData ) + blockData.nounce )`<br/>
+  To find the block's nounce**s**, the miner must do the two hashes until he reaches the desired target bits. The difficulty increments the Argon2d memory requirements.<br/>
+  The persistence of blocks is made through LevelDB.
+  Curently there is no server implementation nor transactions, the idea was to understand what Proof of Work is.<br/>
 
 - [Algorithms](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/C%2B%2B/Algorithms)
 
@@ -141,13 +141,14 @@ To find the block's nounce**s**, the miner must do the two hashes until he reach
 
 ---
 
-## Academic Work (SQL, JavaScript, Unity)
+## Rust
 
-- [Complete Repository](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/academic-work)
+### Courses/Tutorials
 
-- [Assembly](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/academic-work/Assembly)
+- [Microsoft Learn - Take your first steps with Rust](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Rust/rust-ms-learning-path)
+  - [CLI app project - "Rusty Journal"](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Rust/rust-ms-learning-path/rusty-journal)
 
-- [C](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/academic-work/C)
+- [Rust + Actix + CosmosDB (MongoDB) tutorial api](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Rust/tut_api-actix-cosmosdb)
 
 ---
 
@@ -165,5 +166,15 @@ To find the block's nounce**s**, the miner must do the two hashes until he reach
 - [CryptoZombies](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Solidity/CryptoZombies)
 
   The CryptoZombies Solidity tutorial made locally.
+
+---
+
+## Academic Work (SQL, JavaScript, Unity)
+
+- [Complete Repository](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/academic-work)
+
+- [Assembly](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/academic-work/Assembly)
+
+- [C](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/academic-work/C)
 
 ---
