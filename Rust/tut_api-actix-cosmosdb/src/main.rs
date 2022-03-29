@@ -1,14 +1,16 @@
 use actix_web::{web, App, HttpServer};
 use anyhow::{anyhow, Context};
+use dotenv::dotenv;
 use mongodb::{options::ClientOptions, Client};
+use std::env;
 use std::sync::*;
 
 mod controllers;
 mod models;
 
 struct MongoDbOptions<'l> {
-    connection_string: &'l str,
-    app_name: &'l str,
+    connection_string: &'l String,
+    app_name: &'l String,
 }
 
 #[actix_rt::main]
@@ -16,12 +18,14 @@ async fn main() -> anyhow::Result<(), anyhow::Error> {
     let addr = "127.0.0.1:8080";
     std::env::set_var("RUST_LOG", "actix_web=debug");
 
-    let mongodb_args = MongoDbOptions {
-        connection_string: "",
-        app_name: "api-logs",
-    };
-
     println!("Starting the HTTP server...");
+
+    dotenv().ok();
+
+    let mongodb_args = MongoDbOptions {
+        connection_string: &env::var("mongodb_connection_string").unwrap_or("".to_string()),
+        app_name: &env::var("app_name").unwrap(),
+    };
 
     let mut mongodb_client_options = ClientOptions::parse(mongodb_args.connection_string)
         .await
