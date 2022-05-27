@@ -6,36 +6,40 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 
 ### Personal Projects
 
- - [Amplifir](https://github.com/joao-neves95/Amplifir):
+- [Amplifir](https://github.com/joao-neves95/Amplifir):
 
   A Twitter implementation in .NET Core 3+ and Angular 8+, using DRY, Onion Architecture/Clean Architecture and some Domain Driven Design principles.
 
- - [ClassStudio](https://github.com/joao-neves95/ClassStudio):
+- [ClassStudio](https://github.com/joao-neves95/ClassStudio):
 
-  A code generation tool with a desktop GUI in Electron.NET and a backend in .NET 5.
+  A code generation tool with a desktop GUI in Electron.NET and a backend in .NET 5.\
   It is capable of generating multiple code conversions.
 
- - [RegexQuery](https://github.com/joao-neves95/RegexQuery)
+- [RegexQuery](https://github.com/joao-neves95/RegexQuery)
 
-  Regular expressions in english. Create regular expression in an idiomatic way.
+  Regular expressions in english. Create regular expression in an idiomatic way.\
   Made with C#, with object oriented APIs for .NET, JavaScript and Typescript.
 
- - [CSharpToTypescript](https://github.com/joao-neves95/CSharpToTypescript)
+- [CSharpToTypescript](https://github.com/joao-neves95/CSharpToTypescript)
 
   Fork maintenance of a C# to TypeScript converter, modified and adapted to migrate to .NET Standard 2.0 and compile with Visual Studio 2019.
 
- - [Braces](https://github.com/joao-neves95/Braces):
+- [Coinelity](https://github.com/joao-neves95/Coinelity)
 
-  (This project was abandoned and it's not finished)
-  More than a code editor. It is a specification for code editors.
-  An API communicating through SignalR (WebSockets).
-  The idea is to create a bridge between code editors/IDEs and plugins/extensions,
-  in order for developers be able to use any plugin/extension in any code editor/IDE.
-  It is made in .NET Core 3 and plugins/extension run in the PluginHost inside a Docker container.
+  A binary options trading platform is C# ASP.NET, SignalR, Node.js, SQL Server and a frontend vanilla JavaScript with an MVC pattern, CCXT, eCharts.js.\
+  This was supposed to be my final year school project, however, as per advice of my school mentor, this project was dropped for not having enough graphic design.
+
+- [Braces](https://github.com/joao-neves95/Braces):
+
+  (This project was abandoned and it's not finished)\
+  More than a code editor. It is a specification for code editors.\
+  The API communication is done through SignalR (WebSockets).\
+  The idea was to create a bridge between code editors/IDEs and plugins/extensions, in order for developers be able to use any plugin/extension from/in any code editor/IDE.\
+  It is made in C# .NET Core and the plugins/extension run in the PluginHost inside a Docker container.
 
 ### Tutorials
 
-   - https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/Personal-Projects/Tutorials
+  - https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/Personal-Projects/Tutorials
 
 ### Courses
 
@@ -48,7 +52,7 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 
 ### WPF
 
- - [Braces](https://github.com/joao-neves95/Braces)
+- [Braces](https://github.com/joao-neves95/Braces)
 
 ---
 
@@ -86,11 +90,11 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 
 - [js.system.collections](https://github.com/joao-neves95/js.system.collections):
 
-JavaScript collections inspired by .NET, that implements a list and multiple implementations of a dictionary with different complexities to choose from.
+  JavaScript collections inspired by .NET, that implements a list and multiple implementations of a dictionary with different complexities to choose from.
 
 - [js.web.components](https://github.com/joao-neves95/js.web.components):
 
-A vanilla JavaScript framework inspired by Angular, React and ASP.NET, with a custom templating engine compiler, component, and template view utils like for loops and if statements.
+  A vanilla JavaScript framework inspired by Angular, React and ASP.NET, with a custom templating engine compiler, component, and template view utils like for loops and if statements.
 
 - [Algorithms](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/JavaScript)
   This was my first attempt at doing algorithms, so they're pretty bad.
@@ -111,11 +115,11 @@ A vanilla JavaScript framework inspired by Angular, React and ASP.NET, with a cu
 
 1 - [Project 1](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Unity/Project1)
 
-A simple Unity3D 2D platformer game, from internet tutorials, I did for a university class preparation.
+  A simple Unity3D 2D platformer game, from internet tutorials, I did for a university class preparation.
 
 2 - [TheLostChests](https://github.com/joao-neves95/academic-work/tree/master/Unity/TheLostChests)
 
-A simple Unity3D 2D platformer game made for an university class project.
+  A simple Unity3D 2D platformer game made for an university class project.
 
 ---
 
@@ -153,6 +157,13 @@ A simple Unity3D 2D platformer game made for an university class project.
 ---
 
 ## Solidity
+
+- [AutoCompounder](https://github.com/joao-neves95/Exercises_Challenges_Courses/blob/master/Solidity/AutoCompounder)
+
+  This is the Solidity part of my personal auto-compounder, able to farm multiple types of strategies,
+  as well as simple ones like farm and dump hyper-inflationary farms.
+  This is just a copy from master of a private repository, so do not consider it as up to date.
+  It is used in production.
 
 - [LockedVault](https://github.com/joao-neves95/Exercises_Challenges_Courses/blob/master/Solidity/LockedVault/LockedStratBase.sol)
 

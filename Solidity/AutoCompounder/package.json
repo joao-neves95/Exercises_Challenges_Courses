@@ -1,0 +1,22 @@
+{
+  "name": "qapo.defi.contracts",
+  "version": "0.0.1",
+  "description": "## Resources (docs)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joao-neves95/Qapo.DeFi.Contracts.git"
+  },
+  "author": "SHIVAYL",
+  "license": "AGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/joao-neves95/Qapo.DeFi.Contracts/issues"
+  },
+  "homepage": "https://github.com/joao-neves95/Qapo.DeFi.Contracts#readme",
+  "dependencies": {
+    "truffle": "^5.4.24"
+  }
+}
