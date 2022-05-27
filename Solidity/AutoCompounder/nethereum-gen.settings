@@ -1,0 +1,7 @@
+{
+    "projectName": "<namespace>",
+    "namespace": "<namespace>",
+    "lang": 0,
+    "autoCodeGen": true,
+    "projectPath": "<path-to-project>"
+}
