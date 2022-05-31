@@ -1,6 +1,6 @@
 use tokio::{io::AsyncWriteExt, net::TcpStream};
 
-pub async fn handle_connection(mut stream: TcpStream) {
+pub async fn handle_get_balance(mut stream: TcpStream) {
     let content = "{\"balance\": 0.00}";
 
     let response = format!(
