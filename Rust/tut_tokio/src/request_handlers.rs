@@ -1,12 +1,12 @@
-use crate::Response;
+use crate::models::{request::Request, response::Response};
 
 pub async fn handle_get_balance() -> Response {
     build_response(200, format!("{{\"balance\": {}}}", 0.00)).await
 }
 
-pub async fn handle_post_balance(request_buffer: &mut [u8; 32]) -> Response {
+pub async fn handle_post_balance(request: Request) -> Response {
     // Take the content after 'POST /' unntil whitespace.
-    let input: String = request_buffer[6..32]
+    let input: String = request.buffer[6..32]
         .iter()
         .take_while(|c| !(**c as char).is_whitespace())
         .map(|c| *c as char)
