@@ -1,8 +1,9 @@
-use std::str::FromStr;
+use std::{str::FromStr, sync::Arc};
 
 use tokio::{
     io::{AsyncReadExt, AsyncWriteExt},
     net::{TcpListener, TcpStream},
+    sync::Mutex,
 };
 
 use strum::{Display, EnumString};
@@ -29,6 +30,8 @@ async fn main() {
 
     task.await.unwrap();
 
+    let balance_store: Arc<Mutex<f32>> = Arc::new(Mutex::new(0.00));
+
     const SERVER_ADDY: &str = "127.0.0.1:5151";
     let tcp_listener = TcpListener::bind(SERVER_ADDY).await.unwrap();
     println!("Server listening on {SERVER_ADDY}...");
@@ -36,15 +39,21 @@ async fn main() {
     loop {
         match tcp_listener.accept().await {
             Ok((stream, addy)) => {
-                tokio::spawn(async move { handle_connection(stream, addy.to_string()).await })
+                let request = Request {
+                    buffer: [0; 32],
+                    balance_store: balance_store.clone(),
+                };
+
+                tokio::spawn(
+                    async move { handle_connection(stream, addy.to_string(), request).await },
+                )
             }
             Err(e) => tokio::spawn(async move { println!("Error while getting request: {e:?}") }),
         };
     }
 }
 
-async fn handle_connection(mut stream: TcpStream, client_address: String) {
-    let mut request = Request { buffer: [0; 32] };
+async fn handle_connection(mut stream: TcpStream, client_address: String, mut request: Request) {
     stream.read(&mut request.buffer).await.unwrap();
 
     let http_method = match get_http_method_type(request.buffer).await {
@@ -62,7 +71,7 @@ async fn handle_connection(mut stream: TcpStream, client_address: String) {
     );
 
     let res = match http_method {
-        HttpMethodType::GET => handle_get_balance().await,
+        HttpMethodType::GET => handle_get_balance(request).await,
         HttpMethodType::POST => handle_post_balance(request).await,
     };
 
@@ -76,7 +85,7 @@ async fn handle_connection(mut stream: TcpStream, client_address: String) {
 
     println!("Response: {http_response:?}");
 
-    stream.write(http_response.as_bytes()).await.unwrap();
+    stream.write_all(http_response.as_bytes()).await.unwrap();
     stream.flush().await.unwrap();
 }
 
