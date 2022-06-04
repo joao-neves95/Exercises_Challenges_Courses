@@ -151,8 +151,8 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 
 - [Microsoft Learn - Take your first steps with Rust](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Rust/rust-ms-learning-path)
   - [CLI app project - "Rusty Journal"](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Rust/rust-ms-learning-path/rusty-journal)
-
 - [Rust + Actix + CosmosDB (MongoDB) tutorial api](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Rust/tut_api-actix-cosmosdb)
+- [Rust async Tokio API server tutorial](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Rust/tut_tokio)
 
 ---
 
