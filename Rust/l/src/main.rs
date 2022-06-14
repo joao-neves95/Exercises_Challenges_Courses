@@ -1,16 +1,18 @@
-use std::{env, fs};
+use fs_utils::FsUtils;
 
-fn main() {
-    // TODO: Error handling.
-    let all_entries = fs::read_dir(env::current_dir().unwrap())
-        .unwrap()
-        .map(|entry_res| match entry_res.unwrap().path().file_name() {
-            Some(name) => name.to_os_string().into_string().unwrap(),
-            None => "..".to_owned(),
-        })
-        .collect::<Vec<String>>();
+mod fs_utils;
+
+// TODO: Error handling.
+fn main() -> () {
+    let all_entries = FsUtils::read_dir();
 
     for entry in all_entries {
-        println!("{}", entry);
+        println!(
+            "{}",
+            match entry.path().file_name() {
+                Some(file_name) => file_name.to_str().unwrap_or("").to_owned(),
+                None => "..".to_owned(),
+            }
+        );
     }
 }
