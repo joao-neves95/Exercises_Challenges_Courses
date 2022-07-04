@@ -1,16 +1,17 @@
-use std::fs::DirEntry;
-
+use clap::Parser;
 use cli_args::CliArgs;
+use dir_filters::DirFilters;
 use fs_utils::FsUtils;
 
 mod cli_args;
+mod dir_filters;
 mod fs_utils;
 
 // TODO: Error handling.
 fn main() -> () {
-    let _cli_args: CliArgs;
+    let cli_args = CliArgs::parse();
 
-    let dir_filters = vec![filter_out_hidden_files];
+    let dir_filters = DirFilters::filter(cli_args);
     let all_entries = FsUtils::read_dir(dir_filters);
 
     for entry in all_entries {
@@ -21,12 +22,4 @@ fn main() -> () {
 
         println!("{}", entry_name);
     }
-}
-
-fn filter_out_hidden_files(dir_entry: &DirEntry) -> bool {
-    !match dir_entry.path().file_name() {
-        Some(name) => name.to_str().unwrap_or(""),
-        None => "..",
-    }
-    .starts_with('.')
 }
