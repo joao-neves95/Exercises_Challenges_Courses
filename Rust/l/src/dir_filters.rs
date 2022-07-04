@@ -6,7 +6,7 @@ use crate::cli_args::CliArgs;
 pub struct DirFilters {}
 
 impl DirFilters {
-    pub fn filter(cli_args: CliArgs) -> Vec<Box<dyn FnMut(&DirEntry) -> bool>> {
+    pub fn build_filters(cli_args: CliArgs) -> Vec<Box<dyn FnMut(&DirEntry) -> bool>> {
         let mut dir_filters: Vec<Box<dyn FnMut(&DirEntry) -> bool>> = Vec::new();
 
         if !cli_args.all {
