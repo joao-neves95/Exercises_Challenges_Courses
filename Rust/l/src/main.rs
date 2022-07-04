@@ -14,5 +14,5 @@ fn main() -> () {
     let cli_args = CliArgs::parse();
     let dir_entries = FsUtils::read_dir(DirFilters::build_filters(cli_args));
 
-    print!("{}", DirPrinter::new(dir_entries))
+    DirPrinter::new(dir_entries).print()
 }

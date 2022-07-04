@@ -8,6 +8,10 @@ impl DirPrinter {
     pub fn new(dir_entries: Vec<DirEntry>) -> DirPrinter {
         DirPrinter { dir_entries }
     }
+
+    pub fn print(&self) {
+        print!("{}", self)
+    }
 }
 
 impl Display for DirPrinter {
