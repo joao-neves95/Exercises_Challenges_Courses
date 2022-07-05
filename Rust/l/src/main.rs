@@ -12,7 +12,7 @@ mod fs_utils;
 // TODO: Error handling.
 fn main() -> () {
     let cli_args = CliArgs::parse();
-    let dir_entries = FsUtils::read_dir(DirFilters::build_filters(cli_args));
+    let dir_entries = FsUtils::read_dir(DirFilters::build_filters(&cli_args));
 
-    DirPrinter::new(dir_entries).print()
+    DirPrinter::new(&cli_args, &dir_entries).print()
 }
