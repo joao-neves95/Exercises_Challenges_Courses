@@ -1,6 +1,6 @@
 use std::fs::DirEntry;
 
-use crate::cli_args::CliArgs;
+use crate::{cli_args::CliArgs, fs_utils::FsUtils};
 
 #[derive(Debug)]
 pub struct DirFilters {}
@@ -18,9 +18,5 @@ impl DirFilters {
 }
 
 fn filter_out_hidden_files(dir_entry: &DirEntry) -> bool {
-    !match dir_entry.path().file_name() {
-        Some(name) => name.to_str().unwrap_or(""),
-        None => "..",
-    }
-    .starts_with('.')
+    !FsUtils::get_dir_entry_file_name(dir_entry).starts_with('.')
 }

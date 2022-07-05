@@ -1,6 +1,6 @@
 use std::{fmt::Display, fs::DirEntry};
 
-use crate::cli_args::CliArgs;
+use crate::{cli_args::CliArgs, fs_utils::FsUtils};
 
 pub struct DirPrinter<'a> {
     cli_args: &'a CliArgs,
@@ -35,7 +35,7 @@ fn print_dir_inline(
     f: &mut std::fmt::Formatter<'_>,
 ) -> std::fmt::Result {
     for entry in dir_entries {
-        write!(f, "{} ", get_dir_entry_file_name(&entry))?;
+        write!(f, "{} ", FsUtils::get_dir_entry_file_name(&entry))?;
     }
 
     Ok(())
@@ -46,16 +46,8 @@ fn print_dir_list(
     f: &mut std::fmt::Formatter<'_>,
 ) -> std::fmt::Result {
     for entry in dir_entries {
-        writeln!(f, "{}", get_dir_entry_file_name(&entry))?;
+        writeln!(f, "{}", FsUtils::get_dir_entry_file_name(&entry))?;
     }
 
     Ok(())
-}
-
-fn get_dir_entry_file_name(dir_entry: &DirEntry) -> String {
-    match dir_entry.path().file_name() {
-        Some(name) => name.to_str().unwrap_or(""),
-        None => "..",
-    }
-    .to_owned()
 }
