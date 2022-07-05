@@ -123,6 +123,23 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 
 ---
 
+## Rust
+
+### Projects
+
+- [l](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Rust/l)
+
+  An `ls` clone.
+
+### Courses/Tutorials
+
+- [Microsoft Learn - Take your first steps with Rust](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Rust/rust-ms-learning-path)
+  - [CLI app project - "Rusty Journal"](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Rust/rust-ms-learning-path/rusty-journal)
+
+- [Rust + Actix + CosmosDB (MongoDB) tutorial api](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Rust/tut_api-actix-cosmosdb)
+
+---
+
 ## C++
 
 - [Blockchain](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/C%2B%2B/Blockchain):
@@ -131,7 +148,7 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
   `SHA256( Argon2d( blockData ) + blockData.nounce )`<br/>
   To find the block's nounce**s**, the miner must do the two hashes until he reaches the desired target bits. The difficulty increments the Argon2d memory requirements.<br/>
   The persistence of blocks is made through LevelDB.
-  Curently there is no server implementation nor transactions, the idea was to understand what Proof of Work is.<br/>
+  Currently there is no server implementation nor transactions, the idea was to understand what Proof of Work is.<br/>
 
 - [Algorithms](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/C%2B%2B/Algorithms)
 
@@ -142,17 +159,6 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 ## C
 
 - [Algorithms](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/C)
-
----
-
-## Rust
-
-### Courses/Tutorials
-
-- [Microsoft Learn - Take your first steps with Rust](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Rust/rust-ms-learning-path)
-  - [CLI app project - "Rusty Journal"](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Rust/rust-ms-learning-path/rusty-journal)
-- [Rust + Actix + CosmosDB (MongoDB) tutorial api](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Rust/tut_api-actix-cosmosdb)
-- [Rust async Tokio API server tutorial](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Rust/tut_tokio)
 
 ---
 
