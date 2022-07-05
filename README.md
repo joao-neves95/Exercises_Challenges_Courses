@@ -26,7 +26,7 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 
 - [Coinelity](https://github.com/joao-neves95/Coinelity)
 
-  A binary options trading platform is C# ASP.NET, SignalR, Node.js, SQL Server and a frontend vanilla JavaScript with an MVC pattern, CCXT, eCharts.js.\
+  A binary options trading platform in C# ASP.NET, SignalR, Node.js, SQL Server and a frontend vanilla JavaScript with the MVC pattern, CCXT, eCharts.js.\
   This was supposed to be my final year school project, however, as per advice of my school mentor, this project was dropped for not having enough graphic design.
 
 - [Braces](https://github.com/joao-neves95/Braces):
@@ -62,7 +62,7 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 
 - [MergerJS](https://github.com/joao-neves95/merger-js)
 
-  Yet another simple cross-platform CLI build tool to bundle JavaScript files, with a custom file import syntax, ES8+ minification, auto   build capabilities, and native OS notifications.
+  Yet another simple cross-platform CLI build tool to bundle JavaScript files, with a custom file import syntax, ES8+ minification, auto build capabilities, and native OS notifications.
 
 - [PortfolioOS](https://github.com/joao-neves95/portfolio-os)
 
@@ -167,8 +167,9 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 - [AutoCompounder](https://github.com/joao-neves95/Exercises_Challenges_Courses/blob/master/Solidity/AutoCompounder)
 
   This is the Solidity part of my personal auto-compounder, able to farm multiple types of strategies,
-  as well as simple ones like farm and dump hyper-inflationary farms.
-  This is just a copy from master of a private repository, so do not consider it as up to date.
+  as well as simple ones like farm and dump hyper-inflationary token farms.\
+  Done with a class structure to simplify strategy development, as well as to provide methods to work with DEX's compatible with Uniswap v2 and MasterShef, with room and flexibility to extend.\
+  This is just a copy from master of a private repository, so do not consider it as up to date.\
   It is used in production.
 
 - [LockedVault](https://github.com/joao-neves95/Exercises_Challenges_Courses/blob/master/Solidity/LockedVault/LockedStratBase.sol)
