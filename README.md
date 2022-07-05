@@ -26,7 +26,7 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 
 - [Coinelity](https://github.com/joao-neves95/Coinelity)
 
-  A binary options trading platform is C# ASP.NET, SignalR, Node.js, SQL Server and a frontend vanilla JavaScript with an MVC pattern, CCXT, eCharts.js.\
+  A binary options trading platform in C# ASP.NET, SignalR, Node.js, SQL Server and a frontend vanilla JavaScript with the MVC pattern, CCXT, eCharts.js.\
   This was supposed to be my final year school project, however, as per advice of my school mentor, this project was dropped for not having enough graphic design.
 
 - [Braces](https://github.com/joao-neves95/Braces):
@@ -62,7 +62,7 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 
 - [MergerJS](https://github.com/joao-neves95/merger-js)
 
-  Yet another simple cross-platform CLI build tool to bundle JavaScript files, with a custom file import syntax, ES8+ minification, auto   build capabilities, and native OS notifications.
+  Yet another simple cross-platform CLI build tool to bundle JavaScript files, with a custom file import syntax, ES8+ minification, auto build capabilities, and native OS notifications.
 
 - [PortfolioOS](https://github.com/joao-neves95/portfolio-os)
 
@@ -123,6 +123,23 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 
 ---
 
+## Rust
+
+### Projects
+
+- [l](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Rust/l)
+
+  An `ls` clone.
+
+### Courses/Tutorials
+
+- [Microsoft Learn - Take your first steps with Rust](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Rust/rust-ms-learning-path)
+  - [CLI app project - "Rusty Journal"](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Rust/rust-ms-learning-path/rusty-journal)
+
+- [Rust + Actix + CosmosDB (MongoDB) tutorial api](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Rust/tut_api-actix-cosmosdb)
+
+---
+
 ## C++
 
 - [Blockchain](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/C%2B%2B/Blockchain):
@@ -131,7 +148,7 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
   `SHA256( Argon2d( blockData ) + blockData.nounce )`<br/>
   To find the block's nounce**s**, the miner must do the two hashes until he reaches the desired target bits. The difficulty increments the Argon2d memory requirements.<br/>
   The persistence of blocks is made through LevelDB.
-  Curently there is no server implementation nor transactions, the idea was to understand what Proof of Work is.<br/>
+  Currently there is no server implementation nor transactions, the idea was to understand what Proof of Work is.<br/>
 
 - [Algorithms](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/C%2B%2B/Algorithms)
 
@@ -145,24 +162,14 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 
 ---
 
-## Rust
-
-### Courses/Tutorials
-
-- [Microsoft Learn - Take your first steps with Rust](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Rust/rust-ms-learning-path)
-  - [CLI app project - "Rusty Journal"](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Rust/rust-ms-learning-path/rusty-journal)
-- [Rust + Actix + CosmosDB (MongoDB) tutorial api](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Rust/tut_api-actix-cosmosdb)
-- [Rust async Tokio API server tutorial](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Rust/tut_tokio)
-
----
-
 ## Solidity
 
 - [AutoCompounder](https://github.com/joao-neves95/Exercises_Challenges_Courses/blob/master/Solidity/AutoCompounder)
 
   This is the Solidity part of my personal auto-compounder, able to farm multiple types of strategies,
-  as well as simple ones like farm and dump hyper-inflationary farms.
-  This is just a copy from master of a private repository, so do not consider it as up to date.
+  as well as simple ones like farm and dump hyper-inflationary token farms.\
+  Done with a class structure to simplify strategy development, as well as to provide methods to work with DEX's compatible with Uniswap v2 and MasterShef, with room and flexibility to extend.\
+  This is just a copy from master of a private repository, so do not consider it as up to date.\
   It is used in production.
 
 - [LockedVault](https://github.com/joao-neves95/Exercises_Challenges_Courses/blob/master/Solidity/LockedVault/LockedStratBase.sol)
