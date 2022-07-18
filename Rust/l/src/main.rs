@@ -12,7 +12,10 @@ mod fs_utils;
 
 fn main() -> Result<()> {
     let cli_args = CliArgs::parse();
-    let dir_entries = FsUtils::read_dir(DirFilters::build_filters(&cli_args))?;
+    let dir_entries = FsUtils::filter_dir_entries(
+        FsUtils::read_current_dir()?,
+        DirFilters::build_filters(&cli_args),
+    );
 
     Ok(DirPrinter::new(&cli_args, &dir_entries).print())
 }
