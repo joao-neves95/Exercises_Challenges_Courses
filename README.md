@@ -64,7 +64,7 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 
   A CLI that interfaces with Portugal's Tax Authority website, in order to streamline the process of issuing invoices.\
   It was made with Rust, [thirtyfour](https://github.com/stevepryde/thirtyfour) (WebDriver client),
-  [sled](https://github.com/spacejam/sled) (embedded database) and [rkyv](zero-copy raw byte deserialization).
+  [sled](https://github.com/spacejam/sled) (embedded database) and [rkyv](https://github.com/rkyv/rkyv) (zero-copy raw byte deserialization).
 
 - [l](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Rust/l)
 
