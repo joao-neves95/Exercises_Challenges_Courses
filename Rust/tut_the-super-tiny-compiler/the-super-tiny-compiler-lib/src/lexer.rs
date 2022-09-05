@@ -12,11 +12,12 @@ impl Lexer {
         let count = input.chars().count();
         let mut input_iter = input.chars();
 
-        while position < count {
-            let mut current_char = input_iter.next().unwrap_or(' ');
+        let mut current_char = next_char(&mut input_iter);
 
+        while position < count {
             if current_char.is_whitespace() {
                 position += 1;
+                current_char = next_char(&mut input_iter);
             } else if current_char == '(' || current_char == ')' {
                 all_tokens.push(Token {
                     type_name: TokenTypeName::Parenthesis,
@@ -24,15 +25,17 @@ impl Lexer {
                 });
 
                 position += 1;
+                current_char = next_char(&mut input_iter);
 
             // (add 123 456)
             //      ^^^ ^^^
-            } else if current_char.is_digit(10) {
+            } else if is_number(current_char) {
+                // Advances and points `current_char` to ')', if it's the right member.
                 let value = extract_values_until(
                     &mut input_iter,
                     &mut current_char,
                     &mut position,
-                    |current_char| current_char.is_digit(10),
+                    |current_char| is_number(current_char),
                 );
 
                 all_tokens.push(Token {
@@ -43,9 +46,10 @@ impl Lexer {
             // (concat "foo" "bar")
             //          ^^^   ^^^
             } else if current_char == '"' {
-                // Skip the first double quote.
+                // Skip the first opening double quote.
                 current_char = next_char(&mut input_iter);
 
+                // Advances and points `current_char` to ')', if it's the right member.
                 let value = extract_values_until(
                     &mut input_iter,
                     &mut current_char,
@@ -57,6 +61,9 @@ impl Lexer {
                     type_name: TokenTypeName::String,
                     value,
                 });
+
+                // Skip the last closing double quote.
+                current_char = next_char(&mut input_iter);
 
             // (add 2 4)
             //  ^^^
