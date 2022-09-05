@@ -17,7 +17,6 @@ impl Lexer {
 
             if current_char.is_whitespace() {
                 position += 1;
-
             } else if current_char == '(' || current_char == ')' {
                 all_tokens.push(Token {
                     type_name: TokenTypeName::Parenthesis,
@@ -63,7 +62,10 @@ impl Lexer {
             //  ^^^
             } else if current_char.is_alphanumeric() {
                 if is_number(current_char) {
-                    panic!("Function names cannot start with a number; char '{}' at position {}", current_char, position)
+                    panic!(
+                        "Function names cannot start with a number; char '{}' at position {}",
+                        current_char, position
+                    )
                 }
 
                 let value = extract_values_until(
@@ -77,9 +79,11 @@ impl Lexer {
                     type_name: TokenTypeName::FunctionName,
                     value,
                 });
-
             } else {
-                panic!("Unknown char: '{}' at position {}", current_char, position)
+                panic!(
+                    "Unexpected char '{}' at position {}",
+                    current_char, position
+                )
             }
         }
 
@@ -110,4 +114,73 @@ fn extract_values_until(
     }
 
     value
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::{constants::TokenTypeName, models::Token, Lexer};
+
+    #[test]
+    fn lisp_add_passes() {
+        let result = Lexer::run("(add 123 456)");
+
+        let expected = vec![
+            Token {
+                type_name: TokenTypeName::Parenthesis,
+                value: "(".to_owned(),
+            },
+            Token {
+                type_name: TokenTypeName::Number,
+                value: "123".to_owned(),
+            },
+            Token {
+                type_name: TokenTypeName::Number,
+                value: "456".to_owned(),
+            },
+            Token {
+                type_name: TokenTypeName::Parenthesis,
+                value: ")".to_owned(),
+            },
+        ];
+
+        assert_eq!(result, expected)
+    }
+
+    #[test]
+    fn lisp_concat_passes() {
+        let result = Lexer::run(r#"(concat "foo" "bar")"#);
+
+        let expected = vec![
+            Token {
+                type_name: TokenTypeName::Parenthesis,
+                value: "(".to_owned(),
+            },
+            Token {
+                type_name: TokenTypeName::String,
+                value: "foo".to_owned(),
+            },
+            Token {
+                type_name: TokenTypeName::String,
+                value: "bar".to_owned(),
+            },
+            Token {
+                type_name: TokenTypeName::Parenthesis,
+                value: ")".to_owned(),
+            },
+        ];
+
+        assert_eq!(result, expected)
+    }
+
+    #[test]
+    #[should_panic]
+    fn lisp_fun_name_starts_with_num_fails() {
+        let _ = Lexer::run("(1add 1 2)");
+    }
+
+    #[test]
+    #[should_panic]
+    fn lisp_unexpected_token_fails() {
+        let _ = Lexer::run("(add ` 2)");
+    }
 }
