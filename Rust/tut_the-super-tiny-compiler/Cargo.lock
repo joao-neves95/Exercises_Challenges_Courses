@@ -5,6 +5,9 @@ version = 3
 [[package]]
 name = "the-super-tiny-compiler-cli"
 version = "0.1.0"
+dependencies = [
+ "the-super-tiny-compiler-lib",
+]
 
 [[package]]
 name = "the-super-tiny-compiler-lib"
