@@ -1,42 +1,41 @@
-use std::str::Chars;
+use std::{iter::Enumerate, str::Chars};
 
 use crate::{constants::TokenTypeName, models::Token};
 
 pub struct Lexer {}
 
 impl Lexer {
-    pub fn run(input: &str) -> Vec<Token> {
+    pub fn parse(input: &str) -> Vec<Token> {
         let mut all_tokens = Vec::new();
 
-        let mut position = 0;
-        let count = input.chars().count();
-        let mut input_iter = input.chars();
+        let mut input_iter = input.chars().enumerate();
+        let mut current_char = input_iter.next();
 
-        let mut current_char = next_char(&mut input_iter);
+        while current_char.is_some() {
+            let this_char = current_char.unwrap().1;
 
-        while position < count {
-            if current_char.is_whitespace() {
-                position += 1;
-                current_char = next_char(&mut input_iter);
-            } else if current_char == '(' || current_char == ')' {
+            if this_char.is_whitespace() {
+                current_char = input_iter.next();
+            } else if this_char == '(' || this_char == ')' {
                 all_tokens.push(Token {
-                    type_name: TokenTypeName::Parenthesis,
-                    value: current_char.to_string(),
+                    type_name: if this_char == '(' {
+                        TokenTypeName::OpenParenthesis
+                    } else {
+                        TokenTypeName::CloseParenthesis
+                    },
+                    value: this_char.to_string(),
                 });
 
-                position += 1;
-                current_char = next_char(&mut input_iter);
+                current_char = input_iter.next();
 
             // (add 123 456)
             //      ^^^ ^^^
-            } else if is_number(current_char) {
+            } else if is_number(this_char) {
                 // Advances and points `current_char` to ')', if it's the right member.
-                let value = extract_values_until(
-                    &mut input_iter,
-                    &mut current_char,
-                    &mut position,
-                    |current_char| is_number(current_char),
-                );
+                let value =
+                    extract_values_until(&mut input_iter, &mut current_char, |current_char| {
+                        is_number(current_char)
+                    });
 
                 all_tokens.push(Token {
                     type_name: TokenTypeName::Number,
@@ -45,17 +44,15 @@ impl Lexer {
 
             // (concat "foo" "bar")
             //          ^^^   ^^^
-            } else if current_char == '"' {
+            } else if this_char == '"' {
                 // Skip the first opening double quote.
-                current_char = next_char(&mut input_iter);
+                current_char = input_iter.next();
 
                 // Advances and points `current_char` to ')', if it's the right member.
-                let value = extract_values_until(
-                    &mut input_iter,
-                    &mut current_char,
-                    &mut position,
-                    |current_char| current_char != '"',
-                );
+                let value =
+                    extract_values_until(&mut input_iter, &mut current_char, |current_char| {
+                        current_char != '"'
+                    });
 
                 all_tokens.push(Token {
                     type_name: TokenTypeName::String,
@@ -63,17 +60,15 @@ impl Lexer {
                 });
 
                 // Skip the last closing double quote.
-                current_char = next_char(&mut input_iter);
+                current_char = input_iter.next();
 
             // (add 2 4)
             //  ^^^
-            } else if current_char.is_alphanumeric() {
-                let value = extract_values_until(
-                    &mut input_iter,
-                    &mut current_char,
-                    &mut position,
-                    |current_char| current_char.is_alphanumeric(),
-                );
+            } else if this_char.is_alphanumeric() {
+                let value =
+                    extract_values_until(&mut input_iter, &mut current_char, |inner_char| {
+                        inner_char.is_alphanumeric()
+                    });
 
                 all_tokens.push(Token {
                     type_name: TokenTypeName::FunctionName,
@@ -82,7 +77,8 @@ impl Lexer {
             } else {
                 panic!(
                     "Unexpected char '{}' at position {}",
-                    current_char, position
+                    this_char,
+                    current_char.unwrap().0
                 )
             }
         }
@@ -91,26 +87,20 @@ impl Lexer {
     }
 }
 
-fn next_char(input_iter: &mut Chars) -> char {
-    input_iter.next().unwrap_or(' ')
-}
-
 fn is_number(char: char) -> bool {
     char.is_digit(10)
 }
 
 fn extract_values_until(
-    input_iter: &mut Chars,
-    current_char: &mut char,
-    position: &mut usize,
+    input_iter: &mut Enumerate<Chars>,
+    current_char: &mut Option<(usize, char)>,
     predicate_while: fn(char) -> bool,
 ) -> String {
     let mut value = String::new();
 
-    while predicate_while(*current_char) {
-        value.push(*current_char);
-        *current_char = next_char(input_iter);
-        *position += 1;
+    while current_char.is_some() && predicate_while((*current_char).unwrap().1) {
+        value.push((*current_char).unwrap().1);
+        *current_char = input_iter.next();
     }
 
     value
@@ -122,11 +112,11 @@ mod tests {
 
     #[test]
     fn lisp_add_passes() {
-        let result = Lexer::run("(add 123 456)");
+        let result = Lexer::parse("(add 123 456)");
 
         let expected = vec![
             Token {
-                type_name: TokenTypeName::Parenthesis,
+                type_name: TokenTypeName::OpenParenthesis,
                 value: "(".to_owned(),
             },
             Token {
@@ -142,7 +132,7 @@ mod tests {
                 value: "456".to_owned(),
             },
             Token {
-                type_name: TokenTypeName::Parenthesis,
+                type_name: TokenTypeName::CloseParenthesis,
                 value: ")".to_owned(),
             },
         ];
@@ -152,11 +142,11 @@ mod tests {
 
     #[test]
     fn lisp_concat_passes() {
-        let result = Lexer::run(r#"(concat "foo" "bar")"#);
+        let result = Lexer::parse(r#"(concat "foo" "bar")"#);
 
         let expected = vec![
             Token {
-                type_name: TokenTypeName::Parenthesis,
+                type_name: TokenTypeName::OpenParenthesis,
                 value: "(".to_owned(),
             },
             Token {
@@ -172,7 +162,7 @@ mod tests {
                 value: "bar".to_owned(),
             },
             Token {
-                type_name: TokenTypeName::Parenthesis,
+                type_name: TokenTypeName::CloseParenthesis,
                 value: ")".to_owned(),
             },
         ];
@@ -183,6 +173,6 @@ mod tests {
     #[test]
     #[should_panic]
     fn lisp_unexpected_token_fails() {
-        let _ = Lexer::run("(add ` 2)");
+        let _ = Lexer::parse("(add ` 2)");
     }
 }

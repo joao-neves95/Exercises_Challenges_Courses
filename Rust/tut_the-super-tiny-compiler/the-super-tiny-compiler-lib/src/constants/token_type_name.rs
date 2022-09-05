@@ -1,6 +1,7 @@
 #[derive(Debug, PartialEq)]
 pub enum TokenTypeName {
-    Parenthesis,
+    OpenParenthesis,
+    CloseParenthesis,
     Number,
     String,
     FunctionName,
