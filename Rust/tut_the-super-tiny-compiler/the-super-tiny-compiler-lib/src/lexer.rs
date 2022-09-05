@@ -61,13 +61,6 @@ impl Lexer {
             // (add 2 4)
             //  ^^^
             } else if current_char.is_alphanumeric() {
-                if is_number(current_char) {
-                    panic!(
-                        "Function names cannot start with a number; char '{}' at position {}",
-                        current_char, position
-                    )
-                }
-
                 let value = extract_values_until(
                     &mut input_iter,
                     &mut current_char,
@@ -130,6 +123,10 @@ mod tests {
                 value: "(".to_owned(),
             },
             Token {
+                type_name: TokenTypeName::FunctionName,
+                value: "add".to_owned(),
+            },
+            Token {
                 type_name: TokenTypeName::Number,
                 value: "123".to_owned(),
             },
@@ -156,6 +153,10 @@ mod tests {
                 value: "(".to_owned(),
             },
             Token {
+                type_name: TokenTypeName::FunctionName,
+                value: "concat".to_owned(),
+            },
+            Token {
                 type_name: TokenTypeName::String,
                 value: "foo".to_owned(),
             },
@@ -170,12 +171,6 @@ mod tests {
         ];
 
         assert_eq!(result, expected)
-    }
-
-    #[test]
-    #[should_panic]
-    fn lisp_fun_name_starts_with_num_fails() {
-        let _ = Lexer::run("(1add 1 2)");
     }
 
     #[test]
