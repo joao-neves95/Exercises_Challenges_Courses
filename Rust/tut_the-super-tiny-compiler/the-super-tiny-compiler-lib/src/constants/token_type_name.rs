@@ -1,4 +1,4 @@
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, strum_macros::Display)]
 pub enum TokenTypeName {
     OpenParenthesis,
     CloseParenthesis,
