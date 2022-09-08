@@ -1,4 +1,4 @@
-use the_super_tiny_compiler_lib::{CodeGenerator, IntermediateAst, Lexer};
+use the_super_tiny_compiler_lib::{Ast, CodeGenerator, IntermediateAst, Lexer};
 
 fn main() {
     let all_tokens = Lexer::parse("");
@@ -6,5 +6,7 @@ fn main() {
 
     let intermediate_ast = IntermediateAst::from(&mut all_tokens_iter);
 
-    let generator = CodeGenerator::run(&intermediate_ast);
+    let ast = Ast::from(&intermediate_ast);
+
+    let generator = CodeGenerator::run(&ast);
 }

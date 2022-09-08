@@ -7,7 +7,7 @@ use crate::{
 
 #[derive(Debug, PartialEq)]
 pub struct IntermediateAst<'a> {
-    pub tree_type: &'a str,
+    pub ast_type: &'a str,
     pub body: Vec<IntermediateAstNode<'a>>,
 }
 
@@ -22,7 +22,7 @@ pub struct IntermediateAstNode<'a> {
 impl<'a> From<&'a mut Iter<'a, Token>> for IntermediateAst<'a> {
     fn from(tokens_iter: &'a mut Iter<'a, Token>) -> Self {
         let mut ast = IntermediateAst {
-            tree_type: "Program",
+            ast_type: "IntermediateProgram",
             body: Vec::new(),
         };
 
@@ -112,9 +112,10 @@ fn walk_recursive<'a>(
 
 #[cfg(test)]
 mod tests {
-    use crate::{constants::AstNodeType, create_tokens_vec_add, IntermediateAst};
-
-    use super::IntermediateAstNode;
+    use crate::{
+        mock_data::{create_intermediate_ast_add, create_tokens_vec_add},
+        IntermediateAst,
+    };
 
     #[test]
     fn parse_tokens_into_intermediate_ast_add_passes() {
@@ -125,28 +126,7 @@ mod tests {
         let param_val_1 = "123".to_owned();
         let param_val_2 = "456".to_owned();
 
-        let expected = IntermediateAst {
-            tree_type: "Program",
-            body: vec![IntermediateAstNode {
-                node_type: AstNodeType::CallExpression,
-                name: Some(&expression),
-                value: None,
-                params: Some(vec![
-                    IntermediateAstNode {
-                        node_type: AstNodeType::NumberLiteral,
-                        value: Some(&param_val_1),
-                        name: None,
-                        params: None,
-                    },
-                    IntermediateAstNode {
-                        node_type: AstNodeType::NumberLiteral,
-                        value: Some(&param_val_2),
-                        name: None,
-                        params: None,
-                    },
-                ]),
-            }],
-        };
+        let expected = create_intermediate_ast_add(&expression, &param_val_1, &param_val_2);
 
         let result = IntermediateAst::from(&mut mock_tokens_iter);
 
