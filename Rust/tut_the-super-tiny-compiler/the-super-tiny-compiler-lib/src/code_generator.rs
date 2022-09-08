@@ -1,7 +1,7 @@
-use crate::Ast;
+use crate::IntermediateAst;
 
 pub struct CodeGenerator {}
 
 impl CodeGenerator {
-    pub fn run(ast: &Ast) -> () {}
+    pub fn run(ast: &IntermediateAst) -> () {}
 }

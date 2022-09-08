@@ -108,64 +108,25 @@ fn extract_values_until(
 
 #[cfg(test)]
 mod tests {
-    use crate::{constants::TokenTypeName, models::Token, Lexer};
+    use crate::{
+        mock_data::{create_tokens_vec_add, create_tokens_vec_concat},
+        Lexer,
+    };
 
     #[test]
     fn lisp_add_passes() {
-        let result = Lexer::parse("(add 123 456)");
+        let expected = create_tokens_vec_add();
 
-        let expected = vec![
-            Token {
-                type_name: TokenTypeName::OpenParenthesis,
-                value: "(".to_owned(),
-            },
-            Token {
-                type_name: TokenTypeName::FunctionName,
-                value: "add".to_owned(),
-            },
-            Token {
-                type_name: TokenTypeName::Number,
-                value: "123".to_owned(),
-            },
-            Token {
-                type_name: TokenTypeName::Number,
-                value: "456".to_owned(),
-            },
-            Token {
-                type_name: TokenTypeName::CloseParenthesis,
-                value: ")".to_owned(),
-            },
-        ];
+        let result = Lexer::parse("(add 123 456)");
 
         assert_eq!(result, expected)
     }
 
     #[test]
     fn lisp_concat_passes() {
-        let result = Lexer::parse(r#"(concat "foo" "bar")"#);
+        let expected = create_tokens_vec_concat();
 
-        let expected = vec![
-            Token {
-                type_name: TokenTypeName::OpenParenthesis,
-                value: "(".to_owned(),
-            },
-            Token {
-                type_name: TokenTypeName::FunctionName,
-                value: "concat".to_owned(),
-            },
-            Token {
-                type_name: TokenTypeName::String,
-                value: "foo".to_owned(),
-            },
-            Token {
-                type_name: TokenTypeName::String,
-                value: "bar".to_owned(),
-            },
-            Token {
-                type_name: TokenTypeName::CloseParenthesis,
-                value: ")".to_owned(),
-            },
-        ];
+        let result = Lexer::parse(r#"(concat "foo" "bar")"#);
 
         assert_eq!(result, expected)
     }
