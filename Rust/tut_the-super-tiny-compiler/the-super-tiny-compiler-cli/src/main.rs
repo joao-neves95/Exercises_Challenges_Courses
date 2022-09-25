@@ -8,5 +8,5 @@ fn main() {
 
     let ast = Ast::from(&intermediate_ast);
 
-    let generator = CodeGenerator::run(&ast);
+    let _ = CodeGenerator::run(&ast);
 }
