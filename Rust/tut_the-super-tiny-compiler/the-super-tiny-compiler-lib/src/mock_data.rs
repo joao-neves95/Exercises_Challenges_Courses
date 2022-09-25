@@ -1,8 +1,9 @@
 use crate::{
-    constants::{AstNodeType, TokenTypeName},
-    intermediate_ast::IntermediateAstNode,
+    ast::{AstNode, AstNodeCallee},
+    constants::{AstNodeType, NodeCalleeType, TokenTypeName},
+    intermediate_ast::{IntermediateAst, IntermediateAstNode},
     models::Token,
-    IntermediateAst,
+    Ast,
 };
 
 pub fn create_tokens_vec_add() -> Vec<Token> {
@@ -55,6 +56,47 @@ pub fn create_intermediate_ast_add<'a>(
                     params: None,
                 },
             ]),
+        }],
+    }
+}
+
+pub fn create_ast_add<'a>(
+    expression_name: &'a String,
+    param_val_1: &'a String,
+    param_val_2: &'a String,
+) -> Ast<'a> {
+    Ast {
+        ast_type: "Program",
+        body: vec![AstNode {
+            node_type: AstNodeType::ExpressionStatement,
+            expression: Some(Box::new(AstNode {
+                node_type: AstNodeType::CallExpression,
+                callee: Some(AstNodeCallee {
+                    callee_type: NodeCalleeType::Identifier,
+                    name: &expression_name,
+                }),
+                params: Some(vec![
+                    AstNode {
+                        node_type: AstNodeType::NumberLiteral,
+                        value: Some(&param_val_1),
+                        callee: None,
+                        params: None,
+                        expression: None,
+                    },
+                    AstNode {
+                        node_type: AstNodeType::NumberLiteral,
+                        value: Some(&param_val_2),
+                        callee: None,
+                        params: None,
+                        expression: None,
+                    },
+                ]),
+                value: None,
+                expression: None,
+            })),
+            value: None,
+            callee: None,
+            params: None,
         }],
     }
 }

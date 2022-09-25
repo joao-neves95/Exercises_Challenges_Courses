@@ -1,9 +1,9 @@
-use std::slice::Iter;
-
 use crate::{
     constants::{AstNodeType, TokenTypeName},
     models::Token,
 };
+
+use std::slice::Iter;
 
 #[derive(Debug, PartialEq)]
 pub struct IntermediateAst<'a> {
@@ -110,8 +110,8 @@ fn walk_recursive<'a>(
 #[cfg(test)]
 mod tests {
     use crate::{
+        intermediate_ast::IntermediateAst,
         mock_data::{create_intermediate_ast_add, create_tokens_vec_add},
-        IntermediateAst,
     };
 
     #[test]
@@ -122,7 +122,6 @@ mod tests {
         let expression = "add".to_owned();
         let param_val_1 = "123".to_owned();
         let param_val_2 = "456".to_owned();
-
         let expected = create_intermediate_ast_add(&expression, &param_val_1, &param_val_2);
 
         let result = IntermediateAst::from(&mut mock_tokens_iter);

@@ -1,23 +1,22 @@
+use std::slice::Iter;
+
 use crate::{
-    constants::{AstNodeType, AstStatementType, NodeCalleeType},
+    constants::{AstNodeType, NodeCalleeType},
+    intermediate_ast::IntermediateAstNode,
     IntermediateAst,
 };
 
 #[derive(Debug, PartialEq)]
 pub struct Ast<'a> {
-    ast_type: &'a str,
-    body: Vec<AstStatement<'a>>,
-}
-
-#[derive(Debug, PartialEq)]
-pub struct AstStatement<'a> {
-    statement_type: AstStatementType,
-    expression: AstNode<'a>,
+    pub ast_type: &'a str,
+    pub body: Vec<AstNode<'a>>,
 }
 
 #[derive(Debug, PartialEq)]
 pub struct AstNode<'a> {
     pub node_type: AstNodeType,
+
+    pub expression: Option<Box<AstNode<'a>>>,
     pub callee: Option<AstNodeCallee<'a>>,
     pub value: Option<&'a String>,
     pub params: Option<Vec<AstNode<'a>>>,
@@ -25,8 +24,8 @@ pub struct AstNode<'a> {
 
 #[derive(Debug, PartialEq)]
 pub struct AstNodeCallee<'a> {
-    callee_type: NodeCalleeType,
-    name: &'a str,
+    pub callee_type: NodeCalleeType,
+    pub name: &'a String,
 }
 
 impl<'a> From<&'a IntermediateAst<'a>> for Ast<'a> {
@@ -59,34 +58,7 @@ mod tests {
 
         let intermediate_ast = create_intermediate_ast_add(&expression, &param_val_1, &param_val_2);
 
-        let expected = Ast {
-            ast_type: "Program",
-            body: vec![AstStatement {
-                statement_type: AstStatementType::ExpressionStatement,
-                expression: AstNode {
-                    node_type: AstNodeType::CallExpression,
-                    value: None,
-                    callee: Some(AstNodeCallee {
-                        callee_type: NodeCalleeType::Identifier,
-                        name: "Add",
-                    }),
-                    params: Some(vec![
-                        AstNode {
-                            node_type: AstNodeType::NumberLiteral,
-                            value: Some(&param_val_1),
-                            callee: None,
-                            params: None,
-                        },
-                        AstNode {
-                            node_type: AstNodeType::NumberLiteral,
-                            value: Some(&param_val_2),
-                            callee: None,
-                            params: None,
-                        },
-                    ]),
-                },
-            }],
-        };
+        let expected = create_ast_add(&expression, &param_val_1, &param_val_2);
 
         let result = Ast::from(&intermediate_ast);
 
