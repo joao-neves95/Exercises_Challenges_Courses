@@ -101,7 +101,6 @@ fn walk_recursive<'a>(
             params: None,
         }),
 
-        // TokenTypeName::FunctionName => todo!(),
         _ => panic!("Unsupported token type: '{}'", token.type_name),
     };
 }

@@ -117,6 +117,7 @@ fn walk_inter_ast_vec_recursive<'a>(
 
             Some(new_call_expression_node)
         }
+
         _ => panic!("Unsupported node type '{}'", intermediate_node.node_type),
     }
 }

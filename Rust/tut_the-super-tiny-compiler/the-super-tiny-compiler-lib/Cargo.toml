@@ -8,6 +8,7 @@ edition = "2021"
 [dependencies]
 strum = "0.24"
 strum_macros = "0.24"
+concat_strs = "1.0"
 
 [dev-dependencies]
 pretty_assertions = "1.3"
