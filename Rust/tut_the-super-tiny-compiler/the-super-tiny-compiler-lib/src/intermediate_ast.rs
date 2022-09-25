@@ -41,13 +41,12 @@ impl<'a> IntermediateAst<'a> {
         let mut token_iter_box = Box::new(tokens_iter);
 
         loop {
-            let new_node = walk_recursive(&mut token_iter_box);
-
-            if let Some(node) = new_node {
-                self.body.push(node);
-            } else {
-                break;
-            }
+            match walk_recursive(&mut token_iter_box) {
+                Some(unwrapped_new_node) => {
+                    self.body.push(unwrapped_new_node);
+                }
+                None => break,
+            };
         }
 
         self
@@ -59,12 +58,10 @@ fn walk_recursive<'a>(
 ) -> Option<IntermediateAstNode<'a>> {
     let current_token = tokens_iter.next();
 
-    let mut token;
-    if let Some(token_exists) = current_token {
-        token = token_exists;
-    } else {
-        return None;
-    }
+    let mut token = match current_token {
+        Some(unwrapped_token) => unwrapped_token,
+        None => return None,
+    };
 
     return match token.type_name {
         TokenTypeName::CloseParenthesis => None,
@@ -81,13 +78,12 @@ fn walk_recursive<'a>(
 
             // Iterate through the CallExpression parameters.
             while token.type_name != TokenTypeName::CloseParenthesis {
-                let new_param_node = walk_recursive(tokens_iter);
-
-                if let Some(param_node) = new_param_node {
-                    new_node.params.as_mut().unwrap().push(param_node);
-                } else {
-                    break;
-                }
+                match walk_recursive(tokens_iter) {
+                    Some(unwrapped_param) => {
+                        new_node.params.as_mut().unwrap().push(unwrapped_param)
+                    }
+                    None => break,
+                };
             }
 
             return Some(new_node);
@@ -106,10 +102,11 @@ fn walk_recursive<'a>(
         }),
 
         // TokenTypeName::FunctionName => todo!(),
-        _ => panic!("Unsupported node type: '{}'", token.type_name),
+        _ => panic!("Unsupported token type: '{}'", token.type_name),
     };
 }
 
+// TODO: Add test for `(add 2 (subtract 4 2))`
 #[cfg(test)]
 mod tests {
     use crate::{
