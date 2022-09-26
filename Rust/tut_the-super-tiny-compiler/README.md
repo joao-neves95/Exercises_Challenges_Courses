@@ -1,9 +1,10 @@
 # The Super Tiny Compiler - Rust Edition
 
-A super tiny Lisp compiler written in Rust.
+## The Super Tiny Lisp-Rust Compiler
 
-I've had previously made a very crude compiler ([MergerJS](https://github.com/joao-neves95/merger-js)).
-This one however, was done by following a compiler tutorial in JavaScript,
-in order to actually know how to do one properly.
+A super tiny Lisp to Rust compiler written in Rust.
 
-- Tutorial Link: https://github.com/jamiebuilds/the-super-tiny-compiler
+I've had previously made a very crude compiler ([MergerJS](https://github.com/joao-neves95/merger-js)).\
+This one, however, was done by following and further building upon a compiler tutorial in JavaScript, in order to actually know how to properly do one.
+
+- Based on: https://github.com/jamiebuilds/the-super-tiny-compiler

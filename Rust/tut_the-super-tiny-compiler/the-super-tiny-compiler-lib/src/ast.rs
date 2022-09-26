@@ -121,8 +121,6 @@ fn walk_ast_vec_recursive<'a>(
     }
 }
 
-// TODO: Add test for `(add 2 (subtract 4 2))`
-// TODO: Add test for `(concat "Hello" "Rust")`
 #[cfg(test)]
 mod tests {
     use crate::{

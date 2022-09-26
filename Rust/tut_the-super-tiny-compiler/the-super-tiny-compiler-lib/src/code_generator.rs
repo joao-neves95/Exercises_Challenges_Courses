@@ -66,7 +66,6 @@ impl CodeGenerator {
     }
 }
 
-// TODO: Add support for one Common Lisp function: `(concatenate 'string "Hello" "Rust" ", from" "Lisp???")`
 fn generate_code_recursive<'a>(node: &AstNode) -> String {
     match node.node_type {
         crate::constants::AstNodeType::ExpressionStatement => match &node.expression {
