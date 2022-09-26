@@ -1,6 +1,6 @@
 #[derive(Debug, PartialEq, strum_macros::Display)]
 pub enum AstNodeType {
-    // TODO: Add support for binary expressions like ArithmeticOperator (numeric operators +, -, *, /)
+    // TODO: Add support for binary operations/expressions like ArithmeticOperator (numeric operators +, -, *, /)
     ExpressionStatement,
     CallExpression,
     NumberLiteral,

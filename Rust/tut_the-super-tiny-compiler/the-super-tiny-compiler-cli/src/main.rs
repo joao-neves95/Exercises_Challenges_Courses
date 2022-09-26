@@ -8,5 +8,5 @@ fn main() {
 
     let ast = Ast::from(&intermediate_ast);
 
-    let _ = CodeGenerator::compile_lisp_to_c_print_statements(&ast);
+    let _ = CodeGenerator::compile_lisp_to_rust(&ast);
 }

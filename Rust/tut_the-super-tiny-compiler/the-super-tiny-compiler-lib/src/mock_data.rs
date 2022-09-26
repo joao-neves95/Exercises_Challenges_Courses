@@ -6,6 +6,8 @@ use crate::{
     Ast,
 };
 
+use concat_strs::concat_strs;
+
 pub fn create_tokens_vec_add() -> Vec<Token> {
     vec![
         Token {
@@ -99,6 +101,23 @@ pub fn create_ast_add<'a>(
             params: None,
         }],
     }
+}
+
+pub fn create_rust_code_string_add<'a>(
+    expression_name: &'a String,
+    param_val_1: &'a String,
+    param_val_2: &'a String,
+) -> String {
+    concat_strs!(
+        "fn main() {\n",
+        expression_name,
+        "(",
+        param_val_1,
+        ", ",
+        param_val_2,
+        ");",
+        "\n}"
+    )
 }
 
 pub fn create_tokens_vec_concat() -> Vec<Token> {

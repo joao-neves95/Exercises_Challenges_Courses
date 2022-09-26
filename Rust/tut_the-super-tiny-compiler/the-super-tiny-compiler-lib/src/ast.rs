@@ -41,7 +41,7 @@ impl<'a> From<&'a IntermediateAst<'a>> for Ast<'a> {
 impl<'a> Ast<'a> {
     fn build_recursive(&mut self, intermediate_ast: &'a IntermediateAst<'a>) -> &Self {
         for i in 0..intermediate_ast.body.len() {
-            match walk_inter_ast_vec_recursive(&intermediate_ast.body, i) {
+            match walk_ast_vec_recursive(&intermediate_ast.body, i) {
                 Some(unwrapped_expression) => {
                     let new_statement = AstNode {
                         node_type: AstNodeType::ExpressionStatement,
@@ -61,7 +61,7 @@ impl<'a> Ast<'a> {
     }
 }
 
-fn walk_inter_ast_vec_recursive<'a>(
+fn walk_ast_vec_recursive<'a>(
     node_vec: &'a Vec<IntermediateAstNode<'a>>,
     current_index: usize,
 ) -> Option<AstNode<'a>> {
@@ -103,7 +103,7 @@ fn walk_inter_ast_vec_recursive<'a>(
             };
 
             for i_params in 0..intermediate_node_params.len() {
-                match walk_inter_ast_vec_recursive(&intermediate_node_params, i_params) {
+                match walk_ast_vec_recursive(&intermediate_node_params, i_params) {
                     Some(unwrapped_new_node) => {
                         new_call_expression_node
                             .params
@@ -123,6 +123,7 @@ fn walk_inter_ast_vec_recursive<'a>(
 }
 
 // TODO: Add test for `(add 2 (subtract 4 2))`
+// TODO: Add test for `(concat "Hello" "Rust")`
 #[cfg(test)]
 mod tests {
     use crate::{

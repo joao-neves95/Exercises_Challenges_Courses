@@ -7,5 +7,5 @@ pub use ast_node_type::AstNodeType;
 mod node_callee_type;
 pub use node_callee_type::NodeCalleeType;
 
-mod c_std_libs;
-pub use c_std_libs::CStdLibs;
+mod rust_libs;
+pub use rust_libs::RustLibs;

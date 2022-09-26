@@ -1,6 +1,6 @@
-use std::{iter::Enumerate, str::Chars};
-
 use crate::{constants::TokenTypeName, models::Token};
+
+use std::{iter::Enumerate, str::Chars};
 
 pub struct Lexer {}
 
