@@ -2,6 +2,35 @@
 
 Courses, tutorials, exercises, challenges and experiments from various sources.
 
+---
+
+## Rust
+
+### Projects
+
+- [irspt-rs](https://github.com/joao-neves95/irspt-rs)
+
+  A CLI app that interfaces with Portugal's Tax Authority website, in order to streamline the process of issuing invoices.\
+  It was made with Rust, [thirtyfour](https://github.com/stevepryde/thirtyfour) (WebDriver client),
+  [sled](https://github.com/spacejam/sled) (embedded database) and [rkyv](https://github.com/rkyv/rkyv) (zero-copy raw byte deserialization).
+
+- [l](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Rust/l)
+
+  An incomplete `ls` clone.
+
+### Courses/Tutorials
+
+- [The Super Tiny Lisp-Rust Compiler](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Rust/tut_the-super-tiny-compiler)
+
+  A Lisp to Rust compiler done by following and further building upon the JS compiler tutorial "[the-super-tiny-compiler](https://github.com/jamiebuilds/the-super-tiny-compiler)".
+
+- [Rust + Actix + CosmosDB (MongoDB) tutorial api](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Rust/tut_api-actix-cosmosdb)
+
+- [Microsoft Learn - Take your first steps with Rust](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Rust/rust-ms-learning-path)
+  - [CLI app project - "Rusty Journal"](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Rust/rust-ms-learning-path/rusty-journal)
+
+---
+
 ## C# / .NET
 
 ### Personal Projects
@@ -53,29 +82,6 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 ### WPF
 
 - [Braces](https://github.com/joao-neves95/Braces)
-
----
-
-## Rust
-
-### Projects
-
-- [irspt-rs](https://github.com/joao-neves95/irspt-rs)
-
-  A CLI that interfaces with Portugal's Tax Authority website, in order to streamline the process of issuing invoices.\
-  It was made with Rust, [thirtyfour](https://github.com/stevepryde/thirtyfour) (WebDriver client),
-  [sled](https://github.com/spacejam/sled) (embedded database) and [rkyv](https://github.com/rkyv/rkyv) (zero-copy raw byte deserialization).
-
-- [l](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Rust/l)
-
-  An incomplete `ls` clone.
-
-### Courses/Tutorials
-
-- [Microsoft Learn - Take your first steps with Rust](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Rust/rust-ms-learning-path)
-  - [CLI app project - "Rusty Journal"](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Rust/rust-ms-learning-path/rusty-journal)
-
-- [Rust + Actix + CosmosDB (MongoDB) tutorial api](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Rust/tut_api-actix-cosmosdb)
 
 ---
 

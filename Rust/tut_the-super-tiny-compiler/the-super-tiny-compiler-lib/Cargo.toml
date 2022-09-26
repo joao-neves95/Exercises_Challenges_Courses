@@ -1,0 +1,14 @@
+[package]
+name = "the-super-tiny-compiler-lib"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+strum = "0.24"
+strum_macros = "0.24"
+concat_strs = "1.0"
+
+[dev-dependencies]
+pretty_assertions = "1.3"

@@ -1,0 +1,9 @@
+[package]
+name = "the-super-tiny-compiler-cli"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+the-super-tiny-compiler-lib = { path = "../the-super-tiny-compiler-lib" }
