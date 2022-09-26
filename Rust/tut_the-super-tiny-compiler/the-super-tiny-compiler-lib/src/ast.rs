@@ -71,20 +71,6 @@ fn walk_ast_vec_recursive<'a>(
     };
 
     match intermediate_node.node_type {
-        AstNodeType::NumberLiteral => Some(AstNode {
-            node_type: AstNodeType::NumberLiteral,
-            value: intermediate_node.value,
-            callee: None,
-            params: None,
-            expression: None,
-        }),
-        AstNodeType::StringLiteral => Some(AstNode {
-            node_type: AstNodeType::StringLiteral,
-            value: intermediate_node.value,
-            callee: None,
-            params: None,
-            expression: None,
-        }),
         AstNodeType::CallExpression => {
             let mut new_call_expression_node = AstNode {
                 node_type: AstNodeType::CallExpression,
@@ -117,7 +103,20 @@ fn walk_ast_vec_recursive<'a>(
 
             Some(new_call_expression_node)
         }
-
+        AstNodeType::NumberLiteral => Some(AstNode {
+            node_type: AstNodeType::NumberLiteral,
+            value: intermediate_node.value,
+            callee: None,
+            params: None,
+            expression: None,
+        }),
+        AstNodeType::StringLiteral => Some(AstNode {
+            node_type: AstNodeType::StringLiteral,
+            value: intermediate_node.value,
+            callee: None,
+            params: None,
+            expression: None,
+        }),
         _ => panic!("Unsupported node type '{}'", intermediate_node.node_type),
     }
 }
