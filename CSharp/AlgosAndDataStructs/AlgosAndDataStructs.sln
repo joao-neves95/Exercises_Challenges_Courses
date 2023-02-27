@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33414.496
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlgosAndDataStructs.Cli", "AlgosAndDataStructs\AlgosAndDataStructs.Cli.csproj", "{66008E24-C07E-48EC-8986-97DE9698D215}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlgosAndDataStructs.Algorithms", "AlgosAndDataStructs.Algorithms\AlgosAndDataStructs.Algorithms.csproj", "{E0C80B12-09A5-450D-ADBA-5BA6006830C4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlgosAndDataStructs.DataStructures", "AlgosAndDataStructs.DataStructures\AlgosAndDataStructs.DataStructures.csproj", "{15CADF63-C556-40D0-BD49-5A3D2996337F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6FB716D1-5536-43A0-A4CB-A441386F7E8C}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlgosAndDataStructs.Tests", "AlgosAndDataStructs.Tests\AlgosAndDataStructs.Tests.csproj", "{1F5815EF-4412-46E8-84B1-4F334A33C0D0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{66008E24-C07E-48EC-8986-97DE9698D215}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66008E24-C07E-48EC-8986-97DE9698D215}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66008E24-C07E-48EC-8986-97DE9698D215}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66008E24-C07E-48EC-8986-97DE9698D215}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0C80B12-09A5-450D-ADBA-5BA6006830C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0C80B12-09A5-450D-ADBA-5BA6006830C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0C80B12-09A5-450D-ADBA-5BA6006830C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0C80B12-09A5-450D-ADBA-5BA6006830C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15CADF63-C556-40D0-BD49-5A3D2996337F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15CADF63-C556-40D0-BD49-5A3D2996337F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15CADF63-C556-40D0-BD49-5A3D2996337F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15CADF63-C556-40D0-BD49-5A3D2996337F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F5815EF-4412-46E8-84B1-4F334A33C0D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F5815EF-4412-46E8-84B1-4F334A33C0D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F5815EF-4412-46E8-84B1-4F334A33C0D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F5815EF-4412-46E8-84B1-4F334A33C0D0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4DCD4646-72E2-4FF4-B041-AEDAE3A0CA40}
+	EndGlobalSection
+EndGlobal
