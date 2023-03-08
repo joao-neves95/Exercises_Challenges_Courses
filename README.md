@@ -35,6 +35,10 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 
 ### Personal Projects
 
+- [Qapo.DeFi.Bot](https://github.com/joao-neves95/Qapo.DeFi.Bot)
+
+  A bot that interfaces with any EVM compatible blockchain (A.K.A. Web3) to farm and dump hyperinflationary tokens. Theres also the Solidity code: [Qapo.Defi.Contracts](https://github.com/joao-neves95/Qapo.DeFi.Contracts).
+
 - [Amplifir](https://github.com/joao-neves95/Amplifir):
 
   A Twitter implementation in .NET Core 3+ and Angular 8+, using DRY, Onion Architecture/Clean Architecture and some Domain Driven Design principles.
@@ -175,6 +179,10 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 ---
 
 ## Solidity
+
+- [Qapo.Defi.Contracts](https://github.com/joao-neves95/Qapo.DeFi.Contracts)
+
+  A set of contracts that [Qapo.DeFi.Bot](https://github.com/joao-neves95/Qapo.DeFi.Bot) uses to farm and dump hyperinflationary tokens.
 
 - [AutoCompounder](https://github.com/joao-neves95/Exercises_Challenges_Courses/blob/master/Solidity/AutoCompounder)
 
