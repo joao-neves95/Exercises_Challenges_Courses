@@ -1,9 +1,8 @@
-
-using AlgosAndDataStructs.Algorithms.Collections;
+using AlgosAndDataStructs.Algorithms.Arrays;
 
 using FluentAssertions;
 
-namespace AlgosAndDataStructs.Tests.Algorithms.Collections
+namespace AlgosAndDataStructs.Tests.Algorithms.Arrays
 {
     public class MergeSortedArraysTests
     {

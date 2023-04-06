@@ -1,9 +1,5 @@
 
-
-using System.Collections;
-using System.Reflection.Metadata.Ecma335;
-
-namespace AlgosAndDataStructs.Algorithms.Collections
+namespace AlgosAndDataStructs.Algorithms.Arrays
 {
     public static class MergeSortedArrays
     {
@@ -54,12 +50,12 @@ namespace AlgosAndDataStructs.Algorithms.Collections
             bool DoAddArray1()
             {
                 // For e.g., ints become 0 after the end (default value), so we need to check each edge.
-                return IsArray2End() || (!IsArray1End() && array1Item.CompareTo(array2Item) < 0);
+                return IsArray2End() || (!IsArray1End() && array1Item?.CompareTo(array2Item) < 0);
             }
 
             bool DoAddArray2()
             {
-                return IsArray1End() || (!IsArray2End() && array2Item.CompareTo(array1Item) <= 0);
+                return IsArray1End() || (!IsArray2End() && array2Item?.CompareTo(array1Item) <= 0);
             }
 
             var response = new List<T>(array1.Count() + array2.Count());
