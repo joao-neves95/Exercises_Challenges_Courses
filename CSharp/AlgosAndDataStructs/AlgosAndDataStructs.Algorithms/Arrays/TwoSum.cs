@@ -57,18 +57,20 @@ namespace AlgosAndDataStructs.Algorithms.Arrays
          * - We need to make it faster than O(n^2).
          * - Faster means that we can only pass the input array one time.
          * - So, we have to keep track of the items already visited.
-         * - This will increase our memory. RAM is more scalable than time ;).
-         * - But we cannot loop that new visit elem list again, because that would still be O(n).
-         * - We have to visit it 1 time (constant time) to get the answer.
+         * - This will increase our memory.
+         * - But we cannot loop each new visited elem list again to calculate, because it wouldn't make any sense and that would still be O(n).
+         * - We have to visit it 1 time (constant time) to check if we've already passed through the actual answer.
          * - Therefore, we need to:
          *     - Find the answer for the current number.
          *     - Check if we have the answer in the answer list.
+         *         - IF YES: Return both indexes.
          *         - IF NOT: Save that answer in a map (we need a map to return the index of the answer).
-         *         - [get back to first]
-         * - Calculate the answer:
-         *     - Let target = t
-         *     - Let current item = c
-         *     - Let answer = x
+         *         - [get back to the first step]
+         * - To calculate the answer:
+         *     - Let target = t,
+         *     - Let current item = c,
+         *     - Let answer = x,
+         *     - So that:
          *         - t = c + x
          *         - x = ?
          *         - x = t - c
