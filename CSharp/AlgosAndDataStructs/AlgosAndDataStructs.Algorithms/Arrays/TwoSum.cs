@@ -99,11 +99,18 @@ namespace AlgosAndDataStructs.Algorithms.Arrays
                 }
                 else
                 {
-                    visitedElemMap.Add(nums.ElementAt(i), i);
+                    if (!visitedElemMap.ContainsKey(nums.ElementAt(i)))
+                    {
+                        visitedElemMap.Add(nums.ElementAt(i), i);
+                    }
                 }
             }
         }
 
+        /// <summary>
+        /// O(1)
+        ///
+        /// </summary>
         private static int CalculateAnswer(int target, int currentNum)
         {
             return target - currentNum;

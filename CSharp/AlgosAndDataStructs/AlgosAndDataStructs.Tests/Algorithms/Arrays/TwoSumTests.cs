@@ -8,6 +8,7 @@ namespace AlgosAndDataStructs.Tests.Algorithms.Arrays
     {
         [Theory]
         [InlineData(new[] { 4, -2, 5, 0, 6, 3, 2, 7 }, 1, new[] { 5, 1 })]
+        [InlineData(new[] { 1, 1, 1, 4, 1, 1, 7, 1, 1 }, 11, new[] { 3, 6 })]
         [InlineData(new[] { 2, 7, 11, 15 }, 9, new[] { 0, 1 })]
         [InlineData(new[] { 3, 2, 4 }, 6, new[] { 1, 2 })]
         [InlineData(new[] { 3, 2, 4 }, 4, null)]
@@ -25,6 +26,7 @@ namespace AlgosAndDataStructs.Tests.Algorithms.Arrays
 
         [Theory]
         [InlineData(new[] { 4, -2, 5, 0, 6, 3, 2, 7 }, 1, new[] { 5, 1 })]
+        [InlineData(new[] { 1, 1, 1, 4, 1, 1, 7, 1, 1 }, 11, new[] { 3, 6 })]
         [InlineData(new[] { 2, 7, 11, 15 }, 9, new[] { 0, 1 })]
         [InlineData(new[] { 3, 2, 4 }, 6, new[] { 1, 2 })]
         [InlineData(new[] { 3, 2, 4 }, 4, null)]
