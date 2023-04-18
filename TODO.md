@@ -4,7 +4,7 @@
 - [ ] Mappers
     - [x] Setup
     - [x] Register the implementations (DI)
-    - [ ] Unit tests
+    - [x] Unit tests
     - [ ] Implementation
 - [ ] Games controller
     - [x] Setup

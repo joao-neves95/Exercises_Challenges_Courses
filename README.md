@@ -13,3 +13,10 @@ Don't forget to read carefully the code challenge instructions that were sent to
 ## Links
 - Implementation detials: https://public.3.basecamp.com/p/PCAoo4bL5xCxQbV7E9hPaQJp
 - JSON feed: https://yld-recruitment-resources.s3.eu-west-2.amazonaws.com/steam_games_feed.json
+
+## Libraries
+- Testing
+    - https://github.com/fluentassertions/fluentassertions
+    - https://github.com/AutoFixture/AutoFixture
+    - https://github.com/moq/moq4
+    - https://github.com/WireMock-Net/WireMock.Net

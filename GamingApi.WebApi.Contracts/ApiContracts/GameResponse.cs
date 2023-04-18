@@ -13,7 +13,7 @@ namespace Yld.GamingApi.WebApi.ApiContracts
 
         public string Genre { get; set; }
 
-        public List<string> Categories { get; set; }
+        public IEnumerable<string> Categories { get; set; }
 
         public PlatformsResponse Platforms { get; set; }
 

@@ -14,7 +14,7 @@ namespace GamingApi.WebApi.Infrastructure.Entities
         public string Genre { get; set; }
         public Dictionary<string, int> Tags { get; set; }
         public string Type { get; set; }
-        public List<string> Categories { get; set; }
+        public IEnumerable<string> Categories { get; set; }
         public string Owners { get; set; }
         public int Positive { get; set; }
         public int Negative { get; set; }
