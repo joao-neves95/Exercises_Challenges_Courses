@@ -1,4 +1,4 @@
-﻿using GamingApi.WebApi.Core.Interfaces;
+﻿using GamingApi.WebApi.Core.Interfaces.Services;
 
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,9 +14,9 @@ namespace Yld.GamingApi.WebApi.Controllers;
 [Produces("application/json")]
 public sealed class GamesController : ControllerBase
 {
-    private readonly IGameService _gameService;
+    private readonly IGameService<GamesResponse> _gameService;
 
-    public GamesController(IGameService gameService)
+    public GamesController(IGameService<GamesResponse> gameService)
     {
         _gameService = gameService.ThrowIfNull();
     }
@@ -28,16 +28,16 @@ public sealed class GamesController : ControllerBase
             return BadRequest($"The header '{Headers.UserAgent}' is required");
         }
 
+        if (limit > 10)
+        {
+            return BadRequest($"{nameof(limit)} must not exceed 10");
+        }
+
         if (offset < 0)
         {
             offset = 0;
         }
 
-        // TODO: Move this into a validator.
-        if (limit > 10)
-        {
-            return BadRequest($"{nameof(limit)} must not exceed 10");
-        }
 
         var gamesResponse = await _gameService.GetPaginatedGamesAsync(offset, limit);
 

@@ -3,6 +3,7 @@
 - [x] Create the contracts, entities
 - [ ] Mappers
     - [x] Setup
+    - [x] Register the implementations (DI)
     - [ ] Unit tests
     - [ ] Implementation
 - [ ] Games controller
@@ -11,16 +12,13 @@
     - [ ] Implementation
 - [ ] Games service
     - [x] Setup
+    - [x] Register the implementations (DI)
     - [ ] Unit tests
     - [ ] Implementation
-- [ ] Games client repo
+- [ ] Games client store
     - [x] Setup
+    - [x] Register the implementations (DI)
     - [ ] Unit tests
     - [ ] Implementation (infra)
-- [ ] API validators
-    - [ ] Setup
-    - [ ] Unit tests
-    - [ ] Implementation
-- [ ] Register the implementations (DI)
 - [ ] Add NSwag for the API client SDK code generation (automatic upon build)
 - [ ] Add a doc file explaining the architecture, how to run, etc.

@@ -1,5 +1,4 @@
-﻿
-namespace GamingApi.WebApi.Core.Stores
+﻿namespace GamingApi.WebApi.Core.Interfaces.Stores
 {
     public interface IGamesStore<TResponse>
     {

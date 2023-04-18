@@ -1,11 +1,9 @@
-﻿
-using GamingApi.WebApi.Core.Interfaces;
-
+﻿using GamingApi.WebApi.Core.Interfaces.Services;
 using Yld.GamingApi.WebApi.ApiContracts;
 
 namespace GamingApi.WebApi.Core.Services
 {
-    internal sealed class GameService : IGameService
+    public sealed class GameService : IGameService<GamesResponse>
     {
         public Task<GamesResponse> GetPaginatedGamesAsync(int offset, int limit)
         {
