@@ -1,21 +1,21 @@
 # TODO
 
-- [ ] Create the contracts, entities
+- [x] Create the contracts, entities
 - [ ] Mappers
-    - [ ] Setup
+    - [x] Setup
     - [ ] Unit tests
     - [ ] Implementation
 - [ ] Games controller
-    - [ ] Setup
+    - [x] Setup
     - [ ] Unit tests
     - [ ] Implementation
 - [ ] Games service
-    - [ ] Setup
+    - [x] Setup
     - [ ] Unit tests
     - [ ] Implementation
 - [ ] Games client repo
+    - [x] Setup
     - [ ] Unit tests
-    - [ ] Setup
     - [ ] Implementation (infra)
 - [ ] API validators
     - [ ] Setup
