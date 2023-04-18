@@ -1,6 +1,10 @@
 # TODO
 
-- [ ] Create the contracts, models, entities
+- [ ] Create the contracts, entities
+- [ ] Mappers
+    - [ ] Setup
+    - [ ] Unit tests
+    - [ ] Implementation
 - [ ] Games controller
     - [ ] Setup
     - [ ] Unit tests
@@ -17,4 +21,6 @@
     - [ ] Setup
     - [ ] Unit tests
     - [ ] Implementation
+- [ ] Register the implementations (DI)
 - [ ] Add NSwag for the API client SDK code generation (automatic upon build)
+- [ ] Add a doc file explaining the architecture, how to run, etc.
