@@ -10,7 +10,23 @@ namespace GamingApi.WebApi.Infrastructure.Mappers
     {
         public GameResponse Map(DataGame source)
         {
-            throw new NotImplementedException();
+            return new GameResponse()
+            {
+                Id = source.AppId,
+                Name = source.Name,
+                ShortDescription = source.ShortDescription,
+                Genre = source.Genre,
+                Publisher = source.Publisher,
+                ReleaseDate = source.ReleaseDate,
+                RequiredAge = source.RequiredAge,
+                Categories = source.Categories,
+                Platforms = new PlatformsResponse()
+                {
+                    Linux = source.Platforms.Linux,
+                    Mac = source.Platforms.Mac,
+                    Windows = source.Platforms.Windows,
+                },
+            };
         }
     }
 }
