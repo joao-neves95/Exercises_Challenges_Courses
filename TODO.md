@@ -1,15 +1,15 @@
 # TODO
 
 - [x] Create the contracts, entities
-- [ ] Mappers
+- [x] Mappers
     - [x] Setup
     - [x] Register the implementations (DI)
     - [x] Unit tests
-    - [ ] Implementation
-- [ ] Games controller
+    - [x] Implementation
+- [x] Games controller
     - [x] Setup
-    - [ ] Unit tests
-    - [ ] Implementation
+    - [x] Unit tests
+    - [x] Implementation
 - [ ] Games service
     - [x] Setup
     - [x] Register the implementations (DI)

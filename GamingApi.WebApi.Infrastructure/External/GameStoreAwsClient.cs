@@ -6,7 +6,7 @@ namespace GamingApi.WebApi.Infrastructure.Network
 {
     public sealed class GameStoreAwsClient : IGamesStore<DataGame>
     {
-        public Task<IEnumerable<DataGame>> GetAllGames()
+        public Task<IEnumerable<DataGame>> GetAllGamesAsync()
         {
             throw new NotImplementedException();
         }

@@ -24,14 +24,18 @@ public sealed class GamesController : ControllerBase
     [HttpGet]
     // We use attribute routing so there's no unexpected breaking changes to the API because of a name change or other refactoring.
     [Route("")]
-    public async Task<ActionResult<GamesResponse>> GetAllGames([FromQuery] int offset, [FromQuery] int limit = 2)
+    public async Task<ActionResult<GamesResponse>> GetAllGamesAsync([FromQuery] int? offset, [FromQuery] int? limit)
     {
         if (string.IsNullOrWhiteSpace(Request.GetUserAgent()))
         {
             return BadRequest($"The header '{Headers.UserAgent}' is required");
         }
 
-        if (limit > 10)
+        if (limit is null)
+        {
+            limit = 2;
+        }
+        else if (limit > 10)
         {
             return BadRequest($"{nameof(limit)} must not exceed 10");
         }
@@ -41,7 +45,7 @@ public sealed class GamesController : ControllerBase
             offset = 0;
         }
 
-        var gamesResponse = await _gameService.GetPaginatedGamesAsync(offset, limit);
+        var gamesResponse = await _gameService.GetPaginatedGamesAsync((int)offset!, (int)limit);
 
         return Ok(gamesResponse);
     }

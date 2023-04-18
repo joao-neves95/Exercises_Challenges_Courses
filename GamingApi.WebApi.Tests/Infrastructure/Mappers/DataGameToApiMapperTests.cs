@@ -8,16 +8,14 @@ using GamingApi.WebApi.Infrastructure.Mappers;
 
 namespace GamingApi.WebApi.Tests.Infrastructure.Mappers
 {
-    public class DataGameToApiMapperTests
+    public class DataGameToApiMapperTests : BaseTests
     {
         private readonly DataGameToApiMapper _sut = new();
 
         [Fact]
         public void Map_Passes()
         {
-            var dataGenerator = new Fixture();
-
-            var input = dataGenerator.Create<DataGame>();
+            var input = DataGenerator.Create<DataGame>();
 
             var result = _sut.Map(input);
 

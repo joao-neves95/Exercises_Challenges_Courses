@@ -2,6 +2,6 @@
 {
     public interface IGamesStore<TResponse>
     {
-        public Task<IEnumerable<TResponse>> GetAllGames();
+        public Task<IEnumerable<TResponse>> GetAllGamesAsync();
     }
 }
