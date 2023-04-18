@@ -1,9 +1,8 @@
 ﻿
 namespace GamingApi.WebApi.Core.Stores
 {
-    public interface IGamesStore
+    public interface IGamesStore<TResponse>
     {
-        // TODO: Type the structure.
-        public Task<IEnumerable<string>> GetAllGames();
+        public Task<IEnumerable<TResponse>> GetAllGames();
     }
 }
