@@ -9,8 +9,8 @@ using Yld.GamingApi.WebApi.Extensions;
 
 namespace Yld.GamingApi.WebApi.Controllers;
 
-[Route("api/[controller]")]
 [ApiController]
+[Route("api/games")]
 [Produces("application/json")]
 public sealed class GamesController : ControllerBase
 {
@@ -21,7 +21,10 @@ public sealed class GamesController : ControllerBase
         _gameService = gameService.ThrowIfNull();
     }
 
-    public async Task<ActionResult<GamesResponse>> GetGames([FromQuery] int offset, [FromQuery] int limit = 2)
+    [HttpGet]
+    // We use attribute routing so there's no unexpected breaking changes to the API because of a name change or other refactoring.
+    [Route("")]
+    public async Task<ActionResult<GamesResponse>> GetAllGames([FromQuery] int offset, [FromQuery] int limit = 2)
     {
         if (string.IsNullOrWhiteSpace(Request.GetUserAgent()))
         {
@@ -37,7 +40,6 @@ public sealed class GamesController : ControllerBase
         {
             offset = 0;
         }
-
 
         var gamesResponse = await _gameService.GetPaginatedGamesAsync(offset, limit);
 
