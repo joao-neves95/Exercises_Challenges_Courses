@@ -65,20 +65,20 @@ namespace GamingApi.WebApi.Tests.Core.Services
         }
 
         [Fact]
-        public async Task GetPaginatedGamesAsync_Should_Throw()
+        public async Task GetPaginatedGamesAsync_Should_Throw_WhenOffsetOutOfRange()
         {
             var action = () => _sut.GetPaginatedGamesAsync(-1, 10);
 
-            await action.Should().ThrowExactlyAsync<LimitOutOfRangeException>();
+            await action.Should().ThrowExactlyAsync<InvalidInputException>();
             _gamesStoreMock.VerifyNoOtherCalls();
         }
 
         [Fact]
-        public async Task GetPaginatedGamesAsync_Should_Throw_LimitOutOfRange()
+        public async Task GetPaginatedGamesAsync_Should_Throw_WhenLimitOutOfRange()
         {
             var action = () => _sut.GetPaginatedGamesAsync(1, 15);
 
-            await action.Should().ThrowExactlyAsync<OffsetOutOfRangeException>();
+            await action.Should().ThrowExactlyAsync<InvalidInputException>();
             _gamesStoreMock.VerifyNoOtherCalls();
         }
 

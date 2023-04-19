@@ -65,7 +65,7 @@ public sealed class Startup
 
     private static void RegisterServices(IServiceCollection services)
     {
-        services.AddSingleton<IGameService<GamesResponse>, GameService>();
+        services.AddScoped<IGameService<GamesResponse>, GameService>();
     }
 
     private static void RegisterInfrastructureServices(IServiceCollection services)
@@ -73,7 +73,7 @@ public sealed class Startup
         //services.AddScoped<IProxyHttpClient, DotnetHttpClient>();
         services
             .AddHttpClient<IProxyHttpClient, DotnetHttpClient>()
-            .SetHandlerLifetime(TimeSpan.MaxValue);
+            .SetHandlerLifetime(TimeSpan.FromDays(5));
 
         services.AddSingleton<IProxyJsonClient, NewtonsoftJsonClient>();
 
