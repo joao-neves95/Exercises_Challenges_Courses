@@ -77,7 +77,7 @@ namespace GamingApi.WebApi.Tests.WebApi.Controllers
                 });
         }
 
-        private static void AssertGetAllGamesAsyncResponsePasses(ActionResult<GamesResponse> result, int limit)
+        private void AssertGetAllGamesAsyncResponsePasses(ActionResult<GamesResponse> result, int limit)
         {
             var successResult = result.Result.As<OkObjectResult>();
             successResult.Should().NotBeNull();
@@ -87,6 +87,10 @@ namespace GamingApi.WebApi.Tests.WebApi.Controllers
             gamesResponse.Should().NotBeNull();
             gamesResponse.Items.Count().Should().Be(limit);
             gamesResponse.TotalItems.Should().Be(limit);
+
+            _gameServiceMock.VerifyAll();
+            _httpRequestMock.VerifyAll();
+            _httpContextMock.VerifyAll();
         }
 
         [Fact]

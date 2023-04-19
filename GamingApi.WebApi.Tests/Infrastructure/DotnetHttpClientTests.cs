@@ -1,5 +1,4 @@
 ﻿
-using System.IO;
 using System.Net;
 
 using FluentAssertions;
@@ -7,13 +6,8 @@ using FluentAssertions;
 using GamingApi.WebApi.Infrastructure;
 using GamingApi.WebApi.Infrastructure.Entities;
 
-using Microsoft.AspNetCore.Http;
-using Microsoft.VisualStudio.TestPlatform.PlatformAbstractions.Interfaces;
-
 using Moq;
 using Moq.Protected;
-
-using Newtonsoft.Json.Linq;
 
 namespace GamingApi.WebApi.Tests.Infrastructure
 {
@@ -63,8 +57,10 @@ namespace GamingApi.WebApi.Tests.Infrastructure
         public async Task GetAsync_GetsStreamAndDeserializesResponse()
         {
             var result = await _sut.GetAsync<IEnumerable<DataGame>>("https://super-endpoint.pt/games.json");
+
             result.Should().NotBeNull();
             result.Should().BeEquivalentTo(GetFakeGameIntances());
+            _httpMessageHandlerMock.VerifyAll();
         }
 
         private static Stream GetFakeJsonStream(Stream stream)
