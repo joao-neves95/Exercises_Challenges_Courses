@@ -1,5 +1,5 @@
 ﻿
-namespace GamingApi.WebApi.Core.Interfaces
+namespace GamingApi.WebApi.Contracts.Interfaces
 {
     /// <summary>
     /// A class to map data from TSource to TDestination

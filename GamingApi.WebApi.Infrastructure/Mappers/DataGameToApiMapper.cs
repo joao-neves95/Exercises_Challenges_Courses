@@ -1,5 +1,5 @@
 ﻿
-using GamingApi.WebApi.Core.Interfaces;
+using GamingApi.WebApi.Contracts.Interfaces;
 using GamingApi.WebApi.Infrastructure.Entities;
 
 using Yld.GamingApi.WebApi.ApiContracts;

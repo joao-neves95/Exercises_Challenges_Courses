@@ -1,6 +1,6 @@
-﻿using GamingApi.WebApi.Core.Interfaces;
-using GamingApi.WebApi.Core.Interfaces.Services;
-using GamingApi.WebApi.Core.Interfaces.Stores;
+﻿using GamingApi.WebApi.Contracts.Interfaces;
+using GamingApi.WebApi.Contracts.Interfaces.Services;
+using GamingApi.WebApi.Contracts.Interfaces.Stores;
 using GamingApi.WebApi.Core.Services;
 using GamingApi.WebApi.Infrastructure.Entities;
 using GamingApi.WebApi.Infrastructure.Mappers;

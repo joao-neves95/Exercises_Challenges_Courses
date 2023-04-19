@@ -1,4 +1,4 @@
-﻿using GamingApi.WebApi.Core.Interfaces.Services;
+﻿using GamingApi.WebApi.Contracts.Interfaces.Services;
 
 using Microsoft.AspNetCore.Mvc;
 

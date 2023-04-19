@@ -1,11 +1,10 @@
 ﻿
-using System.Collections.Generic;
-
 using AutoFixture;
 
 using FluentAssertions;
 
-using GamingApi.WebApi.Core.Interfaces.Services;
+using GamingApi.WebApi.Contracts.Interfaces;
+using GamingApi.WebApi.Contracts.Interfaces.Services;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

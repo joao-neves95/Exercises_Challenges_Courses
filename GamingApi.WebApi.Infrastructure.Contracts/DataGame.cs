@@ -1,8 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using GamingApi.WebApi.Contracts.Interfaces;
+
+using Newtonsoft.Json;
 
 namespace GamingApi.WebApi.Infrastructure.Entities
 {
-    public class DataGame
+    public class DataGame : IEntity
     {
         [JsonProperty("appid")]
         public int AppId { get; set; }

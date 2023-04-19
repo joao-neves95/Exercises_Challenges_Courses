@@ -1,5 +1,5 @@
 ﻿
-using GamingApi.WebApi.Core.Interfaces.Stores;
+using GamingApi.WebApi.Contracts.Interfaces.Stores;
 using GamingApi.WebApi.Infrastructure.Entities;
 
 namespace GamingApi.WebApi.Infrastructure.Network
