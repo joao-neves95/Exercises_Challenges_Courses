@@ -2,6 +2,7 @@
 using GamingApi.WebApi.Contracts.Interfaces.Services;
 using GamingApi.WebApi.Contracts.Interfaces.Stores;
 using GamingApi.WebApi.Core.Services;
+using GamingApi.WebApi.Infrastructure;
 using GamingApi.WebApi.Infrastructure.Entities;
 using GamingApi.WebApi.Infrastructure.Mappers;
 using GamingApi.WebApi.Infrastructure.Network;
@@ -31,7 +32,7 @@ public sealed class Startup
 
         RegisterMappers(services);
         RegisterServices(services);
-        RegisterStores(services);
+        RegisterInfrastructureServices(services);
     }
 
     public void Configure(IApplicationBuilder app)
@@ -67,8 +68,15 @@ public sealed class Startup
         services.AddSingleton<IGameService<GamesResponse>, GameService>();
     }
 
-    private static void RegisterStores(IServiceCollection services)
+    private static void RegisterInfrastructureServices(IServiceCollection services)
     {
-        services.AddSingleton<IGamesStore<DataGame>, GameStoreAwsClient>();
+        //services.AddScoped<IProxyHttpClient, DotnetHttpClient>();
+        services
+            .AddHttpClient<IProxyHttpClient, DotnetHttpClient>()
+            .SetHandlerLifetime(TimeSpan.MaxValue);
+
+        services.AddSingleton<IProxyJsonClient, NewtonsoftJsonClient>();
+
+        services.AddScoped<IGamesStore<DataGame>, GameStoreAwsClient>();
     }
 }

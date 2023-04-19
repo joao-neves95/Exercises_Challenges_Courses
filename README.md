@@ -15,8 +15,9 @@ Don't forget to read carefully the code challenge instructions that were sent to
 - JSON feed: https://yld-recruitment-resources.s3.eu-west-2.amazonaws.com/steam_games_feed.json
 
 ## Libraries
+- https://www.newtonsoft.com/json/help/html/Introduction.htm
+    - https://www.newtonsoft.com/json/help/html/Performance.htm
 - Testing
     - https://github.com/fluentassertions/fluentassertions
     - https://github.com/AutoFixture/AutoFixture
     - https://github.com/moq/moq4
-    - https://github.com/WireMock-Net/WireMock.Net

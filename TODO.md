@@ -15,6 +15,7 @@
     - [x] Register the implementations (DI)
     - [ ] Unit tests
     - [ ] Implementation
+        - [ ] Add a filter (sort by releaseDate DateTime descending)
 - [ ] Games client store
     - [x] Setup
     - [x] Register the implementations (DI)
