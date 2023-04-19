@@ -7,7 +7,7 @@ namespace Yld.GamingApi.WebApi.Core.Extensions
         {
             if (@object == null)
             {
-                throw new ArgumentNullException(nameof(@object));
+                throw new ArgumentNullException(typeof(T).Name);
             }
 
             return @object;
