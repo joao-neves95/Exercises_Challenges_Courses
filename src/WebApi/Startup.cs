@@ -20,7 +20,7 @@ public sealed class Startup
 {
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddMvc();
+        services.Configure<YldConfig>(_configuration.GetSection(AppSettingsKeys.YldConfig).ThrowIfNull());
 
         services.AddSwaggerGen(c =>
         {
