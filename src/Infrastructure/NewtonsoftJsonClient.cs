@@ -1,7 +1,6 @@
 ﻿using GamingApi.WebApi.Contracts.Interfaces;
 
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 
 namespace GamingApi.WebApi.Infrastructure
 {

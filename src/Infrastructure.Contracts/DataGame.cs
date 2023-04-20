@@ -50,7 +50,7 @@ namespace GamingApi.WebApi.Infrastructure.Entities
         public DateTime ReleaseDate { get; set; }
 
         [JsonProperty("required_age")]
-        public int RequiredAge { get; set; }
+        public string RequiredAge { get; set; }
 
         public string Website { get; set; }
 

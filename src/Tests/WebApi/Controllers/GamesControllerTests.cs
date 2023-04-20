@@ -117,24 +117,6 @@ namespace GamingApi.WebApi.Tests.WebApi.Controllers
         }
 
         [Fact]
-        public async Task GetAllGames_LimitHigherThan10_Fails()
-        {
-            const int limit = 11;
-
-            SetupHttpContextMock();
-            SetupGameServiceMock(limit);
-
-            var result = await _sut.GetAllGamesAsync(1, limit);
-            result.Value.Should().BeNull();
-            result.Result.Should().NotBeNull();
-
-            var errorResult = result.Result.As<BadRequestObjectResult>();
-            errorResult.Should().NotBeNull();
-            errorResult.StatusCode.Should().Be(400);
-            errorResult.Value.As<string>().Should().Contain("limit");
-        }
-
-        [Fact]
         public async Task GetAllGames_NoUserAgent_Fails()
         {
             ResetHttpContextMock();

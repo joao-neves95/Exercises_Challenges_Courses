@@ -11,6 +11,7 @@ using GamingApi.WebApi.Infrastructure.Entities;
 using Moq;
 
 using Yld.GamingApi.WebApi.ApiContracts;
+using GamingApi.WebApi.Core.Extensions;
 
 namespace GamingApi.WebApi.Tests.Core.Services
 {
@@ -132,7 +133,7 @@ namespace GamingApi.WebApi.Tests.Core.Services
                 ShortDescription = dataGame.ShortDescription,
                 Publisher = dataGame.Publisher,
                 ReleaseDate = dataGame.ReleaseDate,
-                RequiredAge = dataGame.RequiredAge,
+                RequiredAge = dataGame.RequiredAge.GetStartIntNumber(),
                 Platforms = new PlatformsResponse()
                 {
                     Linux = dataGame.Platforms.Linux,

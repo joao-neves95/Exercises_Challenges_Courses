@@ -1,5 +1,6 @@
 ﻿
 using GamingApi.WebApi.Contracts.Interfaces;
+using GamingApi.WebApi.Core.Extensions;
 using GamingApi.WebApi.Infrastructure.Entities;
 
 using Yld.GamingApi.WebApi.ApiContracts;
@@ -18,7 +19,7 @@ namespace GamingApi.WebApi.Infrastructure.Mappers
                 Genre = source.Genre,
                 Publisher = source.Publisher,
                 ReleaseDate = source.ReleaseDate,
-                RequiredAge = source.RequiredAge,
+                RequiredAge = source.RequiredAge.GetStartIntNumber(),
                 Categories = source.Categories,
                 Platforms = new PlatformsResponse()
                 {
