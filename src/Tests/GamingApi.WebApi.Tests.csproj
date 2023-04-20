@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -27,11 +27,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GamingApi.WebApi.Contracts\GamingApi.WebApi.Contracts.csproj" />
-    <ProjectReference Include="..\GamingApi.WebApi.Core\GamingApi.WebApi.Core.csproj" />
-    <ProjectReference Include="..\GamingApi.WebApi.Infrastructure.Contracts\GamingApi.WebApi.Infrastructure.Contracts.csproj" />
-    <ProjectReference Include="..\GamingApi.WebApi.Infrastructure\GamingApi.WebApi.Infrastructure.csproj" />
-    <ProjectReference Include="..\src\WebApi\GamingApi.WebApi.csproj" />
+    <ProjectReference Include="..\Contracts\GamingApi.WebApi.Contracts.csproj" />
+    <ProjectReference Include="..\Core\GamingApi.WebApi.Core.csproj" />
+    <ProjectReference Include="..\Infrastructure.Contracts\GamingApi.WebApi.Infrastructure.Contracts.csproj" />
+    <ProjectReference Include="..\Infrastructure\GamingApi.WebApi.Infrastructure.csproj" />
+    <ProjectReference Include="..\WebApi\GamingApi.WebApi.csproj" />
   </ItemGroup>
 
 </Project>

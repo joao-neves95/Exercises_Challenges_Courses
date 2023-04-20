@@ -93,7 +93,7 @@
       "enumNameGeneratorType": null,
       "serviceHost": null,
       "serviceSchemes": null,
-      "output": "../../GamingApi.WebApi.Client/GamingApiClient.cs",
+      "output": "/../ClientSdk/GamingApiClientSdk.cs",
       "newLineBehavior": "LF"
     }
   }
