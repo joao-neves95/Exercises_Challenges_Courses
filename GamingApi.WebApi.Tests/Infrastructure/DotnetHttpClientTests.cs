@@ -3,8 +3,11 @@ using System.Net;
 
 using FluentAssertions;
 
+using GamingApi.WebApi.Contracts.Config;
 using GamingApi.WebApi.Infrastructure;
 using GamingApi.WebApi.Infrastructure.Entities;
+
+using Microsoft.Extensions.Options;
 
 using Moq;
 using Moq.Protected;
@@ -16,6 +19,8 @@ namespace GamingApi.WebApi.Tests.Infrastructure
         private readonly DotnetHttpClient _sut;
 
         private readonly NewtonsoftJsonClient _newtonsoftJsonClient;
+
+        private readonly Mock<IOptions<AppConfig>> _appConfigMock;
 
         private readonly HttpClient _httpClientMock;
         private readonly Mock<HttpMessageHandler> _httpMessageHandlerMock;
@@ -43,8 +48,16 @@ namespace GamingApi.WebApi.Tests.Infrastructure
                 .ReturnsAsync(httpResponse);
 
             _httpClientMock = new HttpClient(_httpMessageHandlerMock.Object);
+
+            _appConfigMock = new Mock<IOptions<AppConfig>>();
+            _appConfigMock.SetupGet(mock => mock.Value)
+                .Returns(new AppConfig()
+                {
+                    NumberOfHttpRetries = 1,
+                });
+
             _newtonsoftJsonClient = new NewtonsoftJsonClient();
-            _sut = new DotnetHttpClient(_httpClientMock, _newtonsoftJsonClient);
+            _sut = new DotnetHttpClient(_appConfigMock.Object, _httpClientMock, _newtonsoftJsonClient);
         }
 
         ~DotnetHttpClientTests()

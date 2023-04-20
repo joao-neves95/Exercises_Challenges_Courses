@@ -30,6 +30,7 @@ public sealed class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services.Configure<YldConfig>(_configuration.GetSection(AppSettingsKeys.YldConfig).ThrowIfNull());
+        services.Configure<AppConfig>(_configuration.GetSection(AppSettingsKeys.AppConfig).ThrowIfNull());
 
         services.AddSwaggerGen(c =>
         {
