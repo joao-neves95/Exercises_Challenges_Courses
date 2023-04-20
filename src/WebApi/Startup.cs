@@ -1,4 +1,6 @@
-﻿using GamingApi.WebApi.Contracts.Interfaces;
+﻿using GamingApi.WebApi.Contracts.Config;
+using GamingApi.WebApi.Contracts.Constants;
+using GamingApi.WebApi.Contracts.Interfaces;
 using GamingApi.WebApi.Contracts.Interfaces.Services;
 using GamingApi.WebApi.Contracts.Interfaces.Stores;
 using GamingApi.WebApi.Core.Services;
@@ -18,6 +20,13 @@ namespace Yld.GamingApi.WebApi;
 
 public sealed class Startup
 {
+    private readonly IConfiguration _configuration;
+
+    public Startup(IConfiguration configuration)
+    {
+        _configuration = configuration.ThrowIfNull();
+    }
+
     public void ConfigureServices(IServiceCollection services)
     {
         services.Configure<YldConfig>(_configuration.GetSection(AppSettingsKeys.YldConfig).ThrowIfNull());
