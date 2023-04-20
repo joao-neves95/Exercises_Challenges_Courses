@@ -15,6 +15,11 @@ namespace Yld.GamingApi.WebApi.Extensions
                 return new BadRequestObjectResult(exception.Message);
             }
 
+            if (exception.Is<NotFoundException>())
+            {
+                return new NotFoundObjectResult(exception.Message);
+            }
+
             return new ObjectResult(isDevEnv ? exception.ToString() : nameof(HttpStatusCode.InternalServerError))
             {
                 StatusCode = (int)HttpStatusCode.InternalServerError,

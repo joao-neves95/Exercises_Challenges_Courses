@@ -3,7 +3,6 @@ using AutoFixture;
 
 using FluentAssertions;
 
-using GamingApi.WebApi.Contracts.Interfaces;
 using GamingApi.WebApi.Contracts.Interfaces.Services;
 
 using Microsoft.AspNetCore.Http;
@@ -85,8 +84,8 @@ namespace GamingApi.WebApi.Tests.WebApi.Controllers
 
             var gamesResponse = successResult.Value.As<GamesResponse>();
             gamesResponse.Should().NotBeNull();
-            gamesResponse.Items.Count().Should().Be(limit);
-            gamesResponse.TotalItems.Should().Be(limit);
+            gamesResponse?.Items?.Count().Should().Be(limit);
+            gamesResponse?.TotalItems.Should().Be(limit);
 
             _gameServiceMock.VerifyAll();
             _httpRequestMock.VerifyAll();

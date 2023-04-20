@@ -14,7 +14,9 @@ using Microsoft.OpenApi.Models;
 
 using Swashbuckle.AspNetCore.SwaggerUI;
 
+using Yld.GamingApi.WebApi.ActionFilters;
 using Yld.GamingApi.WebApi.ApiContracts;
+using Yld.GamingApi.WebApi.Core.Extensions;
 
 namespace Yld.GamingApi.WebApi;
 
@@ -31,6 +33,8 @@ public sealed class Startup
     {
         services.Configure<YldConfig>(_configuration.GetSection(AppSettingsKeys.YldConfig).ThrowIfNull());
         services.Configure<AppConfig>(_configuration.GetSection(AppSettingsKeys.AppConfig).ThrowIfNull());
+
+        services.AddMvc(options => options.Filters.Add<ExceptionHttpResponseFilter>());
 
         services.AddSwaggerGen(c =>
         {
@@ -80,7 +84,6 @@ public sealed class Startup
 
     private static void RegisterInfrastructureServices(IServiceCollection services)
     {
-        //services.AddScoped<IProxyHttpClient, DotnetHttpClient>();
         services
             .AddHttpClient<IProxyHttpClient, DotnetHttpClient>()
             .SetHandlerLifetime(TimeSpan.FromDays(5));

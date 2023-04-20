@@ -10,16 +10,16 @@
     - [x] Setup
     - [x] Unit tests
     - [x] Implementation
-- [ ] Games service
+- [x] Games service
     - [x] Setup
     - [x] Register the implementations (DI)
-    - [ ] Unit tests
-    - [ ] Implementation
-        - [ ] Add a filter (sort by releaseDate DateTime descending)
-- [ ] Games client store
+    - [x] Unit tests
+    - [x] Implementation
+- [x] Games client store
     - [x] Setup
     - [x] Register the implementations (DI)
-    - [ ] Unit tests
-    - [ ] Implementation (infra)
+    - [x] Unit tests
+    - [x] Implementation (infra)
+    - [x] Add Polly
 - [ ] Add NSwag for the API client SDK code generation (automatic upon build)
 - [ ] Add a doc file explaining the architecture, how to run, etc.
