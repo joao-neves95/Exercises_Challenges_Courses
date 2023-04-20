@@ -8,6 +8,7 @@
     <AssemblyName>Yld.GamingApi.WebApi</AssemblyName>
     <RootNamespace>Yld.GamingApi.WebApi</RootNamespace>
   </PropertyGroup>
+
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>YldGamingApi.xml</DocumentationFile>
     <NoWarn>1701;1702;1591</NoWarn>
@@ -15,12 +16,27 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>YldGamingApi.xml</DocumentationFile>
   </PropertyGroup>
+
+  <PropertyGroup>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+  </PropertyGroup>
+
   <ItemGroup>
+    <PackageReference Include="NSwag.MSBuild" Version="13.18.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\..\GamingApi.WebApi.Contracts\GamingApi.WebApi.Contracts.csproj" />
     <ProjectReference Include="..\..\GamingApi.WebApi.Core\GamingApi.WebApi.Core.csproj" />
     <ProjectReference Include="..\..\GamingApi.WebApi.Infrastructure\GamingApi.WebApi.Infrastructure.csproj" />
   </ItemGroup>
+
+  <Target Name="NSwag" AfterTargets="PostBuildEvent" Condition=" '$(Configuration)' == 'Debug' ">
+    <Exec WorkingDirectory="$(ProjectDir)" EnvironmentVariables="ASPNETCORE_ENVIRONMENT=Development" Command="$(NSwagExe_Net60) run conf.nswag /variables:Configuration=$(Configuration);" />
+  </Target>
+
 </Project>

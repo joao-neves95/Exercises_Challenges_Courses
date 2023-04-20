@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-using GamingApi.WebApi.Core.Exceptions;
+using GamingApi.WebApi.Contracts.Exceptions;
 
 using Microsoft.AspNetCore.Mvc;
 

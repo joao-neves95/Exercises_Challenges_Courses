@@ -23,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GamingApi.WebApi.Contracts"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GamingApi.WebApi.Infrastructure", "GamingApi.WebApi.Infrastructure\GamingApi.WebApi.Infrastructure.csproj", "{4F092E0A-A88F-4FC2-A51C-F261E729D196}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamingApi.WebApi.Infrastructure.Contracts", "GamingApi.WebApi.Infrastructure.Contracts\GamingApi.WebApi.Infrastructure.Contracts.csproj", "{80477947-EB1A-4B6C-A50D-6914B4031D07}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GamingApi.WebApi.Infrastructure.Contracts", "GamingApi.WebApi.Infrastructure.Contracts\GamingApi.WebApi.Infrastructure.Contracts.csproj", "{80477947-EB1A-4B6C-A50D-6914B4031D07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamingApi.WebApi.Client", "GamingApi.WebApi.Client\GamingApi.WebApi.Client.csproj", "{17479E60-5ADB-4488-AF5A-1AF6A1CA29D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,10 @@ Global
 		{80477947-EB1A-4B6C-A50D-6914B4031D07}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80477947-EB1A-4B6C-A50D-6914B4031D07}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80477947-EB1A-4B6C-A50D-6914B4031D07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17479E60-5ADB-4488-AF5A-1AF6A1CA29D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17479E60-5ADB-4488-AF5A-1AF6A1CA29D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17479E60-5ADB-4488-AF5A-1AF6A1CA29D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17479E60-5ADB-4488-AF5A-1AF6A1CA29D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,6 +72,7 @@ Global
 		{998E7507-509A-42FE-8B24-AA3683DBD59E} = {ED26223C-1846-4F2A-9B08-4EA52CFF0D2D}
 		{4F092E0A-A88F-4FC2-A51C-F261E729D196} = {ED26223C-1846-4F2A-9B08-4EA52CFF0D2D}
 		{80477947-EB1A-4B6C-A50D-6914B4031D07} = {ED26223C-1846-4F2A-9B08-4EA52CFF0D2D}
+		{17479E60-5ADB-4488-AF5A-1AF6A1CA29D1} = {ED26223C-1846-4F2A-9B08-4EA52CFF0D2D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {36807232-C9CF-4831-9C6D-66BF2C039466}
