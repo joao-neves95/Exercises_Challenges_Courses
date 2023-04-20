@@ -1,5 +1,5 @@
 ﻿
-namespace GamingApi.WebApi.Core.Exceptions
+namespace GamingApi.WebApi.Contracts.Exceptions
 {
     public class InvalidInputException : ArgumentException
     {

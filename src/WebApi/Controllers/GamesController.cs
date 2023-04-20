@@ -31,19 +31,8 @@ public sealed class GamesController : ControllerBase
             return BadRequest($"The header '{Headers.UserAgent}' is required");
         }
 
-        if (limit is null)
-        {
-            limit = 2;
-        }
-        else if (limit > 10)
-        {
-            return BadRequest($"{nameof(limit)} must not exceed 10");
-        }
-
-        if (offset < 0)
-        {
-            offset = 0;
-        }
+        limit ??= 2;
+        offset ??= 0;
 
         var gamesResponse = await _gameService.GetPaginatedGamesAsync((int)offset!, (int)limit);
 
