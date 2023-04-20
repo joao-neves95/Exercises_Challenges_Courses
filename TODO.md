@@ -22,4 +22,5 @@
     - [x] Implementation (infra)
     - [x] Add Polly
 - [x] Add NSwag for the API client SDK code generation (automatic upon build)
-- [ ] Add a doc file explaining the architecture, how to run, etc.
+- [x] Add a doc file explaining the architecture, how to run, etc.
+- [ ] Review.
