@@ -1,0 +1,26 @@
+# TODO
+
+- [x] Create the contracts, entities
+- [x] Mappers
+    - [x] Setup
+    - [x] Register the implementations (DI)
+    - [x] Unit tests
+    - [x] Implementation
+- [x] Games controller
+    - [x] Setup
+    - [x] Unit tests
+    - [x] Implementation
+- [x] Games service
+    - [x] Setup
+    - [x] Register the implementations (DI)
+    - [x] Unit tests
+    - [x] Implementation
+- [x] Games client store
+    - [x] Setup
+    - [x] Register the implementations (DI)
+    - [x] Unit tests
+    - [x] Implementation (infra)
+    - [x] Add Polly
+- [x] Add NSwag for the API client SDK code generation (automatic upon build)
+- [x] Add a doc file explaining the architecture, how to run, etc.
+- [x] Review.
