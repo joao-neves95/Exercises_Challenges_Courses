@@ -1,0 +1,12 @@
+###############################################################################
+# Set default behavior to automatically normalize line endings.
+###############################################################################
+* text=auto
+
+*.sln text eol=crlf
+*.csproj text eol=crlf
+*.cs text eol=crlf
+
+*.sh text eol=lf
+*.tf text eol=lf
+*.tfvars text eol=lf

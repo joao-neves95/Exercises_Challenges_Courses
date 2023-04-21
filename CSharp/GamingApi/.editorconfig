@@ -1,0 +1,76 @@
+root=true
+; EditorConfig to support per-solution formatting.
+; Use the EditorConfig VS add-in to make this work.
+; http://editorconfig.org/
+
+; This is the default for the codeline.
+
+[*]
+indent_style=space
+charset=utf-8
+trim_trailing_whitespace=true
+insert_final_newline = true
+end_of_line=crlf
+
+[*.cs]
+indent_size=4
+charset=utf-8-bom
+
+# Sort using and Import directives with System.* appearing first
+dotnet_sort_system_directives_first = true
+
+# Don't use this. qualifier
+dotnet_style_qualification_for_field = false:suggestion
+dotnet_style_qualification_for_property = false:suggestion
+
+# use int x = .. over Int32
+dotnet_style_predefined_type_for_locals_parameters_members = true:suggestion
+
+# use int.MaxValue over Int32.MaxValue
+dotnet_style_predefined_type_for_member_access = true:suggestion
+
+# Require var all the time.
+csharp_style_var_for_built_in_types = true:suggestion
+csharp_style_var_when_type_is_apparent = true:suggestion
+csharp_style_var_elsewhere = true:suggestion
+
+# Disallow throw expressions.
+csharp_style_throw_expression = false:suggestion
+
+# Newline settings
+csharp_new_line_before_open_brace = all
+csharp_new_line_before_else = true
+csharp_new_line_before_catch = true
+csharp_new_line_before_finally = true
+csharp_new_line_before_members_in_object_initializers = true
+csharp_new_line_before_members_in_anonymous_types = true
+
+# ReSharper properties to make style compliant with dotnet-format
+resharper_space_within_single_line_array_initializer_braces=true
+
+# use _ for private fields
+dotnet_naming_rule.private_members_with_underscore.symbols = private_fields
+dotnet_naming_rule.private_members_with_underscore.style = prefix_underscore
+dotnet_naming_rule.private_members_with_underscore.severity = suggestion
+dotnet_naming_symbols.private_fields.applicable_kinds = field
+dotnet_naming_symbols.private_fields.applicable_accessibilities = private
+dotnet_naming_style.prefix_underscore.capitalization = camel_case
+dotnet_naming_style.prefix_underscore.required_prefix = _
+
+[*.csproj]
+indent_size=2
+charset=utf-8-bom
+
+[*.sln]
+indent_style=tab
+tab_width=4
+charset=utf-8-bom
+
+[*.{xml,config,*proj,nuspec,props,resx,targets,yml,tasks}]
+indent_size=2
+
+[*.json]
+indent_size=2
+
+[*.{tf,tfvars}]
+end_of_line=lf
