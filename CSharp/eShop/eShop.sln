@@ -28,7 +28,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A1BC85D8-99EE-41B3-9B1A-3E5C4F4580D0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{45E592F8-E547-4726-BEC5-A9630B0E4016}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShop.Catalog.Api", "src\Services\Catalog\eShop.Catalog.Api\eShop.Catalog.Api.csproj", "{CA804CAA-BE33-4B12-ABFA-7E0355836EA6}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CA804CAA-BE33-4B12-ABFA-7E0355836EA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA804CAA-BE33-4B12-ABFA-7E0355836EA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA804CAA-BE33-4B12-ABFA-7E0355836EA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA804CAA-BE33-4B12-ABFA-7E0355836EA6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
@@ -36,6 +50,8 @@ Global
 		{740C8B4A-B5B1-47D8-B965-F171A42E5F35} = {A1BC85D8-99EE-41B3-9B1A-3E5C4F4580D0}
 		{42663281-7E6B-4833-A880-49FBECC153BD} = {A1BC85D8-99EE-41B3-9B1A-3E5C4F4580D0}
 		{7DBB61CA-CFF9-4915-AD0C-FE54CFF85568} = {A1BC85D8-99EE-41B3-9B1A-3E5C4F4580D0}
+		{45E592F8-E547-4726-BEC5-A9630B0E4016} = {42663281-7E6B-4833-A880-49FBECC153BD}
+		{CA804CAA-BE33-4B12-ABFA-7E0355836EA6} = {45E592F8-E547-4726-BEC5-A9630B0E4016}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8D3F3FF8-B248-44CC-9879-3A109E89A522}
