@@ -4,21 +4,38 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{740C8B4A-B5B1-47D8-B965-F171A42E5F35}"
+	ProjectSection(SolutionItems) = preProject
+		src\Web\.gitkeep = src\Web\.gitkeep
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{42663281-7E6B-4833-A880-49FBECC153BD}"
+	ProjectSection(SolutionItems) = preProject
+		src\Services\.gitkeep = src\Services\.gitkeep
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateways", "ApiGateways", "{7DBB61CA-CFF9-4915-AD0C-FE54CFF85568}"
+	ProjectSection(SolutionItems) = preProject
+		src\ApiGateways\.gitkeep = src\ApiGateways\.gitkeep
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A9610E63-ECDD-43A5-A2EC-25988A5C677D}"
 	ProjectSection(SolutionItems) = preProject
 		.dockerignore = .dockerignore
 		.editorconfig = .editorconfig
 		README.md = README.md
+		..\..\LICENSE. = ..\..\LICENSE.
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A1BC85D8-99EE-41B3-9B1A-3E5C4F4580D0}"
 EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{740C8B4A-B5B1-47D8-B965-F171A42E5F35} = {A1BC85D8-99EE-41B3-9B1A-3E5C4F4580D0}
+		{42663281-7E6B-4833-A880-49FBECC153BD} = {A1BC85D8-99EE-41B3-9B1A-3E5C4F4580D0}
+		{7DBB61CA-CFF9-4915-AD0C-FE54CFF85568} = {A1BC85D8-99EE-41B3-9B1A-3E5C4F4580D0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8D3F3FF8-B248-44CC-9879-3A109E89A522}
