@@ -1,0 +1,24 @@
+# Catalog.Api
+
+- C#:
+  - ASP.NET Core Web API
+  - Swagger Open API
+- Architecture:
+  - N-Layer
+    - Presentation layer - REST API - CRUD
+      - Can only interact with the business layer (can not consume Data directly).
+    - Business layer
+      - Precesses user input. Transmits data to the user.
+      - Consumes the data layer.
+    - Data access layer
+        - Repository Pattern
+        - Abstracts the database context.
+        - More consistency. Less errors.
+        - Easier to maintain.
+        - Better testability.
+- DB:
+  - Mongo DB:
+    - https://hub.docker.com/_/mongo
+    - `docker run -d -p 27017:27017 --name eshop-catalog mongo`
+- DevOps:
+  - Docker & Docker Compose

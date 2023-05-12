@@ -1,5 +1,6 @@
 root = true
 
+[*]
 charset = utf-8
 end_of_line = lf
 indent_style = space
@@ -10,8 +11,6 @@ trim_trailing_whitespace = true
 
 tab_width = 4
 indent_size = 4
-end_of_line = crlf
-
 #### Naming styles ####
 
 # Naming rules
@@ -64,6 +63,8 @@ dotnet_style_collection_initializer = true:suggestion
 dotnet_style_prefer_simplified_boolean_expressions = true:suggestion
 dotnet_style_operator_placement_when_wrapping = beginning_of_line
 dotnet_style_prefer_conditional_expression_over_assignment = true:silent
+dotnet_style_prefer_conditional_expression_over_return = true:silent
+dotnet_style_explicit_tuple_names = true:suggestion
 
 [*.cs]
 csharp_using_directive_placement = outside_namespace:silent

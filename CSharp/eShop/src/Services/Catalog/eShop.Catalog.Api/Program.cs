@@ -1,3 +1,4 @@
+
 namespace eShop.Catalog.Api
 {
     public class Program
@@ -7,6 +8,9 @@ namespace eShop.Catalog.Api
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+
+            // TODO: Register MongoDbConfig.
+            // TODO: Register ICatalogContext.
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -23,7 +27,6 @@ namespace eShop.Catalog.Api
             }
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 
