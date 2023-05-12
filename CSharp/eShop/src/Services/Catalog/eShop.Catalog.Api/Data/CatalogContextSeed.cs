@@ -8,7 +8,7 @@ namespace eShop.Catalog.Api.Data
     {
         internal static async Task SeedDataAsync(IMongoCollection<DataProduct> productsCollection)
         {
-            if (await (await productsCollection.FindAsync(_ => true)).AnyAsync())
+            if (await productsCollection.Find(_ => true).AnyAsync())
             {
                 return;
             }
