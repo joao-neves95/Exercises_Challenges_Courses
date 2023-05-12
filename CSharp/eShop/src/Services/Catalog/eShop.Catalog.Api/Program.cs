@@ -1,7 +1,10 @@
+using eShop.Catalog.Api.Data;
+using eShop.Catalog.Api.Models.Config;
+using eShop.Catalog.Api.Repositories;
 
 namespace eShop.Catalog.Api
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {
@@ -9,13 +12,15 @@ namespace eShop.Catalog.Api
 
             // Add services to the container.
 
-            // TODO: Register MongoDbConfig.
-            // TODO: Register ICatalogContext.
+            builder.Services.Configure<MongoDbConfig>(builder.Configuration.GetSection(MongoDbConfig.KeyName));
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddScoped<ICatalogContext, CatalogContext>();
+            builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
             var app = builder.Build();
 
