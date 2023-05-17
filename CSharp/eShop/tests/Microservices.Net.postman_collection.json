@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "12859006-270d-4e02-9cd4-846076239606",
+		"_postman_id": "f7420e19-47f0-4352-abf9-caed2440a3a9",
 		"name": "Microservices.Net",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18490092"
 	},
 	"item": [
 		{
@@ -11,7 +12,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8000/api/v1/Catalog",
+					"raw": "http://localhost:8000/api/v1/catalog/products",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -20,7 +21,8 @@
 					"path": [
 						"api",
 						"v1",
-						"Catalog"
+						"catalog",
+						"products"
 					]
 				}
 			},
@@ -32,7 +34,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8000/api/v1/Catalog/5eca687efc6daa000110bef1",
+					"raw": "http://localhost:8000/api/v1/catalog/products/id/602d2149e773f2a3990b47f6",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -41,8 +43,10 @@
 					"path": [
 						"api",
 						"v1",
-						"Catalog",
-						"5eca687efc6daa000110bef1"
+						"catalog",
+						"products",
+						"id",
+						"602d2149e773f2a3990b47f6"
 					]
 				}
 			},
@@ -54,7 +58,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8000/api/v1/Catalog/GetProductByCategory/Smart Phone",
+					"raw": "http://localhost:8000/api/v1/catalog/products/category/Smart Phone",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -63,8 +67,9 @@
 					"path": [
 						"api",
 						"v1",
-						"Catalog",
-						"GetProductByCategory",
+						"catalog",
+						"products",
+						"category",
 						"Smart Phone"
 					]
 				}
@@ -86,7 +91,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/v1/Catalog",
+					"raw": "http://localhost:8000/api/v1/catalog/products",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -95,7 +100,8 @@
 					"path": [
 						"api",
 						"v1",
-						"Catalog"
+						"catalog",
+						"products"
 					]
 				}
 			},
