@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  eshop.catalog.db.mongo:
+    container_name: eshop.catalog.db.mongo
+    restart: always
+    ports:
+      # Official ports.
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+  eshop.catalog.api:
+    container_name: eshop.catalog.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=mongodb://eshop.catalog.db.mongo:27017"
+    depends_on:
+      - eshop.catalog.db.mongo
+    ports:
+      # Forward to port 8000 (this will be the external port)
+      - "8000:80"

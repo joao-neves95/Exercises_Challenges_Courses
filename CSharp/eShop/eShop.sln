@@ -37,6 +37,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{D0B96377
 		tests\Microservices.Net.postman_collection.json = tests\Microservices.Net.postman_collection.json
 	EndProjectSection
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{081F2B30-4364-4D0C-B6F9-7D79AA9A69C6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{CA804CAA-BE33-4B12-ABFA-7E0355836EA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA804CAA-BE33-4B12-ABFA-7E0355836EA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA804CAA-BE33-4B12-ABFA-7E0355836EA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{081F2B30-4364-4D0C-B6F9-7D79AA9A69C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{081F2B30-4364-4D0C-B6F9-7D79AA9A69C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{081F2B30-4364-4D0C-B6F9-7D79AA9A69C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{081F2B30-4364-4D0C-B6F9-7D79AA9A69C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
