@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Options;
 
 using eShop.Catalog.Api.Entities;
 using eShop.Catalog.Api.Models.Config;
@@ -13,8 +13,8 @@ namespace eShop.Catalog.Api.Data
         {
             var client = new MongoClient(mongoDbConfig.Value.ConnectionString);
             var database = client.GetDatabase(mongoDbConfig.Value.DatabaseName);
-
             Products = database.GetCollection<DataProduct>(mongoDbConfig.Value.CollectionName);
+
             SeedDataAsync().GetAwaiter().GetResult();
         }
 
