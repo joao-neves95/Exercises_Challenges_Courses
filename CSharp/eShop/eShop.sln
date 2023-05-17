@@ -9,9 +9,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{740C8B4A-B5B
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{42663281-7E6B-4833-A880-49FBECC153BD}"
-	ProjectSection(SolutionItems) = preProject
-		src\Services\.gitkeep = src\Services\.gitkeep
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateways", "ApiGateways", "{7DBB61CA-CFF9-4915-AD0C-FE54CFF85568}"
 	ProjectSection(SolutionItems) = preProject
@@ -34,6 +31,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{45E5
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShop.Catalog.Api", "src\Services\Catalog\eShop.Catalog.Api\eShop.Catalog.Api.csproj", "{CA804CAA-BE33-4B12-ABFA-7E0355836EA6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{D0B96377-8B1A-4AE9-BE35-F72D0807B843}"
+	ProjectSection(SolutionItems) = preProject
+		tests\Microservices.Net.postman_collection.json = tests\Microservices.Net.postman_collection.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -20,5 +20,6 @@
   - Mongo DB:
     - https://hub.docker.com/_/mongo
     - `docker run -d -p 27017:27017 --name eshop-catalog mongo`
+    - `docker start eshop-catalog`
 - DevOps:
   - Docker & Docker Compose
