@@ -1,8 +1,9 @@
 using eShop.Basket.Api.Models;
+using eShop.Basket.Api.Repositories;
 
 namespace eShop.Basket.Api
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {
@@ -14,9 +15,11 @@ namespace eShop.Basket.Api
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddStackExchangeRedisCache(
-                options => options.Configuration = builder.Configuration.GetValue<string>(
+            builder.Services.AddStackExchangeRedisCache(options =>
+                options.Configuration = builder.Configuration.GetValue<string>(
                     $"{nameof(CacheConfig.KeyName)}:{nameof(CacheConfig.ConnectionString)}"));
+
+            builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 
             var app = builder.Build();
 
