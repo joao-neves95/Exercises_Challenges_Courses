@@ -4,11 +4,12 @@
   - ASP.NET Core Web API
   - Swagger Open API
 - Architecture:
+  - REST API, CRUD
   - N-Layer
-    - Presentation layer - REST API - CRUD
+    - Presentation layer - (API)
       - Can only interact with the business layer (can not consume Data directly).
     - Business layer
-      - Precesses user input. Transmits data to the user.
+      - Processes user input. Transmits data to the user.
       - Consumes the data layer.
     - Data access layer
         - Repository Pattern
@@ -19,7 +20,5 @@
 - DB:
   - Mongo DB:
     - https://hub.docker.com/_/mongo
-    - `docker run -d -p 27017:27017 --name eshop-catalog mongo`
-    - `docker start eshop-catalog`
 - DevOps:
   - Docker & Docker Compose
