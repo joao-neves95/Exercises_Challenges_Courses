@@ -6,12 +6,13 @@
 - Architecture:
   - REST API, CRUD
   - N-Layer
-    - Presentation layer - (API)
+    - Presentation layer - (REST API)
       - Can only interact with the business layer (can not consume Data directly).
     - Business layer
       - Processes user input. Transmits data to the user.
       - Consumes the data layer.
     - Data access layer
+        - Does not have logic, it only adds, deletes, updates and extracts data.
         - Repository Pattern
         - Abstracts the database context.
         - More consistency. Less errors.
