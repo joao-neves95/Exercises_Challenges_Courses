@@ -4,7 +4,8 @@
   - ASP.NET Core Web API
   - Swagger Open API
   - Libs:
-    - 
+    - Newtonsoft.Json
+    - StackExchange.Redis.Extensions.AspNetCore
 - Architecture:
   - REST API, CRUD
   - N-Layer

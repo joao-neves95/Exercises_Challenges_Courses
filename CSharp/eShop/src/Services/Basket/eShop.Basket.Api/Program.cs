@@ -1,3 +1,5 @@
+using eShop.Basket.Api.Models;
+
 namespace eShop.Basket.Api
 {
     public class Program
@@ -7,11 +9,14 @@ namespace eShop.Basket.Api
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddStackExchangeRedisCache(
+                options => options.Configuration = builder.Configuration.GetValue<string>(
+                    $"{nameof(CacheConfig.KeyName)}:{nameof(CacheConfig.ConnectionString)}"));
 
             var app = builder.Build();
 
@@ -23,7 +28,6 @@ namespace eShop.Basket.Api
             }
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 
