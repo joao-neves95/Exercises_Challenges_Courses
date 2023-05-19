@@ -113,7 +113,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8001/api/v1/Basket/swn",
+					"raw": "http://localhost:8001/api/v1/basket/swn",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -122,7 +122,7 @@
 					"path": [
 						"api",
 						"v1",
-						"Basket",
+						"basket",
 						"swn"
 					]
 				}
@@ -136,7 +136,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"UserName\": \"swn\",\r\n  \"Items\": [\r\n    {\r\n      \"Quantity\": 2,\r\n      \"Color\": \"Red\",\r\n      \"Price\": 500,\r\n      \"ProductId\": \"60210c2a1556459e153f0554\",\r\n      \"ProductName\": \"IPhone X\"\r\n    },\r\n    {\r\n      \"Quantity\": 1,\r\n      \"Color\": \"Blue\",\r\n      \"Price\": 500,\r\n      \"ProductId\": \"60210c2a1556459e153f0555\",\r\n      \"ProductName\": \"Samsung 10\"\r\n    }\r\n  ]  \r\n}",
+					"raw": "{\r\n  \"Username\": \"swn\",\r\n  \"Items\": [\r\n    {\r\n      \"Quantity\": 2,\r\n      \"Color\": \"Red\",\r\n      \"Price\": 500,\r\n      \"ProductId\": \"60210c2a1556459e153f0554\",\r\n      \"ProductName\": \"IPhone X\"\r\n    },\r\n    {\r\n      \"Quantity\": 1,\r\n      \"Color\": \"Blue\",\r\n      \"Price\": 500,\r\n      \"ProductId\": \"60210c2a1556459e153f0555\",\r\n      \"ProductName\": \"Samsung 10\"\r\n    }\r\n  ]  \r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -144,7 +144,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8001/api/v1/Basket",
+					"raw": "http://localhost:8001/api/v1/basket",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -153,7 +153,7 @@
 					"path": [
 						"api",
 						"v1",
-						"Basket"
+						"basket"
 					]
 				}
 			},
@@ -287,7 +287,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8001/api/v1/Basket/Checkout",
+					"raw": "http://localhost:8001/api/v1/basket/checkout",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -296,8 +296,8 @@
 					"path": [
 						"api",
 						"v1",
-						"Basket",
-						"Checkout"
+						"basket",
+						"checkout"
 					]
 				}
 			},
@@ -461,14 +461,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8010/Basket",
+					"raw": "http://localhost:8010/basket",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8010",
 					"path": [
-						"Basket"
+						"basket"
 					]
 				}
 			},
@@ -480,14 +480,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8010/Basket/swn",
+					"raw": "http://localhost:8010/basket/swn",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8010",
 					"path": [
-						"Basket",
+						"basket",
 						"swn"
 					]
 				}
@@ -509,15 +509,15 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8010/Basket/Checkout",
+					"raw": "http://localhost:8010/basket/checkout",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8010",
 					"path": [
-						"Basket",
-						"Checkout"
+						"basket",
+						"checkout"
 					]
 				}
 			},
