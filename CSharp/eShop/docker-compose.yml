@@ -27,5 +27,9 @@ services:
 
   #endregion eShop.Basket
 
+  eshop.portainer:
+    image: portainer/portainer-ce
+
 volumes:
   mongo_data:
+  portainer_data:

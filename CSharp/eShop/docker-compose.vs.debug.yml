@@ -9,7 +9,7 @@ services:
     ports:
       - "27018:27017"
     volumes:
-      - mongo_data:/data/db
+      - mongo_data:/data/eshop.catalog.db.mongo
     command: ["mongod", "--port", "27017"]
 
   eshop.catalog.api:
@@ -45,3 +45,13 @@ services:
       - "CacheSettings__ConnectionString=eshop.basket.db.redis:6379"
 
   #endregion eShop.Basket
+
+  eshop.portainer:
+    container_name: eshop.portainer
+    restart: always
+    ports:
+      - "8100:8000"
+      - "9100:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data/eshop.portainer
