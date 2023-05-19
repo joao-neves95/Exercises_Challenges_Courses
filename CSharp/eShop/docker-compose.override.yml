@@ -46,6 +46,32 @@ services:
 
   #endregion eShop.Basket
 
+  #region eShop.Discount
+
+  eshop.discount.db.pgsql:
+    container_name: eshop.discount.db.pgsql
+    restart: always
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgsql_data:/data/eshop.discount.db.pgsql
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=DiscountDb
+
+  eshop.discount.api:
+    container_name: eshop.discount.api
+    depends_on:
+      - eshop.discount.db.pgsql
+    ports:
+      - "8002:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings__ConnectionString=User ID=admin;Password=admin;Host=eshop.discount.db.pgsql;Port=5432;Database=DiscountDb"
+  
+  #endregion eShop.Discount
+
   eshop.portainer:
     container_name: eshop.portainer
     restart: always

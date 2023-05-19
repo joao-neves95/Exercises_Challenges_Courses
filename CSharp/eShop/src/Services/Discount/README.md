@@ -16,6 +16,6 @@
       - Repository Pattern
 - DB:
   - PostgreSQL
-    - https://hub.docker.com/_/
+    - https://hub.docker.com/_/postgres
 - DevOps:
   - Docker & Docker Compose

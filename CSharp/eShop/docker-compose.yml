@@ -27,9 +27,23 @@ services:
 
   #endregion eShop.Basket
 
+  #region eShop.Discount
+
+  eshop.discount.db.pgsql:
+    image: postgres
+
+  eshop.discount.api:
+    image: ${DOCKER_REGISTRY-}eshop.discount.api
+    build:
+      context: .
+      dockerfile: src/Services/Discount/eShop.Discount.Api/Dockerfile
+
+  #endregion eShop.Discount
+
   eshop.portainer:
     image: portainer/portainer-ce
 
 volumes:
   mongo_data:
+  pgsql_data:  
   portainer_data:
