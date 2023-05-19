@@ -1,6 +1,8 @@
 version: '3.4'
 
 services:
+  #region eShop.Catalog
+
   eshop.catalog.db.mongo:
     container_name: eshop.catalog.db.mongo
     restart: always
@@ -9,6 +11,7 @@ services:
     volumes:
       - mongo_data:/data/db
     command: ["mongod", "--port", "27018"]
+
   eshop.catalog.api:
     container_name: eshop.catalog.api
     environment:
@@ -19,3 +22,17 @@ services:
     ports:
       # Forward to port 8000 (this will be the external port)
       - "8000:80"
+
+  #endregion eshop.catalog
+
+  #region eShop.Basket
+
+  eshop.basket.api:
+    container_name: eshop.basket.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "CacheSettings__ConnectionString=eshop.basket.db.redis:6379"
+    ports:
+      - "8001:80"
+
+  #endregion eShop.Basket

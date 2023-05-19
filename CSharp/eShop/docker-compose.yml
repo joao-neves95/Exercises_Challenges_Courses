@@ -1,13 +1,28 @@
 version: '3.4'
 
 services:
+  #region eShop.Catalog
+
   eshop.catalog.db.mongo:
     image: mongo
+
   eshop.catalog.api:
     image: ${DOCKER_REGISTRY-}eshop.catalog.api
     build:
       context: .
       dockerfile: src/Services/Catalog/eShop.Catalog.Api/Dockerfile
+
+  #endregion eShop.Catalog
+
+  #region eShop.Basket
+
+  eshop.basket.api:
+    image: ${DOCKER_REGISTRY-}eshop.basket.api
+    build:
+      context: .
+      dockerfile: src/Services/Basket/eShop.Basket.Api/Dockerfile
+
+  #endregion eShop.Basket
 
 volumes:
   mongo_data:

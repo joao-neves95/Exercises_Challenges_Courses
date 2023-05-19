@@ -15,6 +15,7 @@
       - Repository Pattern
 - DB:
   - Redis
+    - https://hub.docker.com/_/redis
     - Since the data in this service is temporary, we can use this fast in-memory storage.
 - DevOps:
   - Docker & Docker Compose
