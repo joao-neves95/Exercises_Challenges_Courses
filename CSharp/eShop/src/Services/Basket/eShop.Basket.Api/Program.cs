@@ -17,7 +17,7 @@ namespace eShop.Basket.Api
 
             builder.Services.AddStackExchangeRedisCache(options =>
                 options.Configuration = builder.Configuration.GetValue<string>(
-                    $"{nameof(CacheConfig.KeyName)}:{nameof(CacheConfig.ConnectionString)}"));
+                    $"{CacheConfig.KeyName}:{nameof(CacheConfig.ConnectionString)}"));
 
             builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 

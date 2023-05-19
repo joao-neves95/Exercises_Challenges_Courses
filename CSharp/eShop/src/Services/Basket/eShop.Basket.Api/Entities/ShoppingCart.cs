@@ -10,7 +10,7 @@ namespace eShop.Basket.Api.Entities
 
         public string Username { get; set; }
 
-        public IEnumerable<ShoppingCartItem> Items { get; set; }
+        public IEnumerable<ShoppingCartItem> Items { get; set; } = Enumerable.Empty<ShoppingCartItem>();
 
         public decimal TotalPrice => Items.Sum(item => item.Price * item.Quantity);
     }
