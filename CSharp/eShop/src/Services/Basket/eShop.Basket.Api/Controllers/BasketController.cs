@@ -19,7 +19,7 @@ namespace eShop.Basket.Api.Controllers
         }
 
         [HttpGet]
-        [Route("{username:string}")]
+        [Route("{username}")]
         [ProducesResponseType(typeof(ShoppingCart), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<ShoppingCart>> GetAsync([FromRoute] string username)
         {
