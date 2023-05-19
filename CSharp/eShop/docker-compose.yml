@@ -16,6 +16,9 @@ services:
 
   #region eShop.Basket
 
+  eshop.basket.db.redis:
+    image: redis:alpine
+
   eshop.basket.api:
     image: ${DOCKER_REGISTRY-}eshop.basket.api
     build:
