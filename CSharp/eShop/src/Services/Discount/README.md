@@ -17,5 +17,7 @@
 - DB:
   - PostgreSQL
     - https://hub.docker.com/_/postgres
+  - pgAdmin
+    - https://hub.docker.com/r/dpage/pgadmin4
 - DevOps:
   - Docker & Docker Compose

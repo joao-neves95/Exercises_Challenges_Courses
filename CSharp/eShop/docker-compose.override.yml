@@ -1,6 +1,31 @@
 version: '3.4'
 
 services:
+  #region eShop.Tools
+
+  eshop.tools.portainer:
+    container_name: eshop.tools.portainer
+    restart: always
+    ports:
+      - "8100:8000"
+      - "9100:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data/eshop.tools.portainer
+
+  eshop.tools.pgadmin:
+    container_name: eshop.tools.pgadmin
+    restart: always
+    ports:
+      - "9101:80"
+    volumes:
+      - pgadmin_data:/data/eshop.tools.pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+
+  #endregion eShop.Tools
+    
   #region eShop.Catalog
 
   eshop.catalog.db.mongo:
@@ -71,13 +96,3 @@ services:
       - "DatabaseSettings__ConnectionString=User ID=admin;Password=admin;Host=eshop.discount.db.pgsql;Port=5432;Database=DiscountDb"
   
   #endregion eShop.Discount
-
-  eshop.portainer:
-    container_name: eshop.portainer
-    restart: always
-    ports:
-      - "8100:8000"
-      - "9100:9000"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - portainer_data:/data/eshop.portainer

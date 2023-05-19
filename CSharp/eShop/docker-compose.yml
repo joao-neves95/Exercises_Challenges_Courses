@@ -1,6 +1,16 @@
 version: '3.4'
 
 services:
+  #region eShop.Tools
+
+  eshop.tools.portainer:
+    image: portainer/portainer-ce
+
+  eshop.tools.pgadmin:
+    image: dpage/pgadmin4
+
+  #endregion eShop.Tools
+
   #region eShop.Catalog
 
   eshop.catalog.db.mongo:
@@ -40,10 +50,8 @@ services:
 
   #endregion eShop.Discount
 
-  eshop.portainer:
-    image: portainer/portainer-ce
-
 volumes:
   mongo_data:
-  pgsql_data:  
+  pgsql_data:
   portainer_data:
+  pgadmin_data:
