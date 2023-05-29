@@ -1,5 +1,5 @@
 using eShop.Discount.Grpc.Extensions;
-//using eShop.Discount.Grpc.Services;
+using eShop.Discount.Grpc.Services;
 using eShop.Discount.Shared.Data;
 using eShop.Discount.Shared.Models.Config;
 using eShop.Discount.Shared.Repositories;
@@ -18,10 +18,12 @@ namespace eShop.Discount.Grpc
             builder.Services.Configure<PgsqlConfig>(builder.Configuration.GetSection(PgsqlConfig.KeyName));
 
             // Add services to the container.
-            builder.Services.AddGrpc();
+            builder.Services.AddAutoMapper(typeof(Program));
 
             builder.Services.AddScoped<IDiscountContext, DiscountContext>();
             builder.Services.AddScoped<IDiscountRepository, DiscountRepository>();
+
+            builder.Services.AddGrpc();
 
             var app = builder.Build();
 
@@ -31,7 +33,7 @@ namespace eShop.Discount.Grpc
             }
 
             // Configure the HTTP request pipeline.
-            //app.MapGrpcService<GreeterService>();
+            app.MapGrpcService<DiscountService>();
 
             app.MapGet("/", () => "Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
 
