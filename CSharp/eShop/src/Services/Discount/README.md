@@ -21,3 +21,15 @@
     - https://hub.docker.com/r/dpage/pgadmin4
 - DevOps:
   - Docker & Docker Compose
+
+## Discount.Grpc
+(for highly performant inter-service communication)
+
+- C#:
+  - ASP.NET Core gRPC with Protobuf messages
+  - Libs:
+    - Dapper (micro-ORM)
+- DB:
+  - PostgreSQL
+- DevOps:
+  - Docker & Docker Compose
