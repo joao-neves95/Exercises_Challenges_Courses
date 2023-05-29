@@ -1,4 +1,5 @@
 using eShop.Discount.Api.Data;
+using eShop.Discount.Api.Extensions;
 using eShop.Discount.Api.Models.Config;
 using eShop.Discount.Api.Repositories;
 
@@ -29,6 +30,8 @@ namespace eShop.Discount.Api
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
+
+                app.SeedDevelopmentData();
             }
 
             app.UseAuthorization();

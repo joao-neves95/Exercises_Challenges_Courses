@@ -18,6 +18,6 @@
 ## Internal Links (dev)
 - Portainer: http://127.0.0.1:9100
 - pgAdmin: http://127.0.0.1:9101
-- eshop.catalog.api: http://127.0.0.1:8000
-- eshop.basket.api: http://127.0.0.1:8001
-- eshop.discount.api: http://127.0.0.1:8002
+- eshop.catalog.api: http://127.0.0.1:8000/swagger/index.html
+- eshop.basket.api: http://127.0.0.1:8001/swagger/index.html
+- eshop.discount.api: http://127.0.0.1:8002/swagger/index.html
