@@ -160,12 +160,12 @@
 			"response": []
 		},
 		{
-			"name": "GET Discount By ProductName",
+			"name": "GET All Discounts",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8002/api/v1/Discount/Huawei Plus",
+					"raw": "http://localhost:8002/api/v1/discount/",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -174,7 +174,29 @@
 					"path": [
 						"api",
 						"v1",
-						"Discount",
+						"discount",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Discount By ProductName",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8002/api/v1/discount/Huawei Plus",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"api",
+						"v1",
+						"discount",
 						"Huawei Plus"
 					]
 				}
@@ -196,7 +218,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8002/api/v1/Discount",
+					"raw": "http://localhost:8002/api/v1/discount",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -205,7 +227,7 @@
 					"path": [
 						"api",
 						"v1",
-						"Discount"
+						"discount"
 					]
 				}
 			},
@@ -226,7 +248,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8002/api/v1/Discount",
+					"raw": "http://localhost:8002/api/v1/discount/Huawei Plus",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -235,7 +257,8 @@
 					"path": [
 						"api",
 						"v1",
-						"Discount"
+						"discount",
+						"Huawei Plus"
 					]
 				}
 			},
@@ -256,7 +279,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8002/api/v1/Discount/Huawei Plus",
+					"raw": "http://localhost:8002/api/v1/discount/Huawei Plus",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -265,7 +288,7 @@
 					"path": [
 						"api",
 						"v1",
-						"Discount",
+						"discount",
 						"Huawei Plus"
 					]
 				}
