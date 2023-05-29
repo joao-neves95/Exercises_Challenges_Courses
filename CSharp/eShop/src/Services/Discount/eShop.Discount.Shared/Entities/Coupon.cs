@@ -1,5 +1,5 @@
 
-namespace eShop.Discount.Api.Entities
+namespace eShop.Discount.Shared.Entities
 {
     public class Coupon
     {

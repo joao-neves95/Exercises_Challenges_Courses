@@ -1,6 +1,6 @@
-using eShop.Discount.Api.Entities;
+using eShop.Discount.Shared.Entities;
 
-namespace eShop.Discount.Api.Repositories
+namespace eShop.Discount.Shared.Repositories
 {
     public interface IDiscountRepository
     {

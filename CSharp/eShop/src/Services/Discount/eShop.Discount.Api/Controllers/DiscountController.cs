@@ -1,5 +1,5 @@
-using eShop.Discount.Api.Entities;
-using eShop.Discount.Api.Repositories;
+using eShop.Discount.Shared.Entities;
+using eShop.Discount.Shared.Repositories;
 
 using Microsoft.AspNetCore.Mvc;
 

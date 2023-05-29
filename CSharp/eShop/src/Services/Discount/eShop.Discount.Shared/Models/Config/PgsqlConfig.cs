@@ -1,4 +1,5 @@
-namespace eShop.Discount.Api.Models.Config
+
+namespace eShop.Discount.Shared.Models.Config
 {
     public class PgsqlConfig
     {

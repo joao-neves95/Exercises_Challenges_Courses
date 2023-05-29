@@ -9,7 +9,14 @@
 - src/
   - services/
     - catalog/
-      - [eShop.Catalog.Api](./src/Services/Catalog/eShop.Catalog.Api/)
+      - [eShop.Catalog.Api/](./src/Services/Catalog/eShop.Catalog.Api/)
+    - basket/
+      - [eShop.Basket.Api/](./src/Services/Basket/eShop.Basket.Api/)
+    - discount/
+      - [eShop.Discount.Shared/](./src/Services/Discount/eShop.Discount.Shared/)
+      - [eShop.Discount.Api/](./src/Services/Discount/eShop.Discount.Api/)
+      - [eShop.Discount.Grpc/](./src/Services/Discount/eShop.Discount.Grpc/)
+- [docker-compose.yml](./docker-compose.yml)
 
 ## Docs
 - Docker & Docker Compose

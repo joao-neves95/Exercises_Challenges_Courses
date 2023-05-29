@@ -1,6 +1,6 @@
 using Npgsql;
 
-namespace eShop.Discount.Api.Data
+namespace eShop.Discount.Shared.Data
 {
     public interface IDiscountContext
     {

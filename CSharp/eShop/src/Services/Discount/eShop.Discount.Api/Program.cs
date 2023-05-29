@@ -1,7 +1,7 @@
-using eShop.Discount.Api.Data;
 using eShop.Discount.Api.Extensions;
-using eShop.Discount.Api.Models.Config;
-using eShop.Discount.Api.Repositories;
+using eShop.Discount.Shared.Data;
+using eShop.Discount.Shared.Models.Config;
+using eShop.Discount.Shared.Repositories;
 
 namespace eShop.Discount.Api
 {

@@ -1,11 +1,11 @@
-using eShop.Discount.Api.Models.Config;
+using eShop.Discount.Shared.Models.Config;
 
 using Microsoft.Extensions.Options;
 
 using Dapper;
 using Npgsql;
 
-namespace eShop.Discount.Api.Data
+namespace eShop.Discount.Shared.Data
 {
     public class DiscountContext : IDiscountContext
     {
