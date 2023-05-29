@@ -93,6 +93,6 @@ services:
       - "8002:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "DatabaseSettings__ConnectionString=User ID=admin;Password=admin;Host=eshop.discount.db.pgsql;Port=5432;Database=DiscountDb"
+      - "DatabaseSettings__ConnectionString=Host=eshop.discount.db.pgsql;Port=5432;Database=DiscountDb;User ID=admin;Password=admin;"
   
   #endregion eShop.Discount

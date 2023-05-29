@@ -13,4 +13,11 @@
 
 ## Docs
 - Docker & Docker Compose
-  - `docker-compose -f ./docker-compose.yml -f ./docker-compose.override.yml up -d`
+  - `docker-compose -f ./docker-compose.yml -f ./docker-compose.vs.debug.yml up -d`
+
+## Internal Links (dev)
+- Portainer: http://127.0.0.1:9100
+- pgAdmin: http://127.0.0.1:9101
+- eshop.catalog.api: http://127.0.0.1:8000
+- eshop.basket.api: http://127.0.0.1:8001
+- eshop.discount.api: http://127.0.0.1:8002
