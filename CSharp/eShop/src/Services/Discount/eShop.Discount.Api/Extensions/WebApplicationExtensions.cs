@@ -7,7 +7,7 @@ namespace eShop.Discount.Api.Extensions
 {
     public static class WebApplicationExtensions
     {
-        public static void SeedDevelopmentData(this WebApplication app)
+        public static void SeedPgsqlDevelopmentData(this WebApplication app)
         {
             if (!app.Environment.IsDevelopment())
             {

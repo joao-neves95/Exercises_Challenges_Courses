@@ -31,7 +31,7 @@ namespace eShop.Discount.Api
                 app.UseSwagger();
                 app.UseSwaggerUI();
 
-                app.SeedDevelopmentData();
+                app.SeedPgsqlDevelopmentData();
             }
 
             app.UseAuthorization();
