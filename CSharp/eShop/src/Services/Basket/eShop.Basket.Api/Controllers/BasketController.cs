@@ -1,8 +1,8 @@
-using System.Net;
-
 using eShop.Basket.Api.Entities;
 using eShop.Basket.Api.Repositories;
+using eShop.Basket.Api.Services;
 
+using System.Net;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eShop.Basket.Api.Controllers
@@ -12,10 +12,12 @@ namespace eShop.Basket.Api.Controllers
     public class BasketController : ControllerBase
     {
         private readonly IBasketRepository _basketRepository;
+        private readonly IDiscountService _discountService;
 
-        public BasketController(IBasketRepository basketRepository)
+        public BasketController(IBasketRepository basketRepository, IDiscountService discountService)
         {
             _basketRepository = basketRepository ?? throw new ArgumentNullException(nameof(basketRepository));
+            _discountService = discountService ?? throw new ArgumentNullException(nameof(discountService));
         }
 
         [HttpGet]
@@ -46,6 +48,12 @@ namespace eShop.Basket.Api.Controllers
         [ProducesResponseType(typeof(ShoppingCart), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<ShoppingCart>> PutAsync([FromBody] ShoppingCart basket)
         {
+            foreach (var basketItem in basket.Items)
+            {
+                var discount = (await _discountService.GetCouponAsync(basketItem.ProductName)).Amount;
+                basketItem.Price -= discount;
+            }
+
             return Ok(await _basketRepository.UpdateAsync(basket));
         }
 
