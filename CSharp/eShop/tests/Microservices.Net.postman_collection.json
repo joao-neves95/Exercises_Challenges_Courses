@@ -160,6 +160,37 @@
 			"response": []
 		},
 		{
+			"name": "DELETE Basket",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8001/api/v1/basket/swn",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"api",
+						"v1",
+						"basket",
+						"swn"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "GET All Discounts",
 			"request": {
 				"method": "GET",
@@ -436,14 +467,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8010/Catalog",
+					"raw": "http://localhost:8010/catalog",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8010",
 					"path": [
-						"Catalog"
+						"catalog"
 					]
 				}
 			},
@@ -455,14 +486,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8010/Catalog/602d2149e773f2a3990b47f5",
+					"raw": "http://localhost:8010/catalog/602d2149e773f2a3990b47f5",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8010",
 					"path": [
-						"Catalog",
+						"catalog",
 						"602d2149e773f2a3990b47f5"
 					]
 				}
@@ -552,14 +583,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8010/Order/swn",
+					"raw": "http://localhost:8010/order/swn",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8010",
 					"path": [
-						"Order",
+						"order",
 						"swn"
 					]
 				}
@@ -572,7 +603,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8005/api/v1/Shopping/swn",
+					"raw": "http://localhost:8005/api/v1/shopping/swn",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -581,7 +612,7 @@
 					"path": [
 						"api",
 						"v1",
-						"Shopping",
+						"shopping",
 						"swn"
 					]
 				}
