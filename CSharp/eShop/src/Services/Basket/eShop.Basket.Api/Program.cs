@@ -12,7 +12,6 @@ namespace eShop.Basket.Api
         {
             var builder = WebApplication.CreateBuilder(args);
 
-
             // Add services to the container.
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -27,8 +26,9 @@ namespace eShop.Basket.Api
                 .GetSection(ConnectedServicesConfig.KeyName)
                 .Get<ConnectedServicesConfig>();
 
-            builder.Services.AddGrpcClient<DiscountGrpcServiceClient>(
-                options => options.Address = new Uri(connectedServicesConfig.DiscountGrpcUrl));
+            builder.Services
+                .AddGrpcClient<DiscountGrpcServiceClient>(
+                    options => options.Address = new Uri(connectedServicesConfig.DiscountGrpcUrl));
 
             builder.Services.AddScoped<IDiscountService, DiscountGrpClient>();
 

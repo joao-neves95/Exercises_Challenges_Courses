@@ -58,15 +58,15 @@ namespace eShop.Basket.Api.Controllers
         }
 
         [HttpDelete]
-        [Route("")]
+        [Route("{username}")]
         [ProducesResponseType(typeof(bool), (int)HttpStatusCode.OK)]
-        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
-        public async Task<ActionResult<bool>> DeleteAsync([FromBody] ShoppingCart basket)
+        [ProducesResponseType(typeof(bool), (int)HttpStatusCode.NotFound)]
+        public async Task<ActionResult<bool>> DeleteAsync([FromRoute] string username)
         {
-            var result = await _basketRepository.UpdateAsync(basket);
+            var result = await _basketRepository.DeleteAsync(username);
 
-            return result is null
-                ? StatusCode((int)HttpStatusCode.InternalServerError)
+            return !result
+                ? NotFound(result)
                 : Ok(result);
         }
     }

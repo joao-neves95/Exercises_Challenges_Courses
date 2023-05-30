@@ -68,7 +68,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "CacheSettings__ConnectionString=eshop.basket.db.redis:6379"
-      - "ConnectedServicesSettings__DiscountGrpcUrl=eshop.discount.grpc:80"
+      - "ConnectedServicesSettings__DiscountGrpcUrl=http://eshop.discount.grpc:80"
 
   #endregion eShop.Basket
 
