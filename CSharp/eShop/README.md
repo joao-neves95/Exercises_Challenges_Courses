@@ -29,10 +29,10 @@
   - docker: http://127.0.0.1:9101
 - eshop.catalog.api:
   - docker: http://127.0.0.1:8000/swagger/index.html
-  - localhost: http://127.0.0.1:5000/swagger/index.html
+  - kestrel: http://127.0.0.1:5000/swagger/index.html
 - eshop.basket.api:
   - docker: http://127.0.0.1:8001/swagger/index.html
-  - localhost: http://127.0.0.1:5001/swagger/index.html
+  - kestrel: http://127.0.0.1:5001/swagger/index.html
 - eshop.discount.api:
   - docker: http://127.0.0.1:8002/swagger/index.html
-  - localhost: http://127.0.0.1:5002/swagger/index.html
+  - kestrel: http://127.0.0.1:5002/swagger/index.html

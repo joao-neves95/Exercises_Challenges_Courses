@@ -68,6 +68,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "CacheSettings__ConnectionString=eshop.basket.db.redis:6379"
+      - "ConnectedServicesSettings__DiscountGrpcUrl=eshop.discount.grpc:80"
 
   #endregion eShop.Basket
 
@@ -91,6 +92,16 @@ services:
       - eshop.discount.db.pgsql
     ports:
       - "8002:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings__ConnectionString=Host=eshop.discount.db.pgsql;Port=5432;Database=DiscountDb;User ID=admin;Password=admin;"
+
+  eshop.discount.grpc:
+    container_name: eshop.discount.grpc
+    depends_on:
+      - eshop.discount.db.pgsql
+    ports:
+      - "8003:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "DatabaseSettings__ConnectionString=Host=eshop.discount.db.pgsql;Port=5432;Database=DiscountDb;User ID=admin;Password=admin;"

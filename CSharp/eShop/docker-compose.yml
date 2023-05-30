@@ -48,6 +48,12 @@ services:
       context: .
       dockerfile: src/Services/Discount/eShop.Discount.Api/Dockerfile
 
+  eshop.discount.grpc:
+    image: ${DOCKER_REGISTRY-}eshop.discount.grpc
+    build:
+      context: .
+      dockerfile: src/Services/Discount/eShop.Discount.Grpc/Dockerfile
+
   #endregion eShop.Discount
 
 volumes:
