@@ -3,6 +3,7 @@ using eShop.Ordering.Domain.Entities;
 
 using AutoMapper;
 using eShop.Ordering.Application.Features.Order.Commands.CheckoutOrder;
+using eShop.Ordering.Application.Features.Order.Commands.UpdateOrder;
 
 namespace eShop.Ordering.Application.Mappings
 {
@@ -10,10 +11,10 @@ namespace eShop.Ordering.Application.Mappings
     {
         public MappingProfile()
         {
-            CreateMap<DataOrder, OrderDto>().ReverseMap();
-
             // TODO:
+            CreateMap<DataOrder, OrderDto>().ReverseMap();
             CreateMap<DataOrder, CheckoutOrderCommand>().ReverseMap();
+            CreateMap<DataOrder, UpdateOrderCommand>().ReverseMap();
         }
     }
 }
