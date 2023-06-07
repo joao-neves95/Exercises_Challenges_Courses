@@ -35,7 +35,7 @@ namespace eShop.Ordering.Application.Features.Order.Commands.UpdateOrder
             if (order == null)
             {
                 _logger.LogInformation($"Order {request.Id} does not exist.");
-                throw new NotFoundException(nameof(DataOrder), request.Id);
+                throw new NotFoundApplicationException(nameof(DataOrder), request.Id);
             }
 
             _mapper.Map(request, order, typeof(UpdateOrderCommand), typeof(DataOrder));

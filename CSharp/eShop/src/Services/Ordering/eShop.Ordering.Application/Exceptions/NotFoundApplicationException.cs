@@ -1,19 +1,19 @@
 
 namespace eShop.Ordering.Application.Exceptions
 {
-    public class NotFoundException : ApplicationException
+    public class NotFoundApplicationException : ApplicationException
     {
-        public NotFoundException()
+        public NotFoundApplicationException()
             : base()
         {
         }
 
-        public NotFoundException(string name, object key)
+        public NotFoundApplicationException(string name, object key)
             : base(BuildMessage(name, key))
         {
         }
 
-        public NotFoundException(string name, object key, Exception? innerException)
+        public NotFoundApplicationException(string name, object key, Exception? innerException)
             : base(BuildMessage(name, key), innerException)
         {
         }

@@ -32,7 +32,7 @@ namespace eShop.Ordering.Application.Features.Order.Commands.DeleteOrder
             if (existingOrder == null)
             {
                 _logger.LogError($"Order ID={request.Id} does not exist.");
-                throw new NotFoundException(nameof(DataOrder), request.Id);
+                throw new NotFoundApplicationException(nameof(DataOrder), request.Id);
             }
 
             await _orderRepository.DeleteAsync(existingOrder);
