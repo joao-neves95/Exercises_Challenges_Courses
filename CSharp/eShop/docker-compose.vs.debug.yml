@@ -107,3 +107,26 @@ services:
       - "DatabaseSettings__ConnectionString=Host=eshop.discount.db.pgsql;Port=5432;Database=DiscountDb;User ID=admin;Password=admin;"
   
   #endregion eShop.Discount
+
+  #region eShop.Ordering
+
+  eshop.ordering.db.sqlserver:
+    container_name: eshop.ordering.db.sqlserver
+    restart: always
+    ports:
+      - "1434:1433"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+    environment:
+      SA_PASSWORD: "admin"
+      ACCEPT_EULA: "Y"
+
+  eshop.ordering.api:
+    container_name: eshop.ordering.api
+    ports:
+      - "8004:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings__SqlServerConnectionString=Server=eshop.ordering.db.sqlserver;Database=OrderDb;User Id=admin;Password=admin;"
+
+  #endregion eShop.Ordering

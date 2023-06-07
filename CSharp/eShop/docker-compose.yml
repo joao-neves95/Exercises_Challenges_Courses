@@ -56,8 +56,22 @@ services:
 
   #endregion eShop.Discount
 
+  #region eShop.Ordering
+
+  eshop.ordering.db.sqlserver:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+
+  eshop.ordering.api:
+    image: ${DOCKER_REGISTRY-}eshop.ordering.api
+    build:
+      context: .
+      dockerfile: src/Services/Ordering/eShop.Ordering.Api/Dockerfile
+
+  #endregion eShop.Ordering
+
 volumes:
   mongo_data:
   pgsql_data:
+  sqlserver_data:
   portainer_data:
   pgadmin_data:

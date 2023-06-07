@@ -16,6 +16,11 @@
       - [eShop.Discount.Shared/](./src/Services/Discount/eShop.Discount.Shared/)
       - [eShop.Discount.Api/](./src/Services/Discount/eShop.Discount.Api/)
       - [eShop.Discount.Grpc/](./src/Services/Discount/eShop.Discount.Grpc/)
+    - ordering/
+      - [eShop.Ordering.Api/](./src/Services/Ordering/eShop.Ordering.Api/)
+      - [eShop.Ordering.Application/](./src/Ordering/Application/eShop.Application.Api/)
+      - [eShop.Ordering.Domain/](./src/Services/Ordering/eShop.Domain.Api/)
+      - [eShop.Ordering.Infrastructure/](./src/Ordering/Infrastructure/eShop.Infrastructure.Api/)
 - [docker-compose.yml](./docker-compose.yml)
 
 ## Docs
@@ -36,3 +41,6 @@
 - eshop.discount.api:
   - docker: http://127.0.0.1:8002/swagger/index.html
   - kestrel: http://127.0.0.1:5002/swagger/index.html
+- eshop.ordering.api:
+  - docker: http://127.0.0.1:8004/swagger/index.html
+  - kestrel: http://127.0.0.1:5004/swagger/index.html
