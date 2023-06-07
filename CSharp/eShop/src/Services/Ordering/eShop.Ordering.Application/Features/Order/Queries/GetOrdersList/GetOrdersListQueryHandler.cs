@@ -6,7 +6,7 @@ using MediatR;
 
 namespace eShop.Ordering.Application.Features.Order.Queries.GetOrdersList
 {
-    internal class GetOrdersListQueryHandler : IRequestHandler<GetOrdersListQuery, IEnumerable<OrderDto>>
+    internal sealed class GetOrdersListQueryHandler : IRequestHandler<GetOrdersListQuery, IEnumerable<OrderDto>>
     {
         private readonly IOrderRepository _orderRepository;
         private readonly IMapper _mapper;

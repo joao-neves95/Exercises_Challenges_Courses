@@ -2,7 +2,7 @@ using MediatR;
 
 namespace eShop.Ordering.Application.Features.Order.Queries.GetOrdersList
 {
-    internal class GetOrdersListQuery : IRequest<IEnumerable<OrderDto>>
+    public sealed class GetOrdersListQuery : IRequest<IEnumerable<OrderDto>>
     {
         public string Username { get; set; }
 

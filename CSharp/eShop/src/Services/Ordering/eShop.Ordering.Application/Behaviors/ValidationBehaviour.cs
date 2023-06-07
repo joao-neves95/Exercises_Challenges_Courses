@@ -17,7 +17,7 @@ namespace eShop.Ordering.Application.Behaviors
 
         public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
         {
-            if (_validators.Any())
+            if (_validators?.Any() == true)
             {
                 var validationContext = new ValidationContext<TRequest>(request);
                 var validationResults = await Task.WhenAll(
@@ -25,7 +25,7 @@ namespace eShop.Ordering.Application.Behaviors
 
                 var failures = validationResults.SelectMany(result => result.Errors).Where(fail => fail != null);
 
-                if (validationResults.Any())
+                if (validationResults?.Any() == true)
                 {
                     throw new ValidationApplicationException(failures.ToArray());
                 }

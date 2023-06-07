@@ -1,6 +1,18 @@
+using eShop.Ordering.Application.Behaviors;
+using eShop.Ordering.Application.Contracts.Infrastructure;
+using eShop.Ordering.Application.Contracts.Persistence;
+using eShop.Ordering.Application.Features.Order.Commands.CheckoutOrder;
+using eShop.Ordering.Application.Mappings;
+using eShop.Ordering.Infrastructure.Infrastructure;
+using eShop.Ordering.Infrastructure.Persistence;
+
+using System.Reflection;
+
+using FluentValidation;
+
 namespace eShop.Ordering.Api
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {
@@ -13,6 +25,19 @@ namespace eShop.Ordering.Api
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddAutoMapper(Assembly.GetAssembly(typeof(MappingProfile)));
+            builder.Services.AddValidatorsFromAssembly(Assembly.GetAssembly(typeof(CheckoutOrderCommandValidator)));
+            builder.Services.AddMediatR(options =>
+            {
+                options.AddOpenBehavior(typeof(UnhandledExceptionBehaviour<,>));
+                options.AddOpenBehavior(typeof(ValidationBehaviour<,>));
+
+                options.RegisterServicesFromAssembly(Assembly.GetAssembly(typeof(CheckoutOrderCommand)));
+            });
+
+            builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+            builder.Services.AddScoped<IEmailService, EmailService>();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -23,9 +48,7 @@ namespace eShop.Ordering.Api
             }
 
             app.UseHttpsRedirection();
-
             app.UseAuthorization();
-
 
             app.MapControllers();
 
