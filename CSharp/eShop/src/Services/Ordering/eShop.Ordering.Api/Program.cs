@@ -1,3 +1,4 @@
+using eShop.Ordering.Api.Extensions;
 using eShop.Ordering.Application.Behaviors;
 using eShop.Ordering.Application.Contracts.Infrastructure;
 using eShop.Ordering.Application.Contracts.Persistence;
@@ -17,7 +18,7 @@ namespace eShop.Ordering.Api
 {
     public static class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -60,7 +61,8 @@ namespace eShop.Ordering.Api
 
             app.MapControllers();
 
-            app.Run();
+            await app.MigrateDatabaseAsync();
+            await app.RunAsync();
         }
     }
 }

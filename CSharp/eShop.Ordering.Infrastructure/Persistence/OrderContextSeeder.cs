@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 
 namespace eShop.Ordering.Infrastructure.Persistence
 {
-    internal class OrderContextSeeder
+    public sealed class OrderContextSeeder
     {
         public static async Task SeedAsync(OrderContext context, ILogger<OrderContextSeeder> logger)
         {
@@ -25,7 +25,7 @@ namespace eShop.Ordering.Infrastructure.Persistence
             {
                 new DataOrder() {
                     UserName = "swn",
-                    BillingAddress = new DataBillingAddress()
+                    BillingInformation = new DataBillingInformation()
                     {
                         FirstName = "Mehmet",
                         LastName = "Ozkaya",

@@ -9,7 +9,7 @@ namespace eShop.Ordering.Application.Features.Order.Queries.GetOrdersList
 
         public decimal TotalPrice { get; set; }
 
-        public BillingAddressDto BillingAddress { get; set; }
+        public BillingInformationDto BillingInformation { get; set; }
 
         public PaymentInformationDto PaymentInformation { get; set; }
     }

@@ -2,7 +2,7 @@ using eShop.Ordering.Domain.Common;
 
 namespace eShop.Ordering.Domain.Entities
 {
-    public class DataBillingAddress : EntityBase
+    public class DataBillingInformation : EntityBase
     {
         public string FirstName { get; set; }
 
