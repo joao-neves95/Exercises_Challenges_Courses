@@ -1,8 +1,10 @@
 
 namespace eShop.Ordering.Application.Models
 {
-    internal class EmailSettings
+    public class EmailConfig
     {
+        public const string KeyName = "EmailSettings";
+
         public string ApiKey { get; set; }
 
         public string FromAddress { get; set; }
