@@ -1,10 +1,11 @@
-using AutoMapper;
-
 using eShop.Ordering.Application.Contracts.Persistence;
-
-using MediatR;
+using eShop.Ordering.Application.Exceptions;
+using eShop.Ordering.Domain.Entities;
 
 using Microsoft.Extensions.Logging;
+
+using AutoMapper;
+using MediatR;
 
 namespace eShop.Ordering.Application.Features.Order.Commands.DeleteOrder
 {
@@ -31,9 +32,7 @@ namespace eShop.Ordering.Application.Features.Order.Commands.DeleteOrder
             if (existingOrder == null)
             {
                 _logger.LogError($"Order ID={request.Id} does not exist.");
-                // throw
-
-                return;
+                throw new NotFoundException(nameof(DataOrder), request.Id);
             }
 
             await _orderRepository.DeleteAsync(existingOrder);

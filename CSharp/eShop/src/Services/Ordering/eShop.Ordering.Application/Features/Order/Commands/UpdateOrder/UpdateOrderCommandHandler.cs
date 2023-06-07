@@ -1,4 +1,5 @@
 using eShop.Ordering.Application.Contracts.Persistence;
+using eShop.Ordering.Application.Exceptions;
 using eShop.Ordering.Application.Features.Order.Commands.CheckoutOrder;
 using eShop.Ordering.Domain.Entities;
 
@@ -34,7 +35,7 @@ namespace eShop.Ordering.Application.Features.Order.Commands.UpdateOrder
             if (order == null)
             {
                 _logger.LogInformation($"Order {request.Id} does not exist.");
-                // TODO: throw
+                throw new NotFoundException(nameof(DataOrder), request.Id);
             }
 
             _mapper.Map(request, order, typeof(UpdateOrderCommand), typeof(DataOrder));
