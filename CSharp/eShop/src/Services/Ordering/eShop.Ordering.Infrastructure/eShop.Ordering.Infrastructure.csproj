@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\eShop\src\Services\Ordering\eShop.Ordering.Application\eShop.Ordering.Application.csproj" />
+    <ProjectReference Include="..\eShop.Ordering.Application\eShop.Ordering.Application.csproj" />
   </ItemGroup>
 
 </Project>
