@@ -8,6 +8,11 @@ namespace eShop.Ordering.Application.Behaviors
     {
         private readonly ILogger<TRequest> _logger;
 
+        public UnhandledExceptionBehaviour(ILogger<TRequest> logger)
+        {
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        }
+
         public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
         {
             try
@@ -16,11 +21,11 @@ namespace eShop.Ordering.Application.Behaviors
             }
             catch (Exception ex)
             {
-                var requestName = typeof(TRequest).Name;
                 _logger.LogError(
                     ex,
                     "Application Request Exception: Unhanded Exception on the Request {Name} {@Request}",
-                    requestName, request);
+                    typeof(TRequest).Name,
+                    request);
 
                 throw;
             }

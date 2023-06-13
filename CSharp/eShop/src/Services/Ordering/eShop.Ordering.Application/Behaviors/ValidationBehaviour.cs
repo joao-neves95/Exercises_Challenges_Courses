@@ -25,7 +25,7 @@ namespace eShop.Ordering.Application.Behaviors
 
                 var failures = validationResults.SelectMany(result => result.Errors).Where(fail => fail != null);
 
-                if (validationResults?.Any() == true)
+                if (failures?.Any() == true)
                 {
                     throw new ValidationApplicationException(failures.ToArray());
                 }

@@ -30,7 +30,7 @@ namespace eShop.Ordering.Application.Features.Order.Commands.UpdateOrder
 
         public async Task Handle(UpdateOrderCommand request, CancellationToken cancellationToken)
         {
-            var order = await _orderRepository.GetByIdAsync(request.Id);
+            var order = await _orderRepository.GetOrderById(request.Id);
 
             if (order == null)
             {
@@ -38,9 +38,11 @@ namespace eShop.Ordering.Application.Features.Order.Commands.UpdateOrder
                 throw new NotFoundApplicationException(nameof(DataOrder), request.Id);
             }
 
-            _mapper.Map(request, order, typeof(UpdateOrderCommand), typeof(DataOrder));
+            var mapperdOrder = _mapper.Map<DataOrder>(request);
+            mapperdOrder.CreatedBy = order.CreatedBy;
+            mapperdOrder.CreatedDate = order.CreatedDate;
 
-            await _orderRepository.UpdateAsync(order);
+            await _orderRepository.UpdateAsync(mapperdOrder);
 
             _logger.LogInformation($"Order {request.Id} was successfully updated.");
         }

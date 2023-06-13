@@ -2,6 +2,8 @@ using eShop.Ordering.Infrastructure.Persistence;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Data.SqlClient;
+using System.Data;
+using System.Threading;
 
 namespace eShop.Ordering.Api.Extensions
 {
@@ -13,9 +15,11 @@ namespace eShop.Ordering.Api.Extensions
             var logger = scope.ServiceProvider.GetRequiredService<ILogger<OrderContextSeeder>>();
             var dbContext = scope.ServiceProvider.GetService<OrderContext>();
 
+            await using var transaction = await dbContext.Database.BeginTransactionAsync(IsolationLevel.Serializable);
+
             try
             {
-                logger.LogInformation("Migrating database associated with context {DbContextName}", nameof(OrderContext));
+                logger.LogInformation("Migrating database associated with context {DbContextName}.", nameof(OrderContext));
 
                 await dbContext.Database.MigrateAsync();
 
@@ -24,10 +28,19 @@ namespace eShop.Ordering.Api.Extensions
                     await OrderContextSeeder.SeedAsync(dbContext, logger);
                 }
 
-                logger.LogInformation("Migrated database associated with context {DbContextName}", nameof(OrderContext));
+                await transaction.CommitAsync();
+
+                logger.LogInformation("Migrated database associated with context {DbContextName}.", nameof(OrderContext));
             }
-            catch (SqlException)
+            catch (SqlException ex)
             {
+                await transaction.RollbackAsync();
+
+                logger.LogError(
+                    "Error while migrating database associated with context {DbContextName}. e={@ex}",
+                    nameof(OrderContext),
+                    ex);
+
                 throw;
             }
 

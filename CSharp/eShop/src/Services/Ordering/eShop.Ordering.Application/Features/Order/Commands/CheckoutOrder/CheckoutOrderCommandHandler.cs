@@ -46,7 +46,7 @@ namespace eShop.Ordering.Application.Features.Order.Commands.CheckoutOrder
 
         private async Task SendMail(DataOrder order)
         {
-            var email = new Email() { To = "ezozkme@gmail.com", Body = $"Order was created.", Subject = "Order was created" };
+            var email = new Email() { To = "ezozkme@gmail.com", Body = "Order was created.", Subject = "Order was created" };
 
             try
             {

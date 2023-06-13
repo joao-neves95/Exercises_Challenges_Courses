@@ -26,7 +26,7 @@ namespace eShop.Ordering.Api.Controllers
         [Route("{username}")]
         [ProducesResponseType(typeof(IEnumerable<OrderDto>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<IEnumerable<OrderDto>>> GetAll([FromRoute] string username)
+        public async Task<ActionResult<IEnumerable<OrderDto>>> GetByUsername([FromRoute] string username)
         {
             var allOrders = await _mediator.Send(new GetOrdersListQuery(username));
 
@@ -40,10 +40,10 @@ namespace eShop.Ordering.Api.Controllers
 
         // This is for testing purposes. This feature will be called from a RabbitMQ message.
         [HttpPost]
-        [Route("{username}/checkout")]
+        [Route("")]
         [ProducesResponseType(typeof(IEnumerable<OrderDto>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<IEnumerable<OrderDto>>> GetAll([FromBody] CheckoutOrderCommand command)
+        public async Task<ActionResult<IEnumerable<OrderDto>>> Post([FromBody] CheckoutOrderCommand command)
         {
             var result = await _mediator.Send(command);
 
@@ -56,9 +56,9 @@ namespace eShop.Ordering.Api.Controllers
         }
 
         [HttpPut]
-        [Route("{username}")]
+        [Route("")]
         [ProducesResponseType(typeof(IEnumerable<OrderDto>), (int)HttpStatusCode.NoContent)]
-        public async Task<ActionResult<IEnumerable<OrderDto>>> GetAll([FromBody] UpdateOrderCommand command)
+        public async Task<ActionResult<IEnumerable<OrderDto>>> Put([FromBody] UpdateOrderCommand command)
         {
             await _mediator.Send(command);
 
@@ -68,7 +68,7 @@ namespace eShop.Ordering.Api.Controllers
         [HttpDelete]
         [Route("{orderId}")]
         [ProducesResponseType(typeof(IEnumerable<OrderDto>), (int)HttpStatusCode.NoContent)]
-        public async Task<ActionResult<IEnumerable<OrderDto>>> GetAll([FromRoute] int orderId)
+        public async Task<ActionResult<IEnumerable<OrderDto>>> Delete([FromRoute] int orderId)
         {
             await _mediator.Send(new DeleteOrderCommand() { Id = orderId });
 

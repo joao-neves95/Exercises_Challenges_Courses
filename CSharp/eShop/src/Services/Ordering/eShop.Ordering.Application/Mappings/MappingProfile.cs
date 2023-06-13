@@ -12,6 +12,8 @@ namespace eShop.Ordering.Application.Mappings
         public MappingProfile()
         {
             CreateMap<DataOrder, OrderDto>().ReverseMap();
+            CreateMap<DataBillingInformation, BillingInformationDto>().ReverseMap();
+            CreateMap<DataPaymentInformation, PaymentInformationDto>().ReverseMap();
 
             CreateMap<CheckoutOrderCommand, DataOrder>()
                .ConvertUsing((comm, _) => new DataOrder()
@@ -41,6 +43,7 @@ namespace eShop.Ordering.Application.Mappings
             CreateMap<UpdateOrderCommand, DataOrder>()
                 .ConvertUsing((comm, _) => new DataOrder()
                 {
+                    Id = comm.Id,
                     UserName = comm.UserName,
                     TotalPrice = comm.TotalPrice,
                     BillingInformation = new DataBillingInformation()

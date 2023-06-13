@@ -1,4 +1,4 @@
-﻿using eShop.Ordering.Application.Contracts.Persistence;
+using eShop.Ordering.Application.Contracts.Persistence;
 using eShop.Ordering.Domain.Common;
 using eShop.Ordering.Infrastructure.Persistence;
 
@@ -85,6 +85,7 @@ namespace eShop.Ordering.Infrastructure.Repositories
 
         public async Task UpdateAsync(TEntity entity)
         {
+            _dbContext.ChangeTracker.Clear();
             _dbContext.Entry(entity).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
         }
