@@ -115,18 +115,18 @@ services:
     restart: always
     ports:
       - "1434:1433"
-    volumes:
-      - sqlserver_data:/var/opt/mssql
     environment:
-      SA_PASSWORD: "admin"
       ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "admin"
 
   eshop.ordering.api:
     container_name: eshop.ordering.api
+    depends_on:
+      - eshop.ordering.db.sqlserver
     ports:
       - "8004:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "ConnectionStrings__SqlServerConnectionString=Server=eshop.ordering.db.sqlserver;Database=OrderDb;User Id=admin;Password=admin;"
+      - "ConnectionStrings__SqlServerConnectionString=Server=eshop.ordering.db.sqlserver,1433;Database=OrderDb;User Id=sa;Password=admin;Trust Server Certificate=True"
 
   #endregion eShop.Ordering

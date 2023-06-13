@@ -72,6 +72,5 @@ services:
 volumes:
   mongo_data:
   pgsql_data:
-  sqlserver_data:
   portainer_data:
   pgadmin_data:

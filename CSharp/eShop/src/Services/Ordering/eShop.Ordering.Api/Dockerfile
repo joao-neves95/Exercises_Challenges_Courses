@@ -8,6 +8,9 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["src/Services/Ordering/eShop.Ordering.Api/eShop.Ordering.Api.csproj", "src/Services/Ordering/eShop.Ordering.Api/"]
+COPY ["src/Services/Ordering/eShop.Ordering.Application/eShop.Ordering.Application.csproj", "src/Services/Ordering/eShop.Ordering.Application/"]
+COPY ["src/Services/Ordering/eShop.Ordering.Domain/eShop.Ordering.Domain.csproj", "src/Services/Ordering/eShop.Ordering.Domain/"]
+COPY ["src/Services/Ordering/eShop.Ordering.Infrastructure/eShop.Ordering.Infrastructure.csproj", "src/Services/Ordering/eShop.Ordering.Infrastructure/"]
 RUN dotnet restore "src/Services/Ordering/eShop.Ordering.Api/eShop.Ordering.Api.csproj"
 COPY . .
 WORKDIR "/src/src/Services/Ordering/eShop.Ordering.Api"
