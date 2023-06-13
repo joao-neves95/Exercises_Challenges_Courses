@@ -363,7 +363,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8004/api/v1/Order/swn",
+					"raw": "http://localhost:8004/api/v1/orders/swn",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -372,7 +372,7 @@
 					"path": [
 						"api",
 						"v1",
-						"Order",
+						"orders",
 						"swn"
 					]
 				}
@@ -385,7 +385,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8004/api/v1/Order/2",
+					"raw": "http://localhost:8004/api/v1/orders/6",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -394,8 +394,8 @@
 					"path": [
 						"api",
 						"v1",
-						"Order",
-						"2"
+						"orders",
+						"6"
 					]
 				}
 			},
@@ -416,7 +416,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8004/api/v1/Order",
+					"raw": "http://localhost:8004/api/v1/orders",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -425,7 +425,7 @@
 					"path": [
 						"api",
 						"v1",
-						"Order"
+						"orders"
 					]
 				}
 			},
@@ -438,7 +438,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t  \"id\": 2,\r\n\t  \"userName\": \"swn\",\r\n\t  \"totalPrice\": 200,\r\n\t  \"firstName\": \"swn2\",\r\n\t  \"lastName\": \"swn2\",\r\n\t  \"emailAddress\": \"string\",\r\n\t  \"addressLine\": \"string\",\r\n\t  \"country\": \"string\",\r\n\t  \"state\": \"string\",\r\n\t  \"zipCode\": \"string\",\r\n\t  \"cardName\": \"string\",\r\n\t  \"cardNumber\": \"string\",\r\n\t  \"expiration\": \"string\",\r\n\t  \"cvv\": \"string\",\r\n\t  \"paymentMethod\": 1\r\n\t}",
+					"raw": "{\r\n\t  \"id\": 5,\r\n\t  \"userName\": \"swn\",\r\n\t  \"totalPrice\": 200,\r\n\t  \"firstName\": \"swn2\",\r\n\t  \"lastName\": \"swn2\",\r\n\t  \"emailAddress\": \"string\",\r\n\t  \"addressLine\": \"string\",\r\n\t  \"country\": \"string\",\r\n\t  \"state\": \"string\",\r\n\t  \"zipCode\": \"string\",\r\n\t  \"cardName\": \"string\",\r\n\t  \"cardNumber\": \"string\",\r\n\t  \"expiration\": \"string\",\r\n\t  \"cvv\": \"string\",\r\n\t  \"paymentMethod\": 1\r\n\t}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -446,7 +446,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8004/api/v1/Order",
+					"raw": "http://localhost:8004/api/v1/orders",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -455,7 +455,7 @@
 					"path": [
 						"api",
 						"v1",
-						"Order"
+						"orders"
 					]
 				}
 			},
@@ -583,14 +583,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8010/order/swn",
+					"raw": "http://localhost:8010/orders/swn",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8010",
 					"path": [
-						"order",
+						"orders",
 						"swn"
 					]
 				}
