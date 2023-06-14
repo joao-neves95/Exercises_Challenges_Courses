@@ -39,6 +39,8 @@ namespace eShop.Basket.Api
                     .Get<ConnectedServicesConfig>()
                     .DiscountGrpcUrl));
 
+            builder.Services.AddAutoMapper(typeof(Program));
+
             builder.Services.AddScoped<IDiscountService, DiscountGrpClient>();
 
             builder.Services.AddScoped<IBasketRepository, BasketRepository>();

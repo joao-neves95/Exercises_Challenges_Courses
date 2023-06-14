@@ -1,9 +1,13 @@
 using eShop.Basket.Api.Entities;
 using eShop.Basket.Api.Repositories;
 using eShop.Basket.Api.Services;
+using eShop.Shared.EventBus.Messages.Events;
 
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
+
+using AutoMapper;
+using MassTransit;
 
 namespace eShop.Basket.Api.Controllers
 {
@@ -13,11 +17,19 @@ namespace eShop.Basket.Api.Controllers
     {
         private readonly IBasketRepository _basketRepository;
         private readonly IDiscountService _discountService;
+        private readonly IMapper _mapper;
+        private readonly IPublishEndpoint _eventBus;
 
-        public BasketController(IBasketRepository basketRepository, IDiscountService discountService)
+        public BasketController(
+            IBasketRepository basketRepository,
+            IDiscountService discountService,
+            IMapper mapper,
+            IPublishEndpoint eventBus)
         {
             _basketRepository = basketRepository ?? throw new ArgumentNullException(nameof(basketRepository));
             _discountService = discountService ?? throw new ArgumentNullException(nameof(discountService));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            _eventBus = eventBus ?? throw new ArgumentNullException(nameof(eventBus));
         }
 
         [HttpGet]
@@ -68,6 +80,34 @@ namespace eShop.Basket.Api.Controllers
             return !result
                 ? NotFound(result)
                 : Ok(result);
+        }
+
+        [HttpPost]
+        [Route("checkout")]
+        [ProducesResponseType((int)HttpStatusCode.Accepted)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<ActionResult> CheckoutAsync([FromBody] BasketCheckout basketRequest)
+        {
+            if (basketRequest == null)
+            {
+                return BadRequest();
+            }
+
+            var existingBasket = await _basketRepository.GetAsync(basketRequest.UserName);
+
+            if (existingBasket == null)
+            {
+                return BadRequest();
+            }
+
+            var eventMessage = _mapper.Map<BasketCheckoutEvent>(basketRequest);
+            eventMessage.TotalPrice = existingBasket.TotalPrice;
+
+            await _eventBus.Publish(eventMessage);
+
+            await _basketRepository.DeleteAsync(basketRequest.UserName);
+
+            return Accepted();
         }
     }
 }
