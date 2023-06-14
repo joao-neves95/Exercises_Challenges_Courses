@@ -2,6 +2,8 @@ using eShop.Basket.Api.Models;
 using eShop.Basket.Api.Repositories;
 using eShop.Basket.Api.Services;
 
+using MassTransit;
+
 using static eShop.Discount.Grpc.Protos.DiscountGrpcService;
 
 namespace eShop.Basket.Api
@@ -22,13 +24,20 @@ namespace eShop.Basket.Api
                 options.Configuration = builder.Configuration.GetValue<string>(
                     $"{CacheConfig.KeyName}:{nameof(CacheConfig.ConnectionString)}"));
 
-            var connectedServicesConfig = builder.Configuration
-                .GetSection(ConnectedServicesConfig.KeyName)
-                .Get<ConnectedServicesConfig>();
+            builder.Services.AddMassTransit(options =>
+            {
+                options.UsingRabbitMq((_, options) =>
+                {
+                    options.Host(builder.Configuration.GetValue<string>(
+                        $"{EventBusConfig.KeyName}:{nameof(EventBusConfig.HostAddress)}"));
+                });
+            });
 
-            builder.Services
-                .AddGrpcClient<DiscountGrpcServiceClient>(
-                    options => options.Address = new Uri(connectedServicesConfig.DiscountGrpcUrl));
+            builder.Services.AddGrpcClient<DiscountGrpcServiceClient>(options => options.Address =
+                new Uri(builder.Configuration
+                    .GetSection(ConnectedServicesConfig.KeyName)
+                    .Get<ConnectedServicesConfig>()
+                    .DiscountGrpcUrl));
 
             builder.Services.AddScoped<IDiscountService, DiscountGrpClient>();
 

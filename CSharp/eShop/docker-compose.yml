@@ -11,6 +11,13 @@ services:
 
   #endregion eShop.Tools
 
+  #region eShop.Shared
+
+  eshop.shared.rabbitmq:
+    image: rabbitmq:3-management-alpine
+
+  #endregion eShop.Shared
+
   #region eShop.Catalog
 
   eshop.catalog.db.mongo:

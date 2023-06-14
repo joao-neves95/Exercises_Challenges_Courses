@@ -25,6 +25,17 @@ services:
       - PGADMIN_DEFAULT_PASSWORD=admin
 
   #endregion eShop.Tools
+
+  #region eShop.Shared
+
+  eshop.shared.rabbitmq:
+    container_name: eshop.shared.rabbitmq
+    restart: always
+    ports:
+      - "5673:5672"
+      - "15673:15672"
+
+  #endregion eShop.Shared
     
   #region eShop.Catalog
 

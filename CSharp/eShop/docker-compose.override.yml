@@ -25,6 +25,17 @@ services:
       - PGADMIN_DEFAULT_PASSWORD=admin
 
   #endregion eShop.Tools
+
+  #region eShop.Shared
+
+  eshop.shared.rabbitmq:
+    container_name: eshop.shared.rabbitmq
+    restart: always
+    ports:
+      - "5673:5672"
+      - "15673:15672"
+
+  #endregion eShop.Shared
     
   #region eShop.Catalog
 
@@ -117,7 +128,7 @@ services:
       - "1434:1433"
     environment:
       ACCEPT_EULA: "Y"
-      MSSQL_SA_PASSWORD: "admin"
+      MSSQL_SA_PASSWORD: "admin123456789"
 
   eshop.ordering.api:
     container_name: eshop.ordering.api
@@ -127,6 +138,6 @@ services:
       - "8004:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "ConnectionStrings__SqlServerConnectionString=Server=eshop.ordering.db.sqlserver,1433;Database=OrderDb;User Id=sa;Password=admin;Trust Server Certificate=True"
+      - "ConnectionStrings__SqlServerConnectionString=Server=eshop.ordering.db.sqlserver,1433;Database=OrderDb;User Id=sa;Password=admin123456789;Trust Server Certificate=True;"
 
   #endregion eShop.Ordering
