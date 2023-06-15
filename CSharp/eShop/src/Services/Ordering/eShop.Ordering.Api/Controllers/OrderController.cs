@@ -38,7 +38,11 @@ namespace eShop.Ordering.Api.Controllers
             return Ok(allOrders);
         }
 
-        // This is for testing purposes. This feature will be called from a RabbitMQ message.
+        /// <summary>
+        /// Checkout order. This is for testing purposes. This feature is called from a RabbitMQ message.
+        ///
+        /// </summary>
+        /// <param name="command"></param>
         [HttpPost]
         [Route("")]
         [ProducesResponseType(typeof(IEnumerable<OrderDto>), (int)HttpStatusCode.OK)]

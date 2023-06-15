@@ -2,6 +2,7 @@ using eShop.Ordering.Application.Features.Order.Commands.CheckoutOrder;
 using eShop.Ordering.Application.Features.Order.Commands.UpdateOrder;
 using eShop.Ordering.Application.Features.Order.Queries.GetOrdersList;
 using eShop.Ordering.Domain.Entities;
+using eShop.Shared.EventBus.Messages.Events;
 
 using AutoMapper;
 
@@ -11,6 +12,8 @@ namespace eShop.Ordering.Application.Mappings
     {
         public MappingProfile()
         {
+            CreateMap<BasketCheckoutEvent, CheckoutOrderCommand>().ReverseMap();
+
             CreateMap<DataOrder, OrderDto>().ReverseMap();
             CreateMap<DataBillingInformation, BillingInformationDto>().ReverseMap();
             CreateMap<DataPaymentInformation, PaymentInformationDto>().ReverseMap();

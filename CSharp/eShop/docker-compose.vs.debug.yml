@@ -61,31 +61,7 @@ services:
 
   #endregion eShop.Catalog
 
-  #region eShop.Basket
-
-  eshop.basket.db.redis:
-    container_name: eshop.basket.db.redis
-    restart: always
-    ports:
-      - "6380:6379"
-    # No volumes needed as this is an in-memory cache.
-
-  eshop.basket.api:
-    container_name: eshop.basket.api
-    depends_on:
-      - eshop.basket.db.redis
-      - eshop.shared.rabbitmq
-    ports:
-      - "8001:80"
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - "CacheSettings__ConnectionString=eshop.basket.db.redis:6379"
-      - "ConnectedServicesSettings__DiscountGrpcUrl=http://eshop.discount.grpc:80"
-      - "EventBusSettings__HostAddress=amqp://guest:guest@eshop.shared.rabbitmq:5672"
-
-  #endregion eShop.Basket
-
-  #region eShop.Discount
+    #region eShop.Discount
 
   eshop.discount.db.pgsql:
     container_name: eshop.discount.db.pgsql
@@ -121,6 +97,30 @@ services:
   
   #endregion eShop.Discount
 
+  #region eShop.Basket
+
+  eshop.basket.db.redis:
+    container_name: eshop.basket.db.redis
+    restart: always
+    ports:
+      - "6380:6379"
+    # No volumes needed as this is an in-memory cache.
+
+  eshop.basket.api:
+    container_name: eshop.basket.api
+    depends_on:
+      - eshop.basket.db.redis
+      - eshop.shared.rabbitmq
+    ports:
+      - "8001:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "CacheSettings__ConnectionString=eshop.basket.db.redis:6379"
+      - "ConnectedServicesSettings__DiscountGrpcUrl=http://eshop.discount.grpc:80"
+      - "EventBusSettings__HostAddress=amqp://guest:guest@eshop.shared.rabbitmq:5672"
+
+  #endregion eShop.Basket
+
   #region eShop.Ordering
 
   eshop.ordering.db.sqlserver:
@@ -136,10 +136,12 @@ services:
     container_name: eshop.ordering.api
     depends_on:
       - eshop.ordering.db.sqlserver
+      - eshop.shared.rabbitmq
     ports:
       - "8004:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "ConnectionStrings__SqlServerConnectionString=Server=eshop.ordering.db.sqlserver,1433;Database=master;User Id=sa;Password=admin123456789;Trust Server Certificate=True;"
+      - "EventBusSettings__HostAddress=amqp://guest:guest@eshop.shared.rabbitmq:5672"
 
   #endregion eShop.Ordering

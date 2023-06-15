@@ -11,6 +11,7 @@ COPY ["src/Services/Ordering/eShop.Ordering.Api/eShop.Ordering.Api.csproj", "src
 COPY ["src/Services/Ordering/eShop.Ordering.Application/eShop.Ordering.Application.csproj", "src/Services/Ordering/eShop.Ordering.Application/"]
 COPY ["src/Services/Ordering/eShop.Ordering.Domain/eShop.Ordering.Domain.csproj", "src/Services/Ordering/eShop.Ordering.Domain/"]
 COPY ["src/Services/Ordering/eShop.Ordering.Infrastructure/eShop.Ordering.Infrastructure.csproj", "src/Services/Ordering/eShop.Ordering.Infrastructure/"]
+COPY ["src/Shared/Shop.Shared.EventBus.Messages/eShop.Shared.EventBus.Messages.csproj", "src/Shared/Shop.Shared.EventBus.Messages/"]
 RUN dotnet restore "src/Services/Ordering/eShop.Ordering.Api/eShop.Ordering.Api.csproj"
 COPY . .
 WORKDIR "/src/src/Services/Ordering/eShop.Ordering.Api"
