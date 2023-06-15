@@ -74,12 +74,14 @@ services:
     container_name: eshop.basket.api
     depends_on:
       - eshop.basket.db.redis
+      - eshop.shared.rabbitmq
     ports:
       - "8001:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "CacheSettings__ConnectionString=eshop.basket.db.redis:6379"
       - "ConnectedServicesSettings__DiscountGrpcUrl=http://eshop.discount.grpc:80"
+      - "EventBusSettings__HostAddress=amqp://guest:guest@eshop.shared.rabbitmq:5672"
 
   #endregion eShop.Basket
 
@@ -138,6 +140,6 @@ services:
       - "8004:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "ConnectionStrings__SqlServerConnectionString=Server=eshop.ordering.db.sqlserver,1433;Database=OrderDb;User Id=sa;Password=admin123456789;Trust Server Certificate=True;"
+      - "ConnectionStrings__SqlServerConnectionString=Server=eshop.ordering.db.sqlserver,1433;Database=master;User Id=sa;Password=admin123456789;Trust Server Certificate=True;"
 
   #endregion eShop.Ordering

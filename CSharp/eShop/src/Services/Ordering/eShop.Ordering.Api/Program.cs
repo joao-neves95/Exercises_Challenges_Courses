@@ -42,7 +42,8 @@ namespace eShop.Ordering.Api
             });
 
             builder.Services.AddDbContext<OrderContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServerConnectionString")));
+                options.UseSqlServer(
+                    builder.Configuration.GetConnectionString("SqlServerConnectionString")));
 
             builder.Services.AddScoped<IOrderRepository, OrderRepository>();
             builder.Services.AddScoped<IEmailService, EmailService>();

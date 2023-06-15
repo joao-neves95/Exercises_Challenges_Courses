@@ -28,10 +28,12 @@
   - `docker-compose -f ./docker-compose.yml -f ./docker-compose.vs.debug.yml up -d`
 
 ## Internal Links (dev)
-- Portainer:
+- Portainer Dashboard:
   - docker: http://127.0.0.1:9100
-- pgAdmin:
+- pgAdmin Dashboard:
   - docker: http://127.0.0.1:9101
+- RabbitMQ Management Dashboard:
+  - docker: http://127.0.0.1:15673
 - eshop.catalog.api:
   - docker: http://127.0.0.1:8000/swagger/index.html
   - kestrel: http://127.0.0.1:5000/swagger/index.html
