@@ -106,7 +106,7 @@ namespace eShop.Catalog.Api.Controllers
         }
 
         [HttpDelete]
-        [Route("{id:length(24)}")]
+        [Route("id/{id:length(24)}")]
         [ProducesResponseType(typeof(bool), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<ActionResult<bool>> Delete(string id)
