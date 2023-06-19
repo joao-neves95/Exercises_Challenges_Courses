@@ -1,10 +1,21 @@
+using Ocelot.DependencyInjection;
+using Ocelot.Middleware;
+
 namespace eShop.ApiGateways.Web
 {
-    public class Program
+    public static class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Configuration.AddJsonFile($"./ocelot.{builder.Environment.EnvironmentName}.json", true, true);
+
+            builder.Logging
+                .AddConfiguration(builder.Configuration.GetSection("Logging"))
+                .AddConsole()
+                .AddDebug()
+                ;
 
             // Add services to the container.
 
@@ -12,6 +23,8 @@ namespace eShop.ApiGateways.Web
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddOcelot();
 
             var app = builder.Build();
 
@@ -24,8 +37,9 @@ namespace eShop.ApiGateways.Web
 
             app.UseAuthorization();
 
-
             app.MapControllers();
+
+            await app.UseOcelot();
 
             app.Run();
         }
