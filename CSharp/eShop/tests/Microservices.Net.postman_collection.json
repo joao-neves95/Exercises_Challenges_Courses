@@ -333,7 +333,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "\t{\r\n\t  \"userName\": \"swn\",\r\n\t  \"totalPrice\": 0,\r\n\t  \"firstName\": \"swn\",\r\n\t  \"lastName\": \"swn\",\r\n\t  \"emailAddress\": \"string\",\r\n\t  \"addressLine\": \"string\",\r\n\t  \"country\": \"string\",\r\n\t  \"state\": \"string\",\r\n\t  \"zipCode\": \"string\",\r\n\t  \"cardName\": \"string\",\r\n\t  \"cardNumber\": \"string\",\r\n\t  \"expiration\": \"string\",\r\n\t  \"cvv\": \"string\",\r\n\t  \"paymentMethod\": 1\r\n\t}",
+					"raw": "\t{\r\n\t  \"userName\": \"swn\",\r\n\t  \"totalPrice\": 0,\r\n\t  \"firstName\": \"swn\",\r\n\t  \"lastName\": \"swn\",\r\n\t  \"emailAddress\": \"string\",\r\n\t  \"addressLine\": \"string\",\r\n\t  \"country\": \"string\",\r\n\t  \"state\": \"string\",\r\n\t  \"zipCode\": \"string\",\r\n\t  \"cardName\": \"string\",\r\n\t  \"cardNumber\": \"string\",\r\n\t  \"expiration\": \"string\",\r\n\t  \"cvv\": \"string\",\r\n\t  \"paymentMethod\": 1\r\n\t}\r\n    ",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -402,7 +402,7 @@
 			"response": []
 		},
 		{
-			"name": "POST Order Checkout",
+			"name": "[TEST ONLY] POST Order Checkout",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -456,6 +456,37 @@
 						"api",
 						"v1",
 						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Basket Checkout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t  \"userName\": \"swn\",\r\n\t  \"totalPrice\": 100,\r\n\t  \"firstName\": \"swn\",\r\n\t  \"lastName\": \"swn\",\r\n\t  \"emailAddress\": \"string\",\r\n\t  \"addressLine\": \"string\",\r\n\t  \"country\": \"string\",\r\n\t  \"state\": \"string\",\r\n\t  \"zipCode\": \"string\",\r\n\t  \"cardName\": \"string\",\r\n\t  \"cardNumber\": \"string\",\r\n\t  \"expiration\": \"string\",\r\n\t  \"cvv\": \"string\",\r\n\t  \"paymentMethod\": 1\r\n\t}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8001/api/v1/basket/checkout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"api",
+						"v1",
+						"basket",
+						"checkout"
 					]
 				}
 			},
