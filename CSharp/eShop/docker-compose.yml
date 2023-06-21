@@ -17,7 +17,7 @@ services:
     image: ${DOCKER_REGISTRY-}eshop.apigateways.web
     build:
       context: .
-      dockerfile: src/Services/ApiGateways/eShop.ApiGateways.Web/Dockerfile
+      dockerfile: src/ApiGateways/eShop.ApiGateways.Web/Dockerfile
 
   #endregion eShop.ApiGateways
 

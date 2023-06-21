@@ -498,14 +498,15 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8010/catalog",
+					"raw": "http://localhost:8200/catalog/products",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8010",
+					"port": "8200",
 					"path": [
-						"catalog"
+						"catalog",
+						"products"
 					]
 				}
 			},
@@ -517,14 +518,16 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8010/catalog/602d2149e773f2a3990b47f5",
+					"raw": "http://localhost:8200/catalog/products/id/602d2149e773f2a3990b47f5",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8010",
+					"port": "8200",
 					"path": [
 						"catalog",
+						"products",
+						"id",
 						"602d2149e773f2a3990b47f5"
 					]
 				}
@@ -546,12 +549,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8010/basket",
+					"raw": "http://localhost:8200/basket",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8010",
+					"port": "8200",
 					"path": [
 						"basket"
 					]
@@ -565,12 +568,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8010/basket/swn",
+					"raw": "http://localhost:8200/basket/swn",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8010",
+					"port": "8200",
 					"path": [
 						"basket",
 						"swn"
@@ -594,12 +597,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8010/basket/checkout",
+					"raw": "http://localhost:8200/basket/checkout",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8010",
+					"port": "8200",
 					"path": [
 						"basket",
 						"checkout"
@@ -614,12 +617,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8010/orders/swn",
+					"raw": "http://localhost:8200/orders/swn",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8010",
+					"port": "8200",
 					"path": [
 						"orders",
 						"swn"

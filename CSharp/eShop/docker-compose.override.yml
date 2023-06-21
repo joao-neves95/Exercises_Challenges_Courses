@@ -37,7 +37,7 @@ services:
       - eshop.ordering.api
     ports:
       # Forward to port 8000 (this will be the external port)
-      - "8100:80"
+      - "8200:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
   
