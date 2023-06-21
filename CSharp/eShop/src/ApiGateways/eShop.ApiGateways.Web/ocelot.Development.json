@@ -15,9 +15,9 @@
           "Port": "80"
         }
       ],
-
       "UpstreamHttpMethod": [ "GET", "POST", "PUT" ],
-      "UpstreamPathTemplate": "/catalog/products"
+      "UpstreamPathTemplate": "/catalog/products",
+      "FileCacheOptions": { "TtlSeconds": 30 }
     },
     {
       "DownstreamPathTemplate": "/api/v1/catalog/products/id/{id}",
@@ -111,7 +111,8 @@
         }
       ],
       "UpstreamPathTemplate": "/discount",
-      "UpstreamHttpMethod": [ "GET", "PUT", "POST" ]
+      "UpstreamHttpMethod": [ "GET", "PUT", "POST" ],
+      "FileCacheOptions": { "TtlSeconds": 30 }
     },
     // ordering.
     {
