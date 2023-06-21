@@ -11,6 +11,16 @@ services:
 
   #endregion eShop.Tools
 
+  #region eShop.ApiGateways
+
+  eshop.apigateways.web:
+    image: ${DOCKER_REGISTRY-}eshop.apigateways.web
+    build:
+      context: .
+      dockerfile: src/Services/ApiGateways/eShop.ApiGateways.Web/Dockerfile
+
+  #endregion eShop.ApiGateways
+
   #region eShop.Shared
 
   eshop.shared.rabbitmq:

@@ -11,9 +11,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{42663281-7E6B-4833-A880-49FBECC153BD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateways", "ApiGateways", "{7DBB61CA-CFF9-4915-AD0C-FE54CFF85568}"
-	ProjectSection(SolutionItems) = preProject
-		src\ApiGateways\.gitkeep = src\ApiGateways\.gitkeep
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A9610E63-ECDD-43A5-A2EC-25988A5C677D}"
 	ProjectSection(SolutionItems) = preProject
@@ -71,7 +68,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{48047F
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShop.Shared.EventBus.Messages", "src\Shared\eShop.Shared.EventBus.Messages\eShop.Shared.EventBus.Messages.csproj", "{D0F1F347-5548-498B-9208-AA0758587057}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShop.ApiGateways.Web", "src\ApiGateways\eShop.ApiGateways.Web\eShop.ApiGateways.Web.csproj", "{D80DB2C0-E962-4606-8058-7A376916DBC9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShop.ApiGateways.Web", "src\ApiGateways\eShop.ApiGateways.Web\eShop.ApiGateways.Web.csproj", "{D80DB2C0-E962-4606-8058-7A376916DBC9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

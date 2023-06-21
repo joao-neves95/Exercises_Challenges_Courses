@@ -26,6 +26,23 @@ services:
 
   #endregion eShop.Tools
 
+  #region eShop.ApiGateways
+
+  eshop.apigateways.web:
+    container_name: eshop.apigateways.web
+    depends_on:
+      - eshop.catalog.api
+      - eshop.discount.api
+      - eshop.basket.api
+      - eshop.ordering.api
+    ports:
+      # Forward to port 8000 (this will be the external port)
+      - "8100:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+  
+  #endregion eShop.ApiGateways
+
   #region eShop.Shared
 
   eshop.shared.rabbitmq:
@@ -36,7 +53,7 @@ services:
       - "15673:15672"
 
   #endregion eShop.Shared
-    
+
   #region eShop.Catalog
 
   eshop.catalog.db.mongo:
@@ -61,7 +78,7 @@ services:
 
   #endregion eShop.Catalog
 
-    #region eShop.Discount
+  #region eShop.Discount
 
   eshop.discount.db.pgsql:
     container_name: eshop.discount.db.pgsql
