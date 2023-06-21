@@ -27,22 +27,39 @@
 - Docker & Docker Compose
   - `docker-compose -f ./docker-compose.yml -f ./docker-compose.vs.debug.yml up -d`
 
-## Internal Links (dev)
+## Services
 - Portainer Dashboard:
-  - docker: http://127.0.0.1:9100
+    - Links:
+        - docker: http://127.0.0.1:9100
 - pgAdmin Dashboard:
-  - docker: http://127.0.0.1:9101
+    - Links:
+        - docker: http://127.0.0.1:9101
 - RabbitMQ Management Dashboard:
-  - docker: http://127.0.0.1:15673
+    - Links:
+        - docker: http://127.0.0.1:15673
 - eshop.catalog.api:
-  - docker: http://127.0.0.1:8000/swagger/index.html
-  - kestrel: http://127.0.0.1:5000/swagger/index.html
+    - Links:
+        - docker: http://127.0.0.1:8000/swagger/index.html
+        - kestrel: http://127.0.0.1:5000/swagger/index.html
+    - Description:
+        - Stores and provides the product list.
 - eshop.basket.api:
-  - docker: http://127.0.0.1:8001/swagger/index.html
-  - kestrel: http://127.0.0.1:5001/swagger/index.html
+    - Links:
+        - docker: http://127.0.0.1:8001/swagger/index.html
+        - kestrel: http://127.0.0.1:5001/swagger/index.html
+    - Description:
+        - Holds temporary basket data on a Redis cache.
+        - On checkout, it publishes an event to RabbitMQ.
 - eshop.discount.api:
-  - docker: http://127.0.0.1:8002/swagger/index.html
-  - kestrel: http://127.0.0.1:5002/swagger/index.html
+    - Links:
+        - docker: http://127.0.0.1:8002/swagger/index.html
+        - kestrel: http://127.0.0.1:5002/swagger/index.html
+    - Description:
+        - Stores and provides the product discounts information list.
+        - Has a gRPC API (eShop.Discount.Grpc) that can be consumed by other internal microservices.
 - eshop.ordering.api:
-  - docker: http://127.0.0.1:8004/swagger/index.html
-  - kestrel: http://127.0.0.1:5004/swagger/index.html
+    - Links:
+        - docker: http://127.0.0.1:8004/swagger/index.html
+        - kestrel: http://127.0.0.1:5004/swagger/index.html
+    - Description:
+        - Waits on the RabbitMQ event from the Basket, to create/finalize the order.
