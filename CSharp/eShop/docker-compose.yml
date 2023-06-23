@@ -1,0 +1,109 @@
+version: '3.4'
+
+services:
+  #region eShop.Tools
+
+  eshop.tools.portainer:
+    image: portainer/portainer-ce
+
+  eshop.tools.pgadmin:
+    image: dpage/pgadmin4
+
+  #endregion eShop.Tools
+
+  #region eShop.Web
+
+  eshop.web.app:
+    image: ${DOCKER_REGISTRY-}eshop.web.app
+    build:
+      context: .
+      dockerfile: src/Web/AspnetRunBasics/Dockerfile
+
+  #endregion eShop.Web
+
+  #region eShop.ApiGateways
+
+  eshop.apigateways.web:
+    image: ${DOCKER_REGISTRY-}eshop.apigateways.web
+    build:
+      context: .
+      dockerfile: src/ApiGateways/eShop.ApiGateways.Web/Dockerfile
+
+  eshop.apigateways.shoppingaggregator:
+    image: ${DOCKER_REGISTRY-}eshop.apigateways.shoppingaggregator
+    build:
+      context: .
+      dockerfile: src/ApiGateways/eShop.ApiGateways.ShoppingAggregator/Dockerfile
+
+  #endregion eShop.ApiGateways
+
+  #region eShop.Shared
+
+  eshop.shared.rabbitmq:
+    image: rabbitmq:3-management-alpine
+
+  #endregion eShop.Shared
+
+  #region eShop.Catalog
+
+  eshop.catalog.db.mongo:
+    image: mongo
+
+  eshop.catalog.api:
+    image: ${DOCKER_REGISTRY-}eshop.catalog.api
+    build:
+      context: .
+      dockerfile: src/Services/Catalog/eShop.Catalog.Api/Dockerfile
+
+  #endregion eShop.Catalog
+
+  #region eShop.Basket
+
+  eshop.basket.db.redis:
+    image: redis:alpine
+
+  eshop.basket.api:
+    image: ${DOCKER_REGISTRY-}eshop.basket.api
+    build:
+      context: .
+      dockerfile: src/Services/Basket/eShop.Basket.Api/Dockerfile
+
+  #endregion eShop.Basket
+
+  #region eShop.Discount
+
+  eshop.discount.db.pgsql:
+    image: postgres
+
+  eshop.discount.api:
+    image: ${DOCKER_REGISTRY-}eshop.discount.api
+    build:
+      context: .
+      dockerfile: src/Services/Discount/eShop.Discount.Api/Dockerfile
+
+  eshop.discount.grpc:
+    image: ${DOCKER_REGISTRY-}eshop.discount.grpc
+    build:
+      context: .
+      dockerfile: src/Services/Discount/eShop.Discount.Grpc/Dockerfile
+
+  #endregion eShop.Discount
+
+  #region eShop.Ordering
+
+  eshop.ordering.db.sqlserver:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+
+  eshop.ordering.api:
+    image: ${DOCKER_REGISTRY-}eshop.ordering.api
+    build:
+      context: .
+      dockerfile: src/Services/Ordering/eShop.Ordering.Api/Dockerfile
+
+  #endregion eShop.Ordering
+
+volumes:
+  mongo_data:
+  pgsql_data:
+  portainer_data:
+  pgadmin_data:

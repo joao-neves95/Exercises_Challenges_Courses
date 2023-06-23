@@ -1,0 +1,21 @@
+# Basket.Api
+
+- C#:
+  - ASP.NET Core Web API
+  - Swagger Open API
+  - Libs:
+    - Newtonsoft.Json
+    - StackExchange.Redis.Extensions.AspNetCore
+- Architecture:
+  - REST API, CRUD
+  - N-Layer
+    - Presentation layer - (REST API)
+    - Business layer
+    - Data access layer
+      - Repository Pattern
+- DB:
+  - Redis
+    - https://hub.docker.com/_/redis
+    - Since the data in this service is temporary, we can use this fast in-memory storage.
+- DevOps:
+  - Docker & Docker Compose

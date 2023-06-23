@@ -83,6 +83,8 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 3 - [Build Web APIs using ASP.NET (edX/Microsoft - DEV247x)](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/Build-Web-APIs-using-ASP.NET_edX-Microsoft)
   - [Extension of the final project's WebAPI with custom authentication](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/Personal-Projects/Tutorials/ASPNETCore2.WebServer)
 
+4 - [Microservices Architecture on .NET with applying CQRS, Clean Architecture and Event-Driven Communication](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/eShop/)
+
 ### WPF
 
 - [Braces](https://github.com/joao-neves95/Braces)

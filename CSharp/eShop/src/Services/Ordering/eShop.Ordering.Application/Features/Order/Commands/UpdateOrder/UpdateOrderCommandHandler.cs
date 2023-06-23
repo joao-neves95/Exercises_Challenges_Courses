@@ -1,0 +1,50 @@
+using eShop.Ordering.Application.Contracts.Persistence;
+using eShop.Ordering.Application.Exceptions;
+using eShop.Ordering.Application.Features.Order.Commands.CheckoutOrder;
+using eShop.Ordering.Domain.Entities;
+
+using Microsoft.Extensions.Logging;
+
+using AutoMapper;
+using MediatR;
+
+namespace eShop.Ordering.Application.Features.Order.Commands.UpdateOrder
+{
+    internal sealed class UpdateOrderCommandHandler : IRequestHandler<UpdateOrderCommand>
+    {
+        private readonly IOrderRepository _orderRepository;
+
+        private readonly IMapper _mapper;
+
+        private readonly ILogger<CheckoutOrderCommandHandler> _logger;
+
+        public UpdateOrderCommandHandler(
+            IOrderRepository orderRepository,
+            IMapper mapper,
+            ILogger<CheckoutOrderCommandHandler> logger)
+        {
+            _orderRepository = orderRepository ?? throw new ArgumentNullException(nameof(orderRepository));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        }
+
+        public async Task Handle(UpdateOrderCommand request, CancellationToken cancellationToken)
+        {
+            var order = await _orderRepository.GetOrderById(request.Id);
+
+            if (order == null)
+            {
+                _logger.LogInformation($"Order {request.Id} does not exist.");
+                throw new NotFoundApplicationException(nameof(DataOrder), request.Id);
+            }
+
+            var mapperdOrder = _mapper.Map<DataOrder>(request);
+            mapperdOrder.CreatedBy = order.CreatedBy;
+            mapperdOrder.CreatedDate = order.CreatedDate;
+
+            await _orderRepository.UpdateAsync(mapperdOrder);
+
+            _logger.LogInformation($"Order {request.Id} was successfully updated.");
+        }
+    }
+}

@@ -1,0 +1,194 @@
+version: '3.4'
+
+services:
+  #region eShop.Tools
+
+  eshop.tools.portainer:
+    container_name: eshop.tools.portainer
+    restart: always
+    ports:
+      - "8100:8000"
+      - "9100:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data/eshop.tools.portainer
+
+  eshop.tools.pgadmin:
+    container_name: eshop.tools.pgadmin
+    restart: always
+    ports:
+      - "9101:80"
+    volumes:
+      - pgadmin_data:/root/.pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+
+  #endregion eShop.Tools
+
+  #region eShop.Web
+
+  eshop.web.app:
+    container_name: eshop.web.app
+    depends_on:
+      - eshop.apigateways.web
+    ports:
+      # Forward to port 8000 (this will be the external port)
+      - "8300:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ApiSettings__GatewayAddress=http://eshop.apigateways.web:80"
+
+  #endregion eShop.Web
+
+  #region eShop.ApiGateways
+
+  eshop.apigateways.web:
+    container_name: eshop.apigateways.web
+    depends_on:
+      - eshop.catalog.api
+      - eshop.discount.api
+      - eshop.basket.api
+      - eshop.ordering.api
+    ports:
+      # Forward to port 8000 (this will be the external port)
+      - "8200:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+
+  eshop.apigateways.shoppingaggregator:
+    container_name: eshop.apigateways.shoppingaggregator
+    depends_on:
+      - eshop.catalog.api
+      - eshop.basket.api
+      - eshop.ordering.api
+    ports:
+      # Forward to port 8000 (this will be the external port)
+      - "8201:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ApiSettings__CatalogUrl=http://eshop.catalog.api:80"
+      - "ApiSettings__BasketUrl=http://eshop.basket.api:80"
+      - "ApiSettings__OrderingUrl=http://eshop.ordering.api:80"
+  
+  #endregion eShop.ApiGateways
+
+  #region eShop.Shared
+
+  eshop.shared.rabbitmq:
+    container_name: eshop.shared.rabbitmq
+    restart: always
+    ports:
+      - "5673:5672"
+      - "15673:15672"
+
+  #endregion eShop.Shared
+
+  #region eShop.Catalog
+
+  eshop.catalog.db.mongo:
+    container_name: eshop.catalog.db.mongo
+    restart: always
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo_data:/data/eshop.catalog.db.mongo
+    command: ["mongod", "--port", "27017"]
+
+  eshop.catalog.api:
+    container_name: eshop.catalog.api
+    depends_on:
+      - eshop.catalog.db.mongo
+    ports:
+      # Forward to port 8000 (this will be the external port)
+      - "8000:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings__ConnectionString=mongodb://eshop.catalog.db.mongo:27017"
+
+  #endregion eShop.Catalog
+
+  #region eShop.Discount
+
+  eshop.discount.db.pgsql:
+    container_name: eshop.discount.db.pgsql
+    restart: always
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgsql_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=DiscountDb
+
+  eshop.discount.api:
+    container_name: eshop.discount.api
+    depends_on:
+      - eshop.discount.db.pgsql
+    ports:
+      - "8002:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings__ConnectionString=Host=eshop.discount.db.pgsql;Port=5432;Database=DiscountDb;User ID=admin;Password=admin;"
+
+  eshop.discount.grpc:
+    container_name: eshop.discount.grpc
+    depends_on:
+      - eshop.discount.db.pgsql
+    ports:
+      - "8003:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings__ConnectionString=Host=eshop.discount.db.pgsql;Port=5432;Database=DiscountDb;User ID=admin;Password=admin;"
+  
+  #endregion eShop.Discount
+
+  #region eShop.Basket
+
+  eshop.basket.db.redis:
+    container_name: eshop.basket.db.redis
+    restart: always
+    ports:
+      - "6380:6379"
+    # No volumes needed as this is an in-memory cache.
+
+  eshop.basket.api:
+    container_name: eshop.basket.api
+    depends_on:
+      - eshop.basket.db.redis
+      - eshop.shared.rabbitmq
+    ports:
+      - "8001:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "CacheSettings__ConnectionString=eshop.basket.db.redis:6379"
+      - "ConnectedServicesSettings__DiscountGrpcUrl=http://eshop.discount.grpc:80"
+      - "EventBusSettings__HostAddress=amqp://guest:guest@eshop.shared.rabbitmq:5672"
+
+  #endregion eShop.Basket
+
+  #region eShop.Ordering
+
+  eshop.ordering.db.sqlserver:
+    container_name: eshop.ordering.db.sqlserver
+    restart: always
+    ports:
+      - "1434:1433"
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "admin123456789"
+
+  eshop.ordering.api:
+    container_name: eshop.ordering.api
+    depends_on:
+      - eshop.ordering.db.sqlserver
+      - eshop.shared.rabbitmq
+    ports:
+      - "8004:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings__SqlServerConnectionString=Server=eshop.ordering.db.sqlserver,1433;Database=master;User Id=sa;Password=admin123456789;Trust Server Certificate=True;"
+      - "EventBusSettings__HostAddress=amqp://guest:guest@eshop.shared.rabbitmq:5672"
+
+  #endregion eShop.Ordering
