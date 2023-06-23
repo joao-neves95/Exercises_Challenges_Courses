@@ -4,9 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{740C8B4A-B5B1-47D8-B965-F171A42E5F35}"
-	ProjectSection(SolutionItems) = preProject
-		src\Web\.gitkeep = src\Web\.gitkeep
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{42663281-7E6B-4833-A880-49FBECC153BD}"
 EndProject
@@ -72,6 +69,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShop.ApiGateways.Web", "sr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShop.ApiGateways.ShoppingAggregator", "src\ApiGateways\eShop.ApiGateways.ShoppingAggregator\eShop.ApiGateways.ShoppingAggregator.csproj", "{518EA31F-3FA9-41D5-809D-F7C348294AF7}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspnetRunBasics", "src\Web\AspnetRunBasics\AspnetRunBasics.csproj", "{D6B3993C-69A4-432E-B6E9-DFB11BAA76CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -130,6 +129,10 @@ Global
 		{518EA31F-3FA9-41D5-809D-F7C348294AF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{518EA31F-3FA9-41D5-809D-F7C348294AF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{518EA31F-3FA9-41D5-809D-F7C348294AF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6B3993C-69A4-432E-B6E9-DFB11BAA76CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6B3993C-69A4-432E-B6E9-DFB11BAA76CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6B3993C-69A4-432E-B6E9-DFB11BAA76CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6B3993C-69A4-432E-B6E9-DFB11BAA76CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -155,6 +158,7 @@ Global
 		{D0F1F347-5548-498B-9208-AA0758587057} = {48047FA7-3A45-4B32-B1AE-353FFAA4AA1E}
 		{D80DB2C0-E962-4606-8058-7A376916DBC9} = {7DBB61CA-CFF9-4915-AD0C-FE54CFF85568}
 		{518EA31F-3FA9-41D5-809D-F7C348294AF7} = {7DBB61CA-CFF9-4915-AD0C-FE54CFF85568}
+		{D6B3993C-69A4-432E-B6E9-DFB11BAA76CA} = {740C8B4A-B5B1-47D8-B965-F171A42E5F35}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8D3F3FF8-B248-44CC-9879-3A109E89A522}
