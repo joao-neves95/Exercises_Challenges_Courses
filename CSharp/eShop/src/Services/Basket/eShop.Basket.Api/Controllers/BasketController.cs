@@ -62,7 +62,17 @@ namespace eShop.Basket.Api.Controllers
         {
             foreach (var basketItem in basket.Items)
             {
-                var discount = (await _discountService.GetCouponAsync(basketItem.ProductName)).Amount;
+                int discount = 0;
+
+                try
+                {
+                    discount = (await _discountService.GetCouponAsync(basketItem.ProductName)).Amount;
+                }
+                catch (Exception ex)
+                {
+                    // Swallow it.
+                }
+
                 basketItem.Price -= discount;
             }
 

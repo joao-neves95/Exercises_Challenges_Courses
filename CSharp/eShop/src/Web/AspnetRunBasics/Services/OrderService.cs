@@ -1,5 +1,6 @@
-﻿using AspnetRunBasics.Extensions;
+using AspnetRunBasics.Extensions;
 using AspnetRunBasics.Models;
+
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -18,7 +19,7 @@ namespace AspnetRunBasics.Services
 
         public async Task<IEnumerable<OrderResponseModel>> GetOrdersByUserName(string userName)
         {
-            var response = await _client.GetAsync($"/Order/{userName}");
+            var response = await _client.GetAsync($"/orders/{userName}");
             return await response.ReadContentAs<List<OrderResponseModel>>();
         }
     }

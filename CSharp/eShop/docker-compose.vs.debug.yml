@@ -26,6 +26,21 @@ services:
 
   #endregion eShop.Tools
 
+  #region eShop.Web
+
+  eshop.web.app:
+    container_name: eshop.web.app
+    depends_on:
+      - eshop.apigateways.web
+    ports:
+      # Forward to port 8000 (this will be the external port)
+      - "8300:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ApiSettings__GatewayAddress=http://eshop.apigateways.web:80"
+
+  #endregion eShop.Web
+
   #region eShop.ApiGateways
 
   eshop.apigateways.web:

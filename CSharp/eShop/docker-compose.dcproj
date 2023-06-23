@@ -5,8 +5,8 @@
     <DockerTargetOS>Linux</DockerTargetOS>
     <ProjectGuid>081f2b30-4364-4d0c-b6f9-7d79aa9a69c6</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
-    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
-    <DockerServiceName>eshop.catalog.api</DockerServiceName>
+    <DockerServiceUrl>{Scheme}://127.0.0.1:{ServicePort}/</DockerServiceUrl>
+    <DockerServiceName>eshop.web.app</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.override.yml">

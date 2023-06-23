@@ -11,6 +11,16 @@ services:
 
   #endregion eShop.Tools
 
+  #region eShop.Web
+
+  eshop.web.app:
+    image: ${DOCKER_REGISTRY-}eshop.web.app
+    build:
+      context: .
+      dockerfile: src/Web/AspnetRunBasics/Dockerfile
+
+  #endregion eShop.Web
+
   #region eShop.ApiGateways
 
   eshop.apigateways.web:
