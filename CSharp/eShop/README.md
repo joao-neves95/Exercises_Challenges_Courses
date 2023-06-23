@@ -1,9 +1,10 @@
 # Microservices Architecture on .NET with applying CQRS, Clean Architecture and Event-Driven Communication
 
 ## External Links
-- Udemy: https://www.udemy.com/course/microservices-architecture-and-implementation-on-dotnet
+- Course Certificate: https://www.udemy.com/certificate/UC-6f9770a4-9989-46c8-8f3d-710c2ea0d9bd
+- Udemy course: https://www.udemy.com/course/microservices-architecture-and-implementation-on-dotnet
 - Written course: https://medium.com/aspnetrun/microservices-architecture-on-net-3b4865eea03f
-- GitHub: https://github.com/aspnetrun/run-aspnetcore-microservices
+- Course GitHub: https://github.com/aspnetrun/run-aspnetcore-microservices
 
 ## Solution Links
 - src/
@@ -21,13 +22,22 @@
       - [eShop.Ordering.Application/](./src/Ordering/Application/eShop.Application.Api/)
       - [eShop.Ordering.Domain/](./src/Services/Ordering/eShop.Domain.Api/)
       - [eShop.Ordering.Infrastructure/](./src/Ordering/Infrastructure/eShop.Infrastructure.Api/)
-- [docker-compose.yml](./docker-compose.yml)
+  - ApiGateways/
+    - [eShop.ApiGateways.Web/](./src/ApiGateways/eShop.ApiGateways.Web/)
+- Docker/
+  - [docker-compose.yml](./docker-compose.yml)
+  - [docker-compose.vs.debug.yml](./docker-compose.vs.debug.yml)
 
 ## Docs
 - Docker & Docker Compose
   - `docker-compose -f ./docker-compose.yml -f ./docker-compose.vs.debug.yml up -d`
 
 ## Services
+- eshop.Web.App:
+    - Links:
+        - docker: http://127.0.0.1:8300
+    - Description:
+        - The web app.
 - Portainer Dashboard:
     - Links:
         - docker: http://127.0.0.1:9100
