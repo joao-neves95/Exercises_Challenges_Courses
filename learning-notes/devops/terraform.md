@@ -1,5 +1,4 @@
 # Terraform
-- https://www.coursera.org/projects/terraform-for-absolute-beginners
 
 ---
 
@@ -11,7 +10,7 @@
 ---
 
 ## Infrastructure as Code (IaC)
-- Code that defines and deplays infrastructure resources onto various platforms, instead of managing them manually.
+- Code that defines and displays infrastructure resources onto various platforms, instead of managing them manually.
 - To achieve a consistent and predictable environment.
 - Why to use:
     - Automation.
@@ -126,7 +125,7 @@ resource "{resource type}" "some_name" {
 ```terraform
 variable "{variable_name}" {
     default = "some defualt value"
-    
+
     type = string // Optional. Defualt is "any". There's "string", "number", "bool", "list", "map", etc.
     description = some descript // Optional.
 }

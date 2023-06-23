@@ -1,0 +1,12 @@
+# gRPC
+
+- Synchronous backend microservice-to-microservice communication where immediate responses are required to continue processing.
+- Polyglot environments, cross platform.
+- **Low latency and high throughput communication**.
+- Point-to-point real-time communication
+    - Can push messages in real time without the need for pulling.
+    - Support for bi-directional streaming.
+- Network constrained environments
+    - Binary gRPC messages are smaller compared to text-based JSON messages.
+- Communication uses the HTTP/2 protocol + Protobuf (Protocol buffers).
+- gRPC should be the primary choice for direct synchronous communication between microservices.

@@ -1,0 +1,130 @@
+# Software Architecture
+
+---
+
+- Architectures
+    - N-Layer:
+        - Presentation layer
+            - e.g.: REST API.
+            - Can only interact with the business layer (can not consume Data directly).
+        - Business layer
+            - Processes user input. Transmits data to the user.
+            - Consumes the data layer.
+        - Data access layer
+            - Does not have logic, it only adds, deletes, updates and extracts data.
+            - Abstracts the database context, e.g.: repository pattern.
+            - More consistency. Less errors.
+            - Easier to maintain.
+            - Better testability.
+    - Clean Architecture:
+        - The 5 qualities:
+            - Framework independence:
+                - App is decoupled from third party frameworks.
+            - Ease of testability:
+                - Unit tests.
+            - UI independence.
+            - Persistence independence:
+                - App is decoupled from the underlying data source.
+            - External agency independency:
+                - The business rules are isolated and know nothing about the outside world.
+        - Read more:
+            - https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html
+    - [Microservices](./microservices.md)
+- Internal design patterns:
+    - CQRS:
+        - Separates the models for reading and writing data.
+        - Each layer has its own data model.
+        - Usually using the mediator pattern (e.g.: MediatR).
+        - Queries:
+            - They only return data.
+            - There are no side effects.
+            - Query - QueryHandler
+        - Commands:
+            - They change the state of the system.
+            - Command - CommandHandler
+- Design principles and best practices:
+    - SOLID:
+        - Promoted by Uncle Bob (Robert Cecil Martin).
+        - Ensures the software is flexible, reusable, sustainable, understandable and prevents code repetitions.
+        - The purpose is to easily adapt to changes in requirements in the future of the application lifecycle; Easily add new features, or change existing ones - without breaking the entire application or needing to rewrite the application.
+        - Principles:
+            - S - Single responsibility principle:
+                - Each class should have only one responsibility.
+                - "A module should be responsible to one, and only one, actor."
+            - O - Open/closed principle:
+                - Software entities should be open for extension, but closed for modification.
+                - A module should be able to gain new features, without changing its existing behaviour.
+                - Such an entity can allow its behaviour to be extended without modifying its source code (with inheritance).
+                - Polymorphic open–closed principle:
+                    - Refers to the use of abstracted interfaces, where the implementations can be changed and multiple implementations could be created and polymorphically substituted for each other.
+            - L - Liskov substitution principle:
+                - Design by contract (**DbC**), using well defined interfaces.
+                - Based on the concept of "substitutability".
+                - It states that an object (such as a class) may be replaced by a sub-object (such as a class that extends the first class) without breaking the program.
+            - I - Interface segregation principle:
+                - Clients should not be forced to depend upon methods that they do not use.
+                - Use smaller and more specific interfaces.
+            - D - Dependency inversion principle (DIP):
+                - "Depend upon abstractions, not concretions.".
+                - For loosely coupled software modules.
+                - Modules should depend on abstractions instead of implementations (no `new`).
+    - DDD Principles:
+        - *Domain Driven Design*.
+        - **For complex systems**.
+        - Ubiquitous Language:
+            - Described by Eric Evans.
+            - Software developers, software implementations and domain experts, should all use the same *ubiquitous language*:
+            - **a set of unambiguous vocabulary shared by all members and stakeholders of a product team**.
+            - A common language.
+            - Well defined concepts and names used by the domain experts.
+            - This domain expertise, after defined with an ubiquitous language, should then be transferred into the classes and methods that will compose the software system.
+        - Bounded Contexts
+            - It is the focus of DDD's strategic design.
+            - A strategic pattern that helps define explicit boundaries within a larger domain model.
+            - Different parts of a system may have different meanings and interpretations of the same concepts.
+            - The boundary within a domain where a particular domain model applies.
+            - A Bounded Context is **a clear and well-defined area where a specific subdomain of the business resides. It encapsulates its own language, models, rules, and context-specific understanding**.
+            - Helps define the boundaries within which aggregates and aggregate roots exist. Each bounded context can have its own set of aggregates and aggregate roots, tailored to the specific needs and requirements of that context.
+            - Different bounded contexts that correspond to different subdomains of the system.
+            - Within a bounded context, you typically have **aggregates**:
+                - Clusters of related domain entities that are treated as a single unit.
+                - The/an **aggregate root** is an entity within the aggregate that acts as the entry point for accessing and modifying the other entities within the aggregate.
+                - Responsible for maintaining the consistency and enforcing the business rules of the aggregate.
+            - eCommerce store E.g.:
+                - User Management Context:
+                    - Bounded Context: User Management
+                    - Aggregate: User
+                    - Aggregate Root: User (the User entity serves as the aggregate root)
+                - Product Management Context:
+                    - Bounded Context: Product Management
+                    - Aggregates: Product, Category
+                    - Aggregate Roots: Product (the Product entity serves as the aggregate root)
+                - Stock Management Context:
+                    - Bounded Context: Stock Management
+                    - Aggregates: Stock, Warehouse
+                    - Aggregate Roots: Stock (the Stock entity serves as the aggregate root)
+                - Order Management Context:
+                    - Bounded Context: Order Management
+                    - Aggregates: Order, OrderItem
+                    - Aggregate Roots: Order (the Order entity serves as the aggregate root)
+                -  Payment System Management Context:
+                    - Bounded Context: Payment System Management
+                    - Aggregate: Payment
+                    - Aggregate Root: Payment (the Payment entity serves as the aggregate root)
+        - Dependencies between layers:
+            - Application layer:
+                - Depends on the Domain layer, so it can:
+                    - Use the entity objects.
+                    - Use the Repository interfaces.
+                - Depends on the Infrastructure layer (**through DI**).
+            - Domain Model layer
+                - Ideally it must **NOT** take dependencies on any other layer.
+                - Implements the Domain Entities, Aggregate-Roots and Value-Objects.
+                - Repository contracts/interfaces (to use in DI).
+            - Infrastructure layer:
+                - Depends on the Domain Model layer, so it can:
+                    - Use the entity objects.
+                    - Use the Repository interfaces.
+                - Depends on infrastructure elements like data/ORM frameworks, databases, cache, external APIs, etc.
+
+---

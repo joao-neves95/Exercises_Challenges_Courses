@@ -1,0 +1,65 @@
+# Google Certs
+
+## Tour
+- A suite of cloud services hosted on Google's infrastructure.
+- From computing and storage, to data analytics, machine learning, and networking, etc.
+- There's a wide variety of services and APIs that can be integrated with any cloud-computing application or project, from personal to enterprise-grade.
+- Cloud computing traits:
+    - Refer to (same as):
+        - [Microsoft-Certifications/az-900/1.1_describe-core-azure-concepts](../Microsoft-Certifications/az-900/1.1_describe-core-azure-concepts)
+- Types:
+    - IaaS (e.g.: Microsoft Azure, AWS, DigitalOcean, Linode, Rackspace, etc.)
+    - PaaS (e.g.: Google App Engine, AWS Elastic Beanstalk, Heroku, etc.)
+    - SaaS (e.g.: Google Drive, Dropbox, Salesforce, etc.)
+    - Serverless:
+        - Cloud Functions (event-driven code).
+        - Cloud Run (containerized microservices).
+- Services:
+    - Cloud Console:
+        - In-browser UI to access and manage GCloud services.
+        - Projects:
+            - Is an organizing entity for your Google Cloud resources. It often contains resources and services; for example, it may hold a pool of virtual machines, a set of databases, and a network that connects them together. Projects also contain settings and permissions, which specify security rules and who has access to what resources.
+            - It's not uncommon for large enterprises or experienced users of Google Cloud to have dozens to thousands of Google Cloud projects. Organizations use Google Cloud in different ways, so projects are a good method for organizing cloud computing services (by team or product, for example).
+    - Cloud Shell:
+        - A virtual machine that runs on Google Cloud, loaded with development tools.
+        - Offers a persistent 5GB home directory.
+        - Provides access to GCloud resources.
+    -  `gcloud` CLI:
+        - A set of to create and manage Google Cloud resources.
+        - Can be run though a command line or through a script.
+    - Compute Engine:
+        - VMs, dedicated servers, networks, etc.
+- Regions and Zones:
+    - Location > Regions > Zones.
+    - A region is a specific geographical location where you can run your resources.
+    - Each region has one or more zones.
+    - E.g.: `us-central1` regions has zones `us-central1-a`,  `us-central1-b`,  `us-central1-c`, and `us-central1-f`.
+    - Zonal resources:
+        - Resources that live in a zone.
+        - VM instances and persistent disks live in a zone. To attach both resources, they both must be in the same zone.
+        - To assign a static IP address to an instance, the instance must be in the same region as the static IP.
+    - App location affects:
+        - Availability.
+        - Durability.
+        - Latency (time a packet takes to travel from source to destination).
+    - Advantages of multiple regions and zones:
+        - Bring application to users all around the world.
+        - Protection against natural disasters or other issues with entire regions.
+- Google Infrastructure Security:
+    - Hardware infrastructure layer:
+        - Custom design hardware.
+        - Secure boot stack (e.g.: cryptographic signatures).
+        - On-premises security.
+    - Service deployment layer:
+        - Encryption of inter-service communication (through RPC).
+    - User identity layer:
+        - User identity.
+    - Storage services layer:
+        - Encryption at rest.
+    - Internet communication layer:
+        - Google Front End (certificates, tec.).
+        - (D)DoS protection.
+    - Operational security:
+        - Google employees security.
+
+---
