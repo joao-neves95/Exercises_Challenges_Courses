@@ -40,6 +40,21 @@ services:
       - "8200:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+
+  eshop.apigateways.shoppingaggregator:
+    container_name: eshop.apigateways.shoppingaggregator
+    depends_on:
+      - eshop.catalog.api
+      - eshop.basket.api
+      - eshop.ordering.api
+    ports:
+      # Forward to port 8000 (this will be the external port)
+      - "8201:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ApiSettings__CatalogUrl=http://eshop.catalog.api:80"
+      - "ApiSettings__BasketUrl=http://eshop.basket.api:80"
+      - "ApiSettings__OrderingUrl=http://eshop.ordering.api:80"
   
   #endregion eShop.ApiGateways
 

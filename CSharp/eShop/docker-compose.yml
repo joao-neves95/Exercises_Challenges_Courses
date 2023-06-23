@@ -19,6 +19,12 @@ services:
       context: .
       dockerfile: src/ApiGateways/eShop.ApiGateways.Web/Dockerfile
 
+  eshop.apigateways.shoppingaggregator:
+    image: ${DOCKER_REGISTRY-}eshop.apigateways.shoppingaggregator
+    build:
+      context: .
+      dockerfile: src/ApiGateways/eShop.ApiGateways.ShoppingAggregator/Dockerfile
+
   #endregion eShop.ApiGateways
 
   #region eShop.Shared

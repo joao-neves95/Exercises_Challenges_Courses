@@ -37,6 +37,16 @@
 - RabbitMQ Management Dashboard:
     - Links:
         - docker: http://127.0.0.1:15673
+- eshop.ApiGateways.ShoppingAggregator:
+    - Links:
+        - docker: http://127.0.0.1:8201/swagger/index.html
+    - Description:
+        - A gateway to aggregate results from multiple microservices to be used through a single client request.
+- eshop.ApiGateways.Web:
+    - Links:
+        - docker: http://127.0.0.1:8200
+    - Description:
+        - A gateway that re-routes all microservices endpoints to be consumed by the client application through a single host.
 - eshop.catalog.api:
     - Links:
         - docker: http://127.0.0.1:8000/swagger/index.html
