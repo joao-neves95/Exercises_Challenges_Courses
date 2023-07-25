@@ -19,7 +19,7 @@ namespace AspnetRunBasics.Pages
             _basketService = basketService ?? throw new ArgumentNullException(nameof(basketService));
         }
 
-        public IEnumerable<CatalogModel> ProductList { get; set; } = new List<CatalogModel>();
+        public IEnumerable<Models.ProductModel> ProductList { get; set; } = new List<Models.ProductModel>();
 
         public async Task<IActionResult> OnGetAsync()
         {
