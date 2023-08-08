@@ -66,24 +66,25 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 
   (This project was abandoned and it's not finished)\
   More than a code editor. It is a specification for code editors.\
-  The API communication is done through SignalR (WebSockets).\
+  Composed of multiple processes, each one with its functions, where the IPC is done through SignalR (WebSockets).\
   The idea was to create a bridge between code editors/IDEs and plugins/extensions, in order for developers be able to use any plugin/extension from/in any code editor/IDE.\
-  It is made in C# .NET Core and the plugins/extension run in the PluginHost inside a Docker container.
+  It is made in C# .NET Core and the plugins/extension run in the PluginHost inside a Docker container for added security.
+
+### Courses
+
+- [Microservices Architecture in C# .NET with applying CQRS, Clean Architecture and Event-Driven Communication](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/eShop/)
+    - A course about microservices, gRPC, multiple database systems (MySQL, PostgreSQL, SQL Server, MongoDB), Clean and DDD architectural patterns, event driven distributed communication through RabbitMQ, as well as Docker and Docker Compose.
+
+- [Build Web APIs using ASP.NET (edX/Microsoft - DEV247x)](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/Build-Web-APIs-using-ASP.NET_edX-Microsoft)
+  - [Extension of the final project's WebAPI with custom authentication](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/Personal-Projects/Tutorials/ASPNETCore2.WebServer)
+
+- [Basics of Object Oriented Programming with C# (Udemy)](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/Basics-of-Object-Oriented-Programming-with-C%23_Udemy)
+
+- [Alison/Microsoft: Diploma in C# Programming (Introduction to C#)](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/Diploma-in-CSharp-Programming_Alison-Microsoft)
 
 ### Tutorials
 
   - https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/Personal-Projects/Tutorials
-
-### Courses
-
-1 - [Alison/Microsoft: Diploma in C# Programming (Introduction to C#)](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/Diploma-in-CSharp-Programming_Alison-Microsoft)
-
-2 - [Basics of Object Oriented Programming with C# (Udemy)](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/Basics-of-Object-Oriented-Programming-with-C%23_Udemy)
-
-3 - [Build Web APIs using ASP.NET (edX/Microsoft - DEV247x)](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/Build-Web-APIs-using-ASP.NET_edX-Microsoft)
-  - [Extension of the final project's WebAPI with custom authentication](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/Personal-Projects/Tutorials/ASPNETCore2.WebServer)
-
-4 - [Microservices Architecture on .NET with applying CQRS, Clean Architecture and Event-Driven Communication](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/eShop/)
 
 ### WPF
 
