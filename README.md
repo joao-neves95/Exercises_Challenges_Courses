@@ -39,10 +39,6 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 
   A bot that interfaces with any EVM compatible blockchain (A.K.A. Web3) to farm and dump hyperinflationary tokens. Theres also the Solidity code: [Qapo.Defi.Contracts](https://github.com/joao-neves95/Qapo.DeFi.Contracts).
 
-- [Amplifir](https://github.com/joao-neves95/Amplifir):
-
-  A Twitter implementation in .NET Core 3+ and Angular 8+, using DRY, Onion Architecture/Clean Architecture and some Domain Driven Design principles.
-
 - [ClassStudio](https://github.com/joao-neves95/ClassStudio):
 
   A code generation tool with a desktop GUI in Electron.NET and a backend in .NET 5.\
@@ -56,6 +52,10 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 - [CSharpToTypescript](https://github.com/joao-neves95/CSharpToTypescript)
 
   Fork maintenance of a C# to TypeScript converter, modified and adapted to migrate to .NET Standard 2.0 and compile with Visual Studio 2019.
+
+- [Amplifir](https://github.com/joao-neves95/Amplifir):
+
+  A Twitter implementation in .NET Core 3+ and Angular 8+, using DRY, Onion Architecture/Clean Architecture and some Domain Driven Design principles.
 
 - [Coinelity](https://github.com/joao-neves95/Coinelity)
 
