@@ -1,5 +1,4 @@
 # Terraform
-
 ---
 
 ## Introduction
@@ -35,6 +34,7 @@
         - Install and manage software.
         - Version control.
         - Idempotent.
+- [More](learning-notes/dev/microsoft-certs/az-900/1.1_describe-core-azure-concepts#types-of-cloud-services-models)
 
 ---
 
@@ -106,6 +106,7 @@ terraform state show {resource-name}
 - Hashicorp Configuration Language.
 - The domain specific language used to write the IaC on Terraform.
 - File extension: `.tf`.
+- https://developer.hashicorp.com/terraform/language
 
 ### Basic structure of a resource
 
@@ -134,5 +135,19 @@ variable "{variable_name}" {
 
 ### Output Variables
 - Returns values from a Terraform module.
+
+### Resources
+- The main purpose of the Terraform language is to declare resources.
+- All other language features exist only to make the definition of resources more flexible and convenient.
+- They represent infrastructure objects.
+
+### Providers
+- Plugins to interact with external providers (e.g. cloud providers, SaaS providers, other APIs).
+- TF configs must declare which providers they require so that Terraform can install and use them.
+- Each provider adds a set of **resource** types and/or **data sources** that Terraform can manage.
+
+### Modules
+- A wrapper around a collection of Terraform resources.
+- Self-contained packages of TF configurations that are managed as a group.
 
 ---

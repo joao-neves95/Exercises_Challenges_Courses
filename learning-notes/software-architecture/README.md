@@ -1,7 +1,5 @@
 # Software Architecture
 
----
-
 - Architectures
     - N-Layer:
         - Presentation layer
@@ -126,5 +124,3 @@
                     - Use the entity objects.
                     - Use the Repository interfaces.
                 - Depends on infrastructure elements like data/ORM frameworks, databases, cache, external APIs, etc.
-
----

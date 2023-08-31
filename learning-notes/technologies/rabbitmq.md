@@ -1,5 +1,4 @@
 # RabbitMQ
-
 - Open source message broker software.
 - It's a message queue system (e.g.: Apache Kafka, MsMQ, MS Azure Service Bus, ActiveMQ, etc.).
 - publish/subscribe (pub/sub).
@@ -50,5 +49,3 @@
     |
 - Consumer:
     - The server (app) that will receive and process the messages in the queue.
-
----

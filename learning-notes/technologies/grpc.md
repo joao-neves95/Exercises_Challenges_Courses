@@ -1,5 +1,4 @@
 # gRPC
-
 - Synchronous backend microservice-to-microservice communication where immediate responses are required to continue processing.
 - Polyglot environments, cross platform.
 - **Low latency and high throughput communication**.

@@ -1,5 +1,4 @@
 # Redis
-
 - Open-source
 - NoSQL
 - "Remote Dictionary Server"
