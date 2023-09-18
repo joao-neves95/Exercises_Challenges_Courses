@@ -1,0 +1,50 @@
+# LoadBalancer
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eshop.web.app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: eshop.web.app
+  template:
+    metadata:
+      labels:
+        app: eshop.web.app
+    spec:
+      initContainers:
+        - name: wait-for-gateway
+          image: appropriate/curl
+          command:
+            [
+              "sh",
+              "-c",
+              "until curl $(eshop.apigateways.web_url); do echo waiting for gateway; sleep 2; done;",
+            ]
+          env:
+            - name: eshop.apigateways.web_url
+              valueFrom:
+                configMapKeyRef:
+                  name: eshop-configmap
+                  key: eshop.apigateways.web_url
+      containers:
+        - name: eshop.web.app
+          image: x
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 80
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Development
+            - name: ApiSettings__GatewayAddress
+              valueFrom:
+                configMapKeyRef:
+                  name: eshop-configmap
+                  key: eshop.apigateways.web_url

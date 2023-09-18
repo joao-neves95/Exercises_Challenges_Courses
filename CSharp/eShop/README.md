@@ -1,23 +1,17 @@
-# Microservices Architecture on .NET with applying CQRS, Clean Architecture and Event-Driven Communication
-
-## External Links
-- Course Certificate: https://www.udemy.com/certificate/UC-6f9770a4-9989-46c8-8f3d-710c2ea0d9bd
-- Udemy course: https://www.udemy.com/course/microservices-architecture-and-implementation-on-dotnet
-- Written course: https://medium.com/aspnetrun/microservices-architecture-on-net-3b4865eea03f
-- Course GitHub: https://github.com/aspnetrun/run-aspnetcore-microservices
+# Microservices Architecture in .NET, applying CQRS, Clean Architecture and Event-Driven Communication
 
 ## Solution Links
 - src/
-  - services/
-    - catalog/
+  - Services/
+    - Catalog/
       - [eShop.Catalog.Api/](./src/Services/Catalog/eShop.Catalog.Api/)
-    - basket/
+    - Basket/
       - [eShop.Basket.Api/](./src/Services/Basket/eShop.Basket.Api/)
-    - discount/
+    - Discount/
       - [eShop.Discount.Shared/](./src/Services/Discount/eShop.Discount.Shared/)
       - [eShop.Discount.Api/](./src/Services/Discount/eShop.Discount.Api/)
       - [eShop.Discount.Grpc/](./src/Services/Discount/eShop.Discount.Grpc/)
-    - ordering/
+    - Ordering/
       - [eShop.Ordering.Api/](./src/Services/Ordering/eShop.Ordering.Api/)
       - [eShop.Ordering.Application/](./src/Ordering/Application/eShop.Application.Api/)
       - [eShop.Ordering.Domain/](./src/Services/Ordering/eShop.Domain.Api/)
@@ -28,58 +22,90 @@
   - [docker-compose.yml](./docker-compose.yml)
   - [docker-compose.vs.debug.yml](./docker-compose.vs.debug.yml)
 
-## Docs
-- Docker & Docker Compose
-  - `docker-compose -f ./docker-compose.yml -f ./docker-compose.vs.debug.yml up -d`
-
 ## Services
+- Tools:
+    - Portainer Dashboard:
+        - Links:
+            - docker: http://127.0.0.1:9100
+    - pgAdmin Dashboard:
+        - Links:
+            - docker: http://127.0.0.1:9101
+    - RabbitMQ Management Dashboard:
+        - Links:
+            - docker: http://127.0.0.1:15673
 - eshop.Web.App:
     - Links:
         - docker: http://127.0.0.1:8300
     - Description:
         - The web app.
-- Portainer Dashboard:
-    - Links:
-        - docker: http://127.0.0.1:9100
-- pgAdmin Dashboard:
-    - Links:
-        - docker: http://127.0.0.1:9101
-- RabbitMQ Management Dashboard:
-    - Links:
-        - docker: http://127.0.0.1:15673
-- eshop.ApiGateways.ShoppingAggregator:
-    - Links:
-        - docker: http://127.0.0.1:8201/swagger/index.html
-    - Description:
-        - A gateway to aggregate results from multiple microservices to be used through a single client request.
-- eshop.ApiGateways.Web:
-    - Links:
-        - docker: http://127.0.0.1:8200
-    - Description:
-        - A gateway that re-routes all microservices endpoints to be consumed by the client application through a single host.
-- eshop.catalog.api:
-    - Links:
-        - docker: http://127.0.0.1:8000/swagger/index.html
-        - kestrel: http://127.0.0.1:5000/swagger/index.html
-    - Description:
-        - Stores and provides the product list.
-- eshop.basket.api:
-    - Links:
-        - docker: http://127.0.0.1:8001/swagger/index.html
-        - kestrel: http://127.0.0.1:5001/swagger/index.html
-    - Description:
-        - Holds temporary basket data on a Redis cache.
-        - On checkout, it publishes an event to RabbitMQ.
-- eshop.discount.api:
-    - Links:
-        - docker: http://127.0.0.1:8002/swagger/index.html
-        - kestrel: http://127.0.0.1:5002/swagger/index.html
-    - Description:
-        - Stores and provides the product discounts information list.
-        - Has a gRPC API (eShop.Discount.Grpc) that can be consumed by other internal microservices.
-- eshop.ordering.api:
-    - Links:
-        - docker: http://127.0.0.1:8004/swagger/index.html
-        - kestrel: http://127.0.0.1:5004/swagger/index.html
-    - Description:
-        - Waits on the RabbitMQ event from the Basket, to create/finalize the order.
+- Gateways:
+    - eshop.ApiGateways.ShoppingAggregator:
+        - Links:
+            - docker: http://127.0.0.1:8201/swagger/index.html
+        - Description:
+            - A gateway to aggregate results from multiple microservices to be used through a single client request.
+    - eshop.ApiGateways.Web:
+        - Links:
+            - docker: http://127.0.0.1:8200
+        - Description:
+            - A gateway that re-routes all microservices endpoints to be consumed by the client application (eshop.Web.App) through a single host.
+- Services:
+    - eshop.catalog.api:
+        - Links:
+            - docker: http://127.0.0.1:8000/swagger/index.html
+            - kestrel: http://127.0.0.1:5000/swagger/index.html
+        - Description:
+            - Stores and provides the product list through MongoDB.
+    - eshop.discount.api:
+        - Links:
+            - docker: http://127.0.0.1:8002/swagger/index.html
+            - kestrel: http://127.0.0.1:5002/swagger/index.html
+        - Description:
+            - Stores and provides the product discounts information list through PostgreSQL.
+            - Has a gRPC API (eShop.Discount.Grpc) that can be consumed by other internal microservices.
+    - eshop.basket.api:
+        - Links:
+            - docker: http://127.0.0.1:8001/swagger/index.html
+            - kestrel: http://127.0.0.1:5001/swagger/index.html
+        - Description:
+            - Holds temporary basket data on a Redis cache.
+            - On checkout, it publishes an event to RabbitMQ.
+    - eshop.ordering.api:
+        - Links:
+            - docker: http://127.0.0.1:8004/swagger/index.html
+            - kestrel: http://127.0.0.1:5004/swagger/index.html
+        - Description:
+            - Waits on the RabbitMQ event from the Basket API, to create/finalize the order.
+            - It stores each order on SqlServer.
+
+## DevOps
+(This is an app made to learn, so all chosen services - hosts, paas, saas, etc - are free)
+- Resources [TEMP]:
+  - Kubernetes
+    - Translate the Docker Compose File into Kubernetes Resources)
+      - https://kubernetes.io/docs/tasks/configure-pod-container/translate-compose-kubernetes
+      - https://loft.sh/blog/docker-compose-to-kubernetes-step-by-step-migration
+    - https://linchpiner.github.io/k8s-multi-container-pods.html
+  - Terraform:
+    - https://github.com/hashicorp/terraform-provider-kubernetes/tree/main/_examples/wordpress-mysql-gce-pv
+    - https://wikitech.wikimedia.org/wiki/Help:Using_Terraform_on_Cloud_VPS
+  - GH Actions:
+    - https://github.com/ceracare/api-skills/blob/github-actions/.github/workflows/tests.yml
+- Azure Pipelines
+- GitHub Actions
+- Docker
+  - `docker-compose -f ./docker-compose.yml -f ./docker-compose.vs.debug.yml up -d`
+- Docker Compose
+  - To configure and run our dev environment.
+- Docker Hub (or ACR)
+  - To store the microservices images for free.
+- Kubernetes
+- AKS
+- Terraform
+
+## Courses
+- https://www.udemy.com/course/microservices-architecture-and-implementation-on-dotnet
+    - https://www.udemy.com/certificate/UC-6f9770a4-9989-46c8-8f3d-710c2ea0d9bd
+    - https://github.com/aspnetrun/run-aspnetcore-microservices
+- https://www.udemy.com/course/deploying-net-microservices-with-k8s-aks-and-azure-devops
+    - https://github.com/aspnetrun/run-devops

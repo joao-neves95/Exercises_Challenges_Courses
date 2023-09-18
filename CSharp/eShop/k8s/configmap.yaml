@@ -3,8 +3,11 @@ kind: ConfigMap
 metadata:
   name: eshop-configmap
 data:
-  eshop.discount.db.pgsql_db: 'DiscountDb'
-  eshop.discount.grpc_url: 'http://eshop.discount.grpc:80'
-  eshop.basket.db.redis_connection-string: 'http://eshop.basket.db.redis:6379'
-  eshop.shared.rabbitmq_url: 'amqp://guest:guest@eshop.shared.rabbitmq:5672'
   eshop.apigateways.web_url: 'http://eshop.apigateways.web:80'
+  eshop.catalog.api_url: 'http://eshop.catalog.api:80'
+  eshop.basket.api_url: 'http://eshop.basket.api:80'
+  eshop.basket.db.redis_connection-string: 'http://eshop.basket.db.redis:6379'
+  eshop.ordering.api_url: 'http://eshop.ordering.api:80'
+  eshop.discount.grpc_url: 'http://eshop.discount.grpc:80'
+  eshop.discount.db.pgsql_db: 'DiscountDb'
+  eshop.shared.rabbitmq_url: 'amqp://guest:guest@eshop.shared.rabbitmq:5672'

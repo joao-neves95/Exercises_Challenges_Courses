@@ -33,7 +33,7 @@ services:
     depends_on:
       - eshop.apigateways.web
     ports:
-      # Forward to port 8000 (this will be the external port)
+      # Forward to port 8300 (this will be the external port)
       - "8300:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
@@ -51,7 +51,6 @@ services:
       - eshop.basket.api
       - eshop.ordering.api
     ports:
-      # Forward to port 8000 (this will be the external port)
       - "8200:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
@@ -63,14 +62,13 @@ services:
       - eshop.basket.api
       - eshop.ordering.api
     ports:
-      # Forward to port 8000 (this will be the external port)
       - "8201:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "ApiSettings__CatalogUrl=http://eshop.catalog.api:80"
       - "ApiSettings__BasketUrl=http://eshop.basket.api:80"
       - "ApiSettings__OrderingUrl=http://eshop.ordering.api:80"
-  
+
   #endregion eShop.ApiGateways
 
   #region eShop.Shared
@@ -100,7 +98,6 @@ services:
     depends_on:
       - eshop.catalog.db.mongo
     ports:
-      # Forward to port 8000 (this will be the external port)
       - "8000:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
@@ -141,7 +138,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "DatabaseSettings__ConnectionString=Host=eshop.discount.db.pgsql;Port=5432;Database=DiscountDb;User ID=admin;Password=admin;"
-  
+
   #endregion eShop.Discount
 
   #region eShop.Basket
