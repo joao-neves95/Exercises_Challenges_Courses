@@ -43,7 +43,7 @@ spec:
                   key: eshop.shared.rabbitmq_url
       containers:
         - name: eshop.basket.api
-          image: x
+          image: joaoneves95/eshop.basket.api
           resources:
             requests:
               memory: "64Mi"

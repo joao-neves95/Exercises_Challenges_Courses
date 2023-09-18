@@ -30,7 +30,7 @@ spec:
                   key: eshop.apigateways.web_url
       containers:
         - name: eshop.web.app
-          image: x
+          image: joaoneves95/eshop.web.app
           resources:
             requests:
               memory: "64Mi"

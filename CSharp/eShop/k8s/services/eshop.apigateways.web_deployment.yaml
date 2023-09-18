@@ -57,7 +57,7 @@ spec:
                   key: eshop.ordering.api_url
       containers:
         - name: eshop.apigateways.web
-          image: x
+          image: joaoneves95/eshop.apigateways.web
           resources:
             requests:
               memory: "64Mi"

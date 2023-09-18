@@ -29,7 +29,7 @@ spec:
                   key: eshop.catalog.db.mongo_connection-string
       containers:
         - name: eshop.catalog.api
-          image: x
+          image: joaoneves95/eshop.catalog.api
           resources:
             requests:
               memory: "64Mi"

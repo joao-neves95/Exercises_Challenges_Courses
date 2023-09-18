@@ -29,7 +29,7 @@ spec:
                   key: eshop.discount.db.pgsql_connection-string
       containers:
         - name: eshop.discount.grpc
-          image: x
+          image: joaoneves95/eshop.discount.grpc
           resources:
             requests:
               memory: "64Mi"
