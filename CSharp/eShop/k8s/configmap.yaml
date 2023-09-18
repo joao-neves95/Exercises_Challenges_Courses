@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: eshop-configmap
 data:
-  eshop.catalog.db.mongo_connection-string: 'mongodb://eshop.catalog.db.mongo:27017'
+  eshop.discount.db.pgsql_db: 'DiscountDb'
   eshop.discount.grpc_url: 'http://eshop.discount.grpc:80'
   eshop.basket.db.redis_connection-string: 'http://eshop.basket.db.redis:6379'
   eshop.shared.rabbitmq_url: 'amqp://guest:guest@eshop.shared.rabbitmq:5672'

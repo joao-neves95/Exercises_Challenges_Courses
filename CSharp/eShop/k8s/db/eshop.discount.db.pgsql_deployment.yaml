@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-deployment
+  labels:
+    app: eshop.discount.db.pgsql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: eshop.discount.db.pgsql
+  template:
+    metadata:
+      labels:
+        app: eshop.discount.db.pgsql
+    spec:
+      containers:
+        - name: eshop.discount.db.pgsql
+          image: postgres
+          ports:
+            - containerPort: 5432
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: eshop-secrets
+                  key: eshop.discount.db.pgsql_user
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: eshop-secrets
+                  key: eshop.discount.db.pgsql_password
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: eshop-configmap
+                  key: eshop.discount.db.pgsql_db
