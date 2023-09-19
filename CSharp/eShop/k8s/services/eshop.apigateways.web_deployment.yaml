@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: eshop.apigateways.web
+  name: eshop-apigateways-web
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: eshop.apigateways.web
+      app: eshop-apigateways-web
   template:
     metadata:
       labels:
-        app: eshop.apigateways.web
+        app: eshop-apigateways-web
     spec:
       initContainers:
         - name: wait-for-catalog
@@ -19,45 +19,45 @@ spec:
             [
               "sh",
               "-c",
-              "until curl $(eshop.catalog.api_url); do echo waiting for catalog; sleep 2; done;",
+              "until curl $(eshop-catalog-api_url); do echo waiting for catalog; sleep 2; done;",
             ]
           env:
-            - name: eshop.catalog.api_url
+            - name: eshop-catalog-api_url
               valueFrom:
                 configMapKeyRef:
                   name: eshop-configmap
-                  key: eshop.catalog.api_url
+                  key: eshop-catalog-api_url
         - name: wait-for-basket
           image: appropriate/curl
           command:
             [
               "sh",
               "-c",
-              "until curl $(eshop.basket.api_url); do echo waiting for basket; sleep 2; done;",
+              "until curl $(eshop-basket-api_url); do echo waiting for basket; sleep 2; done;",
             ]
           env:
-            - name: eshop.basket.api_url
+            - name: eshop-basket-api_url
               valueFrom:
                 configMapKeyRef:
                   name: eshop-configmap
-                  key: eshop.basket.api_url
+                  key: eshop-api_url
         - name: wait-for-ordering
           image: appropriate/curl
           command:
             [
               "sh",
               "-c",
-              "until curl $(eshop.ordering.api_url); do echo waiting for ordering; sleep 2; done;",
+              "until curl $(eshop-ordering-api_url); do echo waiting for ordering; sleep 2; done;",
             ]
           env:
-            - name: eshop.ordering.api_url
+            - name: eshop-ordering-api_url
               valueFrom:
                 configMapKeyRef:
                   name: eshop-configmap
-                  key: eshop.ordering.api_url
+                  key: eshop-ordering-api_url
       containers:
-        - name: eshop.apigateways.web
-          image: joaoneves95/eshop.apigateways.web
+        - name: eshop-apigateways-web
+          image: joaoneves95/eshop-apigateways-web
           resources:
             requests:
               memory: "64Mi"

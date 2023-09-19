@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: eshop.catalog.api
+  name: eshop-catalog-api
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: eshop.catalog.api
+      app: eshop-catalog-api
   template:
     metadata:
       labels:
-        app: eshop.catalog.api
+        app: eshop-catalog-api
     spec:
       initContainers:
         - name: wait-for-mongodb
@@ -19,17 +19,17 @@ spec:
             [
               "sh",
               "-c",
-              "until curl $(eshop.catalog.db.mongo_connection-string); do echo waiting for mongodb; sleep 2; done;",
+              "until curl $(eshop-catalog-db-mongo_connection-string); do echo waiting for mongodb; sleep 2; done;",
             ]
           env:
-            - name: eshop.catalog.db.mongo_connection-string
+            - name: eshop-catalog-db-mongo_connection-string
               valueFrom:
                 configMapKeyRef:
                   name: eshop-configmap
-                  key: eshop.catalog.db.mongo_connection-string
+                  key: eshop-catalog-db-mongo_connection-string
       containers:
-        - name: eshop.catalog.api
-          image: joaoneves95/eshop.catalog.api
+        - name: eshop-catalog-api
+          image: joaoneves95/eshop-catalog-api
           resources:
             requests:
               memory: "64Mi"
@@ -46,4 +46,4 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   name: eshop-configmap
-                  key: eshop.catalog.db.mongo_connection-string
+                  key: eshop-catalog-db-mongo_connection-string

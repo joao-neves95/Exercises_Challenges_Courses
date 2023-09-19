@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: eshop.shared.rabbitmq
+  name: eshop-shared-rabbitmq
 spec:
   selector:
-    app: eshop.shared.rabbitmq
+    app: eshop-shared-rabbitmq
   ports:
     - protocol: TCP
       port: 5672

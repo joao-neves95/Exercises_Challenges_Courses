@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: eshop.ordering.api
+  name: eshop-ordering-api
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: eshop.ordering.api
+      app: eshop-ordering-api
   template:
     metadata:
       labels:
-        app: eshop.ordering.api
+        app: eshop-ordering-api
     spec:
       initContainers:
         - name: wait-for-sqlserver
@@ -19,17 +19,17 @@ spec:
             [
               "sh",
               "-c",
-              "until curl $(eshop.ordering.db.sqlserver_connection-string); do echo waiting for sqlserver; sleep 2; done;",
+              "until curl $(eshop-ordering-db-sqlserver_connection-string); do echo waiting for sqlserver; sleep 2; done;",
             ]
           env:
-            - name: eshop.ordering.db.sqlserver_connection-string
+            - name: eshop-ordering-db-sqlserver_connection-string
               valueFrom:
                 configMapKeyRef:
                   name: eshop-configmap
-                  key: eshop.ordering.db.sqlserver_connection-string
+                  key: eshop-ordering-db-sqlserver_connection-string
       containers:
-        - name: eshop.ordering.api
-          image: joaoneves95/eshop.ordering.api
+        - name: eshop-ordering-api
+          image: joaoneves95/eshop-ordering-api
           resources:
             requests:
               memory: "64Mi"
@@ -46,9 +46,9 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: eshop-secrets
-                  key: eshop.ordering.db.sqlserver_connection-string
+                  key: eshop-ordering-db-sqlserver_connection-string
             - name: EventBusSettings__HostAddress
               valueFrom:
                 secretKeyRef:
                   name: eshop-secrets
-                  key: eshop.shared.rabbitmq_url
+                  key: eshop-shared-rabbitmq_url

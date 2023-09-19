@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: eshop.ordering.db.sqlserver
+  name: eshop-ordering-db-sqlserver
   labels:
-    app: eshop.ordering.db.sqlserver
+    app: eshop-ordering-db-sqlserver
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: eshop.ordering.db.sqlserver
+      app: eshop-ordering-db-sqlserver
   template:
     metadata:
       labels:
-        app: eshop.ordering.db.sqlserver
+        app: eshop-ordering-db-sqlserver
     spec:
       containers:
-        - name: eshop.ordering.db.sqlserver
+        - name: eshop-ordering-db-sqlserver
           image: mcr.microsoft.com/mssql/server:2017-latest
           ports:
             - containerPort: 1433
@@ -33,4 +33,4 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: eshop-secrets
-                  key: eshop.ordering.db.sqlserver_password
+                  key: eshop-ordering-db-sqlserver_password

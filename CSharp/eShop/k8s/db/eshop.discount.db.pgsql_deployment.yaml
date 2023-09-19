@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: eshop.discount.db.pgsql
+  name: eshop-discount-db-pgsql
   labels:
-    app: eshop.discount.db.pgsql
+    app: eshop-discount-db-pgsql
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: eshop.discount.db.pgsql
+      app: eshop-discount-db-pgsql
   template:
     metadata:
       labels:
-        app: eshop.discount.db.pgsql
+        app: eshop-discount-db-pgsql
     spec:
       containers:
-        - name: eshop.discount.db.pgsql
+        - name: eshop-discount-db-pgsql
           image: postgres
           ports:
             - containerPort: 5432
@@ -31,14 +31,14 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: eshop-secrets
-                  key: eshop.discount.db.pgsql_user
+                  key: eshop-discount-db-pgsql_user
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: eshop-secrets
-                  key: eshop.discount.db.pgsql_password
+                  key: eshop-discount-db-pgsql_password
             - name: POSTGRES_DB
               valueFrom:
                 configMapKeyRef:
                   name: eshop-configmap
-                  key: eshop.discount.db.pgsql_db
+                  key: eshop-discount-db-pgsql_db

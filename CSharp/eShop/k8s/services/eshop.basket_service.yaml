@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: eshop.basket.api
+  name: eshop-basket-api
 spec:
   # `NodePort` for localhost.
   type: NodePort
   selector:
-    app: eshop.basket.api
+    app: eshop-basket-api
   ports:
     - protocol: TCP
       port: 8000

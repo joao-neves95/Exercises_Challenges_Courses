@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: eshop.basket.db.redis
+  name: eshop-basket-db-redis
   labels:
-    app: eshop.basket.db.redis
+    app: eshop-basket-db-redis
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: eshop.basket.db.redis
+      app: eshop-basket-db-redis
   template:
     metadata:
       labels:
-        app: eshop.basket.db.redis
+        app: eshop-basket-db-redis
     spec:
       containers:
-        - name: eshop.basket.db.redis
+        - name: eshop-basket-db-redis
           image: redis:alpine
           ports:
             - containerPort: 6379

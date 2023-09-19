@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: eshop.catalog.db.mongo
+  name: eshop-catalog-db-mongo
 spec:
   selector:
-    app: eshop.catalog.db.mongo
+    app: eshop-catalog-db-mongo
   ports:
     - protocol: TCP
       port: 27017

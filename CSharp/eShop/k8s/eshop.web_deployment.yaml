@@ -2,16 +2,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: eshop.web.app
+  name: eshop-web-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: eshop.web.app
+      app: eshop-web-app
   template:
     metadata:
       labels:
-        app: eshop.web.app
+        app: eshop-web-app
     spec:
       initContainers:
         - name: wait-for-gateway
@@ -20,17 +20,17 @@ spec:
             [
               "sh",
               "-c",
-              "until curl $(eshop.apigateways.web_url); do echo waiting for gateway; sleep 2; done;",
+              "until curl $(eshop-apigateways-web_url); do echo waiting for gateway; sleep 2; done;",
             ]
           env:
-            - name: eshop.apigateways.web_url
+            - name: eshop-apigateways-web_url
               valueFrom:
                 configMapKeyRef:
                   name: eshop-configmap
-                  key: eshop.apigateways.web_url
+                  key: eshop-apigateways-web_url
       containers:
-        - name: eshop.web.app
-          image: joaoneves95/eshop.web.app
+        - name: eshop-web-app
+          image: joaoneves95/eshop-web-app
           resources:
             requests:
               memory: "64Mi"
@@ -47,4 +47,4 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   name: eshop-configmap
-                  key: eshop.apigateways.web_url
+                  key: eshop-apigateways-web_url

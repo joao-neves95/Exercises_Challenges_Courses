@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: eshop.ordering.api
+  name: eshop-ordering-api
 spec:
   # `NodePort` for localhost.
   type: NodePort
   selector:
-    app: eshop.ordering.api
+    app: eshop-ordering-api
   ports:
     - protocol: TCP
       port: 8000

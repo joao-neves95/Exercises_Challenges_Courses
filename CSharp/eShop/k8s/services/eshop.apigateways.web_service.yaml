@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: eshop.apigateways.web
+  name: eshop-apigateways-web
 spec:
   # `NodePort` for localhost.
   type: NodePort
   selector:
-    app: eshop.apigateways.web
+    app: eshop-apigateways-web
   ports:
     - protocol: TCP
       port: 8000
