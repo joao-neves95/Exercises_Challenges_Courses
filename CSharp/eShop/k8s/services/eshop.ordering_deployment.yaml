@@ -49,6 +49,6 @@ spec:
                   key: eshop.ordering.db.sqlserver_connection-string
             - name: EventBusSettings__HostAddress
               valueFrom:
-                configMapKeyRef:
-                  name: eshop-configmap
+                secretKeyRef:
+                  name: eshop-secrets
                   key: eshop.shared.rabbitmq_url

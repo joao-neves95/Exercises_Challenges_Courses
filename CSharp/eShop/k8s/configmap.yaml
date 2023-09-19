@@ -10,4 +10,3 @@ data:
   eshop.ordering.api_url: 'http://eshop.ordering.api:80'
   eshop.discount.grpc_url: 'http://eshop.discount.grpc:80'
   eshop.discount.db.pgsql_db: 'DiscountDb'
-  eshop.shared.rabbitmq_url: 'amqp://guest:guest@eshop.shared.rabbitmq:5672'
