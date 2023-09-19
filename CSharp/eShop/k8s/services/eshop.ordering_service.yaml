@@ -9,7 +9,7 @@ spec:
     app: eshop-ordering-api
   ports:
     - protocol: TCP
-      port: 8000
+      port: 30004
       targetPort: 80
       # `nodePort` here is to run locally.
-      nodePort: 31000
+      nodePort: 30004

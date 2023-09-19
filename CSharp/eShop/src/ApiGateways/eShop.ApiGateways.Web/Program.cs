@@ -33,14 +33,13 @@ namespace eShop.ApiGateways.Web
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
+            if (app.Environment.IsDevelopment() || app.Environment.EnvironmentName == "K8s")
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
 
             app.UseAuthorization();
-
             app.MapControllers();
 
             await app.UseOcelot();

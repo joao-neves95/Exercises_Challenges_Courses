@@ -12,38 +12,9 @@ spec:
       labels:
         app: eshop-basket-api
     spec:
-      initContainers:
-        - name: wait-for-redis
-          image: appropriate/curl
-          command:
-            [
-              "sh",
-              "-c",
-              "until curl $(eshop-basket-db-redis_connection-string); do echo waiting for redis; sleep 2; done;",
-            ]
-          env:
-            - name: eshop-basket-db-redis_connection-string
-              valueFrom:
-                configMapKeyRef:
-                  name: eshop-configmap
-                  key: eshop-basket-db-redis_connection-string
-        - name: wait-for-rabbitmq
-          image: appropriate/curl
-          command:
-            [
-              "sh",
-              "-c",
-              "until curl $(eshop-shared-rabbitmq_url); do echo waiting for rabbitmq; sleep 2; done;",
-            ]
-          env:
-            - name: eshop-shared-rabbitmq_url
-              valueFrom:
-                configMapKeyRef:
-                  name: eshop-configmap
-                  key: eshop-shared-rabbitmq_url
       containers:
         - name: eshop-basket-api
-          image: joaoneves95/eshop-basket-api
+          image: joaoneves95/eshop.basket.api:latest
           resources:
             requests:
               memory: "64Mi"

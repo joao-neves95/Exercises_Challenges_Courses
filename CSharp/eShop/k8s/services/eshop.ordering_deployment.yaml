@@ -12,24 +12,9 @@ spec:
       labels:
         app: eshop-ordering-api
     spec:
-      initContainers:
-        - name: wait-for-sqlserver
-          image: appropriate/curl
-          command:
-            [
-              "sh",
-              "-c",
-              "until curl $(eshop-ordering-db-sqlserver_connection-string); do echo waiting for sqlserver; sleep 2; done;",
-            ]
-          env:
-            - name: eshop-ordering-db-sqlserver_connection-string
-              valueFrom:
-                configMapKeyRef:
-                  name: eshop-configmap
-                  key: eshop-ordering-db-sqlserver_connection-string
       containers:
         - name: eshop-ordering-api
-          image: joaoneves95/eshop-ordering-api
+          image: joaoneves95/eshop.ordering.api:latest
           resources:
             requests:
               memory: "64Mi"

@@ -9,7 +9,7 @@ spec:
     app: eshop-catalog-api
   ports:
     - protocol: TCP
-      port: 8000
+      port: 30000
       targetPort: 80
       # `nodePort` here is to run locally.
-      nodePort: 31000
+      nodePort: 30000

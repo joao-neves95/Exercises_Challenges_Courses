@@ -3,10 +3,10 @@ kind: ConfigMap
 metadata:
   name: eshop-configmap
 data:
-  eshop.apigateways.web_url: 'http://eshop.apigateways.web:80'
-  eshop.catalog.api_url: 'http://eshop.catalog.api:80'
-  eshop.basket.api_url: 'http://eshop.basket.api:80'
-  eshop.basket.db.redis_connection-string: 'http://eshop.basket.db.redis:6379'
-  eshop.ordering.api_url: 'http://eshop.ordering.api:80'
-  eshop.discount.grpc_url: 'http://eshop.discount.grpc:80'
-  eshop.discount.db.pgsql_db: 'DiscountDb'
+  eshop-apigateways-web_url: 'http://eshop-apigateways-web:30200'
+  eshop-catalog-api_url: 'http://eshop-catalog-api:30000'
+  eshop-basket-api_url: 'http://eshop-basket-api:30001'
+  eshop-basket-db-redis_connection-string: 'eshop-basket-db-redis:6379'
+  eshop-discount-grpc_url: 'http://eshop-discount-grpc:30002'
+  eshop-discount-db-pgsql_db: 'DiscountDb'
+  eshop-ordering-api_url: 'http://eshop-ordering-api:30004'

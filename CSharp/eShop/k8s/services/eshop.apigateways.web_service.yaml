@@ -9,7 +9,7 @@ spec:
     app: eshop-apigateways-web
   ports:
     - protocol: TCP
-      port: 8000
+      port: 30200
       targetPort: 80
-      # `nodePort` here is to run locally.
-      nodePort: 31000
+      # `nodePort` here is to run locally. In prod all services should only be accessible inside the cluster.
+      nodePort: 30200

@@ -12,24 +12,9 @@ spec:
       labels:
         app: eshop-discount-grpc
     spec:
-      initContainers:
-        - name: wait-for-pgsql
-          image: appropriate/curl
-          command:
-            [
-              "sh",
-              "-c",
-              "until curl $(eshop-discount-db-pgsql_connection-string); do echo waiting for pgsql; sleep 2; done;",
-            ]
-          env:
-            - name: eshop-discount-db-pgsql_connection-string
-              valueFrom:
-                configMapKeyRef:
-                  name: eshop-configmap
-                  key: eshop-discount-db-pgsql_connection-string
       containers:
         - name: eshop-discount-grpc
-          image: joaoneves95/eshop-discount-grpc
+          image: joaoneves95/eshop.discount.grpc:latest
           resources:
             requests:
               memory: "64Mi"

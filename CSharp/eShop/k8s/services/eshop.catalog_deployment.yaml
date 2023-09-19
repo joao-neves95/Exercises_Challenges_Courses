@@ -12,24 +12,9 @@ spec:
       labels:
         app: eshop-catalog-api
     spec:
-      initContainers:
-        - name: wait-for-mongodb
-          image: appropriate/curl
-          command:
-            [
-              "sh",
-              "-c",
-              "until curl $(eshop-catalog-db-mongo_connection-string); do echo waiting for mongodb; sleep 2; done;",
-            ]
-          env:
-            - name: eshop-catalog-db-mongo_connection-string
-              valueFrom:
-                configMapKeyRef:
-                  name: eshop-configmap
-                  key: eshop-catalog-db-mongo_connection-string
       containers:
         - name: eshop-catalog-api
-          image: joaoneves95/eshop-catalog-api
+          image: joaoneves95/eshop.catalog.api:latest
           resources:
             requests:
               memory: "64Mi"
@@ -44,6 +29,6 @@ spec:
               value: Development
             - name: DatabaseSettings__ConnectionString
               valueFrom:
-                configMapKeyRef:
-                  name: eshop-configmap
+                secretKeyRef:
+                  name: eshop-secrets
                   key: eshop-catalog-db-mongo_connection-string
