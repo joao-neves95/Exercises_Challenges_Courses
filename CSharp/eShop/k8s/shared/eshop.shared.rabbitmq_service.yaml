@@ -5,6 +5,7 @@ metadata:
 spec:
   selector:
     app: eshop-shared-rabbitmq
+  type: LoadBalancer
   ports:
     - protocol: TCP
       port: 5672

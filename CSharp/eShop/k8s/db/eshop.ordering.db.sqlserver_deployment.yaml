@@ -21,10 +21,10 @@ spec:
             - containerPort: 1433
           resources:
             requests:
-              memory: "64Mi"
+              memory: "2Gi"
               cpu: "250m"
             limits:
-              memory: "128Mi"
+              memory: "2.1Gi"
               cpu: "500m"
           env:
             - name: ACCEPT_EULA

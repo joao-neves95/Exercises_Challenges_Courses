@@ -44,7 +44,7 @@ namespace eShop.Ordering.Api
                 options.AddOpenBehavior(typeof(UnhandledExceptionBehaviour<,>));
                 options.AddOpenBehavior(typeof(ValidationBehaviour<,>));
 
-                options.RegisterServicesFromAssembly(Assembly.GetAssembly(typeof(CheckoutOrderCommand)));
+                options.RegisterServicesFromAssembly(Assembly.GetAssembly(typeof(CheckoutOrderCommand))!);
             });
 
             builder.Services.AddMassTransit(options =>

@@ -10,3 +10,5 @@ data:
   eshop-discount-grpc_url: 'http://eshop-discount-grpc:30002'
   eshop-discount-db-pgsql_db: 'DiscountDb'
   eshop-ordering-api_url: 'http://eshop-ordering-api:30004'
+  eshop-ordering-api_email_from-name: 'eShop'
+  eshop-ordering-api_email_from-address: 'info@eshop.test'

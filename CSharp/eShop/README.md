@@ -38,6 +38,7 @@
 - eshop.Web.App:
   - Links:
     - docker: http://127.0.0.1:8300
+    - k8s: http://127.0.0.1:30300
   - Description:
     - The web app.
 - Gateways:

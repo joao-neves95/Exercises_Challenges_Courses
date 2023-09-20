@@ -37,3 +37,18 @@ spec:
                 secretKeyRef:
                   name: eshop-secrets
                   key: eshop-shared-rabbitmq_url
+            - name: EmailSettings__FromName
+              valueFrom:
+                  configMapKeyRef:
+                    name: eshop-configmap
+                    key: eshop-ordering-api_email_from-name
+            - name: EmailSettings__FromAddress
+              valueFrom:
+                  configMapKeyRef:
+                    name: eshop-configmap
+                    key: eshop-ordering-api_email_from-address
+            - name: EmailSettings__ApiKey
+              valueFrom:
+                  secretKeyRef:
+                    name: eshop-secrets
+                    key: eshop-ordering-api_email_api-key

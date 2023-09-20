@@ -26,4 +26,4 @@ spec:
             - containerPort: 80
           env:
             - name: ASPNETCORE_ENVIRONMENT
-              value: K8s
+              value: Local_K8s

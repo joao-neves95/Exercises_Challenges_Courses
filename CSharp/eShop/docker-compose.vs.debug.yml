@@ -174,7 +174,7 @@ services:
       - "1434:1433"
     environment:
       ACCEPT_EULA: "Y"
-      MSSQL_SA_PASSWORD: "admin123456789"
+      MSSQL_SA_PASSWORD: "@Admin123456789"
 
   eshop.ordering.api:
     container_name: eshop.ordering.api
@@ -185,7 +185,10 @@ services:
       - "8004:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "ConnectionStrings__SqlServerConnectionString=Server=eshop.ordering.db.sqlserver,1433;Database=master;User Id=sa;Password=admin123456789;Trust Server Certificate=True;"
+      - "ConnectionStrings__SqlServerConnectionString=Server=eshop.ordering.db.sqlserver,1433;Database=master;User Id=sa;Password=@Admin123456789;Trust Server Certificate=True;"
       - "EventBusSettings__HostAddress=amqp://guest:guest@eshop.shared.rabbitmq:5672"
+      - "EmailSettings__FromName=eShop"
+      - "EmailSettings__FromAddress=info@eShop.test"
+      - "EmailSettings__ApiKey=123456789=="
 
   #endregion eShop.Ordering
