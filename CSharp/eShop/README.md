@@ -52,7 +52,7 @@
       - docker: http://127.0.0.1:8200
       - k8s: http://127.0.0.1:30200
     - Description:
-      - A gateway that re-routes all microservices endpoints to be consumed by the client application (eshop.Web.App) through a single host.
+      - A gateway that re-routes all microservices endpoints with Ocelot, to be consumed by the client application (eshop.Web.App), through a single host.
 - Services:
   - eshop.catalog.api:
     - Links:
@@ -85,6 +85,16 @@
     - Description:
       - Waits on the RabbitMQ event from the Basket API, to create/finalize the order.
       - It stores each order on SqlServer.
+- Tools:
+  - Portainer Dashboard:
+    - Links:
+      - docker: http://127.0.0.1:9100
+  - pgAdmin Dashboard:
+    - Links:
+      - docker: http://127.0.0.1:9101
+  - RabbitMQ Management Dashboard:
+    - Links:
+      - docker: http://127.0.0.1:15673
 
 ## DevOps
 - Azure Pipelines
@@ -100,6 +110,8 @@
     - `kubectl apply --recursive -f .`
     - `kubectl delete --all --recursive -f .`
 - AKS
+- Azure Pipelines
+- GitHub Actions
 - Terraform
 
 ## Courses
