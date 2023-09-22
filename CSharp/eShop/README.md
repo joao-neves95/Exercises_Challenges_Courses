@@ -120,4 +120,5 @@
   - https://www.udemy.com/certificate/UC-6f9770a4-9989-46c8-8f3d-710c2ea0d9bd
   - https://github.com/aspnetrun/run-aspnetcore-microservices
 - https://www.udemy.com/course/deploying-net-microservices-with-k8s-aks-and-azure-devops
+  - https://www.udemy.com/certificate/UC-4ef08063-35f5-4ba6-b808-f7d2222970d7
   - https://github.com/aspnetrun/run-devops

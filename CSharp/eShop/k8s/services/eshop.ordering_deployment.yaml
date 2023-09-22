@@ -13,6 +13,7 @@ spec:
         app: eshop-ordering-api
     spec:
       containers:
+        ###
         - name: eshop-ordering-api
           image: joaoneves95/eshop.ordering.api:latest
           resources:
@@ -52,3 +53,24 @@ spec:
                   secretKeyRef:
                     name: eshop-secrets
                     key: eshop-ordering-api_email_api-key
+        ###
+        - name: eshop-ordering-db-sqlserver
+          image: mcr.microsoft.com/mssql/server:2017-latest
+          ports:
+            - containerPort: 1433
+          resources:
+            requests:
+              memory: "2Gi"
+              cpu: "250m"
+            limits:
+              memory: "2.1Gi"
+              cpu: "500m"
+          env:
+            - name: ACCEPT_EULA
+              value: "Y"
+            - name: MSSQL_SA_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: eshop-secrets
+                  key: eshop-ordering-db-sqlserver_password
+        ###

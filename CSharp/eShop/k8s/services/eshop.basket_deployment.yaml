@@ -13,6 +13,7 @@ spec:
         app: eshop-basket-api
     spec:
       containers:
+        ###
         - name: eshop-basket-api
           image: joaoneves95/eshop.basket.api:latest
           resources:
@@ -42,3 +43,16 @@ spec:
                 secretKeyRef:
                   name: eshop-secrets
                   key: eshop-shared-rabbitmq_url
+        ###
+        - name: eshop-basket-db-redis
+          image: redis:alpine
+          ports:
+            - containerPort: 6379
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+        ###
