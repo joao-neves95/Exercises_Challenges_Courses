@@ -97,8 +97,6 @@
       - docker: http://127.0.0.1:15673
 
 ## DevOps
-- Azure Pipelines
-- GitHub Actions
 - Docker
   - `docker-compose -f ./docker-compose.yml -f ./docker-compose.vs.debug.yml up -d`
 - Docker Compose
