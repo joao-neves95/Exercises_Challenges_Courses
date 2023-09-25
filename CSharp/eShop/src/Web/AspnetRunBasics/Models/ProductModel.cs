@@ -1,6 +1,6 @@
-﻿namespace AspnetRunBasics.Models
+namespace AspnetRunBasics.Models
 {
-    public class CatalogModel
+    public class ProductModel
     {
         public string Id { get; set; }
         public string Name { get; set; }

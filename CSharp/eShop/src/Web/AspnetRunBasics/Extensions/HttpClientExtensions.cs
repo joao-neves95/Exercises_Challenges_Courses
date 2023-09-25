@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text.Json;
@@ -11,7 +11,9 @@ namespace AspnetRunBasics.Extensions
         public static async Task<T> ReadContentAs<T>(this HttpResponseMessage response)
         {
             if (!response.IsSuccessStatusCode)
+            {
                 throw new ApplicationException($"Something went wrong calling the API: {response.ReasonPhrase}");
+            }
 
             var dataAsString = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 

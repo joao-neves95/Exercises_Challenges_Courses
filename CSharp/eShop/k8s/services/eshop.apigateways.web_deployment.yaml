@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eshop-apigateways-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: eshop-apigateways-web
+  template:
+    metadata:
+      labels:
+        app: eshop-apigateways-web
+    spec:
+      containers:
+        - name: eshop-apigateways-web
+          image: joaoneves95/eshop.apigateways.web:latest
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 80
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Local_K8s

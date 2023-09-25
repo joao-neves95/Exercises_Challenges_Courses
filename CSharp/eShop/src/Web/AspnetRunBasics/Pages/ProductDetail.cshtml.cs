@@ -18,7 +18,7 @@ namespace AspnetRunBasics
             _basketService = basketService ?? throw new ArgumentNullException(nameof(basketService));
         }
 
-        public CatalogModel Product { get; set; }
+        public Models.ProductModel Product { get; set; }
 
         [BindProperty]
         public string Color { get; set; }

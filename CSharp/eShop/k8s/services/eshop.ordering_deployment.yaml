@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eshop-ordering-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: eshop-ordering-api
+  template:
+    metadata:
+      labels:
+        app: eshop-ordering-api
+    spec:
+      containers:
+        ###
+        - name: eshop-ordering-api
+          image: joaoneves95/eshop.ordering.api:latest
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 80
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Development
+            - name: ConnectionStrings__SqlServerConnectionString
+              valueFrom:
+                secretKeyRef:
+                  name: eshop-secrets
+                  key: eshop-ordering-db-sqlserver_connection-string
+            - name: EventBusSettings__HostAddress
+              valueFrom:
+                secretKeyRef:
+                  name: eshop-secrets
+                  key: eshop-shared-rabbitmq_url
+            - name: EmailSettings__FromName
+              valueFrom:
+                  configMapKeyRef:
+                    name: eshop-configmap
+                    key: eshop-ordering-api_email_from-name
+            - name: EmailSettings__FromAddress
+              valueFrom:
+                  configMapKeyRef:
+                    name: eshop-configmap
+                    key: eshop-ordering-api_email_from-address
+            - name: EmailSettings__ApiKey
+              valueFrom:
+                  secretKeyRef:
+                    name: eshop-secrets
+                    key: eshop-ordering-api_email_api-key
+        ###
+        - name: eshop-ordering-db-sqlserver
+          image: mcr.microsoft.com/mssql/server:2017-latest
+          ports:
+            - containerPort: 1433
+          resources:
+            requests:
+              memory: "1Gi"
+              cpu: "250m"
+            limits:
+              memory: "2Gi"
+              cpu: "500m"
+          env:
+            - name: ACCEPT_EULA
+              value: "Y"
+            - name: MSSQL_SA_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: eshop-secrets
+                  key: eshop-ordering-db-sqlserver_password
+        ###

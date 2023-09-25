@@ -35,7 +35,7 @@ namespace AspnetRunBasics.Services
 
         public async Task CheckoutBasket(BasketCheckoutModel model)
         {
-            var response = await _client.PostAsJson($"/Basket/Checkout", model);
+            var response = await _client.PostAsJson($"/basket/checkout", model);
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception("Something went wrong when calling api.");

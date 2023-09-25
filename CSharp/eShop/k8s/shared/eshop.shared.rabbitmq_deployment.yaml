@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eshop-shared-rabbitmq
+  labels:
+    app: eshop-shared-rabbitmq
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: eshop-shared-rabbitmq
+  template:
+    metadata:
+      labels:
+        app: eshop-shared-rabbitmq
+    spec:
+      containers:
+        - name: eshop-shared-rabbitmq
+          image: rabbitmq:3-management-alpine
+          ports:
+            - containerPort: 5672
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "1Gi"
+              cpu: "500m"

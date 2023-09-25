@@ -6,9 +6,9 @@ namespace AspnetRunBasics.Services
 {
     public interface ICatalogService
     {
-        Task<IEnumerable<CatalogModel>> GetCatalog();
-        Task<IEnumerable<CatalogModel>> GetCatalogByCategory(string category);
-        Task<CatalogModel> GetCatalog(string id);
-        Task<CatalogModel> CreateCatalog(CatalogModel model);
+        Task<IEnumerable<Models.ProductModel>> GetCatalog();
+        Task<IEnumerable<Models.ProductModel>> GetCatalogByCategory(string category);
+        Task<Models.ProductModel> GetCatalog(string id);
+        Task<Models.ProductModel> CreateCatalog(Models.ProductModel model);
     }
 }

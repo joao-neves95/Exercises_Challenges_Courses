@@ -1,5 +1,4 @@
 using AspnetRunBasics.Extensions;
-using AspnetRunBasics.Models;
 
 using System;
 using System.Collections.Generic;
@@ -17,29 +16,29 @@ namespace AspnetRunBasics.Services
             _client = client ?? throw new ArgumentNullException(nameof(client));
         }
 
-        public async Task<IEnumerable<CatalogModel>> GetCatalog()
+        public async Task<IEnumerable<Models.ProductModel>> GetCatalog()
         {
             var response = await _client.GetAsync("/catalog/products");
-            return await response.ReadContentAs<List<CatalogModel>>();
+            return await response.ReadContentAs<List<Models.ProductModel>>();
         }
 
-        public async Task<CatalogModel> GetCatalog(string id)
+        public async Task<Models.ProductModel> GetCatalog(string id)
         {
             var response = await _client.GetAsync($"/catalog/products/id/{id}");
-            return await response.ReadContentAs<CatalogModel>();
+            return await response.ReadContentAs<Models.ProductModel>();
         }
 
-        public async Task<IEnumerable<CatalogModel>> GetCatalogByCategory(string category)
+        public async Task<IEnumerable<Models.ProductModel>> GetCatalogByCategory(string category)
         {
             var response = await _client.GetAsync($"/catalog/products/category/{category}");
-            return await response.ReadContentAs<List<CatalogModel>>();
+            return await response.ReadContentAs<List<Models.ProductModel>>();
         }
 
-        public async Task<CatalogModel> CreateCatalog(CatalogModel model)
+        public async Task<Models.ProductModel> CreateCatalog(Models.ProductModel model)
         {
             var response = await _client.PostAsJson($"/catalog/products", model);
             if (response.IsSuccessStatusCode)
-                return await response.ReadContentAs<CatalogModel>();
+                return await response.ReadContentAs<Models.ProductModel>();
             else
             {
                 throw new Exception("Something went wrong when calling api.");

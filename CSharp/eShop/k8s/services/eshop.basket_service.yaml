@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: eshop-basket-api
+spec:
+  # `NodePort` for localhost.
+  type: NodePort
+  selector:
+    app: eshop-basket-api
+  ports:
+    - protocol: TCP
+      port: 30001
+      targetPort: 80
+      # `nodePort` here is to run locally.
+      # nodePort: 30001
