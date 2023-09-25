@@ -22,7 +22,7 @@
         - In a managed environment:
             - The cloud provider manages the machine creation/destruction.
         - In a non-managed environment:
-            - The machines for each node in a Kubernetes cluster must already exist, so the control plane (master) can know which nodes it can use.
+            - The machines for each node in a Kubernetes cluster must already exist and be configured, so that the control plane (master) can know which nodes it can use.
             - They then need to be configured to communicate with the control plane, so they can join the cluster.
         - Each Node hosts a **<u>Pod</u>**.
             - Each pod can host one or multiple Containers, with shared storage and network resources.
@@ -44,33 +44,41 @@
         - To achieve high availability. Ensures that a specified number of replicas of a pod are running distributed across available nodes in the cluster at all times. Automatically replaces dead pods.
         - E.g.: if you have a replica set with three replicas, Kubernetes will attempt to ensure that all three replicas are running on different nodes (to provide fault tolerance) but within the constraints of your cluster's resources.
 
-![](../../_assets/kubernetes-architecture.webp)
+![](../../../_assets/kubernetes-architecture.webp)
 
-![](../../_assets/kubernetes-cluster.webp)
+![](../../../_assets/kubernetes-cluster.webp)
 
-![](../../_assets/kubernetes-deployment.webp)
+![](../../../_assets/kubernetes-deployment.webp)
 
 ---
 
 ## Port configurations
-- **Port** exposes the Kubernetes service on the specified port within the cluster. Other pods within the cluster can communicate with this server on the specified port.
-- **TargetPort** is the port on which the service will send requests to, that your pod will be listening on.
-- **NodePort** exposes a service externally to the cluster by means of the target nodes IP address and the NodePort. NodePort is the default setting if the port field is not specified.
+- **Port**:
+    - Exposes the Kubernetes service on the specified port within the cluster.
+    - Other pods within the cluster can communicate with this server on the specified port.
+- **TargetPort**:
+    -  Is the port on which the service will send requests to, that your pod will be listening on.
+    - E.g.: 80 for HTTP services.
+- **NodePort**:
+    - Exposes a service externally to the cluster by means of the target nodes IP address and the NodePort.
+    - NodePort is the default setting if the port field is not specified.
+    - The range of valid ports is 30000-32767.
 
 ---
 
 ## Declarative vs Imperative
 - Imperative:
     - Deploy Kubernetes with the kubectl CLI commands.
-- Declarative:
-    - Deploy by writing manifest files and deploying by using the `kubectl apply` command.
-    - Defined in yaml files.
     - Workflow:
         - `create -f {{menifest-file-name}}.yaml`
             - The manifest file needs to already exist.
             - Creates the manifest file based on the input configuration.
         - `apply -f {{menifest-file-name}}.yaml`
             - Used to apply changes made on the manifest.
+- Declarative:
+    - Deploy by writing manifest files and deploying by using the `kubectl apply` command.
+    - Defined in yaml files.
+    - Names and labels in manifest files can not contain dots.
 
 ---
 
@@ -79,24 +87,22 @@
     - `kubectl --help`
     - `kubectl cluster-info`
     - `kubectl get all`
-- [`run ...`](https://jamesdefabia.github.io/docs/user-guide/kubectl/kubectl_run)
-    - Run a particular image on the cluster.
-    - Creates a pod on the cluster.
-    - This should not be done directly and instead use deployments.
-- [`create deployment ...`](https://kubernetes.io/docs/tutorials/kubernetes-basics/deploy-app/deploy-intro)
-    - Used to create the replicasets and the pods (i.e. a deployment).
-    - It creates a manifest file based on the input.
-- `kubectl logs {id}`
-- [`describe ...`](https://jamesdefabia.github.io/docs/user-guide/kubectl/kubectl_describe)
-    - `kubectl describe pod {id}`
-    - Good for troubleshooting.
-- `kubectl delete deployment {name}`
+- Apply
+    - `kubectl apply --recursive -f ./<dir>`
+    - Applies manifest changes.
+- Delete
+    - `kubectl delete --all --recursive -f .`
+    - `kubectl delete deployment {name}`
+- Troubleshooting
+    - `kubectl get pods -n <namespace>`
+    - `kubectl describe pod <pod_name>`
+    - `kubectl logs <pod_name> <container_name>`
 
 ---
 
 ## Environments
 - Local development
-    - During development, images can be saved in the Docker Local Image Repository.
+    - During development, images can be saved on a Docker Local Image Repository.
     - The Kubernetes master runs locally.
 - Production (managed)
     - Images are saved on a Docker Registry.
