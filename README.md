@@ -73,7 +73,7 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 ### Courses
 
 - [Microservices Architecture in C# .NET with applying CQRS, Clean Architecture and Event-Driven Communication](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/eShop/)
-    - A course about microservices, gRPC, multiple database systems (MySQL, PostgreSQL, SQL Server, MongoDB), Clean and DDD architectural patterns, event driven distributed communication through RabbitMQ, as well as Docker and Docker Compose.
+    - A course about microservices, gRPC, multiple database systems (MySQL, PostgreSQL, SQL Server, MongoDB), Clean and DDD architectural patterns, event driven distributed communication through RabbitMQ, as well as Docker, Docker Compose, Kubernetes (K8s), Azure Pipelines.
 
 - [Build Web APIs using ASP.NET (edX/Microsoft - DEV247x)](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/Build-Web-APIs-using-ASP.NET_edX-Microsoft)
   - [Extension of the final project's WebAPI with custom authentication](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/Personal-Projects/Tutorials/ASPNETCore2.WebServer)
@@ -84,7 +84,7 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 
 ### Tutorials
 
-  - https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/Personal-Projects/Tutorials
+  - https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/CSharp/Tutorials
 
 ### WPF
 
