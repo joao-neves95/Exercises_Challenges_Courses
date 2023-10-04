@@ -1,0 +1,11 @@
+{
+    "recommendations": [
+        "streetsidesoftware.code-spell-checker",
+        "ms-python.isort",
+        "ms-python.python",
+        "donjayamanne.python-environment-manager",
+        "tushortz.python-extended-snippets",
+        "kevinrose.vsc-python-indent",
+        "mgesbert.python-path"
+    ]
+}
