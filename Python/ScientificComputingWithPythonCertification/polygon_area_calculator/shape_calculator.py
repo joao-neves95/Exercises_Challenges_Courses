@@ -29,9 +29,9 @@ class Rectangle:
       return "Too big for picture."
 
     table = []
-    for iRow in range(self.height):
+    for _ in range(self.height):
       row = []
-      for iCol in range(self.width):
+      for _ in range(self.width):
         row.append("*")
       table.append(row)
 

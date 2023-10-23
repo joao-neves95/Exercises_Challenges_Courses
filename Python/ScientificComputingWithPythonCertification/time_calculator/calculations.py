@@ -41,7 +41,7 @@ def convert_24hour_to_12_hour(hours: int) -> tuple[int, str]:
     return (12 if hours == 0 else hours, AmPm.AM.value)
 
 
-def convert_minutes_to_hours(minutes: int) -> float:
+def convert_minutes_to_hours(minutes: float) -> float:
   '''
   e.g.: convert_minutes_to_hours(90) = 1.5
   e.g.: convert_minutes_to_hours(60) = 1
