@@ -13,9 +13,9 @@ namespace AlgosAndDataStructs.Tests.DataStructures
 
             var table2 = new HashTable<int>(new[]
             {
-                new AlgosAndDataStructs.DataStructures.KeyValuePair<string, int>("1", 123),
-                new AlgosAndDataStructs.DataStructures.KeyValuePair<string, int>("2", 456),
-                new AlgosAndDataStructs.DataStructures.KeyValuePair<string, int>("3", 789),
+                new KeyValuePair<string, int>("1", 123),
+                new KeyValuePair<string, int>("2", 456),
+                new KeyValuePair<string, int>("3", 789),
             },
             40);
 
@@ -36,7 +36,7 @@ namespace AlgosAndDataStructs.Tests.DataStructures
             var table2 = new HashTable<int>(
                 new[]
                 {
-                    new AlgosAndDataStructs.DataStructures.KeyValuePair<string, int>("1", 123),
+                    new KeyValuePair < string, int >("1", 123),
                 },
                 6);
             table2.Add("2", 456);
@@ -56,9 +56,9 @@ namespace AlgosAndDataStructs.Tests.DataStructures
 
             var table2 = new HashTable<int>(new[]
             {
-                new AlgosAndDataStructs.DataStructures.KeyValuePair<string, int>("1", 123),
-                new AlgosAndDataStructs.DataStructures.KeyValuePair<string, int>("2", 456),
-                new AlgosAndDataStructs.DataStructures.KeyValuePair<string, int>("3", 789),
+                new KeyValuePair < string, int >("1", 123),
+                new KeyValuePair < string, int >("2", 456),
+                new KeyValuePair < string, int >("3", 789),
             });
 
             table2.Add("4", 321);
@@ -90,9 +90,9 @@ namespace AlgosAndDataStructs.Tests.DataStructures
         {
             var table = new HashTable<int>(new[]
             {
-                new AlgosAndDataStructs.DataStructures.KeyValuePair<string, int>("1", 123),
-                new AlgosAndDataStructs.DataStructures.KeyValuePair<string, int>("2", 456),
-                new AlgosAndDataStructs.DataStructures.KeyValuePair<string, int>("3", 789),
+                new KeyValuePair < string, int >("1", 123),
+                new KeyValuePair < string, int >("2", 456),
+                new KeyValuePair < string, int >("3", 789),
             },
             10);
 

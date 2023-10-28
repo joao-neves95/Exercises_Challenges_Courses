@@ -2,26 +2,13 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace AlgosAndDataStructs.DataStructures
 {
-    public struct KeyValuePair<TKey, TValue>
-    {
-        public KeyValuePair(TKey key, TValue value) : this()
-        {
-            Key = key;
-            Value = value;
-        }
-
-        public TKey Key { get; set; }
-
-        public TValue Value { get; set; }
-    }
-
     public class HashTable<T>
     {
         private KeyValuePair<string?, T?>?[] Data { get; set; }
 
-        public int Size { get { return Data.Length; } }
+        public uint Size { get { return (uint)Data.Length; } }
 
-        public int Count { get; set; } = 0;
+        public uint Count { get; private set; } = 0;
 
         public HashTable(int initialSize)
         {
