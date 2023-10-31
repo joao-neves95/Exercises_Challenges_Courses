@@ -71,14 +71,14 @@ namespace AlgosAndDataStructs.DataStructures
         /// <summary>
         /// O(n)
         /// </summary>
-        public uLinkedList<TValue> Insert(TValue value, uint index)
+        public uLinkedList<TValue> Insert(TValue value, Index index)
         {
-            if (Head == null || index >= Count)
+            if (Head == null || index.Value >= Count)
             {
                 Append(value);
             }
 
-            var before = TraverseTo(index - 1);
+            var before = TraverseTo(index.Value - 1);
 
             if (before == null)
             {
@@ -97,23 +97,26 @@ namespace AlgosAndDataStructs.DataStructures
         /// <summary>
         /// O(n)
         /// </summary>
-        public uLinkedList<TValue> Remove(uint index)
+        public uLinkedList<TValue> Remove(Index index)
         {
-            var before = TraverseTo(index - 1);
-
-            if (before == null)
+            if (Head == null)
             {
-                Head = null;
-                Tail = null;
+                return this;
+            }
+            else if (index.Value == 0)
+            {
+                Head = Head.NextNode;
             }
             else
             {
+                var before = TraverseTo(index.Value - 1);
                 before.NextNode = before.NextNode?.NextNode;
 
-                if (index >= Count - 1)
+                if (index.Value == Count - 1)
                 {
                     Tail = before;
-                    Tail.NextNode = null;
+
+                    if (Tail != null) Tail.NextNode = null;
                 }
             }
 
@@ -127,24 +130,82 @@ namespace AlgosAndDataStructs.DataStructures
         /// </summary>
         public uLinkedList<TValue> Pop()
         {
-            return Remove(Count - 1);
+            return Remove(new Index((int)Count).Value - 1);
         }
 
-        public uLinkedList<TValue> Reverse()
+        public uLinkedList<TValue> ReverseNotInPlace()
         {
-            throw new NotImplementedException();
+            var reversedNodes = new Node<TValue>[Count];
+
+            var currentNode = Head;
+
+            for (var i = (int)Count - 1; i >= 0; --i, currentNode = currentNode!.NextNode)
+            {
+                reversedNodes[i] = currentNode!;
+            }
+
+            Head = reversedNodes[0];
+            Tail = reversedNodes[Count - 1];
+            Tail.NextNode = null;
+
+            currentNode = Head;
+            for (var i = 1; i < Count; ++i, currentNode = currentNode!.NextNode)
+            {
+                currentNode!.NextNode = reversedNodes[i];
+            }
+
+            return this;
+        }
+
+        /*
+            0 -> 1 -> 2 -> 3
+            0 <- 1 <- 2 <- 3
+            // becomes
+            3 -> 2 -> 1 -> 0
+
+            0 -> null, 1 -> 0, 2 -> 1, 3 -> null
+        */
+        public uLinkedList<TValue> ReverseInPlace()
+        {
+            if (Head == null)
+            {
+                return this;
+            }
+
+            // 0, 1, 2, etc.
+            var currentNodeRef = Head!;
+            // null, 0, 1, 2, etc.
+            Node<TValue>? previousNodeRef = null;
+
+            for (var i = 0; i < Count; ++i)
+            {
+                // 1
+                var nextNodeRef = currentNodeRef?.NextNode;
+
+                // 0 -> null, 1 -> 0, etc.
+                currentNodeRef.NextNode = previousNodeRef;
+
+                // 0
+                previousNodeRef = currentNodeRef;
+                // 1
+                currentNodeRef = nextNodeRef;
+            }
+
+            (Tail, Head) = (Head, Tail);
+
+            return this;
         }
 
         /// <summary>
         /// O(n)
         /// </summary>
-        private Node<TValue>? TraverseTo(uint index)
+        private Node<TValue>? TraverseTo(Index index)
         {
-            if (index <= 0)
+            if (index.Value <= 0)
             {
                 return Head;
             }
-            else if (index >= Count - 1)
+            else if (index.Value >= Count - 1)
             {
                 return Tail;
             }
@@ -153,7 +214,7 @@ namespace AlgosAndDataStructs.DataStructures
 
             for (var i = 0; currentItem != null; ++i)
             {
-                if (i == index)
+                if (i == index.Value)
                 {
                     return currentItem;
                 }

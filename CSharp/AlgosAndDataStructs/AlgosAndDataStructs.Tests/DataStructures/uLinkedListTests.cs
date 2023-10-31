@@ -50,8 +50,11 @@ namespace AlgosAndDataStructs.Tests.DataStructures
         {
             var linkedList = new uLinkedList<int>(new[] { 0, 1, 100, 3 });
             linkedList.Remove(2);
-
             TestLinkedValues(linkedList, new[] { 0, 1, 3 });
+
+            linkedList = new uLinkedList<int>(new[] { 0, 1, 2, 3 });
+            linkedList.Remove(0);
+            TestLinkedValues(linkedList, new[] { 1, 2, 3 });
         }
 
         [Fact]
@@ -61,6 +64,26 @@ namespace AlgosAndDataStructs.Tests.DataStructures
             linkedList.Pop();
 
             TestLinkedValues(linkedList, new[] { 0, 1, 100 });
+        }
+
+        [Fact]
+        public void Reverse_Passes()
+        {
+            var linkedList = new uLinkedList<int>(new[] { 0, 1, 2, 3 });
+            linkedList.ReverseNotInPlace();
+            TestLinkedValues(linkedList, new[] { 3, 2, 1, 0 });
+
+            linkedList = new uLinkedList<int>(new[] { 0 });
+            linkedList.ReverseNotInPlace();
+            TestLinkedValues(linkedList, new[] { 0 });
+
+            linkedList = new uLinkedList<int>(new[] { 0, 1, 2, 3 });
+            linkedList.ReverseInPlace();
+            TestLinkedValues(linkedList, new[] { 3, 2, 1, 0 });
+
+            linkedList = new uLinkedList<int>(new[] { 0 });
+            linkedList.ReverseInPlace();
+            TestLinkedValues(linkedList, new[] { 0 });
         }
 
         private static void TestLinkedValues(uLinkedList<int> linkedList, IEnumerable<int> values)
