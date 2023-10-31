@@ -12,6 +12,7 @@ namespace AlgosAndDataStructs.DataStructures
 
         public HashTable(int initialSize)
         {
+            Data = null!;
             ReallocHashTableMemory(initialSize);
         }
 
