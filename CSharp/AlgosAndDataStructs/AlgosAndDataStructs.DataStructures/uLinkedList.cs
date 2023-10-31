@@ -60,9 +60,12 @@ namespace AlgosAndDataStructs.DataStructures
                 Append(value);
             }
 
-            var newNode = new Node<TValue>() { Value = value };
-            newNode.NextNode = Head;
-            Head = newNode;
+            Head = new Node<TValue>
+            {
+                Value = value,
+                NextNode = Head,
+            };
+
             ++Count;
 
             return this;
