@@ -141,9 +141,32 @@ namespace AlgosAndDataStructs.DataStructures
             return Remove(Count - 1);
         }
 
+        /*
+            null <- 0 -> <- 1 -> <- 2 -> <- 3 -> null
+            // becomes
+            null <- 3 -> <- 2 -> <- 1 -> <- 0 -> null
+
+            Tasks: 1 <- 0 -> null, 2 <- 1 -> 0, 2 -> 1, 3 -> null
+        */
         public uDoublyLinkedList<TValue> Reverse()
         {
-            throw new NotImplementedException();
+            var currentNodeRef = Head;
+            DoubleNode<TValue>? previousNodeRef = null;
+
+            for (int i = 0; i < Count; ++i)
+            {
+                var nextNodeRef = currentNodeRef?.NextNode;
+
+                currentNodeRef.NextNode = previousNodeRef;
+                currentNodeRef.PreviousNode = nextNodeRef;
+
+                previousNodeRef = currentNodeRef;
+                currentNodeRef = nextNodeRef;
+            }
+
+            (Head, Tail) = (Tail, Head);
+
+            return this;
         }
 
         /// <summary>

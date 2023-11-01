@@ -70,17 +70,17 @@ namespace AlgosAndDataStructs.Tests.DataStructures
             TestLinkedValues(linkedList, new[] { 0, 1, 100 });
         }
 
-        //[Fact]
-        //public void Reverse_Passes()
-        //{
-        //    var linkedList = new uDoublyLinkedList<int>(new[] { 0, 1, 2, 3 });
-        //    linkedList.Reverse();
-        //    TestLinkedValues(linkedList, new[] { 3, 2, 1, 0 });
+        [Fact]
+        public void Reverse_Passes()
+        {
+            var linkedList = new uDoublyLinkedList<int>(new[] { 0, 1, 2, 3 });
+            linkedList.Reverse();
+            TestLinkedValues(linkedList, new[] { 3, 2, 1, 0 });
 
-        //    linkedList = new uDoublyLinkedList<int>(new[] { 0 });
-        //    linkedList.Reverse();
-        //    TestLinkedValues(linkedList, new[] { 0 });
-        //}
+            linkedList = new uDoublyLinkedList<int>(new[] { 0 });
+            linkedList.Reverse();
+            TestLinkedValues(linkedList, new[] { 0 });
+        }
 
         private static void TestLinkedValues(uDoublyLinkedList<int> linkedList, IEnumerable<int> values)
         {
@@ -104,7 +104,7 @@ namespace AlgosAndDataStructs.Tests.DataStructures
                 }
             }
 
-            linkedList.Tail?.PreviousNode!.Value.Should().Be(values.ElementAt(values.Count() - 2));
+            linkedList.Tail?.PreviousNode?.Value.Should().Be(GetElementAtOrNull(values, values.Count() - 2));
             linkedList.Tail?.Value.Should().Be(values.Last());
             linkedList.Tail?.NextNode.Should().Be(null);
         }
