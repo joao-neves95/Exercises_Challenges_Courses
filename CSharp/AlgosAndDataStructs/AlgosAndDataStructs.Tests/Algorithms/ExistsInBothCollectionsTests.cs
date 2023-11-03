@@ -9,7 +9,7 @@ namespace AlgosAndDataStructs.Tests.Algorithms
         [Fact]
         public void BruteForce_Passes()
         {
-            ExistsInBothCollections.BruteForce(GetMockInputData1(), GetMockInputData2())
+            ExistsInBothCollections<string?>.BruteForce(GetMockInputData1(), GetMockInputData2())
                 .Should()
                 .BeTrue();
         }
@@ -17,11 +17,11 @@ namespace AlgosAndDataStructs.Tests.Algorithms
         [Fact]
         public void BruteForce_False_Passes()
         {
-            ExistsInBothCollections.BruteForce(GetMockInputData1(), GetMockInputData3())
+            ExistsInBothCollections<string?>.BruteForce(GetMockInputData1(), GetMockInputData3())
                 .Should()
                 .BeFalse();
 
-            ExistsInBothCollections.BruteForce(GetMockInputData1(), null!)
+            ExistsInBothCollections<string?>.BruteForce(GetMockInputData1(), null!)
                 .Should()
                 .BeFalse();
         }
@@ -29,11 +29,11 @@ namespace AlgosAndDataStructs.Tests.Algorithms
         [Fact]
         public void Optimized_True_Passes()
         {
-            ExistsInBothCollections.Optimized(GetMockInputData1(), GetMockInputData2())
+            ExistsInBothCollections<string?>.Optimized(GetMockInputData1(), GetMockInputData2())
                 .Should()
                 .BeTrue();
 
-            ExistsInBothCollections.Optimized(GetMockInputData2(), GetMockInputData1())
+            ExistsInBothCollections<string?>.Optimized(GetMockInputData2(), GetMockInputData1())
                 .Should()
                 .BeTrue();
         }
@@ -41,15 +41,15 @@ namespace AlgosAndDataStructs.Tests.Algorithms
         [Fact]
         public void Optimized_False_Passes()
         {
-            ExistsInBothCollections.Optimized(GetMockInputData1(), GetMockInputData3())
+            ExistsInBothCollections<string?>.Optimized(GetMockInputData1(), GetMockInputData3())
                 .Should()
                 .BeFalse();
 
-            ExistsInBothCollections.Optimized(GetMockInputData1(), null!)
+            ExistsInBothCollections<string?>.Optimized(GetMockInputData1(), null!)
                 .Should()
                 .BeFalse();
 
-            ExistsInBothCollections.Optimized(null!, GetMockInputData1())
+            ExistsInBothCollections<string?>.Optimized(null!, GetMockInputData1())
                 .Should()
                 .BeFalse();
         }

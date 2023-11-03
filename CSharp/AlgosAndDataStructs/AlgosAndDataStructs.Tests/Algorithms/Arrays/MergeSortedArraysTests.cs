@@ -18,7 +18,7 @@ namespace AlgosAndDataStructs.Tests.Algorithms.Arrays
             IEnumerable<int> array2,
             IEnumerable<int> expectedResult)
         {
-            MergeSortedArrays
+            MergeSortedArrays<int>
                 .BruteForce(array1, array2)
                 .Should()
                 .BeEquivalentTo(expectedResult);
@@ -35,7 +35,7 @@ namespace AlgosAndDataStructs.Tests.Algorithms.Arrays
             IEnumerable<char> array2,
             IEnumerable<char> expectedResult)
         {
-            MergeSortedArrays
+            MergeSortedArrays<char>
                 .BruteForce(array1, array2)
                 .Should()
                 .BeEquivalentTo(expectedResult);

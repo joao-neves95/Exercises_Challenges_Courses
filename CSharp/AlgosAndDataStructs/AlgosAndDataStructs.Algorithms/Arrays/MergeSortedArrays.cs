@@ -1,7 +1,7 @@
-
 namespace AlgosAndDataStructs.Algorithms.Arrays
 {
-    public static class MergeSortedArrays
+    public sealed class MergeSortedArrays<T> : IAlgorithm<IEnumerable<T>, IEnumerable<T>, IEnumerable<T>>
+        where T : IComparable<T>
     {
         // Notes:
         // -----
@@ -19,8 +19,7 @@ namespace AlgosAndDataStructs.Algorithms.Arrays
         /// O(n)
         ///
         /// </summary>
-        public static IEnumerable<T> BruteForce<T>(IEnumerable<T> array1, IEnumerable<T> array2)
-            where T : IComparable<T>
+        public static IEnumerable<T>? BruteForce(IEnumerable<T> array1, IEnumerable<T> array2)
         {
             if (array1?.Any() != true)
             {
@@ -77,6 +76,11 @@ namespace AlgosAndDataStructs.Algorithms.Arrays
             }
 
             return response;
+        }
+
+        public static IEnumerable<T>? Optimized(IEnumerable<T> input1, IEnumerable<T> input2)
+        {
+            throw new NotImplementedException();
         }
     }
 }

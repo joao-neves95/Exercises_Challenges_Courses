@@ -16,8 +16,8 @@ namespace AlgosAndDataStructs.Tests.Algorithms.HashTables
             IEnumerable<int> array,
             int expectedResult)
         {
-            FirstRecurringItem.BruteForce(array).Should().Be(expectedResult);
-            FirstRecurringItem.Optimized(array).Should().Be(expectedResult);
+            FirstRecurringItem<int>.BruteForce(array).Should().Be(expectedResult);
+            FirstRecurringItem<int>.Optimized(array).Should().Be(expectedResult);
         }
 
         [Theory]
@@ -30,8 +30,8 @@ namespace AlgosAndDataStructs.Tests.Algorithms.HashTables
             IEnumerable<string> array,
             string? expectedResult)
         {
-            FirstRecurringItem.BruteForce(array).Should().Be(expectedResult);
-            FirstRecurringItem.Optimized(array).Should().Be(expectedResult);
+            FirstRecurringItem<string>.BruteForce(array).Should().Be(expectedResult);
+            FirstRecurringItem<string>.Optimized(array).Should().Be(expectedResult);
         }
     }
 }

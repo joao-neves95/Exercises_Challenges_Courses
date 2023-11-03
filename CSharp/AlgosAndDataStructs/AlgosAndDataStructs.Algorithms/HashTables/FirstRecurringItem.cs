@@ -7,10 +7,10 @@ namespace AlgosAndDataStructs.Algorithms.HashTables
     * [7, 8, 4, 1, 3, 8] = 8
     * 
     */
-    public static class FirstRecurringItem
+    public sealed class FirstRecurringItem<TValue> : IAlgorithm<IEnumerable<TValue>, TValue>
+        where TValue : IComparable<TValue>
     {
-        public static T? BruteForce<T>(IEnumerable<T> array)
-            where T : IComparable<T>
+        public static TValue? BruteForce(IEnumerable<TValue> array)
         {
             for (var i = 0; i < array.Count(); ++i)
             {
@@ -27,10 +27,9 @@ namespace AlgosAndDataStructs.Algorithms.HashTables
             return default;
         }
 
-        public static T? Optimized<T>(IEnumerable<T> array)
-            where T : IComparable<T>
+        public static TValue? Optimized(IEnumerable<TValue> array)
         {
-            var visitedItems = new HashSet<T>();
+            var visitedItems = new HashSet<TValue>();
 
             foreach (var item in array)
             {

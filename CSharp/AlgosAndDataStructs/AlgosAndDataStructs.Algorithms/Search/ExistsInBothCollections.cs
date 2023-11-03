@@ -1,14 +1,13 @@
-
 namespace AlgosAndDataStructs.Algorithms.Search
 {
-    public static class ExistsInBothCollections
+    public sealed class ExistsInBothCollections<T> : IAlgorithm<IEnumerable<T>, IEnumerable<T>, bool>
     {
         /// <summary>
         /// Speed: O(a * b) <br />
         /// Memory: O(1)
         ///
         /// </summary>
-        public static bool BruteForce<T>(IEnumerable<T> array1, IEnumerable<T> array2)
+        public static bool BruteForce(IEnumerable<T> array1, IEnumerable<T> array2)
         {
             if (!IsInputValid(array1, array2))
             {
@@ -36,7 +35,7 @@ namespace AlgosAndDataStructs.Algorithms.Search
         /// Memory: O(MAX(a, b))
         ///
         /// </summary>
-        public static bool Optimized<T>(IEnumerable<T> array1, IEnumerable<T> array2)
+        public static bool Optimized(IEnumerable<T> array1, IEnumerable<T> array2)
         {
             if (!IsInputValid(array1, array2))
             {
@@ -54,7 +53,7 @@ namespace AlgosAndDataStructs.Algorithms.Search
                 .Any(item => set.Contains(item));
         }
 
-        private static bool IsInputValid<T>(IEnumerable<T> array1, IEnumerable<T> array2)
+        private static bool IsInputValid(IEnumerable<T> array1, IEnumerable<T> array2)
         {
             return array1 is not null && array2 is not null && array1.Any() && array2.Any();
         }
@@ -63,7 +62,7 @@ namespace AlgosAndDataStructs.Algorithms.Search
         /// O(n)
         ///
         /// </summary>
-        private static HashSet<T>? ArrayToHashSet<T>(IEnumerable<T> array)
+        private static HashSet<T>? ArrayToHashSet(IEnumerable<T> array)
         {
             if (array?.Any() != true)
             {

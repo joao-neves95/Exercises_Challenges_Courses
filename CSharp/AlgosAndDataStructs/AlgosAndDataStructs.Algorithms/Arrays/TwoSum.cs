@@ -1,7 +1,6 @@
-
 namespace AlgosAndDataStructs.Algorithms.Arrays
 {
-    public static class TwoSum
+    public sealed class TwoSum : IAlgorithm<IEnumerable<int>, int, IEnumerable<int>>
     {
         /**
          * Notes:
