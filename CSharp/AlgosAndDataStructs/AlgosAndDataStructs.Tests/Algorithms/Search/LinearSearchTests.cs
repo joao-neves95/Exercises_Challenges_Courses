@@ -1,9 +1,8 @@
-
-using AlgosAndDataStructs.Algorithms;
+using AlgosAndDataStructs.Algorithms.Search;
 
 using FluentAssertions;
 
-namespace AlgosAndDataStructs.Tests.Algorithms
+namespace AlgosAndDataStructs.Tests.Algorithms.Search
 {
     public sealed class LinearSearchTests
     {

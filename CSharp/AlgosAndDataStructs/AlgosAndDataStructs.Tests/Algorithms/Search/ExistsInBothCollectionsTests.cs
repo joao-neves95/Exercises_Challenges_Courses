@@ -2,7 +2,7 @@ using AlgosAndDataStructs.Algorithms.Search;
 
 using FluentAssertions;
 
-namespace AlgosAndDataStructs.Tests.Algorithms
+namespace AlgosAndDataStructs.Tests.Algorithms.Search
 {
     public class ExistsInBothCollectionsTests
     {
