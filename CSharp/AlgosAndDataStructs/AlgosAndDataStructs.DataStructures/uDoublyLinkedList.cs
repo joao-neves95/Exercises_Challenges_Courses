@@ -3,7 +3,6 @@ using AlgosAndDataStructs.DataStructures.Types;
 namespace AlgosAndDataStructs.DataStructures
 {
     public class uDoublyLinkedList<TValue>
-        where TValue : notnull
     {
         public DoubleNode<TValue>? Head { get; private set; }
 
@@ -21,6 +20,12 @@ namespace AlgosAndDataStructs.DataStructures
             {
                 Append(value);
             }
+        }
+
+        ~uDoublyLinkedList()
+        {
+            Head = null;
+            Tail = null;
         }
 
         /// <summary>
@@ -100,22 +105,29 @@ namespace AlgosAndDataStructs.DataStructures
         }
 
         /// <summary>
-        /// O(n)
+        /// O(n), or O(1) if removing from the edges.
         /// </summary>
-        public uDoublyLinkedList<TValue> Remove(Index index)
+        public TValue? Remove(Index index)
         {
+            TValue? deletedValue = default;
+
             if (Head == null)
             {
-                return this;
+                return deletedValue;
             }
             else if (index.Value == 0)
             {
+                deletedValue = Head!.Value;
                 Head = Head.NextNode;
                 if (Head != null) Head.PreviousNode = null;
             }
             else
             {
                 var before = TraverseTo(index.Value - 1);
+
+                deletedValue = before?.NextNode == null
+                    ? default
+                    : before.NextNode.Value;
 
                 before.NextNode = before.NextNode?.NextNode;
                 if (before.NextNode != null) before.NextNode.PreviousNode = before;
@@ -130,13 +142,13 @@ namespace AlgosAndDataStructs.DataStructures
 
             --Count;
 
-            return this;
+            return deletedValue;
         }
 
         /// <summary>
-        /// O(n)
+        /// O(1)
         /// </summary>
-        public uDoublyLinkedList<TValue> Pop()
+        public TValue? Pop()
         {
             return Remove(Count - 1);
         }
@@ -170,13 +182,17 @@ namespace AlgosAndDataStructs.DataStructures
         }
 
         /// <summary>
-        /// O(n)
+        /// O(n), or O(1) if traversing to the edges.
         /// </summary>
         private DoubleNode<TValue>? TraverseTo(Index index)
         {
             if (index.Value == 0)
             {
                 return Head;
+            }
+            else if (index.Value >= Count - 2)
+            {
+                return Tail?.PreviousNode;
             }
             else if (index.Value >= Count - 1)
             {

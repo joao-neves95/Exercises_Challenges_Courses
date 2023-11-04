@@ -3,7 +3,6 @@ using AlgosAndDataStructs.DataStructures.Types;
 namespace AlgosAndDataStructs.DataStructures
 {
     public class uLinkedList<TValue>
-        where TValue : notnull
     {
         public Node<TValue>? Head { get; private set; }
 
@@ -25,6 +24,12 @@ namespace AlgosAndDataStructs.DataStructures
             {
                 Append(value);
             }
+        }
+
+        ~uLinkedList()
+        {
+            Head = null;
+            Tail = null;
         }
 
         /// <summary>
@@ -98,22 +103,31 @@ namespace AlgosAndDataStructs.DataStructures
         }
 
         /// <summary>
-        /// O(n)
+        /// Removes the item at index and returns it. <br />
+        /// O(n) if removing from the middle, or O(1) if removing from the front.
         /// </summary>
-        public uLinkedList<TValue> Remove(Index index)
+        public TValue? Remove(Index index)
         {
+            TValue? deletedValue = default;
+
             if (Head == null)
             {
-                return this;
+                return deletedValue;
             }
             else if (index.Value == 0)
             {
+                deletedValue = Head.Value;
                 Head = Head.NextNode;
             }
             else
             {
                 var before = TraverseTo(index.Value - 1);
-                before.NextNode = before.NextNode?.NextNode;
+
+                deletedValue = before?.NextNode == null
+                    ? default
+                    : before.NextNode.Value;
+
+                before!.NextNode = before.NextNode?.NextNode;
 
                 if (index.Value == Count - 1)
                 {
@@ -125,13 +139,14 @@ namespace AlgosAndDataStructs.DataStructures
 
             --Count;
 
-            return this;
+            return deletedValue;
         }
 
         /// <summary>
+        /// Removes the last item and returns it. <br />
         /// O(n)
         /// </summary>
-        public uLinkedList<TValue> Pop()
+        public TValue? Pop()
         {
             return Remove(new Index((int)Count).Value - 1);
         }
@@ -200,7 +215,7 @@ namespace AlgosAndDataStructs.DataStructures
         }
 
         /// <summary>
-        /// O(n)
+        /// O(n), or O(1) if traversing to the edges.
         /// </summary>
         private Node<TValue>? TraverseTo(Index index)
         {

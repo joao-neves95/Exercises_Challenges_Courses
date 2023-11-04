@@ -27,6 +27,11 @@ namespace AlgosAndDataStructs.DataStructures
             ReallocHashTableMemory(initialSize != null && initialSize > data.Count() ? initialSize.Value : data.Count());
         }
 
+        ~HashTable()
+        {
+            Data = null!;
+        }
+
         /// <summary>
         /// ~O(1)
         /// </summary>
