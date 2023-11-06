@@ -2,16 +2,16 @@ namespace AlgosAndDataStructs.DataStructures
 {
     public class uStack<T>
     {
-        private readonly uDoublyLinkedList<T> values;
+        private readonly uLinkedList<T> values;
 
         public uStack()
         {
-            values = new uDoublyLinkedList<T>();
+            values = new uLinkedList<T>();
         }
 
-        public uStack(IEnumerable<T> initialValues)
+        public void Clear()
         {
-            values = new uDoublyLinkedList<T>(initialValues);
+            values.Clear();
         }
 
         /// <summary>
@@ -19,7 +19,7 @@ namespace AlgosAndDataStructs.DataStructures
         /// </summary>
         public uStack<T> Push(T value)
         {
-            values.Append(value);
+            values.Prepend(value);
 
             return this;
         }
@@ -29,7 +29,7 @@ namespace AlgosAndDataStructs.DataStructures
         /// </summary>
         public T? Pop()
         {
-            return values.Pop();
+            return values.PopFront();
         }
 
         /// <summary>
@@ -37,9 +37,9 @@ namespace AlgosAndDataStructs.DataStructures
         /// </summary>
         public T? Peek()
         {
-            return values.Tail == null
+            return values.Head == null
                 ? default
-                : values.Tail.Value;
+                : values.Head.Value;
         }
     }
 }

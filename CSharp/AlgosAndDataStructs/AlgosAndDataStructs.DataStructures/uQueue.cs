@@ -2,16 +2,16 @@ namespace AlgosAndDataStructs.DataStructures
 {
     public class uQueue<T>
     {
-        private readonly uDoublyLinkedList<T> values;
+        private readonly uLinkedList<T> values;
 
         public uQueue()
         {
-            values = new uDoublyLinkedList<T>();
+            values = new uLinkedList<T>();
         }
 
-        public uQueue(IEnumerable<T> initialValues)
+        public void Clear()
         {
-            values = new uDoublyLinkedList<T>(initialValues);
+            values.Clear();
         }
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace AlgosAndDataStructs.DataStructures
         /// </summary>
         public T? Dequeue()
         {
-            return values.Remove(0);
+            return values.PopFront();
         }
 
         /// <summary>

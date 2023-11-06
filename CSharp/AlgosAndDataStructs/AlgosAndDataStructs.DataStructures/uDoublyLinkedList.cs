@@ -24,8 +24,14 @@ namespace AlgosAndDataStructs.DataStructures
 
         ~uDoublyLinkedList()
         {
+            Clear();
+        }
+
+        public void Clear()
+        {
             Head = null;
             Tail = null;
+            Count = 0;
         }
 
         /// <summary>
@@ -105,6 +111,7 @@ namespace AlgosAndDataStructs.DataStructures
         }
 
         /// <summary>
+        /// Removes the item at index and returns it. Reference type values must be destroyed by the caller.
         /// O(n), or O(1) if removing from the edges.
         /// </summary>
         public TValue? Remove(Index index)
@@ -146,6 +153,16 @@ namespace AlgosAndDataStructs.DataStructures
         }
 
         /// <summary>
+        /// Removes the first item and returns it. <br />
+        /// O(1)
+        /// </summary>
+        public TValue? PopFront()
+        {
+            return Remove(0);
+        }
+
+        /// <summary>
+        /// Removes the last item and returns it. <br />
         /// O(1)
         /// </summary>
         public TValue? Pop()

@@ -11,9 +11,6 @@ namespace AlgosAndDataStructs.Tests.DataStructures
         {
             var stack = new uStack<int>();
             stack.Peek().Should().Be(default);
-
-            stack = new uStack<int>(new[] { 0, 1, 2 });
-            stack.Peek().Should().Be(2);
         }
 
         [Fact]

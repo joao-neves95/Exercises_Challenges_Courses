@@ -28,8 +28,14 @@ namespace AlgosAndDataStructs.DataStructures
 
         ~uLinkedList()
         {
+            Clear();
+        }
+
+        public void Clear()
+        {
             Head = null;
             Tail = null;
+            Count = 0;
         }
 
         /// <summary>
@@ -103,8 +109,9 @@ namespace AlgosAndDataStructs.DataStructures
         }
 
         /// <summary>
-        /// Removes the item at index and returns it. <br />
-        /// O(n) if removing from the middle, or O(1) if removing from the front.
+        /// Removes the item at index and returns it. Reference type values must be destroyed by the caller. <br />
+        /// O(n) if removing from the middle or the end,
+        /// or O(1) if removing from the front.
         /// </summary>
         public TValue? Remove(Index index)
         {
@@ -140,6 +147,15 @@ namespace AlgosAndDataStructs.DataStructures
             --Count;
 
             return deletedValue;
+        }
+
+        /// <summary>
+        /// Removes the first item and returns it. <br />
+        /// O(1)
+        /// </summary>
+        public TValue? PopFront()
+        {
+            return Remove(0);
         }
 
         /// <summary>

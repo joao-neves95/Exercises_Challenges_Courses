@@ -38,7 +38,11 @@ namespace AlgosAndDataStructs.Tests.DataStructures
 
             newArray.Length.Should().Be(size);
             newArray.Size.Should().Be(size);
-            newArray.Get((int)Math.Floor(size / 2d)).Should().Be(value);
+
+            for (var i = 0; i < size; ++i)
+            {
+                newArray.Get(i).Should().Be(value);
+            }
         }
 
         [Fact]
@@ -85,7 +89,8 @@ namespace AlgosAndDataStructs.Tests.DataStructures
         {
             const int size = 10;
 
-            var newArray = new DynamicArray<int>(size).Fill(1).Delete(2);
+            var newArray = new DynamicArray<int>(size).Fill(1);
+            newArray.Delete(2);
 
             newArray.Length.Should().Be(size - 1);
             newArray.Size.Should().Be(size);
@@ -103,8 +108,8 @@ namespace AlgosAndDataStructs.Tests.DataStructures
             var newArray = new DynamicArray<int>(initialSize)
                 .Fill(123)
                 .Add(diffElem)
-                .Add(1)
-                .Pop();
+                .Add(1);
+            newArray.Pop();
 
             newArray.Peek().Should().Be(diffElem);
             newArray.Length.Should().Be(finalLength);

@@ -11,9 +11,6 @@ namespace AlgosAndDataStructs.Tests.DataStructures
         {
             var queue = new uQueue<int>();
             queue.Peek().Should().Be(default);
-
-            queue = new uQueue<int>(new[] { 0, 1, 2 });
-            queue.Peek().Should().Be(0);
         }
 
         [Fact]

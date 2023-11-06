@@ -26,6 +26,21 @@ namespace AlgosAndDataStructs.DataStructures
         }
 
         /// <summary>
+        /// O(n)
+        ///
+        /// </summary>
+        /// <param name="data"></param>
+        public DynamicArray<T> Fill(T data)
+        {
+            for (int i = 0; i < Size; ++i)
+            {
+                Add(data);
+            }
+
+            return this;
+        }
+
+        /// <summary>
         /// O(1)
         ///
         /// </summary>
@@ -59,27 +74,22 @@ namespace AlgosAndDataStructs.DataStructures
         }
 
         /// <summary>
-        /// O(n)
-        ///
-        /// </summary>
-        /// <param name="data"></param>
-        public DynamicArray<T> Fill(T data)
-        {
-            for (int i = 0; i < Size; ++i)
-            {
-                Add(data);
-            }
-
-            return this;
-        }
-
-        /// <summary>
         /// O(1)
         ///
         /// </summary>
-        public DynamicArray<T> Pop()
+        public T Pop()
         {
             return Delete(Length - 1);
+        }
+
+        /// <summary>
+        /// Removes an item from the beginning of the list. <br />
+        /// O(1)
+        ///
+        /// </summary>
+        public T Shift()
+        {
+            return Delete(0);
         }
 
         /// <summary>
@@ -97,12 +107,14 @@ namespace AlgosAndDataStructs.DataStructures
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
-        public DynamicArray<T> Delete(int index)
+        public T Delete(int index)
         {
             if (NeedsDecrease())
             {
                 DecreaseSize();
             }
+
+            T deletedItem = _Data[index];
 
             for (int i = index; i < _Data.Length - 1; ++i)
             {
@@ -112,7 +124,7 @@ namespace AlgosAndDataStructs.DataStructures
             _Data[Length - 1] = default;
             --Length;
 
-            return this;
+            return deletedItem;
         }
 
         /// <summary>
