@@ -20,6 +20,11 @@ namespace AlgosAndDataStructs.DataStructures
             _Data = new T[Size];
         }
 
+        ~DynamicArray()
+        {
+            _Data = null!;
+        }
+
         /// <summary>
         /// O(1)
         ///

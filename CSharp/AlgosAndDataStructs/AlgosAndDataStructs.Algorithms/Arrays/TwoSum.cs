@@ -1,7 +1,6 @@
-
 namespace AlgosAndDataStructs.Algorithms.Arrays
 {
-    public static class TwoSum
+    public sealed class TwoSum : IAlgorithm<IEnumerable<int>, int, IEnumerable<int>>
     {
         /**
          * Notes:
@@ -58,8 +57,6 @@ namespace AlgosAndDataStructs.Algorithms.Arrays
          * - Faster means that we can only pass the input array one time.
          * - So, we have to keep track of the items already visited.
          * - This will increase our memory.
-         * - But we cannot loop each new visited elem list again to calculate, because it wouldn't make any sense and that would still be O(n).
-         * - We have to visit it 1 time (constant time) to check if we've already passed through the actual answer.
          * - Therefore, we need to:
          *     - Find the answer for the current number.
          *     - Check if we have the answer in the answer list.
@@ -70,7 +67,7 @@ namespace AlgosAndDataStructs.Algorithms.Arrays
          *     - Let target = t,
          *     - Let current item = c,
          *     - Let answer = x,
-         *     - So that:
+         *     - So:
          *         - t = c + x
          *         - x = ?
          *         - x = t - c

@@ -9,13 +9,12 @@ namespace AlgosAndDataStructs.Tests.Algorithms.Strings
         [Fact]
         public void Reverse_Passes()
         {
-            ReverseString.Reverse("hello world").Should().Be("dlrow olleh");
-        }
+            const string input = "hello world";
+            const string output = "dlrow olleh";
 
-        [Fact]
-        public void LinqReverse_Passes()
-        {
-            ReverseString.LinqReverse("hello world").Should().Be("dlrow olleh");
+            ReverseString.BruteForce(input).Should().Be(output);
+            ReverseString.LinqReverse(input).Should().Be(output);
+            ReverseString.Optimized(input).Should().Be(output);
         }
     }
 }

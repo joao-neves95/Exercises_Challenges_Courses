@@ -1,16 +1,10 @@
-using System;
-using System.Collections.Generic;
-namespace AlgosAndDataStructs.Algorithms
+namespace AlgosAndDataStructs.Algorithms.Search
 {
     public static class LinearSearch
     {
         /// <summary>
         /// O(n)
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="list"></param>
-        /// <param name="itemToFind"></param>
-        /// <returns></returns>
         /// <exception cref="ArgumentNullException"></exception>
         public static int Find<T>(this IEnumerable<T> @list, T itemToFind)
         {
