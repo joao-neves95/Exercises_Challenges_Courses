@@ -1,12 +1,21 @@
+using AlgosAndDataStructs.DataStructures.Abstractions;
+
 namespace AlgosAndDataStructs.DataStructures
 {
-    public class uStack<T>
+    public class uStack<T> : IStack<T>
     {
         private readonly uLinkedList<T> values;
+
+        public uint Count { get { return values.Count; } }
 
         public uStack()
         {
             values = new uLinkedList<T>();
+        }
+
+        public bool IsEmpty()
+        {
+            return values.Head == null;
         }
 
         public void Clear()
@@ -17,7 +26,7 @@ namespace AlgosAndDataStructs.DataStructures
         /// <summary>
         /// O(1)
         /// </summary>
-        public uStack<T> Push(T value)
+        public IStack<T> Push(T value)
         {
             values.Prepend(value);
 

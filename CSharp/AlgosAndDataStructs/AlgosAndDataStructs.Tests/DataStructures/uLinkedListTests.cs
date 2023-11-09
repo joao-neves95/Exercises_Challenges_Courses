@@ -71,6 +71,15 @@ namespace AlgosAndDataStructs.Tests.DataStructures
         }
 
         [Fact]
+        public void PopFront_Passes()
+        {
+            var linkedList = new uLinkedList<int>(new[] { 100, 0, 1, 2, 3 });
+            linkedList.PopFront();
+
+            TestLinkedValues(linkedList, new[] { 0, 1, 2, 3 });
+        }
+
+        [Fact]
         public void Reverse_Passes()
         {
             var linkedList = new uLinkedList<int>(new[] { 0, 1, 2, 3 });

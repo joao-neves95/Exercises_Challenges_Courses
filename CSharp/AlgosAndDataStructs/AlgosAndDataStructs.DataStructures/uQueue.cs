@@ -1,8 +1,12 @@
+using AlgosAndDataStructs.DataStructures.Abstractions;
+
 namespace AlgosAndDataStructs.DataStructures
 {
-    public class uQueue<T>
+    public class uQueue<T> : IQueue<T>
     {
         private readonly uLinkedList<T> values;
+
+        public uint Count { get { return values.Count; } }
 
         public uQueue()
         {
@@ -17,7 +21,7 @@ namespace AlgosAndDataStructs.DataStructures
         /// <summary>
         /// O(1)
         /// </summary>
-        public uQueue<T> Enqueue(T value)
+        public IQueue<T> Enqueue(T value)
         {
             values.Append(value);
 

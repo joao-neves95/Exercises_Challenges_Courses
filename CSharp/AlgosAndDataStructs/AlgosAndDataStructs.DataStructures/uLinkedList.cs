@@ -70,14 +70,16 @@ namespace AlgosAndDataStructs.DataStructures
             {
                 Append(value);
             }
-
-            Head = new Node<TValue>
+            else
             {
-                Value = value,
-                NextNode = Head,
-            };
+                Head = new Node<TValue>
+                {
+                    Value = value,
+                    NextNode = Head,
+                };
 
-            ++Count;
+                ++Count;
+            }
 
             return this;
         }
@@ -91,19 +93,20 @@ namespace AlgosAndDataStructs.DataStructures
             {
                 Append(value);
             }
-
-            var before = TraverseTo(index.Value - 1);
-
-            if (before == null)
+            else
             {
-                Append(value);
+                var before = TraverseTo(index.Value - 1);
+
+                if (before == null)
+                {
+                    Append(value);
+                }
+
+                var newNode = new Node<TValue>() { Value = value };
+                newNode.NextNode = before.NextNode;
+                before.NextNode = newNode;
+                ++Count;
             }
-
-            var newNode = new Node<TValue>() { Value = value };
-            newNode.NextNode = before.NextNode;
-            before.NextNode = newNode;
-
-            ++Count;
 
             return this;
         }

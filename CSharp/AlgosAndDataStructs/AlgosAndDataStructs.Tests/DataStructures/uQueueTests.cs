@@ -1,4 +1,5 @@
 using AlgosAndDataStructs.DataStructures;
+using AlgosAndDataStructs.DataStructures.Abstractions;
 
 using FluentAssertions;
 
@@ -9,25 +10,41 @@ namespace AlgosAndDataStructs.Tests.DataStructures
         [Fact]
         public void Create_Passes()
         {
-            var queue = new uQueue<int>();
-            queue.Peek().Should().Be(default);
+            new IQueue<int>[] { new uQueue<int>(), new uVanillaQueue<int>() }
+                .Should()
+                .AllSatisfy(stack => stack.Peek().Should().Be(default));
         }
 
         [Fact]
         public void DeEnQueuing_Passes()
         {
-            var queue = new uQueue<int>();
-            queue.Peek().Should().Be(default);
+            var all = new IQueue<int>[] { new uQueue<int>(), new uVanillaQueue<int>(), new uStackedQueue<int>() };
+            all.Should().AllSatisfy(queue => queue.Peek().Should().Be(default));
+            all.Should().AllSatisfy(queue => queue.Count.Should().Be(0));
 
-            queue.Enqueue(0);
-            queue.Enqueue(1);
-            queue.Peek().Should().Be(0);
-            queue.Dequeue().Should().Be(0);
-            queue.Peek().Should().Be(1);
-            queue.Enqueue(2);
-            queue.Peek().Should().Be(1);
-            queue.Dequeue().Should().Be(1);
-            queue.Dequeue().Should().Be(2);
+            Array.ForEach(all, queue => queue.Enqueue(0));
+            all.Should().AllSatisfy(queue => queue.Peek().Should().Be(0));
+            all.Should().AllSatisfy(queue => queue.Count.Should().Be(1));
+
+            Array.ForEach(all, queue => queue.Enqueue(1));
+            all.Should().AllSatisfy(queue => queue.Peek().Should().Be(0));
+            all.Should().AllSatisfy(queue => queue.Count.Should().Be(2));
+
+            all.Should().AllSatisfy(queue => queue.Dequeue().Should().Be(0));
+            all.Should().AllSatisfy(queue => queue.Peek().Should().Be(1));
+            all.Should().AllSatisfy(queue => queue.Count.Should().Be(1));
+
+            Array.ForEach(all, queue => queue.Enqueue(2));
+            all.Should().AllSatisfy(queue => queue.Peek().Should().Be(1));
+            all.Should().AllSatisfy(queue => queue.Count.Should().Be(2));
+
+            all.Should().AllSatisfy(queue => queue.Dequeue().Should().Be(1));
+            all.Should().AllSatisfy(queue => queue.Peek().Should().Be(2));
+            all.Should().AllSatisfy(queue => queue.Count.Should().Be(1));
+
+            all.Should().AllSatisfy(queue => queue.Dequeue().Should().Be(2));
+            all.Should().AllSatisfy(queue => queue.Peek().Should().Be(default));
+            all.Should().AllSatisfy(queue => queue.Count.Should().Be(0));
         }
     }
 }

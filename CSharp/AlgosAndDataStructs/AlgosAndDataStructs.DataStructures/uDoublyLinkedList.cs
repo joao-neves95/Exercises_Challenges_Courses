@@ -66,13 +66,15 @@ namespace AlgosAndDataStructs.DataStructures
             {
                 Append(value);
             }
+            else
+            {
+                var newNode = new DoubleNode<TValue>() { Value = value };
 
-            var newNode = new DoubleNode<TValue>() { Value = value };
-
-            Head.PreviousNode = newNode;
-            newNode.NextNode = Head;
-            Head = newNode;
-            ++Count;
+                Head.PreviousNode = newNode;
+                newNode.NextNode = Head;
+                Head = newNode;
+                ++Count;
+            }
 
             return this;
         }
