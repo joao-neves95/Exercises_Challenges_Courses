@@ -1,4 +1,5 @@
 using AlgosAndDataStructs.DataStructures.Abstractions;
+using AlgosAndDataStructs.DataStructures.Traits;
 
 namespace AlgosAndDataStructs.DataStructures
 {
@@ -6,11 +7,16 @@ namespace AlgosAndDataStructs.DataStructures
     {
         private readonly uLinkedList<T> values;
 
-        public uint Count { get { return values.Count; } }
+        public int Count { get { return values.Count; } }
 
         public uQueue()
         {
             values = new uLinkedList<T>();
+        }
+
+        int ICountable.Count()
+        {
+            return Count;
         }
 
         public void Clear()

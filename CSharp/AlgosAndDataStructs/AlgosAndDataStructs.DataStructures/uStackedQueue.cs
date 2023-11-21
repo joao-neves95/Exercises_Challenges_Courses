@@ -1,4 +1,5 @@
 using AlgosAndDataStructs.DataStructures.Abstractions;
+using AlgosAndDataStructs.DataStructures.Traits;
 
 namespace AlgosAndDataStructs.DataStructures
 {
@@ -6,11 +7,16 @@ namespace AlgosAndDataStructs.DataStructures
     {
         private readonly uVanillaStack<T> stack;
 
-        public uint Count { get { return stack.Count; } }
+        public int Count { get { return stack.Count; } }
 
         public uStackedQueue()
         {
             stack = new uVanillaStack<T>();
+        }
+
+        int ICountable.Count()
+        {
+            return Count;
         }
 
         public void Clear()

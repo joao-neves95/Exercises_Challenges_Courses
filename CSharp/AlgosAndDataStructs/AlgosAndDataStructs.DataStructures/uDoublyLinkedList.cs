@@ -1,14 +1,19 @@
+using AlgosAndDataStructs.DataStructures.Traits;
 using AlgosAndDataStructs.DataStructures.Types;
+
+using System.Collections;
 
 namespace AlgosAndDataStructs.DataStructures
 {
-    public class uDoublyLinkedList<TValue>
+    public class uDoublyLinkedList<TValue> : ICollection<TValue>, ICountable
     {
         public DoubleNode<TValue>? Head { get; private set; }
 
         public DoubleNode<TValue>? Tail { get; private set; }
 
         public int Count { get; private set; }
+
+        public bool IsReadOnly => false;
 
         public uDoublyLinkedList()
         {
@@ -25,6 +30,11 @@ namespace AlgosAndDataStructs.DataStructures
         ~uDoublyLinkedList()
         {
             Clear();
+        }
+
+        int ICountable.Count()
+        {
+            return Count;
         }
 
         public void Clear()
@@ -116,7 +126,7 @@ namespace AlgosAndDataStructs.DataStructures
         /// Removes the item at index and returns it. Reference type values must be destroyed by the caller.
         /// O(n), or O(1) if removing from the edges.
         /// </summary>
-        public TValue? Remove(Index index)
+        public TValue? RemoveAt(Index index)
         {
             TValue? deletedValue = default;
 
@@ -160,7 +170,7 @@ namespace AlgosAndDataStructs.DataStructures
         /// </summary>
         public TValue? PopFront()
         {
-            return Remove(0);
+            return RemoveAt(0);
         }
 
         /// <summary>
@@ -169,7 +179,7 @@ namespace AlgosAndDataStructs.DataStructures
         /// </summary>
         public TValue? Pop()
         {
-            return Remove(Count - 1);
+            return RemoveAt(Count - 1);
         }
 
         /*
@@ -234,5 +244,39 @@ namespace AlgosAndDataStructs.DataStructures
 
             return null;
         }
+
+        #region ICollection
+
+        public void Add(TValue item)
+        {
+            Append(item);
+        }
+
+        public bool Contains(TValue item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CopyTo(TValue[] array, int arrayIndex)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Remove(TValue item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerator<TValue> GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion ICollection
     }
 }

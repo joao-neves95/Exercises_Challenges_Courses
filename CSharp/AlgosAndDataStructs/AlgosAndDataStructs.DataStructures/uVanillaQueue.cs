@@ -1,4 +1,5 @@
 using AlgosAndDataStructs.DataStructures.Abstractions;
+using AlgosAndDataStructs.DataStructures.Traits;
 using AlgosAndDataStructs.DataStructures.Types;
 
 namespace AlgosAndDataStructs.DataStructures
@@ -9,7 +10,12 @@ namespace AlgosAndDataStructs.DataStructures
 
         private Node<T>? Back;
 
-        public uint Count { get; private set; }
+        public int Count { get; private set; }
+
+        int ICountable.Count()
+        {
+            return Count;
+        }
 
         public void Clear()
         {

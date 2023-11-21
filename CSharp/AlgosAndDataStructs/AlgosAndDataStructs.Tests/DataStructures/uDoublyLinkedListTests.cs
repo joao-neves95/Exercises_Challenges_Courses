@@ -49,15 +49,15 @@ namespace AlgosAndDataStructs.Tests.DataStructures
         public void Delete_Passes()
         {
             var linkedList = new uDoublyLinkedList<int>(new[] { 0, 1, 100, 3 });
-            linkedList.Remove(2);
+            linkedList.RemoveAt(2);
             TestLinkedValues(linkedList, new[] { 0, 1, 3 });
 
             linkedList = new uDoublyLinkedList<int>(new[] { 0, 1, 2, 3 });
-            linkedList.Remove(0);
+            linkedList.RemoveAt(0);
             TestLinkedValues(linkedList, new[] { 1, 2, 3 });
 
             linkedList = new uDoublyLinkedList<int>(new[] { 0, 1, 2 });
-            linkedList.Remove(2);
+            linkedList.RemoveAt(2);
             TestLinkedValues(linkedList, new[] { 0, 1 });
         }
 

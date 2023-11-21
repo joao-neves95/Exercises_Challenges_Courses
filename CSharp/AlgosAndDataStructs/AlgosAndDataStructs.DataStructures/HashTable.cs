@@ -1,14 +1,16 @@
 using System.Diagnostics.CodeAnalysis;
 
+using AlgosAndDataStructs.DataStructures.Traits;
+
 namespace AlgosAndDataStructs.DataStructures
 {
-    public class HashTable<T>
+    public class HashTable<T> : ICountable
     {
         private KeyValuePair<string?, T?>?[] Data { get; set; }
 
-        public uint Size { get { return (uint)Data.Length; } }
+        public int Size { get { return Data.Length; } }
 
-        public uint Count { get; private set; } = 0;
+        public int Count { get; private set; } = 0;
 
         public HashTable(int initialSize)
         {
@@ -30,6 +32,11 @@ namespace AlgosAndDataStructs.DataStructures
         ~HashTable()
         {
             Data = null!;
+        }
+
+        int ICountable.Count()
+        {
+            return Count;
         }
 
         /// <summary>

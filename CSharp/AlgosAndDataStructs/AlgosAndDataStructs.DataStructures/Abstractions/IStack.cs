@@ -1,8 +1,10 @@
+using AlgosAndDataStructs.DataStructures.Traits;
+
 namespace AlgosAndDataStructs.DataStructures.Abstractions
 {
-    public interface IStack<T>
+    public interface IStack<T> : ICountable
     {
-        public uint Count { get; }
+        public new int Count { get; }
 
         public void Clear();
 

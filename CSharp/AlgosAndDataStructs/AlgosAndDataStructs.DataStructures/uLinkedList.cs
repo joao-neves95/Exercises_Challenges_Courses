@@ -1,14 +1,19 @@
+using AlgosAndDataStructs.DataStructures.Traits;
 using AlgosAndDataStructs.DataStructures.Types;
+
+using System.Collections;
 
 namespace AlgosAndDataStructs.DataStructures
 {
-    public class uLinkedList<TValue>
+    public class uLinkedList<TValue> : ICollection<TValue>, ICountable
     {
         public Node<TValue>? Head { get; private set; }
 
         public Node<TValue>? Tail { get; private set; }
 
-        public uint Count { get; private set; }
+        public int Count { get; private set; }
+
+        public bool IsReadOnly => false;
 
         public uLinkedList()
         {
@@ -29,6 +34,11 @@ namespace AlgosAndDataStructs.DataStructures
         ~uLinkedList()
         {
             Clear();
+        }
+
+        int ICountable.Count()
+        {
+            return Count;
         }
 
         public void Clear()
@@ -116,7 +126,7 @@ namespace AlgosAndDataStructs.DataStructures
         /// O(n) if removing from the middle or the end,
         /// or O(1) if removing from the front.
         /// </summary>
-        public TValue? Remove(Index index)
+        public TValue? RemoveAt(Index index)
         {
             TValue? deletedValue = default;
 
@@ -158,7 +168,7 @@ namespace AlgosAndDataStructs.DataStructures
         /// </summary>
         public TValue? PopFront()
         {
-            return Remove(0);
+            return RemoveAt(0);
         }
 
         /// <summary>
@@ -167,7 +177,7 @@ namespace AlgosAndDataStructs.DataStructures
         /// </summary>
         public TValue? Pop()
         {
-            return Remove(new Index((int)Count).Value - 1);
+            return RemoveAt(new Index(Count).Value - 1);
         }
 
         public uLinkedList<TValue> ReverseNotInPlace()
@@ -176,7 +186,7 @@ namespace AlgosAndDataStructs.DataStructures
 
             var currentNode = Head;
 
-            for (var i = (int)Count - 1; i >= 0; --i, currentNode = currentNode!.NextNode)
+            for (var i = Count - 1; i >= 0; --i, currentNode = currentNode!.NextNode)
             {
                 reversedNodes[i] = currentNode!;
             }
@@ -263,5 +273,39 @@ namespace AlgosAndDataStructs.DataStructures
 
             return null;
         }
+
+        #region ICollection
+
+        public void Add(TValue item)
+        {
+            Append(item);
+        }
+
+        public bool Contains(TValue item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CopyTo(TValue[] array, int arrayIndex)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Remove(TValue item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerator<TValue> GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion ICollection
     }
 }
