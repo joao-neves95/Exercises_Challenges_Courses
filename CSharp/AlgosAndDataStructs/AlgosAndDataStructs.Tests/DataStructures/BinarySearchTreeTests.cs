@@ -1,5 +1,6 @@
 using AlgosAndDataStructs.DataStructures;
 using AlgosAndDataStructs.DataStructures.Options;
+using AlgosAndDataStructs.DataStructures.Types;
 
 using FluentAssertions;
 
@@ -11,20 +12,18 @@ namespace AlgosAndDataStructs.Tests.DataStructures
         public void Create_Passes()
         {
             var tree1 = new BinarySearchTree<int>();
-            var tree2 = new BinarySearchTree<int>(new[] { 0, 1, 2, 3, 4, 5 });
-
             tree1.Count.Should().Be(0);
             tree1.Root?.Value.Should().Be(null);
 
-            tree2.Count.Should().Be(6);
-            tree2.Root?.Value.Should().Be(0);
+            var tree2 = CreateMockTree();
+            tree2.Root?.Value.Should().Be(9);
         }
 
         [Fact]
         public void Insert_OneItem_Passes()
         {
-            var tree = new BinarySearchTree<int>();
-            tree.Insert(9);
+            var tree = new BinarySearchTree<int>()
+                .Insert(9);
 
             tree.Count.Should().Be(1);
             tree.Root?.Value.Should().Be(9);
@@ -33,19 +32,18 @@ namespace AlgosAndDataStructs.Tests.DataStructures
         [Fact]
         public void Insert_MultipleItems_CreatesATree()
         {
-            var tree1 = new BinarySearchTree<int>();
-            tree1.Insert(9);
-            tree1.Insert(4);
-            tree1.Insert(6);
-            tree1.Insert(20);
-            tree1.Insert(170);
-            tree1.Insert(15);
-            tree1.Insert(1);
-
-            var tree2 = new BinarySearchTree<int>(new[] { 9, 4, 6, 20, 170, 15, 1 });
+            var tree1 = new BinarySearchTree<int>()
+                .Insert(9)
+                .Insert(4)
+                .Insert(6)
+                .Insert(20)
+                .Insert(170)
+                .Insert(15)
+                .Insert(1);
 
             tree1.Count.Should().Be(7);
-            tree2.Count.Should().Be(7);
+
+            var tree2 = CreateMockTree();
 
             /*
                    9
@@ -56,6 +54,27 @@ namespace AlgosAndDataStructs.Tests.DataStructures
 
             TestUtils.ToJson(tree1, JsonIdentation.None).Should().Be(expectedJson);
             TestUtils.ToJson(tree2, JsonIdentation.None).Should().Be(expectedJson);
+        }
+
+        [Fact]
+        public void Lookup_ReturnTheCorrectNode()
+        {
+            var tree1 = CreateMockTree();
+
+            var expected_6 = new BinaryNode<int>() { Value = 6 };
+            var expected_170 = new BinaryNode<int>() { Value = 170 };
+
+            tree1.Lookup(-100).Should().Be(null);
+            tree1.Lookup(6).Should().BeEquivalentTo(expected_6);
+            tree1.Lookup(170).Should().BeEquivalentTo(expected_170);
+        }
+
+        private static BinarySearchTree<int> CreateMockTree()
+        {
+            var newTree = new BinarySearchTree<int>(new[] { 9, 4, 6, 20, 170, 15, 1 });
+            newTree.Count.Should().Be(7);
+
+            return newTree;
         }
     }
 }

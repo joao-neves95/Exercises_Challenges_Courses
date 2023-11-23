@@ -94,23 +94,40 @@ namespace AlgosAndDataStructs.DataStructures
             return this;
         }
 
-        public BinaryNode<T> Lookup(T values)
+        /// <summary>
+        /// O(log n) or O(n)
+        ///
+        /// </summary>
+        public BinaryNode<T>? Lookup(T value)
         {
-            throw new NotImplementedException();
-        }
-
-        public BinarySearchTree<T> Remove(T values)
-        {
-            throw new NotImplementedException();
-
             if (Root == null)
             {
-                return this;
+                return null;
+            }
+            else if (Count == 1)
+            {
+                return Root;
             }
 
-            --Count;
+            var currentNode = Root;
 
-            return this;
+            while (currentNode != null)
+            {
+                if (value.CompareTo(currentNode.Value) == 0)
+                {
+                    return currentNode;
+                }
+                else if (value.CompareTo(currentNode.Value) < 0)
+                {
+                    currentNode = currentNode.Left;
+                }
+                else
+                {
+                    currentNode = currentNode.Right;
+                }
+            }
+
+            return null;
         }
 
         public object GetJsonObject()
