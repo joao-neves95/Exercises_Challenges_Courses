@@ -8,6 +8,11 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 
 ### Projects
 
+- [Redis Clone](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Rust/codecrafters-redis-rust)
+
+  A Redis clone.\
+  Mostly done in pure vanilla Rust. It uses Tokio for multithreading.
+
 - [irspt-rs](https://github.com/joao-neves95/irspt-rs)
 
   A CLI app that interfaces with Portugal's Tax Authority website, in order to streamline the process of issuing invoices.\
