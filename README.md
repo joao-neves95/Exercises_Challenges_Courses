@@ -8,7 +8,7 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 
 ### Projects
 
-- [Redis Clone](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Rust/codecrafters-redis-rust)
+- [Redis Clone](https://github.com/joao-neves95/redis-clone-rs)
 
   A Redis clone.\
   Mostly done in pure vanilla Rust. It uses Tokio for multithreading.
