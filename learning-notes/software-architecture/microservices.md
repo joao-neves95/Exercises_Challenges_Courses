@@ -36,3 +36,13 @@
         - This can be solved by using the Gateway Aggregation pattern.
 - Event driven:
     - uServices communicate through a message queue system (event queues).
+    - Message broker communication types:
+        - Publish-Subscribe (Pub/Sub)
+            - Messages are sent to multiple subscribers simultaneously, promoting decoupling and scalability
+            - (Publisher --> Topic --> \[Subscriber1, Subscriber2\])
+            - Ideal to broadcast events or notifications to multiple consumers
+        - Message Queues (MQs)
+            - Point-to-point communication system where messages are sent to a single receiver, ensuring ordered and reliable delivery
+            - (Sender --> Queue)
+            - Ideal for processing tasks sequentially
+            - E.g.: Spin up multiple (lead balanced) consumer services which listen to the same queue

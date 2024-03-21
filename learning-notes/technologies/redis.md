@@ -7,8 +7,8 @@
 - Fast
 - Can save data both in RAM or disk
 - Disadvantages
-    - Since it works synchronously, it does not reach the high level of performance that asynchronous alternatives reach *on a single alternative*.
-    - Needs RAM according to data size.
+    - Since it works synchronously, it does not reach the high level of performance that asynchronous alternatives reach *on a single instance*.
+    - Needs RAM equivalent to size of data (since it's in-memory).
     - Does not support complex queries like relational DB.
     - **If a transaction fails (error), there is no return.**
 

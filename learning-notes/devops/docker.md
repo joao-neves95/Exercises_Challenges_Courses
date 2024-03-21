@@ -30,3 +30,13 @@
 - Container
 
 ---
+
+## Some commands:
+https://docs.docker.com/engine/reference/commandline/docker
+
+- `run`
+    - `-p` (publish/expose)
+        - E.g. `docker run -p 127.0.0.1:80:8080/tcp nginx:alpine`
+        - Binds port `8080` of the container to TCP port `80` on `127.0.0.1` of the host.
+
+---

@@ -1,7 +1,9 @@
 # Terraform
+
 ---
 
 ## Introduction
+- Provisioning tool
 - Allows infrastructure to be expressed as code, HCL (Terraform Hashicorp Configuration Language).
 - Terraform uses HCL to provide an execution plan of changes.
 - Allows to manage a broad range of resources, including hardware, IaaS, PaaS, and SaaS services.
@@ -53,55 +55,16 @@
 
 ---
 
-## Terraform Files
+## Terraform Folder Structure
 - `terraform.tfstate`
     - The file that stores the current state of the infrastructure, along with all the IDs of the instances and other metadata.
     - Never manually edit this file. It is auto-generated.
 - `terraform.lock.hcl`
-    - Locks all the preovider versions.
+    - Locks all the provider versions.
 - `.terraform/` (directory/folder)
     - It stores all providers.
 
 ---
-
-## CLI Commands
-
-### Print version and check if a Terraform instance is running.
-```bash
-terraform --version
-```
-
-### Init
-```bash
-terraform init
-```
-
-### Create an execution plan
-```bash
-terraform plan
-```
-
-### Apply the plan
-```bash
-terraform apply
-```
-
-### Destroy all resources
-```bash
-terraform destroy
-```
-
-### State
-```bash
-# List all resources in state.
-terraform state list
-
-# Print the details of a specific resource.
-terraform state show {resource-name}
-```
-
----
-
 ## HCL
 - Hashicorp Configuration Language.
 - The domain specific language used to write the IaC on Terraform.
@@ -143,11 +106,49 @@ variable "{variable_name}" {
 
 ### Providers
 - Plugins to interact with external providers (e.g. cloud providers, SaaS providers, other APIs).
-- TF configs must declare which providers they require so that Terraform can install and use them.
+- TF configs must declare which providers they require so that Terraform can install, authenticate, and use them.
 - Each provider adds a set of **resource** types and/or **data sources** that Terraform can manage.
 
 ### Modules
 - A wrapper around a collection of Terraform resources.
 - Self-contained packages of TF configurations that are managed as a group.
+
+---
+
+## CLI Commands
+
+### Print version and check if a Terraform instance is running.
+```bash
+terraform --version
+```
+
+### Init
+```bash
+terraform init
+```
+
+### Create an execution plan
+```bash
+terraform plan
+```
+
+### Apply the plan
+```bash
+terraform apply
+```
+
+### Destroy all resources
+```bash
+terraform destroy
+```
+
+### State
+```bash
+# List all resources in state.
+terraform state list
+
+# Print the details of a specific resource.
+terraform state show {resource-name}
+```
 
 ---

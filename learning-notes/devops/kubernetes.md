@@ -23,7 +23,7 @@
             - The cloud provider manages the machine creation/destruction.
         - In a non-managed environment:
             - The machines for each node in a Kubernetes cluster must already exist and be configured, so that the control plane (master) can know which nodes it can use.
-            - They then need to be configured to communicate with the control plane, so they can join the cluster.
+            - They then need to be configured to communicate with the control plane, so that they can join the cluster.
         - Each Node hosts a **<u>Pod</u>**.
             - Each pod can host one or multiple Containers, with shared storage and network resources.
             - An abstraction layer over a container. A specification on how to run the containers and creates a running environment over the container.

@@ -41,7 +41,7 @@
         - FIFO model.
         - It is the memory.
         - Data can be persisted or stored in-memory.
-        - Properties:
+        - Configuration properties:
             - Name.
             - Durable: determines the lifetime of the queue; if messages are persisted in disk or stored in-memory. If the queue will survive a broker restart.
             - Exclusive: whether the queue will be used with multiple connections. If only one connection, the queue will be deleted when that connection closes.
