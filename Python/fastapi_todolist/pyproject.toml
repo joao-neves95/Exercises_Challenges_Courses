@@ -1,0 +1,13 @@
+[project]
+name = "fastapi-todolist"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "argon2-cffi>=25.1.0",
+    "fastapi[standard]>=0.119.1",
+    "pydantic-extra-types>=2.10.6",
+    "python-ulid>=3.1.0",
+    "tortoise-orm>=0.25.1",
+]
