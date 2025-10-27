@@ -1,10 +1,13 @@
+from typing import Annotated
 from uuid import uuid4
-from fastapi import APIRouter, HTTPException
-from pydantic_extra_types.ulid import ULID as pydantic_ulid
+from fastapi import APIRouter, HTTPException, Path
+from pydantic import AfterValidator
 from argon2 import PasswordHasher
 
 from entities.data_user import DataUser
 from lib.list_utils import try_get
+from lib.ulid_validators import validate_str_ulid
+from mappers import update_data_user_from_model
 from models.common import StatusResponse
 from models.users import RegisterUser, User
 
@@ -23,7 +26,7 @@ async def get_users():
 
 
 @api_users_router.get("/{ulid}")
-async def get_user(ulid: pydantic_ulid):
+async def get_user(ulid: Annotated[str, Path(), AfterValidator(validate_str_ulid)]):
     data_user = try_get(await DataUser.filter(ulid=ulid), 0)
 
     if data_user is None:
@@ -57,7 +60,8 @@ async def create_user(register_user_model: RegisterUser):
 
 @api_users_router.put("/{ulid}/credentials")
 async def update_user_credentials(
-    ulid: pydantic_ulid, register_user_model: RegisterUser
+    ulid: Annotated[str, Path(), AfterValidator(validate_str_ulid)],
+    register_user_model: RegisterUser,
 ):
     data_user = try_get(await DataUser.filter(ulid=ulid), 0)
 
@@ -73,13 +77,15 @@ async def update_user_credentials(
 
 
 @api_users_router.put("/{ulid}")
-async def update_user(ulid: pydantic_ulid, user_model: User):
+async def update_user(
+    ulid: Annotated[str, Path(), AfterValidator(validate_str_ulid)], user_model: User
+):
     data_user = try_get(await DataUser.filter(ulid=ulid), 0)
 
     if data_user is None:
         raise HTTPException(status_code=404, detail=f"User {ulid} not found")
 
-    data_user.update_data(user_model)
+    update_data_user_from_model(data_user, user_model)
     await data_user.save()
-    
+
     return StatusResponse(status_code=204, message=f"User '{ulid}' updated")
