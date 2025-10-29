@@ -5,9 +5,13 @@ from lib.ulid_utils import new_ulid_str
 
 class DataItem(Model):
     id = fields.IntField(primary_key=True)
-    ulid = fields.CharField(default=new_ulid_str(), max_length=27, unique=True, index=True)
+    ulid = fields.CharField(
+        default=new_ulid_str(), max_length=27, unique=True, index=True
+    )
     user_id = fields.ForeignKeyField(
-        "entities.user", related_name="items", on_delete=fields.OnDelete.CASCADE
+        "data.entities.DataUser",
+        related_name="DataItem",
+        on_delete=fields.OnDelete.CASCADE,
     )
     title = fields.CharField(max_length=50)
     description = fields.CharField(max_length=200)

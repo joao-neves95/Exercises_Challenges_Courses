@@ -4,10 +4,22 @@ TTarget = TypeVar("TTarget")
 
 
 def try_get(
-    target: list[TTarget], index: int, default: TTarget | None = None
+    target: Iterable[TTarget], index: int, default: TTarget | None = None
 ) -> TTarget | None:
     try:
-        return target[index]
+        for i, item in enumerate(target):
+            if i == index:
+                return item
+    except IndexError:
+        return default
+
+
+def try_get_first(
+    target: Iterable[TTarget], default: TTarget | None = None
+) -> TTarget | None:
+    try:
+        it = iter(target)
+        return next(it)
     except IndexError:
         return default
 

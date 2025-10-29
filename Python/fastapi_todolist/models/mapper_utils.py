@@ -1,7 +1,7 @@
-from entities.data_item import DataItem
-from entities.data_user import DataUser
+from data.entities.data_item import DataItem
+from data.entities.data_user import DataUser
 from models.items import Item, NewItem
-from models.users import User
+from models.users import User, UserCredentials
 
 
 def data_item_to_model(data_item: DataItem, user_ulid: str):
@@ -21,6 +21,15 @@ def update_data_item_from_model(
     data_item.title = item.title
     data_item.description = item.description
     data_item.done = item.done
+
+
+def data_user_to_model(data_user: DataUser):
+    return User(
+        ulid=data_user.ulid,
+        first_name=data_user.first_name,
+        last_name=data_user.last_name,
+        credentials=UserCredentials(email=data_user.credentials.email),
+    )
 
 
 def update_data_user_from_model(data_user: DataUser, user: User):

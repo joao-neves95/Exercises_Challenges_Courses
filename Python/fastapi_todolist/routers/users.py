@@ -1,91 +1,69 @@
 from typing import Annotated
-from uuid import uuid4
-from fastapi import APIRouter, HTTPException, Path
+from fastapi import APIRouter, Depends, Path
+from fastapi.security import OAuth2PasswordBearer
 from pydantic import AfterValidator
-from argon2 import PasswordHasher
 
-from entities.data_user import DataUser
-from lib.list_utils import try_get
+from data.entities.data_user import DataUser
+from lib.HTTPException_utils import (
+    raise_if_user_has_no_permissions,
+    user_has_no_permissions_exception,
+)
 from lib.ulid_validators import validate_str_ulid
-from mappers import update_data_user_from_model
 from models.common import StatusResponse
-from models.users import RegisterUser, User
-
+from models.mapper_utils import data_user_to_model, update_data_user_from_model
+from models.users import User
+from routers.auth import get_is_user_jwt_admin, get_jwt_data_user, get_jwt_user
 
 api_users_router = APIRouter(prefix="/users")
 
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+
 
 # TODO: add pagination.
-# TODO: add admin JWT permission.
 @api_users_router.get("/")
-async def get_users():
+async def get_users(
+    is_current_user_admin: Annotated[bool, Depends(get_is_user_jwt_admin)],
+):
+    if not is_current_user_admin:
+        raise user_has_no_permissions_exception
+
     all_users = await DataUser.all()
-    all_users = [User.from_orm_data(data_user) for data_user in all_users]
+    all_users = [data_user_to_model(data_user) for data_user in all_users]
 
     return all_users
 
 
 @api_users_router.get("/{ulid}")
-async def get_user(ulid: Annotated[str, Path(), AfterValidator(validate_str_ulid)]):
-    data_user = try_get(await DataUser.filter(ulid=ulid), 0)
-
-    if data_user is None:
-        raise HTTPException(status_code=404, detail=f"User {ulid} not found")
+async def get_user(
+    ulid: Annotated[str, Path(), AfterValidator(validate_str_ulid)],
+    current_user: Annotated[User, Depends(get_jwt_user)],
+):
+    raise_if_user_has_no_permissions(
+        token_user_ulid=current_user.ulid, request_user_ulid=current_user.ulid
+    )
 
     return StatusResponse(
         status_code=200,
         message=f"User '{ulid}' found",
-        content=User.from_orm_data(data_user),
+        content=current_user,
     )
 
 
-def hash_password(password: str) -> tuple[str, str]:
-    password_hasher = PasswordHasher()
-    salt = str(uuid4())
-    hash = password_hasher.hash(password + salt)
-
-    return (hash, salt)
-
-
-@api_users_router.post("/")
-async def create_user(register_user_model: RegisterUser):
-    (hash, salt) = hash_password(register_user_model.password)
-
-    new_user = await DataUser.create(
-        email=register_user_model.email, password_hash=hash, salt=salt
-    )
-
-    return StatusResponse(status_code=201, message=f"User {new_user.ulid} created")
-
-
-@api_users_router.put("/{ulid}/credentials")
-async def update_user_credentials(
-    ulid: Annotated[str, Path(), AfterValidator(validate_str_ulid)],
-    register_user_model: RegisterUser,
-):
-    data_user = try_get(await DataUser.filter(ulid=ulid), 0)
-
-    if data_user is None:
-        raise HTTPException(status_code=404, detail=f"User {ulid} not found")
-
-    (hash, salt) = hash_password(register_user_model.password)
-    data_user.password_hash = hash
-    data_user.salt = salt
-    await data_user.save()
-
-    return StatusResponse(status_code=204, message=f"User '{ulid}' credentials updated")
-
-
-@api_users_router.put("/{ulid}")
+@api_users_router.put("/{user_ulid}")
 async def update_user(
-    ulid: Annotated[str, Path(), AfterValidator(validate_str_ulid)], user_model: User
-):
-    data_user = try_get(await DataUser.filter(ulid=ulid), 0)
+    user_ulid: Annotated[str, Path(), AfterValidator(validate_str_ulid)],
+    user_model: User,
+    current_data_user: Annotated[DataUser, Depends(get_jwt_data_user)],
+) -> StatusResponse[User]:
+    raise_if_user_has_no_permissions(
+        token_user_ulid=current_data_user.ulid, request_user_ulid=user_ulid
+    )
 
-    if data_user is None:
-        raise HTTPException(status_code=404, detail=f"User {ulid} not found")
+    update_data_user_from_model(current_data_user, user_model)
+    await current_data_user.save()
 
-    update_data_user_from_model(data_user, user_model)
-    await data_user.save()
-
-    return StatusResponse(status_code=204, message=f"User '{ulid}' updated")
+    return StatusResponse(
+        status_code=204,
+        message=f"User '{user_ulid}' updated",
+        content=data_user_to_model(current_data_user),
+    )
