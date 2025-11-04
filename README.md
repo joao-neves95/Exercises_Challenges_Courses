@@ -97,6 +97,16 @@ Courses, tutorials, exercises, challenges and experiments from various sources.
 
 ---
 
+## Python
+
+### Personal Projects
+
+- [FastAPI TodoList](https://github.com/joao-neves95/Exercises_Challenges_Courses/tree/master/Python/fastapi_todolist)
+
+  A Todo List RESTful API, using Python, FastAPI, Tortoise, SQLite.
+
+---
+
 ## Node.js
 
 ### Personal Projects
