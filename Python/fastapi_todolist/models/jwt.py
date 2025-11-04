@@ -16,6 +16,5 @@ class JwtTokenData(BaseModel):
     sub: str
     """ The user ULID. """
     exp: datetime
-    iat: datetime
     admin: bool
     """ If this user has admin permissions. """

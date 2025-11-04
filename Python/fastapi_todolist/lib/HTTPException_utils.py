@@ -22,7 +22,7 @@ def user_not_found_exception(user_ulid: str) -> HTTPException:
 
 user_has_no_permissions_exception = HTTPException(
     status_code=status.HTTP_401_UNAUTHORIZED,
-    detail="The current user has no access permissions to this resource",
+    detail="The current user has no permissions to access this resource",
     headers={"WWW-Authenticate": "Bearer"},
 )
 
@@ -30,3 +30,9 @@ user_has_no_permissions_exception = HTTPException(
 def raise_if_user_has_no_permissions(token_user_ulid, request_user_ulid):
     if request_user_ulid != token_user_ulid:
         raise user_has_no_permissions_exception
+
+
+email_already_exists_exception = HTTPException(
+    status_code=status.HTTP_409_CONFLICT,
+    detail="Email already exists",
+)

@@ -2,6 +2,7 @@ from typing import Annotated
 from fastapi import APIRouter, Depends, HTTPException, Path
 
 from pydantic import AfterValidator
+from tortoise.contrib.pydantic import pydantic_model_creator
 from tortoise.transactions import in_transaction
 
 from data.entities.data_item import DataItem
@@ -13,7 +14,7 @@ from models.mapper_utils import data_item_to_model, update_data_item_from_model
 from models.common import StatusResponse
 from models.items import Item, NewItem
 from models.users import User
-from routers.auth import get_jwt_data_user, get_jwt_user
+from routers.auth import get_jwt_data_user_async, get_jwt_user_async
 
 api_user_items_router = APIRouter(prefix="/users/{user_ulid}/items")
 
@@ -22,13 +23,13 @@ api_user_items_router = APIRouter(prefix="/users/{user_ulid}/items")
 @api_user_items_router.get("/")
 async def get_all_items(
     user_ulid: Annotated[str, Path(), AfterValidator(validate_str_ulid)],
-    current_user: Annotated[User, Depends(get_jwt_user)],
+    current_user: Annotated[User, Depends(get_jwt_user_async)],
 ) -> StatusResponse[list[Item]]:
     raise_if_user_has_no_permissions(
         token_user_ulid=current_user.ulid, request_user_ulid=user_ulid
     )
 
-    all_user_items = await DataItem.filter(user_ulid=current_user.ulid)
+    all_user_items = await DataItem.filter(user__ulid=current_user.ulid)
 
     all_user_items = [
         data_item_to_model(item, str(user_ulid)) for item in all_user_items
@@ -45,7 +46,7 @@ async def get_all_items(
 async def get_item(
     user_ulid: Annotated[str, Path(), AfterValidator(validate_str_ulid)],
     ulid: Annotated[str, Path(), AfterValidator(validate_str_ulid)],
-    current_user: Annotated[User, Depends(get_jwt_user)],
+    current_user: Annotated[User, Depends(get_jwt_user_async)],
 ):
     raise_if_user_has_no_permissions(
         token_user_ulid=current_user.ulid, request_user_ulid=user_ulid
@@ -67,16 +68,16 @@ async def get_item(
 async def create_item(
     user_ulid: Annotated[str, Path(), AfterValidator(validate_str_ulid)],
     item: NewItem,
-    current_data_user: Annotated[DataUser, Depends(get_jwt_data_user)],
+    current_data_user: Annotated[DataUser, Depends(get_jwt_data_user_async)],
 ):
     raise_if_user_has_no_permissions(
         token_user_ulid=current_data_user.ulid, request_user_ulid=user_ulid
     )
 
-    new_data_item = update_data_item_from_model(DataItem(), item, current_data_user.id)
+    new_data_item = update_data_item_from_model(DataItem(), item, current_data_user)
 
     async with in_transaction():
-        new_data_item = await DataItem.create(**new_data_item.__dict__)
+        await new_data_item.save()
 
     return StatusResponse(
         status_code=201,
@@ -90,14 +91,14 @@ async def update_item(
     user_ulid: Annotated[str, Path(), AfterValidator(validate_str_ulid)],
     ulid: Annotated[str, Path(), AfterValidator(validate_str_ulid)],
     item: Item,
-    current_data_user: Annotated[DataUser, Depends(get_jwt_data_user)],
+    current_data_user: Annotated[DataUser, Depends(get_jwt_data_user_async)],
 ):
     raise_if_user_has_no_permissions(
         token_user_ulid=current_data_user.ulid, request_user_ulid=user_ulid
     )
 
     data_item = await DataItem.get(ulid=ulid)
-    update_data_item_from_model(data_item, item, current_data_user.id)
+    update_data_item_from_model(data_item, item, current_data_user)
     await data_item.save()
 
     return StatusResponse(
@@ -111,13 +112,13 @@ async def update_item(
 async def delete_item(
     user_ulid: Annotated[str, Path(), AfterValidator(validate_str_ulid)],
     ulid: Annotated[str, Path(), AfterValidator(validate_str_ulid)],
-    current_data_user: Annotated[DataUser, Depends(get_jwt_data_user)],
+    current_data_user: Annotated[DataUser, Depends(get_jwt_data_user_async)],
 ):
     raise_if_user_has_no_permissions(
         token_user_ulid=current_data_user.ulid, request_user_ulid=user_ulid
     )
 
-    deleted_count = await DataItem.filter(ulid=ulid, user_ulid=user_ulid).delete()
+    deleted_count = await DataItem.filter(ulid=ulid, user_id=current_data_user.id).delete()
 
     if not deleted_count:
         raise HTTPException(status_code=404, detail=f"Item '{ulid}' not found")

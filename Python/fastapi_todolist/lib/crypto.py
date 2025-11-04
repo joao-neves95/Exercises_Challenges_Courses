@@ -10,8 +10,20 @@ def hash_password(password: str) -> tuple[str, str]:
     return (hash, salt)
 
 
-def rehash_password(password: str, salt: str) -> tuple[str, str]:
-    password_hasher = PasswordHasher()
-    hash = password_hasher.hash(password + salt)
+def verify_password(hash, cleartext_password: str, salt: str) -> bool:
+    """
 
-    return (hash, salt)
+    Args:
+        hash (str): The hashed password.
+        password (str): The cleartext password.
+        salt (str): The original application salt.
+
+    Returns:
+        tuple[str, str]: Returns `True` or `False`
+    """
+    password_hasher = PasswordHasher()
+
+    try:
+        return password_hasher.verify(hash, cleartext_password + salt)
+    except Exception:
+        return False

@@ -1,17 +1,8 @@
 from typing import Annotated
-from pydantic import AfterValidator, BaseModel
+from pydantic import AfterValidator, BaseModel, EmailStr
 
 from lib.ulid_validators import validate_str_ulid
-
-
-class LoginUser(BaseModel):
-    email: str
-    password: str
-
-
-class RegisterUser(BaseModel):
-    email: str
-    password: str
+from models.jwt import JwtToken
 
 
 class UserCredentials(BaseModel):
@@ -20,6 +11,26 @@ class UserCredentials(BaseModel):
 
 class User(BaseModel):
     ulid: Annotated[str, AfterValidator(validate_str_ulid)]
-    first_name: str
-    last_name: str
-    credentials: UserCredentials
+    first_name: str | None
+    last_name: str | None
+    credentials: UserCredentials | None
+
+
+class LoginUser(BaseModel):
+    email: EmailStr
+    password: str
+
+
+class LoginOpenApi(BaseModel):
+    username: EmailStr
+    password: str
+
+
+class LoginUserResponse(BaseModel):
+    user: User
+    token: JwtToken
+
+
+class RegisterUser(BaseModel):
+    email: EmailStr
+    password: str

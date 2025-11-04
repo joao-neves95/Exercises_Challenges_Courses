@@ -1,16 +1,11 @@
-from typing import Optional
 from tortoise import Model, fields
+from tortoise.queryset import QuerySet
 
 from lib.ulid_utils import new_ulid_str
 
 
 class DataUserCredentials(Model):
     id = fields.IntField(primary_key=True)
-    user_id = fields.ForeignKeyField(
-        "data.entities.DataUser",
-        related_name="DataUserCredentials",
-        on_delete=fields.OnDelete.CASCADE,
-    )
     email = fields.CharField(max_length=150, unique=True)
     password_hash = fields.CharField(max_length=150)
     salt = fields.CharField(max_length=150, unique=True)
@@ -27,8 +22,14 @@ class DataUser(Model):
     last_name = fields.CharField(max_length=20, null=True)
     # profile_picture
 
-    credentials: fields.OneToOneRelation[DataUserCredentials] = fields.OneToOneField(
-        "data.entities.DataUserCredentials", on_delete=fields.CASCADE
+    credentials: fields.OneToOneRelation[DataUserCredentials] | None = (
+        fields.OneToOneField(
+            "entities.DataUserCredentials",
+            on_delete=fields.CASCADE,
+            null=True,
+            default=None,
+            lazy=False,
+        )
     )
 
     created_at = fields.DatetimeField(auto_now_add=True)

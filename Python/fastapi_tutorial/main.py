@@ -2,7 +2,7 @@ from enum import Enum
 import random
 from typing import Any
 from typing import Annotated
-from fastapi import FastAPI, Path, Query
+from fastapi import FastAPI, Query
 from fastapi.responses import JSONResponse
 from pydantic import AfterValidator, BaseModel
 
@@ -117,4 +117,7 @@ movie_data = {
 async def get_movie(
     id: Annotated[str | None, Query(), AfterValidator(movie_id_validator)] = None,
 ):
-    return {"id": id, "name": movie_data[id if id else random.choice(list(movie_data.keys()))]}
+    return {
+        "id": id,
+        "name": movie_data[id if id else random.choice(list(movie_data.keys()))],
+    }
