@@ -1,0 +1,59 @@
+# DDD Principles
+
+- *Domain Driven Design*.
+- **For complex systems**.
+- Ubiquitous Language:
+  - Described by Eric Evans.
+  - Software developers, software implementations and domain experts, should all use the same *ubiquitous language*:
+  - **a set of unambiguous vocabulary shared by all members and stakeholders of a product team**.
+  - A common language.
+  - Well defined concepts and names used by the domain experts.
+  - This domain expertise, after defined with an ubiquitous language, should then be transferred into the classes and methods that will compose the software system.
+- Bounded Contexts
+  - It is the focus of DDD's strategic design.
+  - A strategic pattern that helps define explicit boundaries within a larger domain model.
+  - Different parts of a system may have different meanings and interpretations of the same concepts.
+  - The boundary within a domain where a particular domain model applies.
+  - A Bounded Context is **a clear and well-defined area where a specific subdomain of the business resides. It encapsulates its own language, models, rules, and context-specific understanding**.
+  - Helps define the boundaries within which aggregates and aggregate roots exist. Each bounded context can have its own set of aggregates and aggregate roots, tailored to the specific needs and requirements of that context.
+  - Different bounded contexts that correspond to different subdomains of the system.
+  - Within a bounded context, you typically have **aggregates**:
+    - Clusters of related domain entities that are treated as a single unit.
+    - The/an **aggregate root** is an entity within the aggregate that acts as the entry point for accessing and modifying the other entities within the aggregate.
+    - Responsible for maintaining the consistency and enforcing the business rules of the aggregate.
+  - eCommerce store E.g.:
+    - User Management Context:
+      - Bounded Context: User Management
+      - Aggregate: User
+      - Aggregate Root: User (the User entity serves as the aggregate root)
+    - Product Management Context:
+      - Bounded Context: Product Management
+      - Aggregates: Product, Category
+      - Aggregate Roots: Product (the Product entity serves as the aggregate root)
+    - Stock Management Context:
+      - Bounded Context: Stock Management
+      - Aggregates: Stock, Warehouse
+      - Aggregate Roots: Stock (the Stock entity serves as the aggregate root)
+    - Order Management Context:
+      - Bounded Context: Order Management
+      - Aggregates: Order, OrderItem
+      - Aggregate Roots: Order (the Order entity serves as the aggregate root)
+    - Payment System Management Context:
+      - Bounded Context: Payment System Management
+      - Aggregate: Payment
+      - Aggregate Root: Payment (the Payment entity serves as the aggregate root)
+- Dependencies between layers:
+  - Application layer:
+    - Depends on the Domain layer, so it can:
+      - Use the entity objects.
+      - Use the Repository interfaces.
+    - Depends on the Infrastructure layer (**through DI**).
+  - Domain Model layer
+    - Ideally it must **NOT** take dependencies on any other layer.
+    - Implements the Domain Entities, Aggregate-Roots and Value-Objects.
+    - Repository contracts/interfaces (to use in DI).
+  - Infrastructure layer:
+    - Depends on the Domain Model layer, so it can:
+      - Use the entity objects.
+      - Use the Repository interfaces.
+    - Depends on infrastructure elements like data/ORM frameworks, databases, cache, external APIs, etc.
