@@ -37,6 +37,37 @@
   - Transaction management is very difficult.
   - Challenging to manage and trace/metrics. It's much more complex.
 
+## Monolith vs Microservices
+
+- Start with monolith for simplicity.
+- Move to microservices when scaling teams or domains independently.
+- Trade-offs:
+  - Microservices = complexity, distributed transactions.
+  - Monolith = easier debugging, deployment.
+
+## Service Integration
+
+- To ensure smooth communication and integration between microservices.
+- Use API Gateway and Service Mesh for managing service communication and traffic.
+
+## Scalability
+
+- To scale services independently based on demand.
+- Modern container orchestration tools like Kubernetes can be used to manage scaling (don't reinvent the wheel).
+- More at: [Scaling](./scaling.md)
+
+## Fault Tolerance and Resilience
+
+- To handle service failures between services and ensure system resilience.
+- Take advantage of monitoring and alerting tools.
+- Solutions:
+  - Retries with backoff
+  - Message queues
+  - Fallbacks (they allow degraded functionality instead of total failure, improving user experience)
+  - Circuit breakers (prevents cascading failures and protect system resources under downstream instability)
+  - Eventual consistency
+  - [Idempotency](../idempotency.md)
+
 ## Communication types between microservices
 
 - Request/Response:
@@ -58,22 +89,3 @@
       - (Sender --> Queue)
       - Ideal for processing tasks sequentially
       - E.g.: Spin up multiple (lead balanced) consumer services which listen to the same queue
-
-## Service Integration
-
-- To ensure smooth communication and integration between microservices.
-- Use API Gateway and Service Mesh for managing service communication and traffic.
-
-## Scalability
-
-- To scales services independently based on demand.
-- Modern container orchestration tools like Kubernetes can be used to manage scaling (don't reinvent the wheel).
-
-## Fault Tolerance and Resilience
-
-- To handle service failures and ensure system resilience.
-- Take advantage of monitoring and alerting tools.
-- Solutions:
-  - Circuit breakers
-  - Retries
-  - Fallbacks
